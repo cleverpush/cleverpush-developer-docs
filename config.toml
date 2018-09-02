@@ -1,0 +1,73 @@
+baseurl = "https://docs.cleverpush.com/"
+
+[languages]
+  [languages.en]
+    title = "CleverPush Documentation"
+    weight = 1
+    [languages.en.params]
+      [languages.en.params.navigation]
+        help = "Help"
+  [languages.de]
+    title = "CleverPush Dokumentation"
+    weight = 2
+    [languages.de.params]
+      [languages.de.params.navigation]
+        help = "Hilfe"
+
+
+title = "CleverPush Docs"
+theme = "hugo-material-docs"
+metadataformat = "yaml"
+canonifyurls = true
+# Enable Google Analytics by entering your tracking id
+googleAnalytics = ""
+
+[params]
+	# General information
+	author = ""
+	description = ""
+	copyright = "CleverPush 2018"
+
+	# Repository
+	provider = ""
+	repo_url = ""
+
+	version = "1.0.0"
+	logo = "https://static.cleverpush.com/app/images/logo/light.svg"
+	favicon = ""
+
+	permalink = "#"
+
+	# Custom assets
+	custom_css = []
+	custom_js  = []
+
+	# Syntax highlighting theme
+	highlight_css  = ""
+
+	[params.palette]
+    	primary = "#fff"
+    	accent  = "#54b1c4"
+
+    [params.font]
+    	text = "Ubuntu"
+    	code = "Ubuntu Mono"
+
+
+[social]
+	twitter = ""
+	github  = ""
+	email   = ""
+
+
+[[menu.main]]
+	name   = "Material"
+	url    = "/"
+	weight = 0
+
+
+[blackfriday]
+	smartypants	= true
+	fractions = true
+	smartDashes = true
+	plainIDAnchors = true
