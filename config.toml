@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "CleverPush Developer Docs"
 description = "CleverPush offers a REST API and various SDKs for Web Push and App Push Notifications"
 Paginate = 4
+publishDir = "docs"
 [Params]
   RSSLink = ""
   author = "CleverPush" # add your company name
