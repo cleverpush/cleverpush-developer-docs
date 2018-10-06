@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sdks on CleverPush Developer Docs</title>
+    <link>/sdks/</link>
+    <description>Recent content in Sdks on CleverPush Developer Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Apr 2017 16:43:08 +0100</lastBuildDate>
+    
+	<atom:link href="/sdks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android SDK</title>
+      <link>/sdks/android/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/android/</guid>
+      <description>Installation  Add the needed libraries to your Gradle config
+implementation &amp;#39;com.cleverpush:cleverpush:+&amp;#39; implementation &amp;#39;com.android.support:support-v4:+&amp;#39; implementation &amp;#39;com.google.firebase:firebase-messaging:+&amp;#39; implementation &amp;#39;com.google.code.gson:gson:2.8.5&amp;#39;  Add the following tags to your AndroidManifest.xml file
+&amp;lt;application ...&amp;gt; &amp;lt;meta-data android:name=&amp;#34;CLEVERPUSH_CHANNEL_ID&amp;#34; android:value=&amp;#34;[CLEVERPUSH.CHANNEL.ID]&amp;#34; /&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  Be sure to insert your correct [CLEVERPUSH.CHANNEL.ID], which can be found in the CleverPush settings and to replace [YOUR.</description>
+    </item>
+    
+    <item>
+      <title>Cordova SDK</title>
+      <link>/sdks/cordova/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/cordova/</guid>
+      <description>Intallation  Add the required Cordova plugin  cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git   Add the initialization code to your index.js file  document.addEventListener(&amp;#39;deviceready&amp;#39;, function () { var notificationOpenedCallback = function(data) { console.log(&amp;#39;notificationOpenedCallback:&amp;#39;, JSON.stringify(data)); }; var subscribedCallback = function(subscriptionId) { console.log(&amp;#39;subscriptionId:&amp;#39;, subscriptionId); }; window.plugins.CleverPush.init(&amp;#34;INSERT_YOUR_CHANNEL_ID&amp;#34;, notificationOpenedCallback, subscribedCallback); }, false);  Be sure to replace INSERT_YOUR_CHANNEL_ID with your CleverPush channel ID (can be found in the channel settings).</description>
+    </item>
+    
+    <item>
+      <title>JavaScript SDK</title>
+      <link>/sdks/javascript/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/javascript/</guid>
+      <description>We provide several JavaScript methods to make the integration into your website even easier.
+Calls to the SDK are all made via an array-like push method. This ensures that also calls which are made before the Script even loads are added to a queue.
+Please make sure that your personal CleverPush code is implemented on every site (&amp;lt;script src=&amp;quot;https://static.cleverpush.com/channel/XXXXXX/loader.js&amp;quot; async&amp;gt;&amp;lt;/script&amp;gt;).
+Example:
+CleverPush = window.CleverPush || []; CleverPush.push([&amp;#39;triggerOptIn&amp;#39;]);  Methods triggerOptIn Triggers the opt-in dialog.</description>
+    </item>
+    
+    <item>
+      <title>React Native SDK</title>
+      <link>/sdks/react-native/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/react-native/</guid>
+      <description>Coming soon</description>
+    </item>
+    
+    <item>
+      <title>iOS SDK</title>
+      <link>/sdks/ios/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/ios/</guid>
+      <description>Installation  Add CleverPush to your Podfile  pod &amp;#39;CleverPush&amp;#39;   Enable the required capabilities  2.1. Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
+2.2. Enable &amp;ldquo;Push Notifications&amp;rdquo;
+2.3. Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
+ Add this code to your AppDelegate:
+Objective-C:
+#import &amp;lt;CleverPush/CleverPush.h&amp;gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&amp;#34;INSERT-YOUR-CHANNEL-ID-HERE&amp;#34;]; return YES; } - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken]; } - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error { [CleverPush handleDidFailRegisterForRemoteNotification:error]; } - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo { [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive]; } @end  Swift:</description>
+    </item>
+    
+  </channel>
+</rss>

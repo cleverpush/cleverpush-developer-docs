@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.48" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> iOS SDK </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="CleverPush">
+
+
+  <meta property="og:title" content="iOS SDK" />
+<meta property="og:description" content="Installation  Add CleverPush to your Podfile  pod &#39;CleverPush&#39;   Enable the required capabilities  2.1. Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
+2.2. Enable &ldquo;Push Notifications&rdquo;
+2.3. Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
+ Add this code to your AppDelegate:
+Objective-C:
+#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken]; } - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error { [CleverPush handleDidFailRegisterForRemoteNotification:error]; } - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo { [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive]; } @end  Swift:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
+<meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
+  
+
+
+
+
+  
+  
+  
+  
+  
+
+  <link rel="canonical" href="/sdks/ios/">  
+
+  <link rel="shortcut icon" type="image/png" href="https://static.cleverpush.com/app/images/favicon.png">
+
+
+  <link href="/css/font.css" rel="stylesheet" type="text/css">
+  <link href="/css/kube.css" rel="stylesheet" type="text/css">
+  <link href="/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="/css/master.css" rel="stylesheet" type="text/css">
+  <link href="/css/kube.demo.css" rel="stylesheet" type="text/css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+ <link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+  <script src="/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="/js/tocbot.min.js"></script>
+</head>
+
+
+<body class="page-kube">
+  <header> <div class="show-sm">
+    <div id="nav-toggle-box">
+        <div id="nav-toggle-brand">
+            <a href="/">
+                <img src="https://static.cleverpush.com/app/images/logo/dark.svg" width="200" />
+            </a>
+        </div>
+        <a data-component="toggleme" data-target="#top" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+    </div>
+</div>
+<div class="hide-sm" id="top">
+    <div id="top-brand">
+        <a href="/" title="home">
+            <img src="https://static.cleverpush.com/app/images/logo/dark.svg" width="200" />
+        </a>
+    </div>
+    <nav id="top-nav-main">
+        <ul>
+            
+            
+            <li><a href="https://api.cleverpush.com" >API Reference</a>
+            </li>
+            
+            <li><a href="/sdks/" >SDK Docs</a>
+            </li>
+            
+        </ul>
+    </nav>
+    <nav id="top-nav-extra">
+        <ul>
+            
+        </ul>
+    </nav>
+</div>
+ </header>
+  <main>
+  <div id="main">
+    <div id="hero">
+      <h1> iOS SDK </h1>
+      <p class="hero-lead">
+           .
+      </p>
+
+    </div> 
+    <div id="kube-component" class="content">
+    
+<nav id="contents">
+    <ol class="js-toc">
+    </ol>
+</nav>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '.content',
+
+headingSelector: 'h3'
+})
+}
+);
+</script>
+
+
+
+    
+
+<h3 id="installation">Installation</h3>
+
+<ol>
+<li>Add CleverPush to your Podfile</li>
+</ol>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">   pod <span style="color:#960050;background-color:#1e0010">&#39;</span>CleverPush<span style="color:#960050;background-color:#1e0010">&#39;</span>
+   </code></pre></div>
+
+<ol>
+<li>Enable the required capabilities</li>
+</ol>
+
+<p>2.1. Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</p>
+
+<p>2.2. Enable &ldquo;Push Notifications&rdquo;</p>
+
+<p>2.3. Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p>
+
+<ol>
+<li><p>Add this code to your AppDelegate:</p>
+
+<p>Objective-C:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">    <span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
+</span><span style="color:#75715e"></span>    
+    <span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">AppDelegate</span>
+    
+    - (<span style="color:#66d9ef">BOOL</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFinishLaunchingWithOptions:</span>(NSDictionary <span style="color:#f92672">*</span>)launchOptions {
+       <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    
+       <span style="color:#75715e">// Make sure to insert your CleverPush channelId
+</span><span style="color:#75715e"></span>       [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>];
+    
+       <span style="color:#66d9ef">return</span> YES;
+    }
+    
+    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didRegisterForRemoteNotificationsWithDeviceToken:</span>(NSData <span style="color:#f92672">*</span>)deviceToken {
+       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
+    }
+    
+    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFailToRegisterForRemoteNotificationsWithError:</span>(NSError <span style="color:#f92672">*</span>)error {
+       [CleverPush handleDidFailRegisterForRemoteNotification:error];
+    }
+    
+    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didReceiveRemoteNotification:</span>(NSDictionary <span style="color:#f92672">*</span>)userInfo {
+       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] <span style="color:#f92672">==</span> UIApplicationStateActive];
+    }
+    
+    <span style="color:#66d9ef">@end</span>
+    </code></pre></div>
+
+<p>Swift:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">CleverPush</span>
+    
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppDelegate</span> {
+        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {	        <span style="color:#75715e">// ...</span>
+    
+            <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
+            CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>)
+    
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+        }
+    
+        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+            CleverPush.didRegister(forRemoteNotifications: application, deviceToken: deviceToken)
+        }
+    
+        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+            CleverPush.handleDidFailRegister(forRemoteNotification: error)
+        }
+    
+        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+            CleverPush.handleReceived(userInfo, isActive: application.applicationState == .active)
+        }
+    }
+    </code></pre></div></li>
+</ol>
+
+<p>Optionally, you can also add your notification opened callback in your <code>didFinishLaunchingWithOptions</code> or the subscribed callback with the subscription ID like this:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">   <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>
+	[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
+        NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
+        
+        UIAlertController<span style="color:#f92672">*</span> alert <span style="color:#f92672">=</span> [UIAlertController alertControllerWithTitle:[result.notification valueForKey:<span style="color:#e6db74">@&#34;title&#34;</span>]
+                                                                       message:[result.notification valueForKey:<span style="color:#e6db74">@&#34;text&#34;</span>]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction<span style="color:#f92672">*</span> defaultAction <span style="color:#f92672">=</span> [UIAlertAction actionWithTitle:<span style="color:#e6db74">@&#34;OK&#34;</span> style:UIAlertActionStyleDefault
+                                                              handler:<span style="color:#f92672">^</span>(UIAlertAction <span style="color:#f92672">*</span> action) {}];
+        
+        [alert addAction:defaultAction];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
+    } handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
+        NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
+    }];
+   </code></pre></div>
+
+<ol>
+<li><p>Create your iOS push certificate</p>
+
+<ul>
+<li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
+<li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority&hellip;</li>
+<li>Select the &ldquo;Save to disk&rdquo; option and enter any information in the required fields</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &ldquo;Edit&rdquo;</li>
+<li>Enable &ldquo;Push notifications&rdquo; and press &ldquo;Done&rdquo;</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &ldquo;Apple Push Notification service SSL&rdquo; and press &ldquo;Continue&rdquo;</li>
+<li>Select your Application Bundle ID and press &ldquo;Continue&rdquo;</li>
+<li>Press &ldquo;Choose File&hellip;&rdquo;, select the previously generated &ldquo;certSigningRequest&rdquo; file and then press &ldquo;Generate&rdquo;</li>
+<li>Press &ldquo;Download&rdquo; and save your certificate</li>
+<li>Click on the downloaded .cer file, Keychain Access should open</li>
+<li>Select Login &gt; My Certificates then right click on your key and click &ldquo;Export (Apple Production iOS Push Services: com.your.bundle)&hellip;&rdquo;</li>
+<li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
+<li>Upload your certificate in the CleverPush channel settings under the iOS tab</li>
+</ul></li>
+</ol>
+
+<h3 id="usage">Usage</h3>
+
+<p>Tag subscriptions and set attributes:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> channelTags <span style="color:#f92672">=</span> [CleverPush getAvailableTags];
+NSDictionary<span style="color:#f92672">*</span> customAttributes <span style="color:#f92672">=</span> [CleverPush getAvailableAttributes];
+
+[CleverPush addSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
+[CleverPush removeSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
+[CleverPush setSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span> value:<span style="color:#e6db74">@&#34;ATTRIBUTE_VALUE&#34;</span>];
+
+NSArray<span style="color:#f92672">*</span> subscriptionTags <span style="color:#f92672">=</span> [CleverPush getSubscriptionTags];
+NSDictionary<span style="color:#f92672">*</span> subscriptionAttributes <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttributes];
+NSString<span style="color:#f92672">*</span> attribute <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span>];
+<span style="color:#66d9ef">bool</span> hasTag <span style="color:#f92672">=</span> [CleverPush hasSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];</code></pre></div>
+
+
+    
+    </div>
+    </div>
+</main>
+  <footer> <footer id="footer">
+    <nav>
+        <ul>
+            <li><span></span></li>
+            <li>
+                <a href="https://cleverpush.com/imprint/" target="_blank">Imprint</a>
+            </li>
+            <li>
+                <a href="https://cleverpush.com/privacy" target="_blank">Privacy policy</a>
+            </li>
+            <li>
+                <a href="https://cleverpush.com/terms" target="_blank">Terms of service</a>
+            </li>
+        </ul>
+    </nav>
+    <p>Copyright &copy; 2018 CleverPush.</p>
+</footer>
+ </footer>
+
+
+  <script src="/js/kube.js" type="text/javascript">
+  </script>
+  <script src="/js/kube.legenda.js" type="text/javascript">
+  </script>
+  <script src="/js/master.js" type="text/javascript">
+  </script>
+</body>
+
+</html>
