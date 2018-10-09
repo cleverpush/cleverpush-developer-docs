@@ -50,13 +50,12 @@ CleverPush = window.CleverPush || []; CleverPush.push([&amp;#39;triggerOptIn&amp
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/react-native/</guid>
-      <description>Installation  Install via npm or yarn
-npm i cleverpush-react-native-sdk -S  Link + install native Dependencies for iOS
-react-native link  Install Pods for iOS (may be not needed)
+      <description>Installation  Install via npm or yarn npm i cleverpush-react-native -S 
+ Link + install native Dependencies for iOS react-native link 
+ Install Pods for iOS (may be not needed)
 cd ios pod install   Setup iOS  Enable the required capabilities  1.1. Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
 1.2. Enable &amp;ldquo;Push Notifications&amp;rdquo;
-1.3. Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
- Create your iOS push certificate</description>
+1.3. Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;</description>
     </item>
     
     <item>
