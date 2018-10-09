@@ -12,15 +12,20 @@ toc = true
 
 1. Install via npm or yarn
     ```
-    npm i https://github.com/cleverpush/cleverpush-react-native-sdk -S
+    npm i cleverpush-react-native -S
     ```
     
 2. Link + install native Dependencies for iOS
     ```
     react-native link
+    ```
+    
+2. Install Pods for iOS (may be not needed)
+    ```
     cd ios
     pod install
     ```
+
 
 ### Setup iOS
 
@@ -49,3 +54,73 @@ toc = true
    * Give the file a unique name and press save, be sure to leave the password field blank!
    * Upload your certificate in the CleverPush channel settings under the iOS tab
 
+
+### Usage
+
+```javascript
+import React from 'react';
+import { Text, View } from 'react-native';
+import CleverPush from 'cleverpush-react-native';
+
+export default class App extends React.Component {
+  componentWillMount() {
+    CleverPush.init('HX5h5pAyCMix2hBZx');
+
+    CleverPush.addEventListener('opened', this.onOpened);
+    CleverPush.addEventListener('subscribed', this.onSubscribed);
+  }
+
+  componentWillUnmount() {
+    CleverPush.removeEventListener('opened', this.onOpened);
+    CleverPush.removeEventListener('subscribed', this.onSubscribed);
+  }
+
+  onOpened(openResult) {
+    console.log('Notification opened:', openResult);
+  }
+
+  onSubscribed(subscriptionId) {
+    console.log('Subscribed with ID:', subscriptionId);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Open up App.js to start working on your app!</Text>
+      </View>
+    );
+  }
+}
+```
+
+
+Tagging and Attributes:
+
+javascript
+```
+CleverPush.getAvailableTags((err, channelTags) => {
+  console.log(channelTags); // [{ id: "tag1", name: "Tag 1" }]
+});
+CleverPush.getAvailableAttributes((err, customAttributes) => {
+  console.log(customAttributes); // [{ id: "attribute1", name: "Attribute 1" }]
+});
+
+CleverPush.getSubscriptionTags((err, tagIds) => {
+  console.log(tagIds); // ["tag_id_1", "tag_id_2"]
+});
+CleverPush.getSubscriptionAttributes((err, attributes) => {
+  console.log(attributes); // { attribute1: "value1", attribute2: "value2" }
+});
+
+CleverPush.addSubscriptionTag("tag_id");
+CleverPush.removeSubscriptionTag("tag_id");
+CleverPush.setSubscriptionAttribute("user_id", "1");
+
+CleverPush.hasSubscriptionTag("tag_id", (err, hasTag) => {
+  console.log(hasTag); // false
+});
+CleverPush.getSubscriptionAttribute("user_id", (err, attributeValue) => {
+  console.log(attributeValue); // "value"
+});
+CleverPush.setSubscriptionAttribute("user_id", "1");
+```

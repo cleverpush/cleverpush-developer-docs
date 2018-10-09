@@ -111,6 +111,12 @@ Set<CustomAttribute> customAttributes = CleverPush.getInstance(this).getAvailabl
 
 Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
 Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
+
+CleverPush.getInstance(this).addSubscriptionTag("tag_id");
+CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
+
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
 String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 {{< /highlight >}}
