@@ -11,20 +11,21 @@ toc = true
 ### Installation
 
 1. Install via npm or yarn
-    ```
+    {{< highlight bash >}}
     npm i cleverpush-react-native -S
-    ```
+    {{< /highlight >}}
     
 2. Link + install native Dependencies for iOS
-    ```
+    {{< highlight bash >}}
     react-native link
-    ```
+    {{< /highlight >}}
     
 2. Install Pods for iOS (may be not needed)
-    ```
+ 
+    {{< highlight bash >}}
     cd ios
     pod install
-    ```
+    {{< /highlight >}}
 
 
 ### Setup iOS
@@ -57,7 +58,7 @@ toc = true
 
 ### Usage
 
-```javascript
+{{< highlight javascript >}}
 import React from 'react';
 import { Text, View } from 'react-native';
 import CleverPush from 'cleverpush-react-native';
@@ -91,13 +92,12 @@ export default class App extends React.Component {
     );
   }
 }
-```
+{{< /highlight >}}
 
 
 Tagging and Attributes:
 
-javascript
-```
+{{< highlight javascript >}}
 CleverPush.getAvailableTags((err, channelTags) => {
   console.log(channelTags); // [{ id: "tag1", name: "Tag 1" }]
 });
@@ -123,4 +123,4 @@ CleverPush.getSubscriptionAttribute("user_id", (err, attributeValue) => {
   console.log(attributeValue); // "value"
 });
 CleverPush.setSubscriptionAttribute("user_id", "1");
-```
+{{< /highlight >}}
