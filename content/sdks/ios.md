@@ -132,6 +132,23 @@ toc = true
 
 ### Usage
 
+Subscribe (or unsubscribe) later:
+{{< highlight objective-c >}}
+// init with autoRegister:false
+[CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+} handleSubscribed:^(NSString *subscriptionId) {
+    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+} autoRegister:false];
+
+// subscribe
+[CleverPush subscribe]
+
+// or unsubscribe
+[CleverPush unsubscribe]
+{{< /highlight >}}
+
+
 Tag subscriptions and set attributes:
 
 {{< highlight objective-c >}}

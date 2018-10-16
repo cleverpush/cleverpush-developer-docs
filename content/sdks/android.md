@@ -102,12 +102,41 @@ public class MainActivity extends Activity {
 {{< /highlight >}}
 
 
+Subscribe (or unsubscribe) later:
+
+{{< highlight java >}}
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+      // last parameter (autoRegister) is false
+      CleverPush.getInstance(this).init(new NotificationOpenedListener() {
+          notificationOpened(NotificationOpenedResult result) {
+             System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
+         };
+      }, new SubscribedListener() {
+           subscribed(String subscriptionId) {
+              System.out.println("CleverPush Subscription ID: " + subscriptionId);
+          };
+      }, false);
+      
+      // subscribe
+      CleverPush.getInstance(this).subscribe();
+      
+      // or unsubscribe
+      CleverPush.getInstance(this).unsubscribe();
+  }
+}
+{{< /highlight >}}
+
 Tagging and Attributes
 
 
 {{< highlight java >}}
-Set<ChannelTag> channelTags = CleverPush.getInstance(this).getAvailableTags();
-Set<CustomAttribute> customAttributes = CleverPush.getInstance(this).getAvailableAttributes();
+CleverPush.getInstance(this).getAvailableTags(tags -> {
+    // returns Set<ChannelTag>
+});
+CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
+    // returns Set<CustomAttribute>
+});
 
 Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
 Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();

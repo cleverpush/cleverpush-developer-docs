@@ -256,6 +256,20 @@ headingSelector: 'h3'
 
 <h3 id="usage">Usage</h3>
 
+<p>Subscribe (or unsubscribe) later:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// init with autoRegister:false
+</span><span style="color:#75715e"></span>[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
+    NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
+} handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
+    NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
+} autoRegister:false];
+
+<span style="color:#75715e">// subscribe
+</span><span style="color:#75715e"></span>[CleverPush subscribe]
+
+<span style="color:#75715e">// or unsubscribe
+</span><span style="color:#75715e"></span>[CleverPush unsubscribe]</code></pre></div></p>
+
 <p>Tag subscriptions and set attributes:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> channelTags <span style="color:#f92672">=</span> [CleverPush getAvailableTags];
