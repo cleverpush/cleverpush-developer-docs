@@ -56,6 +56,29 @@ toc = true
    * Upload your certificate in the CleverPush channel settings under the iOS tab
 
 
+3. Add this code to your AppDelegate:
+
+    {{< highlight objective-c >}}
+    #import <CleverPush/CleverPush.h>
+    
+    @implementation AppDelegate
+    
+    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
+    }
+    
+    - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+       [CleverPush handleDidFailRegisterForRemoteNotification:error];
+    }
+    
+    - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive];
+    }
+    
+    @end
+    {{< /highlight >}}
+
+
 ### Usage
 
 {{< highlight javascript >}}
@@ -123,4 +146,10 @@ CleverPush.getSubscriptionAttribute("user_id", (err, attributeValue) => {
   console.log(attributeValue); // "value"
 });
 CleverPush.setSubscriptionAttribute("user_id", "1");
+
+CleverPush.isSubscribed((err, isSubscribed) => {
+  console.log(isSubscribed); // true
+});
+CleverPush.subscribe();
+CleverPush.unsubscribe();
 {{< /highlight >}}
