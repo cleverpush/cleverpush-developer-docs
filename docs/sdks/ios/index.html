@@ -21,10 +21,11 @@
 
 
   <meta property="og:title" content="iOS SDK" />
-<meta property="og:description" content="Installation  Add CleverPush to your Podfile  pod &#39;CleverPush&#39;   Enable the required capabilities  2.1. Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
-2.2. Enable &ldquo;Push Notifications&rdquo;
-2.3. Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
- Add this code to your AppDelegate:
+<meta property="og:description" content="Installation  Add CleverPush to your Podfile  pod &#39;CleverPush&#39;   Enable the required capabilities
+ Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
+ Enable &ldquo;Push Notifications&rdquo;
+ Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
+  Add this code to your AppDelegate:
 Objective-C:
 #import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } @end  Swift:" />
 <meta property="og:type" content="article" />
@@ -143,16 +144,16 @@ headingSelector: 'h3'
    </code></pre></div>
 
 <ol>
-<li>Enable the required capabilities</li>
-</ol>
-
-<p>2.1. Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</p>
-
-<p>2.2. Enable &ldquo;Push Notifications&rdquo;</p>
-
-<p>2.3. Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p>
+<li><p>Enable the required capabilities</p>
 
 <ol>
+<li><p>Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</p></li>
+
+<li><p>Enable &ldquo;Push Notifications&rdquo;</p></li>
+
+<li><p>Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p></li>
+</ol></li>
+
 <li><p>Add this code to your AppDelegate:</p>
 
 <p>Objective-C:</p>
@@ -213,7 +214,7 @@ headingSelector: 'h3'
 <ol>
 <li><p>Create your iOS push certificate</p>
 
-<ul>
+<ol>
 <li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
 <li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority&hellip;</li>
 <li>Select the &ldquo;Save to disk&rdquo; option and enter any information in the required fields</li>
@@ -226,8 +227,8 @@ headingSelector: 'h3'
 <li>Click on the downloaded .cer file, Keychain Access should open</li>
 <li>Select Login &gt; My Certificates then right click on your key and click &ldquo;Export (Apple Production iOS Push Services: com.your.bundle)&hellip;&rdquo;</li>
 <li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
-<li>Upload your certificate in the CleverPush channel settings under the iOS tab</li>
-</ul></li>
+<li>Upload your certificate in the CleverPush channel settings</li>
+</ol></li>
 </ol>
 
 <h3 id="usage">Usage</h3>
