@@ -11,21 +11,16 @@ toc = true
 ### Installation
 
 1. Install via npm or yarn
-    {{< highlight bash >}}
-    npm i cleverpush-react-native -S
-    {{< /highlight >}}
+    {{< highlight bash >}}npm i cleverpush-react-native -S{{< /highlight >}}
     
 2. Link + install native Dependencies for iOS
-    {{< highlight bash >}}
-    react-native link
-    {{< /highlight >}}
+    {{< highlight bash >}}react-native link{{< /highlight >}}
     
 3. Install Pods for iOS (may be not needed)
  
-    {{< highlight bash >}}
-    cd ios
-    pod install
-    {{< /highlight >}}
+    {{< highlight bash >}}cd ios
+pod install
+{{< /highlight >}}
 
 
 ### Setup iOS
@@ -57,7 +52,7 @@ toc = true
 
 ### Usage
 
-{{< highlight javascript >}}
+{{< highlight react >}}
 import React from 'react';
 import { Text, View } from 'react-native';
 import CleverPush from 'cleverpush-react-native';

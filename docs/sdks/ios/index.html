@@ -21,13 +21,14 @@
 
 
   <meta property="og:title" content="iOS SDK" />
-<meta property="og:description" content="Installation  Add CleverPush to your Podfile  pod &#39;CleverPush&#39;   Enable the required capabilities
+<meta property="og:description" content="Installation  Add CleverPush to your Podfile
+pod &#39;CleverPush&#39; Enable the required capabilities
  Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
  Enable &ldquo;Push Notifications&rdquo;
  Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
   Add this code to your AppDelegate:
 Objective-C:
-#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } @end  Swift:" />
+#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } @end Swift:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -137,13 +138,10 @@ headingSelector: 'h3'
 <h3 id="installation">Installation</h3>
 
 <ol>
-<li>Add CleverPush to your Podfile</li>
-</ol>
+<li><p>Add CleverPush to your Podfile</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">   pod <span style="color:#960050;background-color:#1e0010">&#39;</span>CleverPush<span style="color:#960050;background-color:#1e0010">&#39;</span>
-   </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span></code></pre></div></li>
 
-<ol>
 <li><p>Enable the required capabilities</p>
 
 <ol>
@@ -158,60 +156,55 @@ headingSelector: 'h3'
 
 <p>Objective-C:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">    <span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
 </span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">AppDelegate</span>
-    
-    - (<span style="color:#66d9ef">BOOL</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFinishLaunchingWithOptions:</span>(NSDictionary <span style="color:#f92672">*</span>)launchOptions {
-       <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>    
-       <span style="color:#75715e">// Make sure to insert your CleverPush channelId
-</span><span style="color:#75715e"></span>       [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>];
-    
-       <span style="color:#66d9ef">return</span> YES;
-    }
-    
-    <span style="color:#66d9ef">@end</span>
-    </code></pre></div>
+<span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">AppDelegate</span>
+
+- (<span style="color:#66d9ef">BOOL</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFinishLaunchingWithOptions:</span>(NSDictionary <span style="color:#f92672">*</span>)launchOptions {
+   <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>
+   <span style="color:#75715e">// Make sure to insert your CleverPush channelId
+</span><span style="color:#75715e"></span>   [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>];
+
+   <span style="color:#66d9ef">return</span> YES;
+}
+
+<span style="color:#66d9ef">@end</span></code></pre></div>
 
 <p>Swift:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">CleverPush</span>
-    
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppDelegate</span> {
-        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {	        <span style="color:#75715e">// ...</span>
-    
-            <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
-            CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>)
-    
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
-        }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">CleverPush</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppDelegate</span> {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {	        <span style="color:#75715e">// ...</span>
+
+        <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
+        CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>)
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
     }
-    </code></pre></div></li>
-</ol>
+}</code></pre></div>
 
 <p>Optionally, you can also add your notification opened callback in your <code>didFinishLaunchingWithOptions</code> or the subscribed callback with the subscription ID like this:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">   <span style="color:#75715e">// ...
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>
-	[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
-        NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
-        
-        UIAlertController<span style="color:#f92672">*</span> alert <span style="color:#f92672">=</span> [UIAlertController alertControllerWithTitle:[result.notification valueForKey:<span style="color:#e6db74">@&#34;title&#34;</span>]
-                                                                       message:[result.notification valueForKey:<span style="color:#e6db74">@&#34;text&#34;</span>]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction<span style="color:#f92672">*</span> defaultAction <span style="color:#f92672">=</span> [UIAlertAction actionWithTitle:<span style="color:#e6db74">@&#34;OK&#34;</span> style:UIAlertActionStyleDefault
-                                                              handler:<span style="color:#f92672">^</span>(UIAlertAction <span style="color:#f92672">*</span> action) {}];
-        
-        [alert addAction:defaultAction];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
-    } handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
-        NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
-    }];
-   </code></pre></div>
+[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
+    NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
+    
+    UIAlertController<span style="color:#f92672">*</span> alert <span style="color:#f92672">=</span> [UIAlertController alertControllerWithTitle:[result.notification valueForKey:<span style="color:#e6db74">@&#34;title&#34;</span>]
+                                                                   message:[result.notification valueForKey:<span style="color:#e6db74">@&#34;text&#34;</span>]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction<span style="color:#f92672">*</span> defaultAction <span style="color:#f92672">=</span> [UIAlertAction actionWithTitle:<span style="color:#e6db74">@&#34;OK&#34;</span> style:UIAlertActionStyleDefault
+                                                          handler:<span style="color:#f92672">^</span>(UIAlertAction <span style="color:#f92672">*</span> action) {}];
+    
+    [alert addAction:defaultAction];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
+} handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
+    NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
+}];</code></pre></div></li>
 
-<ol>
 <li><p>Create your iOS push certificate</p>
 
 <ol>

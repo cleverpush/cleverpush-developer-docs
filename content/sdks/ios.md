@@ -11,79 +11,73 @@ toc = true
 ### Installation
 
 1. Add CleverPush to your Podfile
-
-   {{< highlight objective-c >}}
-   pod 'CleverPush'
-   {{< /highlight >}}
+    
+    {{< highlight bash >}}pod 'CleverPush'{{< /highlight >}}
 
 2. Enable the required capabilities
 
-   1. Go to your root project and switch to the tab "Capabilities"
+    1. Go to your root project and switch to the tab "Capabilities"
    
-   2. Enable "Push Notifications"
+    2. Enable "Push Notifications"
    
-   3. Enable "Background Modes" and check "Remote notifications"
+    3. Enable "Background Modes" and check "Remote notifications"
 
 3. Add this code to your AppDelegate:
 
     Objective-C:
 
-    {{< highlight objective-c >}}
-    #import <CleverPush/CleverPush.h>
+    {{< highlight objective-c >}}#import <CleverPush/CleverPush.h>
     
-    @implementation AppDelegate
-    
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-       // ...
-    
-       // Make sure to insert your CleverPush channelId
-       [CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE"];
-    
-       return YES;
-    }
-    
-    @end
-    {{< /highlight >}}
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   // ...
+
+   // Make sure to insert your CleverPush channelId
+   [CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE"];
+
+   return YES;
+}
+
+@end
+{{< /highlight >}}
 
 
     Swift:
 
-    {{< highlight swift >}}
-    import CleverPush
-    
-    class AppDelegate {
-        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
-    
-            // Make sure to insert your CleverPush channelId
-            CleverPush(launchOptions: launchOptions, channelId: "INSERT-YOUR-CHANNEL-ID-HERE")
-    
-            return true
-        }
+    {{< highlight swift >}}import CleverPush
+
+class AppDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
+
+        // Make sure to insert your CleverPush channelId
+        CleverPush(launchOptions: launchOptions, channelId: "INSERT-YOUR-CHANNEL-ID-HERE")
+
+        return true
     }
-    {{< /highlight >}}
+}
+{{< /highlight >}}
 
+    Optionally, you can also add your notification opened callback in your `didFinishLaunchingWithOptions` or the subscribed callback with the subscription ID like this:
 
-   Optionally, you can also add your notification opened callback in your `didFinishLaunchingWithOptions` or the subscribed callback with the subscription ID like this:
+    {{< highlight objective-c >}}// ...
 
-   {{< highlight objective-c >}}
-   // ...
-
-	[CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
-        NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
-        
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
-                                                                       message:[result.notification valueForKey:@"text"]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
-    } handleSubscribed:^(NSString *subscriptionId) {
-        NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
-    }];
-   {{< /highlight >}}
+[CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
+                                                                   message:[result.notification valueForKey:@"text"]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
+} handleSubscribed:^(NSString *subscriptionId) {
+    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+}];
+{{< /highlight >}}
 
 4. Create your iOS push certificate
 

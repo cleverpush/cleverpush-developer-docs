@@ -50,13 +50,14 @@ CleverPush = window.CleverPush || []; CleverPush.push([&amp;#39;triggerOptIn&amp
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/react-native/</guid>
-      <description>Installation  Install via npm or yarn npm i cleverpush-react-native -S 
- Link + install native Dependencies for iOS react-native link 
+      <description>Installation  Install via npm or yarn npm i cleverpush-react-native -S
+ Link + install native Dependencies for iOS react-native link
  Install Pods for iOS (may be not needed)
-cd ios pod install   Setup iOS  Enable the required capabilities
+cd ios pod install  Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
- Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;</description>
+ Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
+  Create your iOS push certificate</description>
     </item>
     
     <item>
@@ -65,13 +66,14 @@ cd ios pod install   Setup iOS  Enable the required capabilities
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/ios/</guid>
-      <description>Installation  Add CleverPush to your Podfile  pod &amp;#39;CleverPush&amp;#39;   Enable the required capabilities
+      <description>Installation  Add CleverPush to your Podfile
+pod &amp;#39;CleverPush&amp;#39; Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
  Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
   Add this code to your AppDelegate:
 Objective-C:
-#import &amp;lt;CleverPush/CleverPush.h&amp;gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&amp;#34;INSERT-YOUR-CHANNEL-ID-HERE&amp;#34;]; return YES; } @end  Swift:</description>
+#import &amp;lt;CleverPush/CleverPush.h&amp;gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&amp;#34;INSERT-YOUR-CHANNEL-ID-HERE&amp;#34;]; return YES; } @end Swift:</description>
     </item>
     
   </channel>
