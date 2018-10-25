@@ -51,7 +51,7 @@ class AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
 
         // Make sure to insert your CleverPush channelId
-        CleverPush(launchOptions: launchOptions, channelId: "INSERT-YOUR-CHANNEL-ID-HERE")
+        CleverPush(launchOptions: launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
 
         return true
     }
@@ -62,7 +62,7 @@ class AppDelegate {
 
     {{< highlight objective-c >}}// ...
 
-[CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+[CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
     NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
     
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
@@ -102,7 +102,7 @@ class AppDelegate {
 Subscribe (or unsubscribe) later:
 {{< highlight objective-c >}}
 // init with autoRegister:false
-[CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+[CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
     NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
 } handleSubscribed:^(NSString *subscriptionId) {
     NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);

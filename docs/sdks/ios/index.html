@@ -179,7 +179,7 @@ headingSelector: 'h3'
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {	        <span style="color:#75715e">// ...</span>
 
         <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
-        CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>)
+        CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>)
 
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
     }
@@ -189,7 +189,7 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>
-[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
+[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;YOUR_CHANNEL_ID_HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
     NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
     
     UIAlertController<span style="color:#f92672">*</span> alert <span style="color:#f92672">=</span> [UIAlertController alertControllerWithTitle:[result.notification valueForKey:<span style="color:#e6db74">@&#34;title&#34;</span>]
@@ -228,7 +228,7 @@ headingSelector: 'h3'
 
 <p>Subscribe (or unsubscribe) later:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// init with autoRegister:false
-</span><span style="color:#75715e"></span>[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
+</span><span style="color:#75715e"></span>[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;YOUR_CHANNEL_ID_HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
     NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
 } handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
     NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
