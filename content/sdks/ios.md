@@ -45,18 +45,6 @@ toc = true
        return YES;
     }
     
-    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
-    }
-    
-    - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-       [CleverPush handleDidFailRegisterForRemoteNotification:error];
-    }
-    
-    - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive];
-    }
-    
     @end
     {{< /highlight >}}
 
@@ -73,18 +61,6 @@ toc = true
             CleverPush(launchOptions: launchOptions, channelId: "INSERT-YOUR-CHANNEL-ID-HERE")
     
             return true
-        }
-    
-        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-            CleverPush.didRegister(forRemoteNotifications: application, deviceToken: deviceToken)
-        }
-    
-        func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-            CleverPush.handleDidFailRegister(forRemoteNotification: error)
-        }
-    
-        func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-            CleverPush.handleReceived(userInfo, isActive: application.applicationState == .active)
         }
     }
     {{< /highlight >}}

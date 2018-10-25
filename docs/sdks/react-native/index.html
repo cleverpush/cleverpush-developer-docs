@@ -181,27 +181,6 @@ headingSelector: 'h3'
 <li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
 <li>Upload your certificate in the CleverPush channel settings under the iOS tab</li>
 </ul></li>
-
-<li><p>Add this code to your AppDelegate:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">    <span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">AppDelegate</span>
-    
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didRegisterForRemoteNotificationsWithDeviceToken:</span>(NSData <span style="color:#f92672">*</span>)deviceToken {
-       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
-    }
-    
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFailToRegisterForRemoteNotificationsWithError:</span>(NSError <span style="color:#f92672">*</span>)error {
-       [CleverPush handleDidFailRegisterForRemoteNotification:error];
-    }
-    
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didReceiveRemoteNotification:</span>(NSDictionary <span style="color:#f92672">*</span>)userInfo {
-       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] <span style="color:#f92672">==</span> UIApplicationStateActive];
-    }
-    
-    <span style="color:#66d9ef">@end</span>
-    </code></pre></div></li>
 </ol>
 
 <h3 id="usage">Usage</h3>

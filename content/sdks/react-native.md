@@ -20,7 +20,7 @@ toc = true
     react-native link
     {{< /highlight >}}
     
-2. Install Pods for iOS (may be not needed)
+3. Install Pods for iOS (may be not needed)
  
     {{< highlight bash >}}
     cd ios
@@ -38,7 +38,6 @@ toc = true
    
    1.3. Enable "Background Modes" and check "Remote notifications"
    
-
 2. Create your iOS push certificate
 
    * Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
@@ -54,29 +53,6 @@ toc = true
    * Select Login > My Certificates then right click on your key and click "Export (Apple Production iOS Push Services: com.your.bundle)..."
    * Give the file a unique name and press save, be sure to leave the password field blank!
    * Upload your certificate in the CleverPush channel settings under the iOS tab
-
-
-3. Add this code to your AppDelegate:
-
-    {{< highlight objective-c >}}
-    #import <CleverPush/CleverPush.h>
-    
-    @implementation AppDelegate
-    
-    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
-    }
-    
-    - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-       [CleverPush handleDidFailRegisterForRemoteNotification:error];
-    }
-    
-    - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive];
-    }
-    
-    @end
-    {{< /highlight >}}
 
 
 ### Usage

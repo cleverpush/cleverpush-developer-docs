@@ -26,7 +26,7 @@
 2.3. Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
  Add this code to your AppDelegate:
 Objective-C:
-#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken]; } - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error { [CleverPush handleDidFailRegisterForRemoteNotification:error]; } - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo { [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive]; } @end  Swift:" />
+#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } @end  Swift:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -170,18 +170,6 @@ headingSelector: 'h3'
        <span style="color:#66d9ef">return</span> YES;
     }
     
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didRegisterForRemoteNotificationsWithDeviceToken:</span>(NSData <span style="color:#f92672">*</span>)deviceToken {
-       [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken];
-    }
-    
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didFailToRegisterForRemoteNotificationsWithError:</span>(NSError <span style="color:#f92672">*</span>)error {
-       [CleverPush handleDidFailRegisterForRemoteNotification:error];
-    }
-    
-    - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">application:</span>(UIApplication <span style="color:#f92672">*</span>)application <span style="color:#a6e22e">didReceiveRemoteNotification:</span>(NSDictionary <span style="color:#f92672">*</span>)userInfo {
-       [CleverPush handlePushReceived:userInfo isActive:[application applicationState] <span style="color:#f92672">==</span> UIApplicationStateActive];
-    }
-    
     <span style="color:#66d9ef">@end</span>
     </code></pre></div>
 
@@ -196,18 +184,6 @@ headingSelector: 'h3'
             CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>)
     
             <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
-        }
-    
-        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-            CleverPush.didRegister(forRemoteNotifications: application, deviceToken: deviceToken)
-        }
-    
-        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-            CleverPush.handleDidFailRegister(forRemoteNotification: error)
-        }
-    
-        <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-            CleverPush.handleReceived(userInfo, isActive: application.applicationState == .active)
         }
     }
     </code></pre></div></li>

@@ -69,7 +69,7 @@ cd ios pod install   Setup iOS  Enable the required capabilities  1.1. Go to you
 2.3. Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
  Add this code to your AppDelegate:
 Objective-C:
-#import &amp;lt;CleverPush/CleverPush.h&amp;gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&amp;#34;INSERT-YOUR-CHANNEL-ID-HERE&amp;#34;]; return YES; } - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { [CleverPush didRegisterForRemoteNotifications:application deviceToken:deviceToken]; } - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error { [CleverPush handleDidFailRegisterForRemoteNotification:error]; } - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo { [CleverPush handlePushReceived:userInfo isActive:[application applicationState] == UIApplicationStateActive]; } @end  Swift:</description>
+#import &amp;lt;CleverPush/CleverPush.h&amp;gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&amp;#34;INSERT-YOUR-CHANNEL-ID-HERE&amp;#34;]; return YES; } @end  Swift:</description>
     </item>
     
     <item>
