@@ -58,6 +58,13 @@ import { Text, View } from 'react-native';
 import CleverPush from 'cleverpush-react-native';
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+
+    this.onOpened = this.onOpened.bind(this);
+    this.onSubscribed = this.onSubscribed.bind(this);
+  }
+  
   componentWillMount() {
     CleverPush.init('YOUR_CHANNEL_ID_HERE');
 

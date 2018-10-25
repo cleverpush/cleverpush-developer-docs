@@ -189,6 +189,13 @@ pod install</code></pre></div></li>
 <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">CleverPush</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;cleverpush-react-native&#39;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+  <span style="color:#a6e22e">constructor</span>() {
+    <span style="color:#66d9ef">super</span>();
+
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onOpened</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onOpened</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onSubscribed</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onSubscribed</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+  }
+  
   <span style="color:#a6e22e">componentWillMount</span>() {
     <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">init</span>(<span style="color:#e6db74">&#39;YOUR_CHANNEL_ID_HERE&#39;</span>);
 
