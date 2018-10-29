@@ -54,18 +54,16 @@ pod install
 
 1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
 
-  {{< highlight groovy >}}
-  android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
-  
-    compileOptions {
-      sourceCompatibility JavaVersion.VERSION_1_8
-      targetCompatibility JavaVersion.VERSION_1_8
-    }
-    
-    ...
-  {{< /highlight >}}
+  {{< highlight groovy >}}android {
+  compileSdkVersion 27
+  buildToolsVersion '27.0.3'
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  ...{{< /highlight >}}
 
 
 ### Usage
