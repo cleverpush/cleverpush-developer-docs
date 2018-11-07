@@ -54,16 +54,44 @@ pod install
 
 1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
 
-  {{< highlight groovy >}}android {
-  compileSdkVersion 27
-  buildToolsVersion '27.0.3'
+    {{< highlight groovy >}}android {
+   compileSdkVersion 27
+   buildToolsVersion '27.0.3'
+    
+   compileOptions {
+     sourceCompatibility JavaVersion.VERSION_1_8
+     targetCompatibility JavaVersion.VERSION_1_8
+   }
+    
+   ...{{< /highlight >}}
+  
+2. Uncomment or remove Expo's FCM listener from `android/app/src/AndroidManifest.xml`:
+   {{< highlight xml >}}<!-- FCM -->
+<service
+  android:name=".fcm.ExpoFcmMessagingService">
+  <intent-filter>
+    <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+  </intent-filter>
+</service>{{< /highlight >}}
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
+3. Add our FCM listeners to `android/app/src/AndroidManifest.xml`:
+   {{< highlight xml >}}<application ...>
+    
+   <service
+       android:name="com.cleverpush.service.CleverPushFcmListenerService">
+       <intent-filter>
+           <action android:name="com.google.firebase.MESSAGING_EVENT" />
+       </intent-filter>
+   </service>
+   <service
+       android:name="com.cleverpush.service.CleverPushInstanceIDListenerService">
+       <intent-filter>
+           <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+       </intent-filter>
+   </service>
 
-  ...{{< /highlight >}}
+ </application>
+{{< /highlight >}}
 
 
 ### Usage
