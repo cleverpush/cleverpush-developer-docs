@@ -169,6 +169,9 @@ CleverPush.getSubscriptionAttribute("user_id", (err, attributeValue) => {
 });
 CleverPush.setSubscriptionAttribute("user_id", "1");
 
+CleverPush.setSubscriptionLanguage("de"); // iso language code
+CleverPush.setSubscriptionCountry("DE"); // iso country code
+
 CleverPush.isSubscribed((err, isSubscribed) => {
   console.log(isSubscribed); // true
 });

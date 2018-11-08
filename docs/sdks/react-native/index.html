@@ -297,6 +297,9 @@ pod install</code></pre></div></li>
 </span><span style="color:#75715e"></span>});
 <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">setSubscriptionAttribute</span>(<span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;1&#34;</span>);
 
+<span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">setSubscriptionLanguage</span>(<span style="color:#e6db74">&#34;de&#34;</span>); <span style="color:#75715e">// iso language code
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">setSubscriptionCountry</span>(<span style="color:#e6db74">&#34;DE&#34;</span>); <span style="color:#75715e">// iso country code
+</span><span style="color:#75715e"></span>
 <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">isSubscribed</span>((<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">isSubscribed</span>) =&gt; {
   <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isSubscribed</span>); <span style="color:#75715e">// true
 </span><span style="color:#75715e"></span>});
