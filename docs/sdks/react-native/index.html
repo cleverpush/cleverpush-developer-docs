@@ -186,7 +186,7 @@ end</code></pre></div></li>
 
 <li><p>Open <code>NotificationService.m</code> and replace the whole content with the following:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;RCTCleverPushExtensionService.h&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">#import &#34;NotificationService.h&#34;
 </span><span style="color:#75715e"></span>
@@ -205,13 +205,13 @@ end</code></pre></div></li>
     self.contentHandler <span style="color:#f92672">=</span> contentHandler;
     self.bestAttemptContent <span style="color:#f92672">=</span> [request.content mutableCopy];
 
-    [RCTCleverPushExtensionService didReceiveNotificationRequest:self.receivedRequest withContent:self.bestAttemptContent];
+    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }
 
 - (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">serviceExtensionTimeWillExpire</span> {
-    [RCTCleverPushExtensionService serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }

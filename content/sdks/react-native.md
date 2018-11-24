@@ -53,7 +53,7 @@ end
     7. Open `NotificationService.m` and replace the whole content with the following:
 
         {{< highlight objective-c >}}
-#import <RCTCleverPushExtensionService.h>
+#import <CleverPush/CleverPush.h>
 
 #import "NotificationService.h"
 
@@ -72,13 +72,13 @@ end
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
 
-    [RCTCleverPushExtensionService didReceiveNotificationRequest:self.receivedRequest withContent:self.bestAttemptContent];
+    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }
 
 - (void)serviceExtensionTimeWillExpire {
-    [RCTCleverPushExtensionService serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }
