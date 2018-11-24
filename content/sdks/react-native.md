@@ -40,39 +40,17 @@ pod install
     1. Select `File` > `New` > `Target` in Xcode
     2. Choose `Notification Service Extension` and press `Next`
     3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
-    4. Press `Cancel` on the next prompt (if you did press `Activate` by accident, you can just re-select your application as the target next to the Play Button in Xcode)
-    5. Go to the project settings and select the target `CleverPushNotificationServiceExtension`
-    6. Go to `Build Settings` and search for `Header Search Paths`
-    7. Add `$(SRCROOT)/../node_modules/cleverpush-react-native/ios` and set it to `recursive`
-    8. Go to `Build Phases` and add the following frameworks in `Link Binary with Libraries`:
-      * UIKit.framework
-      * SystemConfiguration.framework
-    9. Add the following at the bottom of your Podfile (located in `ios/Podfile`)
+    4. Press `Activate` on the next prompt
+    5. Add the following at the bottom of your Podfile
 
-        {{< highlight bash >}}
-target 'CleverPushNotificationServiceExtension' do
+        {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
 
-  # Pods for sevice extension
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'Core',
-    'CxxBridge', # Include this for RN >= 0.47
-    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-    'RCTText',
-    'RCTNetwork',
-    'RCTWebSocket', # needed for debugging
-    # Add any other subspecs you want to use in your project
-  ]
-
-  # Explicitly include Yoga if you are using RN >= 0.42.0
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
-
-  # pods
-  pod 'cleverpush-react-native', :path => '../node_modules/cleverpush-react-native'
+  pod 'CleverPush'
 
 end
 {{< /highlight >}}
-
-    10. Open `NotificationService.m` and replace the whole content with the following:
+    6. Run `pod install`
+    7. Open `NotificationService.m` and replace the whole content with the following:
 
         {{< highlight objective-c >}}
 #import <RCTCleverPushExtensionService.h>
