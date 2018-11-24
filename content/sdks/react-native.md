@@ -32,8 +32,83 @@ pod install
    2. Enable "Push Notifications"
    
    3. Enable "Background Modes" and check "Remote notifications"
-   
-2. Create your iOS push certificate
+
+2. Add Notification Service Extension
+
+    This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+
+    1. Select `File` > `New` > `Target` in Xcode
+    2. Choose `Notification Service Extension` and press `Next`
+    3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
+    4. Press `Cancel` on the next prompt (if you did press `Activate` by accident, you can just re-select your application as the target next to the Play Button in Xcode)
+    5. Go to the project settings and select the target `CleverPushNotificationServiceExtension`
+    6. Go to `Build Settings` and search for `Header Search Paths`
+    7. Add `$(SRCROOT)/../node_modules/cleverpush-react-native/ios` and set it to `recursive`
+    8. Go to `Build Phases` and add the following frameworks in `Link Binary with Libraries`:
+      * UIKit.framework
+      * SystemConfiguration.framework
+    9. Add the following at the bottom of your Podfile (located in `ios/Podfile`)
+
+        {{< highlight bash >}}
+target 'CleverPushNotificationServiceExtension' do
+
+  # Pods for sevice extension
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge', # Include this for RN >= 0.47
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket', # needed for debugging
+    # Add any other subspecs you want to use in your project
+  ]
+
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  # pods
+  pod 'cleverpush-react-native', :path => '../node_modules/cleverpush-react-native'
+
+end
+{{< /highlight >}}
+
+    10. Open `NotificationService.m` and replace the whole content with the following:
+
+        {{< highlight objective-c >}}
+#import <RCTCleverPushExtensionService.h>
+
+#import "NotificationService.h"
+
+@interface NotificationService ()
+
+@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+@property (nonatomic, strong) UNNotificationRequest *receivedRequest;
+@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+
+@end
+
+@implementation NotificationService
+
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+    self.receivedRequest = request;
+    self.contentHandler = contentHandler;
+    self.bestAttemptContent = [request.content mutableCopy];
+
+    [RCTCleverPushExtensionService didReceiveNotificationRequest:self.receivedRequest withContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+- (void)serviceExtensionTimeWillExpire {
+    [RCTCleverPushExtensionService serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+@end
+{{< /highlight >}}
+
+3. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...

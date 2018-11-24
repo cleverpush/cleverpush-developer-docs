@@ -57,7 +57,7 @@ cd ios pod install  Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
  Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
-  Create your iOS push certificate</description>
+  Add Notification Service Extension</description>
     </item>
     
     <item>
