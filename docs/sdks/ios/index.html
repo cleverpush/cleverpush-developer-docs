@@ -26,9 +26,9 @@ pod &#39;CleverPush&#39; Enable the required capabilities
  Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
  Enable &ldquo;Push Notifications&rdquo;
  Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
-  Add this code to your AppDelegate:
-Objective-C:
-#import &lt;CleverPush/CleverPush.h&gt;  @implementation AppDelegate - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // ...  // Make sure to insert your CleverPush channelId  [CleverPush initWithLaunchOptions:launchOptions channelId:@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;]; return YES; } @end Swift:" />
+  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+ Select File &gt; New &gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Podfile" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -151,6 +151,61 @@ headingSelector: 'h3'
 <li><p>Enable &ldquo;Push Notifications&rdquo;</p></li>
 
 <li><p>Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p></li>
+</ol></li>
+
+<li><p>Add Notification Service Extension</p>
+
+<p>This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</p>
+
+<ol>
+<li>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</li>
+<li>Choose <code>Notification Service Extension</code> and press <code>Next</code></li>
+<li>Enter <code>CleverPushNotificationServiceExtension</code> as Product Name, choose <code>Objective-C</code> as language and press <code>Finish</code></li>
+<li>Press <code>Activate</code> on the next prompt</li>
+
+<li><p>Add the following at the bottom of your Podfile</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationServiceExtension&#39;</span> <span style="color:#66d9ef">do</span>
+
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>
+
+end</code></pre></div></li>
+
+<li><p>Run <code>pod install</code></p></li>
+
+<li><p>Open <code>NotificationService.m</code> and replace the whole content with the following:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#import &#34;NotificationService.h&#34;
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">NotificationService</span> ()
+
+<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) <span style="color:#66d9ef">void</span> (<span style="color:#f92672">^</span>contentHandler)(UNNotificationContent <span style="color:#f92672">*</span>contentToDeliver);
+<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) UNNotificationRequest <span style="color:#f92672">*</span>receivedRequest;
+<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) UNMutableNotificationContent <span style="color:#f92672">*</span>bestAttemptContent;
+
+<span style="color:#66d9ef">@end</span>
+
+<span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">NotificationService</span>
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">didReceiveNotificationRequest:</span>(UNNotificationRequest <span style="color:#f92672">*</span>)request <span style="color:#a6e22e">withContentHandler:</span>(<span style="color:#66d9ef">void</span> (<span style="color:#f92672">^</span>)(UNNotificationContent <span style="color:#f92672">*</span> _Nonnull))contentHandler {
+    self.receivedRequest <span style="color:#f92672">=</span> request;
+    self.contentHandler <span style="color:#f92672">=</span> contentHandler;
+    self.bestAttemptContent <span style="color:#f92672">=</span> [request.content mutableCopy];
+
+    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">serviceExtensionTimeWillExpire</span> {
+    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+<span style="color:#66d9ef">@end</span></code></pre></div></li>
 </ol></li>
 
 <li><p>Add this code to your AppDelegate:</p>

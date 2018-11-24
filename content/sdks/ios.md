@@ -22,7 +22,60 @@ toc = true
    
     3. Enable "Background Modes" and check "Remote notifications"
 
-3. Add this code to your AppDelegate:
+3. Add Notification Service Extension
+
+    This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+
+    1. Select `File` > `New` > `Target` in Xcode
+    2. Choose `Notification Service Extension` and press `Next`
+    3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
+    4. Press `Activate` on the next prompt
+    5. Add the following at the bottom of your Podfile
+
+        {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
+
+  pod 'CleverPush'
+
+end
+{{< /highlight >}}
+    6. Run `pod install`
+    7. Open `NotificationService.m` and replace the whole content with the following:
+
+        {{< highlight objective-c >}}
+#import <CleverPush/CleverPush.h>
+
+#import "NotificationService.h"
+
+@interface NotificationService ()
+
+@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+@property (nonatomic, strong) UNNotificationRequest *receivedRequest;
+@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+
+@end
+
+@implementation NotificationService
+
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+    self.receivedRequest = request;
+    self.contentHandler = contentHandler;
+    self.bestAttemptContent = [request.content mutableCopy];
+
+    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+- (void)serviceExtensionTimeWillExpire {
+    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+@end
+{{< /highlight >}}
+
+4. Add this code to your AppDelegate:
 
     Objective-C:
 
