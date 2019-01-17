@@ -166,6 +166,9 @@ Subscribe (or unsubscribe) later:
 
 // or unsubscribe
 [CleverPush unsubscribe]
+
+// get subscription status (returns true or false)
+[CleverPush isSubscribed]
 {{< /highlight >}}
 
 

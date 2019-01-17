@@ -123,6 +123,9 @@ public class MainActivity extends Activity {
       
       // or unsubscribe
       CleverPush.getInstance(this).unsubscribe();
+      
+      // get subscription status (true or false)
+      CleverPush.getInstance(this).isSubscribed();
   }
 }
 {{< /highlight >}}
