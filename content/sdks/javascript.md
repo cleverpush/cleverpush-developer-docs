@@ -112,6 +112,18 @@ CleverPush.push(['setAttribute', 'ATTRIBUTE_ID', 'VALUE']);
 {{< /highlight >}}
 
 
+#### <code>getAttribute</code>
+
+Gets custom subscription attribute.
+
+{{< highlight js >}}
+CleverPush = window.CleverPush || [];
+CleverPush.push(['getAttribute', 'ATTRIBUTE_ID', function(value) {
+    console.log(value);
+}]);
+{{< /highlight >}}
+
+
 #### <code>isSubscribed</code>
 
 Checks if the user is subscribed to push notifications.
