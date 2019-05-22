@@ -28,7 +28,13 @@ implementation &amp;#39;com.cleverpush:cleverpush:+&amp;#39; implementation &amp
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/cordova/</guid>
-      <description>Intallation  Add the required Cordova plugin  cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git   Add the initialization code to your index.js file  document.addEventListener(&amp;#39;deviceready&amp;#39;, function () { var notificationOpenedCallback = function(data) { console.log(&amp;#39;notificationOpenedCallback:&amp;#39;, JSON.stringify(data)); }; var subscribedCallback = function(subscriptionId) { console.log(&amp;#39;subscriptionId:&amp;#39;, subscriptionId); }; window.plugins.CleverPush.init(&amp;#34;INSERT_YOUR_CHANNEL_ID&amp;#34;, notificationOpenedCallback, subscribedCallback); }, false);  Be sure to replace INSERT_YOUR_CHANNEL_ID with your CleverPush channel ID (can be found in the channel settings).</description>
+      <description>Intallation  Add the required Cordova plugin  cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git  Setup iOS  Enable the required capabilities
+ Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
+ Enable &amp;ldquo;Push Notifications&amp;rdquo;
+ Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
+  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+ Select File &amp;gt; New &amp;gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Podfile</description>
     </item>
     
     <item>
