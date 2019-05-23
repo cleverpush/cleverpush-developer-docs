@@ -45,7 +45,7 @@ This is required for correctly tracking notification deliveries and for displayi
       <guid>/sdks/javascript/</guid>
       <description>We provide several JavaScript methods to make the integration into your website even easier.
 Calls to the SDK are all made via an array-like push method. This ensures that also calls which are made before the Script even loads are added to a queue.
-Please make sure that your personal CleverPush code is implemented on every site (&amp;lt;script src=&amp;quot;https://static.cleverpush.com/channel/XXXXXX/loader.js&amp;quot; async&amp;gt;&amp;lt;/script&amp;gt;).
+Please make sure that your personal CleverPush code is implemented on every site (&amp;lt;script src=&amp;quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&amp;quot; async&amp;gt;&amp;lt;/script&amp;gt;).
 Example:
 CleverPush = window.CleverPush || []; CleverPush.push([&amp;#39;triggerOptIn&amp;#39;]);  Methods triggerOptIn Triggers the opt-in dialog.</description>
     </item>
