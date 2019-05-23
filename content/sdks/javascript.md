@@ -172,7 +172,7 @@ Will fail if:
 * There is no connection to our API available
 * SDK was already initialized
 
-Always make sure to insert this BEFORE your personal CleverPush loader code (`<script src="https://static.cleverpush.com/channel/XXXXXX/loader.js" async></script>`). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).
+Always make sure to insert this BEFORE your personal CleverPush loader code (`<script src="https://static.cleverpush.com/channel/loader/XXXXXX.js" async></script>`). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).
 
 Example:
 
