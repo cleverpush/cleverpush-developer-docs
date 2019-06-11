@@ -180,12 +180,21 @@ NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
 
 [CleverPush addSubscriptionTag:@"TAG_ID"];
 [CleverPush removeSubscriptionTag:@"TAG_ID"];
-[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
-
-NSArray* subscriptionTags = [CleverPush getSubscriptionTags];
-NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
-NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
 bool hasTag = [CleverPush hasSubscriptionTag:@"TAG_ID"];
+NSArray* subscriptionTags = [CleverPush getSubscriptionTags];
+
+NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
+NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
+
+NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
+[CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
+{{< /highlight >}}
+
+
+Show topics dialog:
+{{< highlight objective-c >}}
+[CleverPush showTopicsDialog];
 {{< /highlight >}}
 
 

@@ -146,11 +146,20 @@ Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSub
 
 CleverPush.getInstance(this).addSubscriptionTag("tag_id");
 CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
-CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
-
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
+
 String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
+
+Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
+CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
+{{< /highlight >}}
+
+
+Show the topics dialog:
+
+{{< highlight java >}}
+CleverPush.getInstance(this).showTopicsDialog();
 {{< /highlight >}}
 
 

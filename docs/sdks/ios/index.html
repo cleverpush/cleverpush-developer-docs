@@ -306,12 +306,18 @@ NSDictionary<span style="color:#f92672">*</span> customAttributes <span style="c
 
 [CleverPush addSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
 [CleverPush removeSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
-[CleverPush setSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span> value:<span style="color:#e6db74">@&#34;ATTRIBUTE_VALUE&#34;</span>];
-
+<span style="color:#66d9ef">bool</span> hasTag <span style="color:#f92672">=</span> [CleverPush hasSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
 NSArray<span style="color:#f92672">*</span> subscriptionTags <span style="color:#f92672">=</span> [CleverPush getSubscriptionTags];
+
 NSDictionary<span style="color:#f92672">*</span> subscriptionAttributes <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttributes];
+[CleverPush setSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span> value:<span style="color:#e6db74">@&#34;ATTRIBUTE_VALUE&#34;</span>];
 NSString<span style="color:#f92672">*</span> attribute <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span>];
-<span style="color:#66d9ef">bool</span> hasTag <span style="color:#f92672">=</span> [CleverPush hasSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];</code></pre></div>
+
+NSArray<span style="color:#f92672">*</span> subscriptionTopics <span style="color:#f92672">=</span> [CleverPush getSubscriptionTopics];
+[CleverPush setSubscriptionTopics:<span style="color:#ae81ff">@{</span><span style="color:#e6db74">@&#34;ID_1&#34;</span>, <span style="color:#e6db74">@&#34;ID_2&#34;</span><span style="color:#ae81ff">}</span>];</code></pre></div>
+
+<p>Show topics dialog:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[CleverPush showTopicsDialog];</code></pre></div></p>
 
 <p>App Banners:</p>
 
