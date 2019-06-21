@@ -12,9 +12,7 @@ toc = true
 
 1. Add the required Cordova plugin
 
-   {{< highlight bash >}}
-   cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git
-   {{< /highlight >}}
+   {{< highlight bash >}}cordova plugin add cleverpush-cordova-sdk{{< /highlight >}}
 
 
 2. Add the initialization code to your `index.js` file
