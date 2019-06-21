@@ -28,7 +28,7 @@ implementation &amp;#39;com.cleverpush:cleverpush:+&amp;#39; implementation &amp
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/cordova/</guid>
-      <description>Intallation  Add the required Cordova plugin  cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git  Setup iOS  Enable the required capabilities
+      <description>Intallation  Add the required Cordova plugin  cordova plugin add cleverpush-cordova-sdk  Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
  Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
