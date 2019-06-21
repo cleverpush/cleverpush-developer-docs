@@ -13,7 +13,7 @@ We provide several JavaScript methods to make the integration into your website 
 
 Calls to the SDK are all made via an array-like push method. This ensures that also calls which are made before the Script even loads are added to a queue.
 
-Please make sure that your personal CleverPush code is implemented on every site (`<script src="https://static.cleverpush.com/channel/XXXXXX/loader.js" async></script>`).
+Please make sure that your personal CleverPush code is implemented on every site (`<script src="https://static.cleverpush.com/channel/loader/XXXXXX.js" async></script>`).
 
 Example:
 
@@ -112,6 +112,18 @@ CleverPush.push(['setAttribute', 'ATTRIBUTE_ID', 'VALUE']);
 {{< /highlight >}}
 
 
+#### <code>getAttribute</code>
+
+Gets custom subscription attribute.
+
+{{< highlight js >}}
+CleverPush = window.CleverPush || [];
+CleverPush.push(['getAttribute', 'ATTRIBUTE_ID', function(value) {
+    console.log(value);
+}]);
+{{< /highlight >}}
+
+
 #### <code>isSubscribed</code>
 
 Checks if the user is subscribed to push notifications.
@@ -160,7 +172,7 @@ Will fail if:
 * There is no connection to our API available
 * SDK was already initialized
 
-Always make sure to insert this BEFORE your personal CleverPush loader code (`<script src="https://static.cleverpush.com/channel/XXXXXX/loader.js" async></script>`). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).
+Always make sure to insert this BEFORE your personal CleverPush loader code (`<script src="https://static.cleverpush.com/channel/loader/XXXXXX.js" async></script>`). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).
 
 Example:
 

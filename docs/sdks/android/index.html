@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.51" />
+  <meta name="generator" content="Hugo 0.53" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -231,10 +231,13 @@ headingSelector: 'h3'
       
       <span style="color:#75715e">// or unsubscribe
 </span><span style="color:#75715e"></span>      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">unsubscribe</span><span style="color:#f92672">();</span>
+      
+      <span style="color:#75715e">// get subscription status (true or false)
+</span><span style="color:#75715e"></span>      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">isSubscribed</span><span style="color:#f92672">();</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
-<p>Tagging and Attributes</p>
+<p>Tagging and Attributes:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getAvailableTags</span><span style="color:#f92672">(</span>tags <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// returns Set&lt;ChannelTag&gt;
@@ -248,11 +251,21 @@ Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</s
 
 CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">addSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
 CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">removeSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#66d9ef">boolean</span> hasTag <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">hasSubscriptionTag</span><span style="color:#f92672">(</span>channelTags<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
+
+String attributeValue <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">);</span>
 CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>
 
-<span style="color:#66d9ef">boolean</span> hasTag <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">hasSubscriptionTag</span><span style="color:#f92672">(</span>channelTags<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
-String attributeValue <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">);</span>
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span></code></pre></div>
+Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> subscribedTopicIds <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionTopics</span><span style="color:#f92672">();</span>
+CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionTopics</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;ID_1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ID_2&#34;</span><span style="color:#f92672">});</span></code></pre></div>
+
+<p>Show the topics dialog:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showTopicsDialog</span><span style="color:#f92672">();</span></code></pre></div>
+
+<p>App Banners:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showAppBanners</span><span style="color:#f92672">();</span></code></pre></div>
 
 
     
@@ -274,7 +287,7 @@ CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getIns
             </li>
         </ul>
     </nav>
-    <p>Copyright &copy; 2018 CleverPush.</p>
+    <p>Copyright &copy; 2019 CleverPush.</p>
 </footer>
  </footer>
 

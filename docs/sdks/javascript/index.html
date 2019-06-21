@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.51" />
+  <meta name="generator" content="Hugo 0.53" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@
   <meta property="og:title" content="JavaScript SDK" />
 <meta property="og:description" content="We provide several JavaScript methods to make the integration into your website even easier.
 Calls to the SDK are all made via an array-like push method. This ensures that also calls which are made before the Script even loads are added to a queue.
-Please make sure that your personal CleverPush code is implemented on every site (&lt;script src=&quot;https://static.cleverpush.com/channel/XXXXXX/loader.js&quot; async&gt;&lt;/script&gt;).
+Please make sure that your personal CleverPush code is implemented on every site (&lt;script src=&quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&quot; async&gt;&lt;/script&gt;).
 Example:
 CleverPush = window.CleverPush || []; CleverPush.push([&#39;triggerOptIn&#39;]);  Methods triggerOptIn Triggers the opt-in dialog." />
 <meta property="og:type" content="article" />
@@ -137,7 +137,7 @@ headingSelector: 'h3'
 
 <p>Calls to the SDK are all made via an array-like push method. This ensures that also calls which are made before the Script even loads are added to a queue.</p>
 
-<p>Please make sure that your personal CleverPush code is implemented on every site (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/XXXXXX/loader.js&quot; async&gt;&lt;/script&gt;</code>).</p>
+<p>Please make sure that your personal CleverPush code is implemented on every site (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&quot; async&gt;&lt;/script&gt;</code>).</p>
 
 <p>Example:</p>
 
@@ -221,6 +221,16 @@ This method automatically waits for an active subscription to be available befor
 <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">push</span>([<span style="color:#e6db74">&#39;setAttribute&#39;</span>, <span style="color:#e6db74">&#39;ATTRIBUTE_ID&#39;</span>, <span style="color:#e6db74">&#39;VALUE&#39;</span>]);
 </code></pre></div>
 
+<h4 id="code-getattribute-code"><code>getAttribute</code></h4>
+
+<p>Gets custom subscription attribute.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">CleverPush</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">CleverPush</span> <span style="color:#f92672">||</span> [];
+<span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">push</span>([<span style="color:#e6db74">&#39;getAttribute&#39;</span>, <span style="color:#e6db74">&#39;ATTRIBUTE_ID&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">value</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>);
+}]);
+</code></pre></div>
+
 <h4 id="code-issubscribed-code"><code>isSubscribed</code></h4>
 
 <p>Checks if the user is subscribed to push notifications.</p>
@@ -262,7 +272,7 @@ This is very useful if you want to check if the current browser support Web Push
 * There is no connection to our API available
 * SDK was already initialized</p>
 
-<p>Always make sure to insert this BEFORE your personal CleverPush loader code (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/XXXXXX/loader.js&quot; async&gt;&lt;/script&gt;</code>). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).</p>
+<p>Always make sure to insert this BEFORE your personal CleverPush loader code (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&quot; async&gt;&lt;/script&gt;</code>). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).</p>
 
 <p>Example:</p>
 
@@ -322,7 +332,7 @@ This is very useful if you want to check if the current browser support Web Push
             </li>
         </ul>
     </nav>
-    <p>Copyright &copy; 2018 CleverPush.</p>
+    <p>Copyright &copy; 2019 CleverPush.</p>
 </footer>
  </footer>
 
