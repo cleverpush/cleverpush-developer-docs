@@ -74,7 +74,8 @@ You can add a `NotificationOpenedListener`
 public class MainActivity extends Activity {
    public void onCreate(Bundle savedInstanceState) {
        CleverPush.getInstance(this).init(new NotificationOpenedListener() {
-           notificationOpened(NotificationOpenedResult result) {
+           @Override
+           public void notificationOpened(NotificationOpenedResult result) {(NotificationOpenedResult result) {
               System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
           };
        });
@@ -90,14 +91,16 @@ And a `SubscribedListener`
 public class MainActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
       CleverPush.getInstance(this).init(new NotificationOpenedListener() {
-          notificationOpened(NotificationOpenedResult result) {
+           @Override
+           public void notificationOpened(NotificationOpenedResult result) {
              System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
          };
       }, new SubscribedListener() {
-           subscribed(String subscriptionId) {
+           @Override
+           public void subscribed(String subscriptionId) {
               System.out.println("CleverPush Subscription ID: " + subscriptionId);
           };
-       });
+      });
   }
 }
 {{< /highlight >}}
@@ -110,11 +113,13 @@ public class MainActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
       // last parameter (autoRegister) is false
       CleverPush.getInstance(this).init(new NotificationOpenedListener() {
-          notificationOpened(NotificationOpenedResult result) {
+          @Override
+          public void notificationOpened(NotificationOpenedResult result) {
              System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
          };
       }, new SubscribedListener() {
-           subscribed(String subscriptionId) {
+           @Override
+           public void subscribed(String subscriptionId) {
               System.out.println("CleverPush Subscription ID: " + subscriptionId);
           };
       }, false);
