@@ -12,12 +12,14 @@ toc = true
 
 1. Add the needed libraries to your `app/build.gradle` config under `dependencies`
 
-    {{< highlight groovy >}}
+    {{< highlight groovy >}}dependencies {
+    [...]
     implementation 'com.cleverpush:cleverpush:+'
     implementation 'com.android.support:support-v4:+'
     implementation 'com.google.firebase:firebase-messaging:17+'
     implementation 'com.google.code.gson:gson:2.8.5'
-    {{< /highlight >}}
+}
+{{< /highlight >}}
 
 2. Add the following tags to your AndroidManifest.xml file
 
@@ -61,6 +63,17 @@ If you use ProGuard, you may need to add these exceptions:
 {{< highlight java >}}
 -keep class com.cleverpush.** { *; }
 -keep interface com.cleverpush.** { *; }
+{{< /highlight >}}
+
+If you are not using Java 1.8 yet, please add this to your `app/build.gradle` if building fails with our SDK:
+
+{{< highlight groovy >}}
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
 {{< /highlight >}}
 
 
