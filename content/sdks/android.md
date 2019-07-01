@@ -10,7 +10,7 @@ toc = true
 
 ### Installation
 
-1. Add the needed libraries to your Gradle config
+1. Add the needed libraries to your `app/build.gradle` config
 
     {{< highlight groovy >}}
     implementation 'com.cleverpush:cleverpush:+'
@@ -42,7 +42,8 @@ toc = true
      </application>
     {{< /highlight >}}
    
-    Be sure to insert your correct `[CLEVERPUSH.CHANNEL.ID]`, which can be found in the CleverPush settings and to replace `[YOUR.PACKAGE.NAME]` with your package name.
+    Be sure to insert your correct `[CLEVERPUSH.CHANNEL.ID]`, which can be found in the CleverPush settings.
+    Alternatively, you can also leave this `<meta-data..` line out and specify the App's Package Name in the CleverPush channel settings.
 
 3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init();`
     

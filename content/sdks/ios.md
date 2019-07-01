@@ -88,6 +88,9 @@ end
 
    // Make sure to insert your CleverPush channelId
    [CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE"];
+   
+   // You can also leave out the Channel ID. You will need to specify the App's Bundle Identifier in the CleverPush Channel Settings.
+  // [CleverPush initWithLaunchOptions:launchOptions];
 
    return YES;
 }

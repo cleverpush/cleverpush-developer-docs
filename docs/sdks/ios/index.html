@@ -221,7 +221,10 @@ end</code></pre></div></li>
 </span><span style="color:#75715e"></span>
    <span style="color:#75715e">// Make sure to insert your CleverPush channelId
 </span><span style="color:#75715e"></span>   [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>];
-
+   
+   <span style="color:#75715e">// You can also leave out the Channel ID. You will need to specify the App&#39;s Bundle Identifier in the CleverPush Channel Settings.
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// [CleverPush initWithLaunchOptions:launchOptions];
+</span><span style="color:#75715e"></span>
    <span style="color:#66d9ef">return</span> YES;
 }
 
