@@ -15,7 +15,7 @@ toc = true
     {{< highlight groovy >}}
     implementation 'com.cleverpush:cleverpush:+'
     implementation 'com.android.support:support-v4:+'
-    implementation 'com.google.firebase:firebase-messaging:+'
+    implementation 'com.google.firebase:firebase-messaging:17+'
     implementation 'com.google.code.gson:gson:2.8.5'
     {{< /highlight >}}
 
