@@ -10,7 +10,7 @@ toc = true
 
 ### Installation
 
-1. Add the needed libraries to your `app/build.gradle` config
+1. Add the needed libraries to your `app/build.gradle` config under `dependencies`
 
     {{< highlight groovy >}}
     implementation 'com.cleverpush:cleverpush:+'

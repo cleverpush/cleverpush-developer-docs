@@ -30,7 +30,7 @@ toc = true
     2. Choose `Notification Service Extension` and press `Next`
     3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
     4. Press `Activate` on the next prompt
-    5. Add the following at the bottom of your Podfile
+    5. Add the following at the bottom of your Project's Podfile
 
         {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
 
@@ -39,7 +39,7 @@ toc = true
 end
 {{< /highlight >}}
     6. Run `pod install`
-    7. Open `NotificationService.m` and replace the whole content with the following:
+    7. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
         {{< highlight objective-c >}}
 #import <CleverPush/CleverPush.h>
