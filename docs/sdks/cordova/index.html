@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.53" />
+  <meta name="generator" content="Hugo 0.51" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
 
 
   <meta property="og:title" content="Cordova SDK" />
-<meta property="og:description" content="Intallation  Add the required Cordova plugin  cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git  Setup iOS  Enable the required capabilities
+<meta property="og:description" content="Intallation  Add the required Cordova plugin  cordova plugin add cleverpush-cordova-sdk  Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
  Enable &ldquo;Push Notifications&rdquo;
  Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
@@ -141,7 +141,7 @@ headingSelector: 'h3'
 <li>Add the required Cordova plugin</li>
 </ol>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">   cordova plugin add cleverpush-cordova-sdk
    </code></pre></div>
 
 <h3 id="setup-ios">Setup iOS</h3>
@@ -275,7 +275,7 @@ end</code></pre></div></li>
            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;subscriptionId:&#39;</span>, <span style="color:#a6e22e">subscriptionId</span>);
          };
    
-         window[<span style="color:#e6db74">&#39;plugins&#39;</span>].<span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">init</span>(<span style="color:#e6db74">&#34;Mw29Mswn2DgRD3Zyx&#34;</span>, <span style="color:#a6e22e">notificationOpenedCallback</span>, <span style="color:#a6e22e">subscribedCallback</span>);
+         window[<span style="color:#e6db74">&#39;plugins&#39;</span>].<span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">init</span>(<span style="color:#e6db74">&#34;INSERT_YOUR_CHANNEL_ID&#34;</span>, <span style="color:#a6e22e">notificationOpenedCallback</span>, <span style="color:#a6e22e">subscribedCallback</span>);
        });
      }
    }

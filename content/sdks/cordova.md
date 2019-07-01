@@ -13,7 +13,7 @@ toc = true
 1. Add the required Cordova plugin
 
    {{< highlight bash >}}
-   cordova plugin add https://github.com/cleverpush/cleverpush-cordova-sdk.git
+   cordova plugin add cleverpush-cordova-sdk
    {{< /highlight >}}
 
 
@@ -142,7 +142,7 @@ Add the initialization code to your `index.js` file
            console.log('subscriptionId:', subscriptionId);
          };
    
-         window['plugins'].CleverPush.init("Mw29Mswn2DgRD3Zyx", notificationOpenedCallback, subscribedCallback);
+         window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID", notificationOpenedCallback, subscribedCallback);
        });
      }
    }
