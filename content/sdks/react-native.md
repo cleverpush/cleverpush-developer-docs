@@ -242,6 +242,7 @@ CleverPush.isSubscribed((err, isSubscribed) => {
 });
 CleverPush.subscribe();
 CleverPush.unsubscribe();
+{{< /highlight >}}
 
 
 Get received notifications:
