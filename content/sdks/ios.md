@@ -135,7 +135,7 @@ class AppDelegate {
 }];
 {{< /highlight >}}
 
-4. Create your iOS push certificate
+5. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
@@ -151,6 +151,15 @@ class AppDelegate {
    12. Give the file a unique name and press save, be sure to leave the password field blank!
    13. Upload your certificate in the CleverPush channel settings
 
+6. Add AppGroup (optional)
+
+    This is required for getting the received notifications via the `getNotifications` method
+
+    1. Select your main application Target in Xcode
+    2. Go to `Capabilities` and activate `App Groups`
+    3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
+    4. Enable the created App Group by checking the checkbox next to it
+    5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
 
 
 ### Usage
@@ -195,11 +204,16 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 {{< /highlight >}}
 
 
+Get received notifications (App Group from setup step 6 is required):
+{{< highlight objective-c >}}
+NSArray* notifications = [CleverPush getNotifications];
+{{< /highlight >}}
+
+
 Show topics dialog:
 {{< highlight objective-c >}}
 [CleverPush showTopicsDialog];
 {{< /highlight >}}
-
 
 App Banners:
 

@@ -101,6 +101,18 @@ end
    11. Select Login > My Certificates then right click on your key and click "Export (Apple Production iOS Push Services: com.your.bundle)..."
    12. Give the file a unique name and press save, be sure to leave the password field blank!
    13. Upload your certificate in the CleverPush channel settings
+   
+
+4. Add AppGroup (optional)
+
+    This is required for getting the received notifications via the `getNotifications` method
+
+    1. Select your main application Target in Xcode
+    2. Go to `Capabilities` and activate `App Groups`
+    3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
+    4. Enable the created App Group by checking the checkbox next to it
+    5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
+
 
 
 ### Setup Android
@@ -230,4 +242,10 @@ CleverPush.isSubscribed((err, isSubscribed) => {
 });
 CleverPush.subscribe();
 CleverPush.unsubscribe();
+
+
+Get received notifications:
+
+{{< highlight javascript >}}
+var notifications = CleverPush.getNotifications();
 {{< /highlight >}}

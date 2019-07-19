@@ -281,6 +281,18 @@ end</code></pre></div></li>
 <li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
 <li>Upload your certificate in the CleverPush channel settings</li>
 </ol></li>
+
+<li><p>Add AppGroup (optional)</p>
+
+<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+
+<ol>
+<li>Select your main application Target in Xcode</li>
+<li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
+<li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application&rsquo;s bundle identifier).</li>
+<li>Enable the created App Group by checking the checkbox next to it</li>
+<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
+</ol></li>
 </ol>
 
 <h3 id="usage">Usage</h3>
@@ -318,6 +330,9 @@ NSString<span style="color:#f92672">*</span> attribute <span style="color:#f9267
 
 NSArray<span style="color:#f92672">*</span> subscriptionTopics <span style="color:#f92672">=</span> [CleverPush getSubscriptionTopics];
 [CleverPush setSubscriptionTopics:<span style="color:#ae81ff">@{</span><span style="color:#e6db74">@&#34;ID_1&#34;</span>, <span style="color:#e6db74">@&#34;ID_2&#34;</span><span style="color:#ae81ff">}</span>];</code></pre></div>
+
+<p>Get received notifications (App Group from setup step 6 is required):
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> notifications <span style="color:#f92672">=</span> [CleverPush getNotifications];</code></pre></div></p>
 
 <p>Show topics dialog:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[CleverPush showTopicsDialog];</code></pre></div></p>

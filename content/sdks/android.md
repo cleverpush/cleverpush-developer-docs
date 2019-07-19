@@ -175,6 +175,13 @@ CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"})
 {{< /highlight >}}
 
 
+Get received notifications:
+
+{{< highlight java >}}
+Set<Notification> = CleverPush.getInstance(this).getNotifications();
+{{< /highlight >}}
+
+
 Show the topics dialog:
 
 {{< highlight java >}}

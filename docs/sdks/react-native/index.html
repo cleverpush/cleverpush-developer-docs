@@ -234,7 +234,20 @@ end</code></pre></div></li>
 <li>Click on the downloaded .cer file, Keychain Access should open</li>
 <li>Select Login &gt; My Certificates then right click on your key and click &ldquo;Export (Apple Production iOS Push Services: com.your.bundle)&hellip;&rdquo;</li>
 <li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
-<li>Upload your certificate in the CleverPush channel settings</li>
+<li>Upload your certificate in the CleverPush channel settings
+<br /></li>
+</ol></li>
+
+<li><p>Add AppGroup (optional)</p>
+
+<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+
+<ol>
+<li>Select your main application Target in Xcode</li>
+<li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
+<li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application&rsquo;s bundle identifier).</li>
+<li>Enable the created App Group by checking the checkbox next to it</li>
+<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
 </ol></li>
 </ol>
 
@@ -361,6 +374,12 @@ end</code></pre></div></li>
 </span><span style="color:#75715e"></span>});
 <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">subscribe</span>();
 <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">unsubscribe</span>();
+
+
+<span style="color:#a6e22e">Get</span> <span style="color:#a6e22e">received</span> <span style="color:#a6e22e">notifications</span><span style="color:#f92672">:</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#a6e22e">pre</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#a6e22e">code</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-javascript&#34;</span> <span style="color:#a6e22e">data</span><span style="color:#f92672">-</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;javascript&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#a6e22e">span</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#66d9ef">var</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;notifications&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CleverPush&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getNotifications&lt;/span&gt;();</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/code&gt;&lt;/pre&gt;&lt;/div&gt;</span>
 </code></pre></div>
 
 
