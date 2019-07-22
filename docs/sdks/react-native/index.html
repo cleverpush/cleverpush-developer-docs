@@ -251,6 +251,14 @@ end</code></pre></div></li>
 </ol></li>
 </ol>
 
+<p>Common iOS errors:</p>
+
+<pre><code>ld: library not found for -lcleverpush-react-native
+</code></pre>
+
+<p>Go in <em>Xcode</em> &gt; <em>Targets</em> &gt; Your App &gt; <em>Build Phases</em> &gt; <em>Link Binary With Library</em>.
+Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
+
 <h3 id="setup-android">Setup Android</h3>
 
 <ol>
@@ -378,7 +386,9 @@ end</code></pre></div></li>
 
 <p>Get received notifications:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">notifications</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">getNotifications</span>();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">getNotifications</span>((<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">notifications</span>) =&gt; {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">notifications</span>);
+});
 </code></pre></div>
 
 

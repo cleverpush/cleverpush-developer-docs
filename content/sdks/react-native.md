@@ -114,6 +114,15 @@ end
     5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
 
 
+Common iOS errors:
+
+```
+ld: library not found for -lcleverpush-react-native
+```
+
+Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
+Click the + and select *libcleverpush-react-native.a*, then rebuild.
+
 
 ### Setup Android
 
@@ -248,5 +257,7 @@ CleverPush.unsubscribe();
 Get received notifications:
 
 {{< highlight javascript >}}
-var notifications = CleverPush.getNotifications();
+CleverPush.getNotifications((err, notifications) => {
+  console.log(notifications);
+});
 {{< /highlight >}}
