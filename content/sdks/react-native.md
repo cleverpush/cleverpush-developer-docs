@@ -116,12 +116,12 @@ end
 
 Common iOS errors:
 
-    {{< highlight javascript >}}
-    ld: library not found for -lcleverpush-react-native
-    {{< /highlight >}}
+{{< highlight javascript >}}
+ld: library not found for -lcleverpush-react-native
+{{< /highlight >}}
 
-    Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
-    Click the + and select *libcleverpush-react-native.a*, then rebuild.
+Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
+Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 
 ### Setup Android
