@@ -185,6 +185,11 @@ export default class App extends React.Component {
   
   componentWillMount() {
     CleverPush.init('YOUR_CHANNEL_ID_HERE');
+    
+    // optionally, you can disable the automatic push prompt:
+    CleverPush.init('YOUR_CHANNEL_ID_HERE', {
+      autoRegister: false
+    });
 
     CleverPush.addEventListener('opened', this.onOpened);
     CleverPush.addEventListener('subscribed', this.onSubscribed);

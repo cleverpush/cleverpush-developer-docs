@@ -319,6 +319,11 @@ Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
   
   <span style="color:#a6e22e">componentWillMount</span>() {
     <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">init</span>(<span style="color:#e6db74">&#39;YOUR_CHANNEL_ID_HERE&#39;</span>);
+    
+    <span style="color:#75715e">// optionally, you can disable the automatic push prompt:
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">init</span>(<span style="color:#e6db74">&#39;YOUR_CHANNEL_ID_HERE&#39;</span>, {
+      <span style="color:#a6e22e">autoRegister</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>
+    });
 
     <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;opened&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onOpened</span>);
     <span style="color:#a6e22e">CleverPush</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;subscribed&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onSubscribed</span>);
