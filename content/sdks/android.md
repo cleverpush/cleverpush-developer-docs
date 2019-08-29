@@ -14,12 +14,14 @@ toc = true
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:+'
+    implementation 'com.cleverpush:cleverpush:0.1.1'
     implementation 'com.android.support:support-v4:+'
     implementation 'com.google.firebase:firebase-messaging:17+'
     implementation 'com.google.code.gson:gson:2.8.5'
 }
 {{< /highlight >}}
+
+The latest stable Android SDK version is `0.1.1`
 
 2. Add the following tags to your AndroidManifest.xml file
 

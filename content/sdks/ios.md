@@ -12,7 +12,9 @@ toc = true
 
 1. Add CleverPush to your Podfile
     
-    {{< highlight bash >}}pod 'CleverPush'{{< /highlight >}}
+    {{< highlight bash >}}pod 'CleverPush', '~> 0.1.4'{{< /highlight >}}
+
+    The latest stable iOS SDK version is `0.1.4`
 
 2. Enable the required capabilities
 
@@ -34,7 +36,7 @@ toc = true
 
         {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
 
-  pod 'CleverPush'
+  pod 'CleverPush', '~> 0.1.4'
 
 end
 {{< /highlight >}}
