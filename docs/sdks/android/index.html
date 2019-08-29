@@ -22,7 +22,7 @@
 
   <meta property="og:title" content="Android SDK" />
 <meta property="og:description" content="Installation  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.1.1&#39; implementation &#39;com.android.support:support-v4:&#43;&#39; implementation &#39;com.google.firebase:firebase-messaging:17&#43;&#39; implementation &#39;com.google.code.gson:gson:2.8.5&#39; }  The latest stable Android SDK version is 0.1.1
+dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.1.&#43;&#39; implementation &#39;com.android.support:support-v4:&#43;&#39; implementation &#39;com.google.firebase:firebase-messaging:17&#43;&#39; implementation &#39;com.google.code.gson:gson:2.8.5&#39; }  The latest stable Android SDK version is 0.1.1
  Add the following tags to your AndroidManifest.xml file
 &lt;application ...&gt; &lt;meta-data android:name=&#34;CLEVERPUSH_CHANNEL_ID&#34; android:value=&#34;[CLEVERPUSH.CHANNEL.ID]&#34; /&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;/application&gt;  Be sure to insert your correct [CLEVERPUSH." />
 <meta property="og:type" content="article" />
@@ -139,7 +139,7 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">dependencies <span style="color:#f92672">{</span>
     <span style="color:#f92672">[...]</span>
-    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.1.1&#39;</span>
+    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.1.+&#39;</span>
     implementation <span style="color:#e6db74">&#39;com.android.support:support-v4:+&#39;</span>
     implementation <span style="color:#e6db74">&#39;com.google.firebase:firebase-messaging:17+&#39;</span>
     implementation <span style="color:#e6db74">&#39;com.google.code.gson:gson:2.8.5&#39;</span>

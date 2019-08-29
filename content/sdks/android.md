@@ -14,7 +14,7 @@ toc = true
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:0.1.1'
+    implementation 'com.cleverpush:cleverpush:0.1.+'
     implementation 'com.android.support:support-v4:+'
     implementation 'com.google.firebase:firebase-messaging:17+'
     implementation 'com.google.code.gson:gson:2.8.5'

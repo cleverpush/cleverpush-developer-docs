@@ -18,7 +18,7 @@
       
       <guid>/sdks/android/</guid>
       <description>Installation  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.1.1&amp;#39; implementation &amp;#39;com.android.support:support-v4:+&amp;#39; implementation &amp;#39;com.google.firebase:firebase-messaging:17+&amp;#39; implementation &amp;#39;com.google.code.gson:gson:2.8.5&amp;#39; }  The latest stable Android SDK version is 0.1.1
+dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.1.+&amp;#39; implementation &amp;#39;com.android.support:support-v4:+&amp;#39; implementation &amp;#39;com.google.firebase:firebase-messaging:17+&amp;#39; implementation &amp;#39;com.google.code.gson:gson:2.8.5&amp;#39; }  The latest stable Android SDK version is 0.1.1
  Add the following tags to your AndroidManifest.xml file
 &amp;lt;application ...&amp;gt; &amp;lt;meta-data android:name=&amp;#34;CLEVERPUSH_CHANNEL_ID&amp;#34; android:value=&amp;#34;[CLEVERPUSH.CHANNEL.ID]&amp;#34; /&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  Be sure to insert your correct [CLEVERPUSH.</description>
     </item>
