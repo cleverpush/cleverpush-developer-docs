@@ -74,7 +74,7 @@ cd ios pod install  Setup iOS  Enable the required capabilities
       
       <guid>/sdks/ios/</guid>
       <description>Installation  Add CleverPush to your Podfile
-pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.1.4&amp;#39; The latest stable iOS SDK version is 0.1.4
+pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.1.5&amp;#39; The latest stable iOS SDK version is 0.1.5
  Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
