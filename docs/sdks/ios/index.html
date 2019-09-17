@@ -2,7 +2,7 @@
 <html lang="en-us">
 
 <head>
-  <meta name="generator" content="Hugo 0.53" />
+  <meta name="generator" content="Hugo 0.51" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -177,6 +177,8 @@ end</code></pre></div></li>
 
 <li><p>Open <code>CleverPushNotificationServiceExtension/NotificationService.m</code> and replace the whole content with the following:</p>
 
+<p>Objective-C:</p>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">#import &#34;NotificationService.h&#34;
@@ -207,7 +209,39 @@ end</code></pre></div></li>
     self.contentHandler(self.bestAttemptContent);
 }
 
-<span style="color:#66d9ef">@end</span></code></pre></div></li>
+<span style="color:#66d9ef">@end</span></code></pre></div>
+
+<p>Swift:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">UserNotifications</span>
+
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">CleverPush</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NotificationService</span>: UNNotificationServiceExtension {
+
+    <span style="color:#66d9ef">var</span> contentHandler: ((UNNotificationContent) -&gt; Void)?
+    <span style="color:#66d9ef">var</span> receivedRequest: UNNotificationRequest<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">var</span> bestAttemptContent: UNMutableNotificationContent?
+
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">didReceive</span>(<span style="color:#66d9ef">_</span> request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void) {
+        <span style="color:#66d9ef">self</span>.receivedRequest = request;
+        <span style="color:#66d9ef">self</span>.contentHandler = contentHandler
+        bestAttemptContent = (request.content.mutableCopy() <span style="color:#66d9ef">as</span>? UNMutableNotificationContent)
+
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> bestAttemptContent = bestAttemptContent {
+            CleverPush.didReceiveNotificationExtensionRequest(<span style="color:#66d9ef">self</span>.receivedRequest, with: <span style="color:#66d9ef">self</span>.bestAttemptContent)
+            contentHandler(bestAttemptContent)
+        }
+    }
+
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">serviceExtensionTimeWillExpire</span>() {
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> contentHandler = contentHandler, <span style="color:#66d9ef">let</span> bestAttemptContent =  bestAttemptContent {
+            CleverPush.serviceExtensionTimeWillExpireRequest(<span style="color:#66d9ef">self</span>.receivedRequest, with: <span style="color:#66d9ef">self</span>.bestAttemptContent)
+            contentHandler(bestAttemptContent)
+        }
+    }
+
+}</code></pre></div></li>
 </ol></li>
 
 <li><p>Add this code to your AppDelegate:</p>
