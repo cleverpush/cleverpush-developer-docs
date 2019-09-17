@@ -128,7 +128,7 @@ class NotificationService: UNNotificationServiceExtension {
    [CleverPush initWithLaunchOptions:launchOptions channelId:@"INSERT-YOUR-CHANNEL-ID-HERE"];
    
    // You can also leave out the Channel ID. You will need to specify the App's Bundle Identifier in the CleverPush Channel Settings.
-  // [CleverPush initWithLaunchOptions:launchOptions];
+   // [CleverPush initWithLaunchOptions:launchOptions];
 
    return YES;
 }
@@ -145,7 +145,10 @@ class AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
 
         // Make sure to insert your CleverPush channelId
-        CleverPush(launchOptions: launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
+        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
+
+        // You can also leave out the Channel ID. You will need to specify the App's Bundle Identifier in the CleverPush Channel Settings.
+        // CleverPush.initWithLaunchOptions(launchOptions);
 
         return true
     }
@@ -183,7 +186,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 // ...
 
     // Make sure to insert your CleverPush channelId
-    CleverPush(launchOptions: launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
+    CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
       print("Received Notification with URL: " + result!.notification["url"]);
 
       let alert = UIAlertController(title: result!.notification["title"], message: "Message", preferredStyle: UIAlertControllerStyle.Alert)

@@ -259,7 +259,7 @@ end</code></pre></div></li>
 </span><span style="color:#75715e"></span>   [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;INSERT-YOUR-CHANNEL-ID-HERE&#34;</span>];
    
    <span style="color:#75715e">// You can also leave out the Channel ID. You will need to specify the App&#39;s Bundle Identifier in the CleverPush Channel Settings.
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// [CleverPush initWithLaunchOptions:launchOptions];
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">// [CleverPush initWithLaunchOptions:launchOptions];
 </span><span style="color:#75715e"></span>
    <span style="color:#66d9ef">return</span> YES;
 }
@@ -274,7 +274,10 @@ end</code></pre></div></li>
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {	        <span style="color:#75715e">// ...</span>
 
         <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
-        CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>)
+        CleverPush.initWithLaunchOptions(launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>)
+
+        <span style="color:#75715e">// You can also leave out the Channel ID. You will need to specify the App&#39;s Bundle Identifier in the CleverPush Channel Settings.</span>
+        <span style="color:#75715e">// CleverPush.initWithLaunchOptions(launchOptions);</span>
 
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
     }
@@ -310,7 +313,7 @@ end</code></pre></div></li>
 <span style="color:#75715e">// ...</span>
 
     <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
-    CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>, handleNotificationOpened: { (result) <span style="color:#66d9ef">in</span>
+    CleverPush.initWithLaunchOptions(launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>, handleNotificationOpened: { (result) <span style="color:#66d9ef">in</span>
       print(<span style="color:#e6db74">&#34;Received Notification with URL: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">!</span>.notification[<span style="color:#e6db74">&#34;url&#34;</span>]);
 
       <span style="color:#66d9ef">let</span> alert = UIAlertController(title: result<span style="color:#f92672">!</span>.notification[<span style="color:#e6db74">&#34;title&#34;</span>], message: <span style="color:#e6db74">&#34;Message&#34;</span>, preferredStyle: UIAlertControllerStyle.Alert)
