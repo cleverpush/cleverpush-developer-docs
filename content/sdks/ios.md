@@ -154,6 +154,8 @@ class AppDelegate {
 
     Optionally, you can also add your notification opened callback in your `didFinishLaunchingWithOptions` or the subscribed callback with the subscription ID like this:
 
+    Objective-C:
+
     {{< highlight objective-c >}}// ...
 
 [CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
@@ -171,6 +173,26 @@ class AppDelegate {
 } handleSubscribed:^(NSString *subscriptionId) {
     NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
 }];
+{{< /highlight >}}
+
+    Swift:
+
+    {{< highlight swift >}}// ...
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+// ...
+
+    // Make sure to insert your CleverPush channelId
+    CleverPush(launchOptions: launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
+      print("Received Notification with URL: " + result!.notification["url"]);
+
+      let alert = UIAlertController(title: result!.notification["title"], message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+     })
+
+    return true
+}
 {{< /highlight >}}
 
 5. Create your iOS push certificate

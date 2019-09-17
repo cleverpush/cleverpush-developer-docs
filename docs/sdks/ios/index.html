@@ -282,6 +282,8 @@ end</code></pre></div></li>
 
 <p>Optionally, you can also add your notification opened callback in your <code>didFinishLaunchingWithOptions</code> or the subscribed callback with the subscription ID like this:</p>
 
+<p>Objective-C:</p>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>
 [CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;YOUR_CHANNEL_ID_HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
@@ -298,7 +300,26 @@ end</code></pre></div></li>
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
 } handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
     NSLog(<span style="color:#e6db74">@&#34;Subscribed to CleverPush with ID: %@&#34;</span>, subscriptionId);
-}];</code></pre></div></li>
+}];</code></pre></div>
+
+<p>Swift:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// ...</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">application</span>(<span style="color:#66d9ef">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {
+<span style="color:#75715e">// ...</span>
+
+    <span style="color:#75715e">// Make sure to insert your CleverPush channelId</span>
+    CleverPush(launchOptions: launchOptions, channelId: <span style="color:#e6db74">&#34;YOUR_CHANNEL_ID_HERE&#34;</span>, handleNotificationOpened: { (result) <span style="color:#66d9ef">in</span>
+      print(<span style="color:#e6db74">&#34;Received Notification with URL: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">!</span>.notification[<span style="color:#e6db74">&#34;url&#34;</span>]);
+
+      <span style="color:#66d9ef">let</span> alert = UIAlertController(title: result<span style="color:#f92672">!</span>.notification[<span style="color:#e6db74">&#34;title&#34;</span>], message: <span style="color:#e6db74">&#34;Message&#34;</span>, preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: <span style="color:#e6db74">&#34;OK&#34;</span>, style: UIAlertActionStyle.Default, handler: <span style="color:#66d9ef">nil</span>))
+      <span style="color:#66d9ef">self</span>.presentViewController(alert, animated: <span style="color:#66d9ef">true</span>, completion: <span style="color:#66d9ef">nil</span>)
+     })
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+}</code></pre></div></li>
 
 <li><p>Create your iOS push certificate</p>
 
