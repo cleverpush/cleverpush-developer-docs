@@ -210,8 +210,16 @@ CleverPush.once(event, callback)
 * 'UNSUBSCRIBED' (after successful opt-out)
 
 
+### Chat
 
-</section>
+1. Additionally to the general CleverPush script, include the following script:
 
+{{< highlight html >}}
+<script src="https://static.cleverpush.com/sdk/cleverpush-chat.js"></script>
+{{< /highlight >}}
 
-<section>
+2. Place this empty div where you want the chat to appear:
+
+{{< highlight html >}}
+<div class="cleverpush-chat-target"></div>
+{{< /highlight >}}

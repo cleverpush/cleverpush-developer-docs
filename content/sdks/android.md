@@ -196,3 +196,16 @@ App Banners:
 {{< highlight java >}}
 CleverPush.getInstance(this).showAppBanners();
 {{< /highlight >}}
+
+
+
+### Chat
+
+Add the ChatView inside your Layout XML:
+
+{{< highlight xml >}}
+    <com.cleverpush.chat.ChatView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+{{< /highlight >}}

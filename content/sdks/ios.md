@@ -283,3 +283,19 @@ App Banners:
 {{< highlight objective-c >}}
 [CleverPush showAppBanners];
 {{< /highlight >}}
+
+
+### Chat
+
+1. Import "CleverPush/CPChatView.h":
+
+{{< highlight objective-c >}}
+#import <CleverPush/CPChatView.h>
+{{< /highlight >}}
+
+2. Add the Chat View:
+
+{{< highlight objective-c >}}
+CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+[self.view addSubview:chatView];
+{{< /highlight >}}
