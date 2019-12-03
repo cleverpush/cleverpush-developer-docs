@@ -39,6 +39,22 @@ This is required for correctly tracking notification deliveries and for displayi
     </item>
     
     <item>
+      <title>Flutter SDK</title>
+      <link>/sdks/flutter/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/flutter/</guid>
+      <description>Installation  Add the following code to your pubspec.yaml file dependencies: cleverpush_flutter: ^1.0.0
+ Run flutter packages get
+  Setup iOS  Enable the required capabilities
+ Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
+ Enable &amp;ldquo;Push Notifications&amp;rdquo;
+ Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
+  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</description>
+    </item>
+    
+    <item>
       <title>JavaScript SDK</title>
       <link>/sdks/javascript/</link>
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
@@ -65,6 +81,21 @@ cd ios pod install  Setup iOS  Enable the required capabilities
  Enable &amp;ldquo;Push Notifications&amp;rdquo;
  Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
   Add Notification Service Extension</description>
+    </item>
+    
+    <item>
+      <title>Xamarin SDK</title>
+      <link>/sdks/xamarin/</link>
+      <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
+      
+      <guid>/sdks/xamarin/</guid>
+      <description>Installation  Add the CleverPush NuGet Package dependencies: cleverpush_flutter: ^1.0.0  Setup iOS  Enable the required capabilities
+ Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
+ Enable &amp;ldquo;Push Notifications&amp;rdquo;
+ Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
+  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+ Select File &amp;gt; New &amp;gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Podfile</description>
     </item>
     
     <item>

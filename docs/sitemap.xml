@@ -13,12 +13,22 @@
   </url>
   
   <url>
+    <loc>/sdks/flutter/</loc>
+    <lastmod>2017-04-10T16:43:08+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/sdks/javascript/</loc>
     <lastmod>2017-04-10T16:43:08+01:00</lastmod>
   </url>
   
   <url>
     <loc>/sdks/react-native/</loc>
+    <lastmod>2017-04-10T16:43:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sdks/xamarin/</loc>
     <lastmod>2017-04-10T16:43:08+01:00</lastmod>
   </url>
   
