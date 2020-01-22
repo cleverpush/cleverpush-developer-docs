@@ -22,7 +22,7 @@
 
   <meta property="og:title" content="iOS SDK" />
 <meta property="og:description" content="Installation  Add CleverPush to your Podfile
-pod &#39;CleverPush&#39;, &#39;~&gt; 0.1.5&#39; The latest stable iOS SDK version is 0.1.5
+pod &#39;CleverPush&#39;, &#39;~&gt; 0.4.0&#39; The latest stable iOS SDK version is 0.4.0
  Enable the required capabilities
  Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
  Enable &ldquo;Push Notifications&rdquo;
@@ -141,9 +141,9 @@ headingSelector: 'h3'
 <ol>
 <li><p>Add CleverPush to your Podfile</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.1.5&#39;</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span></code></pre></div>
 
-<p>The latest stable iOS SDK version is <code>0.1.5</code></p></li>
+<p>The latest stable iOS SDK version is <code>0.4.0</code></p></li>
 
 <li><p>Enable the required capabilities</p>
 
@@ -169,7 +169,26 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationServiceExtension&#39;</span> <span style="color:#66d9ef">do</span>
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.1.5&#39;</span>
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span>
+
+end</code></pre></div></li>
+</ol></li>
+
+<li><p>Add Notification Content Extension</p>
+
+<p>This is required for displaying custom notification contents (e.g. Carousel Notifications).</p>
+
+<ol>
+<li>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</li>
+<li>Choose <code>Notification Content Extension</code> and press <code>Next</code></li>
+<li>Enter <code>CleverPushNotificationContentExtension</code> as Product Name, choose <code>Objective-C</code> as language and press <code>Finish</code></li>
+<li>Press <code>Activate</code> on the next prompt</li>
+
+<li><p>Add the following at the bottom of your Project&rsquo;s Podfile</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationContentExtension&#39;</span> <span style="color:#66d9ef">do</span>
+
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span>
 
 end</code></pre></div></li>
 
@@ -243,6 +262,95 @@ end</code></pre></div></li>
 
 }</code></pre></div></li>
 </ol></li>
+
+<li><p>Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</p>
+
+<pre><code>Objective-C:
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;UIKit/UIKit.h&gt;
+</span><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">NotificationViewController</span> : <span style="color:#a6e22e">CPNotificationViewController</span>
+
+<span style="color:#66d9ef">@end</span></code></pre></div>
+
+Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
+
+Objective-C:
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &#34;NotificationViewController.h&#34;
+</span><span style="color:#75715e">#import &lt;UserNotifications/UserNotifications.h&gt;
+</span><span style="color:#75715e">#import &lt;UserNotificationsUI/UserNotificationsUI.h&gt;
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">NotificationViewController</span> () <span style="color:#f92672">&lt;</span>UNNotificationContentExtension<span style="color:#f92672">&gt;</span>
+
+<span style="color:#66d9ef">@end</span>
+
+<span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">NotificationViewController</span>
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">viewDidLoad</span> {
+    [super viewDidLoad];
+}
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">viewDidAppear:</span>(<span style="color:#66d9ef">BOOL</span>)animated {
+    [super viewDidAppear:animated];
+}
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">didReceiveNotification:</span>(UNNotification <span style="color:#f92672">*</span>)notification {
+    [self cleverpushDidReceiveNotification:notification];
+}
+
+- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">didReceiveNotificationResponse:</span>(UNNotificationResponse <span style="color:#f92672">*</span>)response <span style="color:#a6e22e">completionHandler:</span>(<span style="color:#66d9ef">void</span> (<span style="color:#f92672">^</span>)(UNNotificationContentExtensionResponseOption))completion {
+    [self cleverpushDidReceiveNotificationResponse:response withCompletionHandler:completion];
+}
+
+<span style="color:#66d9ef">@end</span></code></pre></div>
+
+Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#75715e">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+<span style="color:#f92672">&lt;plist</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;1.0&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;dict&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleDevelopmentRegion<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>$(DEVELOPMENT_LANGUAGE)<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleDisplayName<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>CleverPushNotificationContentExtension<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleExecutable<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>$(EXECUTABLE_NAME)<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleIdentifier<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>$(PRODUCT_BUNDLE_IDENTIFIER)<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleInfoDictionaryVersion<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>6.0<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleName<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>$(PRODUCT_NAME)<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundlePackageType<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>$(PRODUCT_BUNDLE_PACKAGE_TYPE)<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleShortVersionString<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>1.0<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>CFBundleVersion<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;string&gt;</span>1<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;key&gt;</span>NSExtension<span style="color:#f92672">&lt;/key&gt;</span>
+	<span style="color:#f92672">&lt;dict&gt;</span>
+		<span style="color:#f92672">&lt;key&gt;</span>NSExtensionAttributes<span style="color:#f92672">&lt;/key&gt;</span>
+		<span style="color:#f92672">&lt;dict&gt;</span>
+			<span style="color:#f92672">&lt;key&gt;</span>UNNotificationExtensionCategory<span style="color:#f92672">&lt;/key&gt;</span>
+            <span style="color:#f92672">&lt;array&gt;</span>
+                <span style="color:#f92672">&lt;string&gt;</span>carousel<span style="color:#f92672">&lt;/string&gt;</span>
+            <span style="color:#f92672">&lt;/array&gt;</span>
+            <span style="color:#f92672">&lt;key&gt;</span>UNNotificationExtensionDefaultContentHidden<span style="color:#f92672">&lt;/key&gt;</span>
+            <span style="color:#f92672">&lt;false/&gt;</span>
+            <span style="color:#f92672">&lt;key&gt;</span>UNNotificationExtensionInitialContentSizeRatio<span style="color:#f92672">&lt;/key&gt;</span>
+            <span style="color:#f92672">&lt;real&gt;</span>0.5<span style="color:#f92672">&lt;/real&gt;</span>
+		<span style="color:#f92672">&lt;/dict&gt;</span>
+		<span style="color:#f92672">&lt;key&gt;</span>NSExtensionPrincipalClass<span style="color:#f92672">&lt;/key&gt;</span>
+		<span style="color:#f92672">&lt;string&gt;</span>NotificationViewController<span style="color:#f92672">&lt;/string&gt;</span>
+		<span style="color:#f92672">&lt;key&gt;</span>NSExtensionPointIdentifier<span style="color:#f92672">&lt;/key&gt;</span>
+		<span style="color:#f92672">&lt;string&gt;</span>com.apple.usernotifications.content-extension<span style="color:#f92672">&lt;/string&gt;</span>
+	<span style="color:#f92672">&lt;/dict&gt;</span>
+<span style="color:#f92672">&lt;/dict&gt;</span>
+<span style="color:#f92672">&lt;/plist&gt;</span></code></pre></div>
+</code></pre></li>
 
 <li><p>Add this code to your AppDelegate:</p>
 
