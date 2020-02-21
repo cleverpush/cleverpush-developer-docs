@@ -88,12 +88,12 @@ public class MainActivity extends Activity {
            @Override
            public void notificationReceived(NotificationOpenedResult result) {
               System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
-          };
+          }
        }, new NotificationOpenedListener() {
           @Override
           public void notificationOpened(NotificationOpenedResult result) {
              System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-         };
+         }
       });
    }
 }
@@ -110,16 +110,17 @@ public class MainActivity extends Activity {
          @Override
          public void notificationReceived(NotificationOpenedResult result) {
             System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
-        };
+        }
      }, new NotificationOpenedListener() {
         @Override
         public void notificationOpened(NotificationOpenedResult result) {
            System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-       };
+        }
      }, new SubscribedListener() {
         @Override
         public void subscribed(String subscriptionId) {
-           System.out.println("CleverPush Subscription ID: " + subscriptionId);
+           System.out.println("CleverPush Subscription ID: " + subscriptionId);+
+        }
      });
   }
 }
