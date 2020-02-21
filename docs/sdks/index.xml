@@ -17,10 +17,10 @@
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/android/</guid>
-      <description>Installation  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.3.+&amp;#39; implementation &amp;#39;com.android.support:support-v4:+&amp;#39; implementation &amp;#39;com.google.firebase:firebase-messaging:17+&amp;#39; implementation &amp;#39;com.google.code.gson:gson:2.8.5&amp;#39; }  The latest stable Android SDK version is 0.3.0
+      <description>Setup  Add the needed libraries to your app/build.gradle config under dependencies
+dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.5.3&amp;#39; }  The latest stable Android SDK version is 0.5.3
  Add the following tags to your AndroidManifest.xml file
-&amp;lt;application ...&amp;gt; &amp;lt;meta-data android:name=&amp;#34;CLEVERPUSH_CHANNEL_ID&amp;#34; android:value=&amp;#34;[CLEVERPUSH.CHANNEL.ID]&amp;#34; /&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  Be sure to insert your correct [CLEVERPUSH.</description>
+&amp;lt;application ...&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  Alternatively, you can also leave this &amp;lt;meta-data.. line out and specify the App&amp;rsquo;s Package Name in the CleverPush channel settings.</description>
     </item>
     
     <item>
@@ -105,13 +105,11 @@ This is required for correctly tracking notification deliveries and for displayi
       
       <guid>/sdks/ios/</guid>
       <description>Installation  Add CleverPush to your Podfile
-pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.4.0&amp;#39; The latest stable iOS SDK version is 0.4.0
+pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.5.1&amp;#39; The latest stable iOS SDK version is 0.5.1
  Enable the required capabilities
- Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;
- Enable &amp;ldquo;Push Notifications&amp;rdquo;
- Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;
-  Add Notification Service Extension
-This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</description>
+ Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo; Enable &amp;ldquo;Push Notifications&amp;rdquo; Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+ Select File &amp;gt; New &amp;gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Project&amp;rsquo;s Podfile</description>
     </item>
     
   </channel>

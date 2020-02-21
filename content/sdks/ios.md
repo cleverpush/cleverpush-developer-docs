@@ -12,16 +12,14 @@ toc = true
 
 1. Add CleverPush to your Podfile
     
-    {{< highlight bash >}}pod 'CleverPush', '~> 0.4.0'{{< /highlight >}}
+    {{< highlight bash >}}pod 'CleverPush', '~> 0.5.1'{{< /highlight >}}
 
-    The latest stable iOS SDK version is `0.4.0`
+    The latest stable iOS SDK version is `0.5.1`
 
 2. Enable the required capabilities
 
     1. Go to your root project and switch to the tab "Capabilities"
-   
     2. Enable "Push Notifications"
-   
     3. Enable "Background Modes" and check "Remote notifications"
 
 3. Add Notification Service Extension
@@ -36,7 +34,7 @@ toc = true
 
         {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
 
-  pod 'CleverPush', '~> 0.4.0'
+  pod 'CleverPush', '~> 0.5.1'
 
 end
 {{< /highlight >}}
@@ -53,7 +51,7 @@ end
 
         {{< highlight bash >}}target 'CleverPushNotificationContentExtension' do
 
-  pod 'CleverPush', '~> 0.4.0'
+  pod 'CleverPush', '~> 0.5.1'
 
 end
 {{< /highlight >}}
@@ -132,9 +130,9 @@ class NotificationService: UNNotificationServiceExtension {
 
 7. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:
 
-        Objective-C:
+    Objective-C:
 
-        {{< highlight objective-c >}}
+    {{< highlight objective-c >}}
 #import <UIKit/UIKit.h>
 #import <CleverPush/CleverPush.h>
 
@@ -143,11 +141,11 @@ class NotificationService: UNNotificationServiceExtension {
 @end
 {{< /highlight >}}
 
-        Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
+    Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
 
-        Objective-C:
+    Objective-C:
 
-        {{< highlight objective-c >}}
+    {{< highlight objective-c >}}
 #import "NotificationViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import <UserNotificationsUI/UserNotificationsUI.h>
@@ -177,9 +175,9 @@ class NotificationService: UNNotificationServiceExtension {
 @end
 {{< /highlight >}}
 
-        Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
+    Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
 
-        {{< highlight xml >}}
+    {{< highlight xml >}}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -336,11 +334,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
 
 
-### Usage
+### Basic Usage
 
-Subscribe (or unsubscribe) later:
 {{< highlight objective-c >}}
-// init with autoRegister:false
+// init with autoRegister:false to manually subscribe later
 [CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
     NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
 } handleSubscribed:^(NSString *subscriptionId) {
@@ -350,49 +347,80 @@ Subscribe (or unsubscribe) later:
 // subscribe
 [CleverPush subscribe]
 
-// or unsubscribe
+// unsubscribe later
 [CleverPush unsubscribe]
 
-// get subscription status (returns true or false)
-[CleverPush isSubscribed]
+// get subscription status
+BOOL isSubscribed = [CleverPush isSubscribed]
 {{< /highlight >}}
 
 
-Tag subscriptions and set attributes:
+### Tags
 
 {{< highlight objective-c >}}
 NSArray* channelTags = [CleverPush getAvailableTags];
-NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
 
 [CleverPush addSubscriptionTag:@"TAG_ID"];
+
 [CleverPush removeSubscriptionTag:@"TAG_ID"];
-bool hasTag = [CleverPush hasSubscriptionTag:@"TAG_ID"];
+
+BOOL hasTag = [CleverPush hasSubscriptionTag:@"TAG_ID"];
+
 NSArray* subscriptionTags = [CleverPush getSubscriptionTags];
-
-NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
-[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
-NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
-
 NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
 {{< /highlight >}}
 
 
-Get received notifications (App Group from setup step 6 is required):
+### Topics
+
+{{< highlight objective-c >}}
+NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
+
+[CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
+
+// let the user choose his topics
+[CleverPush showTopicsDialog];
+{{< /highlight >}}
+
+
+### Attributes
+
+{{< highlight objective-c >}}
+NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
+
+NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
+
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
+
+NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
+{{< /highlight >}}
+
+
+### Received Notifications
+(App Group from setup step 8 is required):
 {{< highlight objective-c >}}
 NSArray* notifications = [CleverPush getNotifications];
 {{< /highlight >}}
 
 
-Show topics dialog:
+### App Banners
+
 {{< highlight objective-c >}}
-[CleverPush showTopicsDialog];
+// usually call this after initializing
+[CleverPush showAppBanners];
 {{< /highlight >}}
 
-App Banners:
 
-{{< highlight objective-c >}}
-[CleverPush showAppBanners];
+### Event Tracking
+
+Events can be used to trigger follow-up campaigns or to track conversions.
+
+{{< highlight java >}}
+[CleverPush trackEvent@"EVENT NAME"];
+
+// track a conversion with a specified amount
+[CleverPush trackEvent@"EVENT NAME" amount:37.50];
 {{< /highlight >}}
 
 

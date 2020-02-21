@@ -21,10 +21,10 @@
 
 
   <meta property="og:title" content="Android SDK" />
-<meta property="og:description" content="Installation  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.3.&#43;&#39; implementation &#39;com.android.support:support-v4:&#43;&#39; implementation &#39;com.google.firebase:firebase-messaging:17&#43;&#39; implementation &#39;com.google.code.gson:gson:2.8.5&#39; }  The latest stable Android SDK version is 0.3.0
+<meta property="og:description" content="Setup  Add the needed libraries to your app/build.gradle config under dependencies
+dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.5.3&#39; }  The latest stable Android SDK version is 0.5.3
  Add the following tags to your AndroidManifest.xml file
-&lt;application ...&gt; &lt;meta-data android:name=&#34;CLEVERPUSH_CHANNEL_ID&#34; android:value=&#34;[CLEVERPUSH.CHANNEL.ID]&#34; /&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;/application&gt;  Be sure to insert your correct [CLEVERPUSH." />
+&lt;application ...&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;/application&gt;  Alternatively, you can also leave this &lt;meta-data.. line out and specify the App&rsquo;s Package Name in the CleverPush channel settings." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/android/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -132,29 +132,24 @@ headingSelector: 'h3'
 
     
 
-<h3 id="installation">Installation</h3>
+<h3 id="setup">Setup</h3>
 
 <ol>
 <li><p>Add the needed libraries to your <code>app/build.gradle</code> config under <code>dependencies</code></p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">dependencies <span style="color:#f92672">{</span>
     <span style="color:#f92672">[...]</span>
-    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.3.+&#39;</span>
-    implementation <span style="color:#e6db74">&#39;com.android.support:support-v4:+&#39;</span>
-    implementation <span style="color:#e6db74">&#39;com.google.firebase:firebase-messaging:17+&#39;</span>
-    implementation <span style="color:#e6db74">&#39;com.google.code.gson:gson:2.8.5&#39;</span>
+    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.5.3&#39;</span>
 <span style="color:#f92672">}</span></code></pre></div></li>
 </ol>
 
-<p>The latest stable Android SDK version is <code>0.3.0</code></p>
+<p>The latest stable Android SDK version is <code>0.5.3</code></p>
 
 <ol>
 <li><p>Add the following tags to your AndroidManifest.xml file</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">     <span style="color:#f92672">&lt;application</span> <span style="color:#960050;background-color:#1e0010">...</span><span style="color:#f92672">&gt;</span>
-    
-       <span style="color:#f92672">&lt;meta-data</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;CLEVERPUSH_CHANNEL_ID&#34;</span> <span style="color:#a6e22e">android:value=</span><span style="color:#e6db74">&#34;[CLEVERPUSH.CHANNEL.ID]&#34;</span> <span style="color:#f92672">/&gt;</span>
-    
+
        <span style="color:#f92672">&lt;service</span>
            <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;</span><span style="color:#f92672">&gt;</span>
            <span style="color:#f92672">&lt;intent-filter&gt;</span>
@@ -171,18 +166,19 @@ headingSelector: 'h3'
      <span style="color:#f92672">&lt;/application&gt;</span>
     </code></pre></div>
 
-<p>Be sure to insert your correct <code>[CLEVERPUSH.CHANNEL.ID]</code>, which can be found in the CleverPush settings.
-Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and specify the App&rsquo;s Package Name in the CleverPush channel settings.</p></li>
+<p>Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and specify the App&rsquo;s Package Name in the CleverPush channel settings.</p></li>
 
-<li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init();</code></p>
+<li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init();</code> with your CleverPush Channel ID.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> Activity <span style="color:#f92672">{</span>
        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-           CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">();</span>
+           CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CLEVERPUSH_CHANNEL_ID&#34;</span><span style="color:#f92672">);</span>
        <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
     </code></pre></div></li>
 </ol>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
 
 <p>If you use ProGuard, you may need to add these exceptions:</p>
 
@@ -198,36 +194,45 @@ Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
-<h3 id="usage">Usage</h3>
+<h3 id="basic-usage">Basic Usage</h3>
 
-<p>You can add a <code>NotificationOpenedListener</code></p>
+<p>You can add a <code>NotificationReceivedListener</code> and a <code>NotificationOpenedListener</code> which fire when notifications have been received and/or opened:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> Activity <span style="color:#f92672">{</span>
    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-       CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+       CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NotificationReceivedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
            <span style="color:#a6e22e">@Override</span>
-           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification with URL: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getUrl</span><span style="color:#f92672">());</span>
+           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationReceived</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Received CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
           <span style="color:#f92672">};</span>
-       <span style="color:#f92672">});</span>
+       <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+             System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
+         <span style="color:#f92672">};</span>
+      <span style="color:#f92672">});</span>
    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
-<p>And a <code>SubscribedListener</code></p>
+<p>You can add a <code>SubscribedListener</code> which fires when the user has successfully been subscribed:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> Activity <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-           <span style="color:#a6e22e">@Override</span>
-           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-             System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification with URL: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getUrl</span><span style="color:#f92672">());</span>
-         <span style="color:#f92672">};</span>
-      <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> SubscribedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-           <span style="color:#a6e22e">@Override</span>
-           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">subscribed</span><span style="color:#f92672">(</span>String subscriptionId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CleverPush Subscription ID: &#34;</span> <span style="color:#f92672">+</span> subscriptionId<span style="color:#f92672">);</span>
-          <span style="color:#f92672">};</span>
-      <span style="color:#f92672">});</span>
+      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NotificationReceivedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+         <span style="color:#a6e22e">@Override</span>
+         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationReceived</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Received CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">};</span>
+     <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
+       <span style="color:#f92672">};</span>
+     <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> SubscribedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">subscribed</span><span style="color:#f92672">(</span>String subscriptionId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CleverPush Subscription ID: &#34;</span> <span style="color:#f92672">+</span> subscriptionId<span style="color:#f92672">);</span>
+     <span style="color:#f92672">});</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
@@ -236,17 +241,7 @@ Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> Activity <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
       <span style="color:#75715e">// last parameter (autoRegister) is false
-</span><span style="color:#75715e"></span>      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-          <span style="color:#a6e22e">@Override</span>
-          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-             System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification with URL: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getUrl</span><span style="color:#f92672">());</span>
-         <span style="color:#f92672">};</span>
-      <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> SubscribedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-           <span style="color:#a6e22e">@Override</span>
-           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">subscribed</span><span style="color:#f92672">(</span>String subscriptionId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CleverPush Subscription ID: &#34;</span> <span style="color:#f92672">+</span> subscriptionId<span style="color:#f92672">);</span>
-          <span style="color:#f92672">};</span>
-      <span style="color:#f92672">},</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+</span><span style="color:#75715e"></span>      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(...,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
       
       <span style="color:#75715e">// subscribe
 </span><span style="color:#75715e"></span>      CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">subscribe</span><span style="color:#f92672">();</span>
@@ -259,39 +254,58 @@ Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
-<p>Tagging and Attributes:</p>
+<h3 id="tags">Tags</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getAvailableTags</span><span style="color:#f92672">(</span>tags <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// returns Set&lt;ChannelTag&gt;
 </span><span style="color:#75715e"></span><span style="color:#f92672">});</span>
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getAvailableAttributes</span><span style="color:#f92672">(</span>attributes <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+
+Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> subscribedTagIds <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionTags</span><span style="color:#f92672">();</span>
+
+CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">addSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
+
+CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">removeSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#66d9ef">boolean</span> hasTag <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">hasSubscriptionTag</span><span style="color:#f92672">(</span>channelTags<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span></code></pre></div>
+
+<h3 id="attributes">Attributes</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getAvailableAttributes</span><span style="color:#f92672">(</span>attributes <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// returns Set&lt;CustomAttribute&gt;
 </span><span style="color:#75715e"></span><span style="color:#f92672">});</span>
 
-Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> subscribedTagIds <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionTags</span><span style="color:#f92672">();</span>
 Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> subscriptionAttributes <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionAttributes</span><span style="color:#f92672">();</span>
 
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">addSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">removeSubscriptionTag</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tag_id&#34;</span><span style="color:#f92672">);</span>
-<span style="color:#66d9ef">boolean</span> hasTag <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">hasSubscriptionTag</span><span style="color:#f92672">(</span>channelTags<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">).</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
-
 String attributeValue <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">);</span>
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>
 
-Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> subscribedTopicIds <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionTopics</span><span style="color:#f92672">();</span>
-CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionTopics</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;ID_1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ID_2&#34;</span><span style="color:#f92672">});</span></code></pre></div>
+CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user_id&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span></code></pre></div>
 
-<p>Get received notifications:</p>
+<h3 id="topics">Topics</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> subscribedTopicIds <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getSubscriptionTopics</span><span style="color:#f92672">();</span>
+
+CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setSubscriptionTopics</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;ID_1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ID_2&#34;</span><span style="color:#f92672">});</span>
+
+<span style="color:#75715e">// let the user choose his topics
+</span><span style="color:#75715e"></span>CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showTopicsDialog</span><span style="color:#f92672">();</span></code></pre></div>
+
+<h3 id="received-notifications">Received Notifications</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Set<span style="color:#f92672">&lt;</span>Notification<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getNotifications</span><span style="color:#f92672">();</span></code></pre></div>
 
-<p>Show the topics dialog:</p>
+<h3 id="app-banners">App Banners</h3>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showTopicsDialog</span><span style="color:#f92672">();</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// usually call this after initializing
+</span><span style="color:#75715e"></span>CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showAppBanners</span><span style="color:#f92672">();</span></code></pre></div>
 
-<p>App Banners:</p>
+<h3 id="event-tracking">Event Tracking</h3>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">showAppBanners</span><span style="color:#f92672">();</span></code></pre></div>
+<p>Events can be used to trigger follow-up campaigns or to track conversions.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">trackEvent</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EVENT NAME&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#75715e">// track a conversion with a specified amount
+</span><span style="color:#75715e"></span>CleverPush<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">).</span><span style="color:#a6e22e">trackEvent</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EVENT NAME&#34;</span><span style="color:#f92672">,</span> 37<span style="color:#f92672">.</span><span style="color:#a6e22e">50f</span><span style="color:#f92672">);</span></code></pre></div>
 
 <h3 id="chat">Chat</h3>
 

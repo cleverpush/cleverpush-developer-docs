@@ -22,13 +22,11 @@
 
   <meta property="og:title" content="iOS SDK" />
 <meta property="og:description" content="Installation  Add CleverPush to your Podfile
-pod &#39;CleverPush&#39;, &#39;~&gt; 0.4.0&#39; The latest stable iOS SDK version is 0.4.0
+pod &#39;CleverPush&#39;, &#39;~&gt; 0.5.1&#39; The latest stable iOS SDK version is 0.5.1
  Enable the required capabilities
- Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
- Enable &ldquo;Push Notifications&rdquo;
- Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
-  Add Notification Service Extension
-This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications." />
+ Go to your root project and switch to the tab &ldquo;Capabilities&rdquo; Enable &ldquo;Push Notifications&rdquo; Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;  Add Notification Service Extension
+This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+ Select File &gt; New &gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Project&rsquo;s Podfile" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -141,18 +139,16 @@ headingSelector: 'h3'
 <ol>
 <li><p>Add CleverPush to your Podfile</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.1&#39;</span></code></pre></div>
 
-<p>The latest stable iOS SDK version is <code>0.4.0</code></p></li>
+<p>The latest stable iOS SDK version is <code>0.5.1</code></p></li>
 
 <li><p>Enable the required capabilities</p>
 
 <ol>
-<li><p>Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</p></li>
-
-<li><p>Enable &ldquo;Push Notifications&rdquo;</p></li>
-
-<li><p>Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p></li>
+<li>Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</li>
+<li>Enable &ldquo;Push Notifications&rdquo;</li>
+<li>Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</li>
 </ol></li>
 
 <li><p>Add Notification Service Extension</p>
@@ -169,7 +165,7 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationServiceExtension&#39;</span> <span style="color:#66d9ef">do</span>
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span>
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.1&#39;</span>
 
 end</code></pre></div></li>
 </ol></li>
@@ -188,7 +184,7 @@ end</code></pre></div></li>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationContentExtension&#39;</span> <span style="color:#66d9ef">do</span>
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.4.0&#39;</span>
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.1&#39;</span>
 
 end</code></pre></div></li>
 
@@ -265,7 +261,7 @@ end</code></pre></div></li>
 
 <li><p>Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</p>
 
-<pre><code>Objective-C:
+<p>Objective-C:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;UIKit/UIKit.h&gt;
 </span><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
@@ -274,9 +270,9 @@ end</code></pre></div></li>
 
 <span style="color:#66d9ef">@end</span></code></pre></div>
 
-Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
+<p>Open <code>CleverPushNotificationContentExtension/NotificationViewController.m</code> and replace the whole content with the following:</p>
 
-Objective-C:
+<p>Objective-C:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &#34;NotificationViewController.h&#34;
 </span><span style="color:#75715e">#import &lt;UserNotifications/UserNotifications.h&gt;
@@ -306,7 +302,7 @@ Objective-C:
 
 <span style="color:#66d9ef">@end</span></code></pre></div>
 
-Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
+<p>Open <code>CleverPushNotificationContentExtension/Info.plist</code> and replace the whole content with the following:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span style="color:#75715e">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
@@ -349,8 +345,7 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 		<span style="color:#f92672">&lt;string&gt;</span>com.apple.usernotifications.content-extension<span style="color:#f92672">&lt;/string&gt;</span>
 	<span style="color:#f92672">&lt;/dict&gt;</span>
 <span style="color:#f92672">&lt;/dict&gt;</span>
-<span style="color:#f92672">&lt;/plist&gt;</span></code></pre></div>
-</code></pre></li>
+<span style="color:#f92672">&lt;/plist&gt;</span></code></pre></div></li>
 
 <li><p>Add this code to your AppDelegate:</p>
 
@@ -463,10 +458,9 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </ol></li>
 </ol>
 
-<h3 id="usage">Usage</h3>
+<h3 id="basic-usage">Basic Usage</h3>
 
-<p>Subscribe (or unsubscribe) later:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// init with autoRegister:false
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// init with autoRegister:false to manually subscribe later
 </span><span style="color:#75715e"></span>[CleverPush initWithLaunchOptions:launchOptions channelId:<span style="color:#e6db74">@&#34;YOUR_CHANNEL_ID_HERE&#34;</span> handleNotificationOpened:<span style="color:#f92672">^</span>(CPNotificationOpenedResult <span style="color:#f92672">*</span>result) {
     NSLog(<span style="color:#e6db74">@&#34;Received Notification with URL: %@&#34;</span>, [result.notification valueForKey:<span style="color:#e6db74">@&#34;url&#34;</span>]);
 } handleSubscribed:<span style="color:#f92672">^</span>(NSString <span style="color:#f92672">*</span>subscriptionId) {
@@ -476,38 +470,63 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 <span style="color:#75715e">// subscribe
 </span><span style="color:#75715e"></span>[CleverPush subscribe]
 
-<span style="color:#75715e">// or unsubscribe
+<span style="color:#75715e">// unsubscribe later
 </span><span style="color:#75715e"></span>[CleverPush unsubscribe]
 
-<span style="color:#75715e">// get subscription status (returns true or false)
-</span><span style="color:#75715e"></span>[CleverPush isSubscribed]</code></pre></div></p>
+<span style="color:#75715e">// get subscription status
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">BOOL</span> isSubscribed <span style="color:#f92672">=</span> [CleverPush isSubscribed]</code></pre></div>
 
-<p>Tag subscriptions and set attributes:</p>
+<h3 id="tags">Tags</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> channelTags <span style="color:#f92672">=</span> [CleverPush getAvailableTags];
-NSDictionary<span style="color:#f92672">*</span> customAttributes <span style="color:#f92672">=</span> [CleverPush getAvailableAttributes];
 
 [CleverPush addSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
+
 [CleverPush removeSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
-<span style="color:#66d9ef">bool</span> hasTag <span style="color:#f92672">=</span> [CleverPush hasSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
+
+<span style="color:#66d9ef">BOOL</span> hasTag <span style="color:#f92672">=</span> [CleverPush hasSubscriptionTag:<span style="color:#e6db74">@&#34;TAG_ID&#34;</span>];
+
 NSArray<span style="color:#f92672">*</span> subscriptionTags <span style="color:#f92672">=</span> [CleverPush getSubscriptionTags];
-
-NSDictionary<span style="color:#f92672">*</span> subscriptionAttributes <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttributes];
-[CleverPush setSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span> value:<span style="color:#e6db74">@&#34;ATTRIBUTE_VALUE&#34;</span>];
-NSString<span style="color:#f92672">*</span> attribute <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span>];
-
 NSArray<span style="color:#f92672">*</span> subscriptionTopics <span style="color:#f92672">=</span> [CleverPush getSubscriptionTopics];
 [CleverPush setSubscriptionTopics:<span style="color:#ae81ff">@{</span><span style="color:#e6db74">@&#34;ID_1&#34;</span>, <span style="color:#e6db74">@&#34;ID_2&#34;</span><span style="color:#ae81ff">}</span>];</code></pre></div>
 
-<p>Get received notifications (App Group from setup step 6 is required):
+<h3 id="topics">Topics</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> subscriptionTopics <span style="color:#f92672">=</span> [CleverPush getSubscriptionTopics];
+
+[CleverPush setSubscriptionTopics:<span style="color:#ae81ff">@{</span><span style="color:#e6db74">@&#34;ID_1&#34;</span>, <span style="color:#e6db74">@&#34;ID_2&#34;</span><span style="color:#ae81ff">}</span>];
+
+<span style="color:#75715e">// let the user choose his topics
+</span><span style="color:#75715e"></span>[CleverPush showTopicsDialog];</code></pre></div>
+
+<h3 id="attributes">Attributes</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSDictionary<span style="color:#f92672">*</span> customAttributes <span style="color:#f92672">=</span> [CleverPush getAvailableAttributes];
+
+NSDictionary<span style="color:#f92672">*</span> subscriptionAttributes <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttributes];
+
+[CleverPush setSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span> value:<span style="color:#e6db74">@&#34;ATTRIBUTE_VALUE&#34;</span>];
+
+NSString<span style="color:#f92672">*</span> attribute <span style="color:#f92672">=</span> [CleverPush getSubscriptionAttribute:<span style="color:#e6db74">@&#34;ATTRIBUTE_ID&#34;</span>];</code></pre></div>
+
+<h3 id="received-notifications">Received Notifications</h3>
+
+<p>(App Group from setup step 8 is required):
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">NSArray<span style="color:#f92672">*</span> notifications <span style="color:#f92672">=</span> [CleverPush getNotifications];</code></pre></div></p>
 
-<p>Show topics dialog:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[CleverPush showTopicsDialog];</code></pre></div></p>
+<h3 id="app-banners">App Banners</h3>
 
-<p>App Banners:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">// usually call this after initializing
+</span><span style="color:#75715e"></span>[CleverPush showAppBanners];</code></pre></div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[CleverPush showAppBanners];</code></pre></div>
+<h3 id="event-tracking">Event Tracking</h3>
+
+<p>Events can be used to trigger follow-up campaigns or to track conversions.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">[</span>CleverPush trackEvent<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#e6db74">&#34;EVENT NAME&#34;</span><span style="color:#f92672">];</span>
+
+<span style="color:#75715e">// track a conversion with a specified amount
+</span><span style="color:#75715e"></span><span style="color:#f92672">[</span>CleverPush trackEvent<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#e6db74">&#34;EVENT NAME&#34;</span> amount:37<span style="color:#f92672">.</span><span style="color:#a6e22e">50</span><span style="color:#f92672">];</span></code></pre></div>
 
 <h3 id="chat">Chat</h3>
 

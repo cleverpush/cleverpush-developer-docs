@@ -39,6 +39,10 @@ CleverPush.push(['triggerOptIn', function(err, subscriptionId) {
         console.log('successfully subscribed with id', subscriptionId);
     }
 }]);
+
+// set the second parameter to 'true' to skip the opt-in timeout:
+
+CleverPush.push(['triggerOptIn', true, ...]);
 {{< /highlight >}}
 
 #### <code>subscribe</code>

@@ -8,28 +8,23 @@ bref=""
 toc = true
 +++
 
-### Installation
+### Setup
 
 1. Add the needed libraries to your `app/build.gradle` config under `dependencies`
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:0.3.+'
-    implementation 'com.android.support:support-v4:+'
-    implementation 'com.google.firebase:firebase-messaging:17+'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.cleverpush:cleverpush:0.5.3'
 }
 {{< /highlight >}}
 
-The latest stable Android SDK version is `0.3.0`
+The latest stable Android SDK version is `0.5.3`
 
 2. Add the following tags to your AndroidManifest.xml file
 
     {{< highlight xml >}}
      <application ...>
-    
-       <meta-data android:name="CLEVERPUSH_CHANNEL_ID" android:value="[CLEVERPUSH.CHANNEL.ID]" />
-    
+
        <service
            android:name="com.cleverpush.service.CleverPushFcmListenerService">
            <intent-filter>
@@ -46,19 +41,20 @@ The latest stable Android SDK version is `0.3.0`
      </application>
     {{< /highlight >}}
    
-    Be sure to insert your correct `[CLEVERPUSH.CHANNEL.ID]`, which can be found in the CleverPush settings.
     Alternatively, you can also leave this `<meta-data..` line out and specify the App's Package Name in the CleverPush channel settings.
 
-3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init();`
+3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init();` with your CleverPush Channel ID.
     
     {{< highlight java >}}
     public class MainActivity extends Activity {
        public void onCreate(Bundle savedInstanceState) {
-           CleverPush.getInstance(this).init();
+           CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID");
        }
     }
     {{< /highlight >}}
 
+
+### Troubleshooting
 
 If you use ProGuard, you may need to add these exceptions:
 
@@ -80,42 +76,51 @@ android {
 
 
 
-### Usage
+### Basic Usage
 
-You can add a `NotificationOpenedListener`
+You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` which fire when notifications have been received and/or opened:
 
 
 {{< highlight java >}}
 public class MainActivity extends Activity {
    public void onCreate(Bundle savedInstanceState) {
-       CleverPush.getInstance(this).init(new NotificationOpenedListener() {
+       CleverPush.getInstance(this).init(new NotificationReceivedListener() {
            @Override
-           public void notificationOpened(NotificationOpenedResult result) {(NotificationOpenedResult result) {
-              System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
+           public void notificationReceived(NotificationOpenedResult result) {
+              System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
           };
-       });
+       }, new NotificationOpenedListener() {
+          @Override
+          public void notificationOpened(NotificationOpenedResult result) {
+             System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+         };
+      });
    }
 }
 {{< /highlight >}}
 
 
-And a `SubscribedListener`
+You can add a `SubscribedListener` which fires when the user has successfully been subscribed:
 
 
 {{< highlight java >}}
 public class MainActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
-      CleverPush.getInstance(this).init(new NotificationOpenedListener() {
-           @Override
-           public void notificationOpened(NotificationOpenedResult result) {
-             System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
-         };
-      }, new SubscribedListener() {
-           @Override
-           public void subscribed(String subscriptionId) {
-              System.out.println("CleverPush Subscription ID: " + subscriptionId);
-          };
-      });
+      CleverPush.getInstance(this).init(new NotificationReceivedListener() {
+         @Override
+         public void notificationReceived(NotificationOpenedResult result) {
+            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+        };
+     }, new NotificationOpenedListener() {
+        @Override
+        public void notificationOpened(NotificationOpenedResult result) {
+           System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+       };
+     }, new SubscribedListener() {
+        @Override
+        public void subscribed(String subscriptionId) {
+           System.out.println("CleverPush Subscription ID: " + subscriptionId);
+     });
   }
 }
 {{< /highlight >}}
@@ -127,17 +132,7 @@ Subscribe (or unsubscribe) later:
 public class MainActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
       // last parameter (autoRegister) is false
-      CleverPush.getInstance(this).init(new NotificationOpenedListener() {
-          @Override
-          public void notificationOpened(NotificationOpenedResult result) {
-             System.out.println("Opened CleverPush Notification with URL: " + result.getNotification().getUrl());
-         };
-      }, new SubscribedListener() {
-           @Override
-           public void subscribed(String subscriptionId) {
-              System.out.println("CleverPush Subscription ID: " + subscriptionId);
-          };
-      }, false);
+      CleverPush.getInstance(this).init(..., false);
       
       // subscribe
       CleverPush.getInstance(this).subscribe();
@@ -152,51 +147,75 @@ public class MainActivity extends Activity {
 {{< /highlight >}}
 
 
-Tagging and Attributes:
+### Tags
 
 {{< highlight java >}}
 CleverPush.getInstance(this).getAvailableTags(tags -> {
     // returns Set<ChannelTag>
 });
+
+Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
+
+CleverPush.getInstance(this).addSubscriptionTag("tag_id");
+
+CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
+
+boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
+{{< /highlight >}}
+
+
+### Attributes
+
+{{< highlight java >}}
 CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
     // returns Set<CustomAttribute>
 });
 
-Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
 Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
 
-CleverPush.getInstance(this).addSubscriptionTag("tag_id");
-CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
-boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
-
 String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
-CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 
-Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
-CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 {{< /highlight >}}
 
 
-Get received notifications:
+### Topics
+
+{{< highlight java >}}
+Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
+
+CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
+
+// let the user choose his topics
+CleverPush.getInstance(this).showTopicsDialog();
+{{< /highlight >}}
+
+
+### Received Notifications
 
 {{< highlight java >}}
 Set<Notification> = CleverPush.getInstance(this).getNotifications();
 {{< /highlight >}}
 
 
-Show the topics dialog:
+### App Banners
 
 {{< highlight java >}}
-CleverPush.getInstance(this).showTopicsDialog();
-{{< /highlight >}}
-
-
-App Banners:
-
-{{< highlight java >}}
+// usually call this after initializing
 CleverPush.getInstance(this).showAppBanners();
 {{< /highlight >}}
 
+
+### Event Tracking
+
+Events can be used to trigger follow-up campaigns or to track conversions.
+
+{{< highlight java >}}
+CleverPush.getInstance(this).trackEvent("EVENT NAME");
+
+// track a conversion with a specified amount
+CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
+{{< /highlight >}}
 
 
 ### Chat
