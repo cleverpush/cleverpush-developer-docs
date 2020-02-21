@@ -204,12 +204,12 @@ headingSelector: 'h3'
            <span style="color:#a6e22e">@Override</span>
            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationReceived</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
               System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Received CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
-          <span style="color:#f92672">};</span>
+          <span style="color:#f92672">}</span>
        <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
           <span style="color:#a6e22e">@Override</span>
           <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
-         <span style="color:#f92672">};</span>
+         <span style="color:#f92672">}</span>
       <span style="color:#f92672">});</span>
    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
@@ -222,16 +222,17 @@ headingSelector: 'h3'
          <span style="color:#a6e22e">@Override</span>
          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationReceived</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
             System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Received CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
-        <span style="color:#f92672">};</span>
+        <span style="color:#f92672">}</span>
      <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> NotificationOpenedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#a6e22e">@Override</span>
         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notificationOpened</span><span style="color:#f92672">(</span>NotificationOpenedResult result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opened CleverPush Notification: &#34;</span> <span style="color:#f92672">+</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getNotification</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">());</span>
-       <span style="color:#f92672">};</span>
+        <span style="color:#f92672">}</span>
      <span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> SubscribedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#a6e22e">@Override</span>
         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">subscribed</span><span style="color:#f92672">(</span>String subscriptionId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CleverPush Subscription ID: &#34;</span> <span style="color:#f92672">+</span> subscriptionId<span style="color:#f92672">);</span>
+           System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CleverPush Subscription ID: &#34;</span> <span style="color:#f92672">+</span> subscriptionId<span style="color:#f92672">);+</span>
+        <span style="color:#f92672">}</span>
      <span style="color:#f92672">});</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>

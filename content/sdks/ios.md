@@ -416,7 +416,7 @@ NSArray* notifications = [CleverPush getNotifications];
 
 Events can be used to trigger follow-up campaigns or to track conversions.
 
-{{< highlight java >}}
+{{< highlight objective-c >}}
 [CleverPush trackEvent:@"EVENT NAME"];
 
 // track a conversion with a specified amount
