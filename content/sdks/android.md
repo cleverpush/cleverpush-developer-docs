@@ -14,11 +14,11 @@ toc = true
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:0.5.3'
+    implementation 'com.cleverpush:cleverpush:0.5.6'
 }
 {{< /highlight >}}
 
-The latest stable Android SDK version is `0.5.3`
+The latest stable Android SDK version is `0.5.6`
 
 2. Add the following tags to your AndroidManifest.xml file
 
