@@ -14,11 +14,11 @@ toc = true
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:0.5.6'
+    implementation 'com.cleverpush:cleverpush:0.5.9'
 }
 {{< /highlight >}}
 
-The latest stable Android SDK version is `0.5.6`
+The latest stable Android SDK version is `0.5.9`
 
 2. Add the following tags to your AndroidManifest.xml file
 
@@ -40,10 +40,8 @@ The latest stable Android SDK version is `0.5.6`
     
      </application>
     {{< /highlight >}}
-   
-    Alternatively, you can also leave this `<meta-data..` line out and specify the App's Package Name in the CleverPush channel settings.
 
-3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init();` with your CleverPush Channel ID.
+3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
     
     {{< highlight java >}}
     public class MainActivity extends Activity {

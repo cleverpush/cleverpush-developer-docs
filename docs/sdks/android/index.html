@@ -22,9 +22,9 @@
 
   <meta property="og:title" content="Android SDK" />
 <meta property="og:description" content="Setup  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.5.6&#39; }  The latest stable Android SDK version is 0.5.6
+dependencies { [...] implementation &#39;com.cleverpush:cleverpush:0.5.9&#39; }  The latest stable Android SDK version is 0.5.9
  Add the following tags to your AndroidManifest.xml file
-&lt;application ...&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;/application&gt;  Alternatively, you can also leave this &lt;meta-data.. line out and specify the App&rsquo;s Package Name in the CleverPush channel settings." />
+&lt;application ...&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.MESSAGING_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;service android:name=&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;&gt; &lt;intent-filter&gt; &lt;action android:name=&#34;com.google.firebase.INSTANCE_ID_EVENT&#34; /&gt; &lt;/intent-filter&gt; &lt;/service&gt; &lt;/application&gt;  In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/android/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -139,11 +139,11 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">dependencies <span style="color:#f92672">{</span>
     <span style="color:#f92672">[...]</span>
-    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.5.6&#39;</span>
+    implementation <span style="color:#e6db74">&#39;com.cleverpush:cleverpush:0.5.9&#39;</span>
 <span style="color:#f92672">}</span></code></pre></div></li>
 </ol>
 
-<p>The latest stable Android SDK version is <code>0.5.6</code></p>
+<p>The latest stable Android SDK version is <code>0.5.9</code></p>
 
 <ol>
 <li><p>Add the following tags to your AndroidManifest.xml file</p>
@@ -164,11 +164,9 @@ headingSelector: 'h3'
        <span style="color:#f92672">&lt;/service&gt;</span>
     
      <span style="color:#f92672">&lt;/application&gt;</span>
-    </code></pre></div>
+    </code></pre></div></li>
 
-<p>Alternatively, you can also leave this <code>&lt;meta-data..</code> line out and specify the App&rsquo;s Package Name in the CleverPush channel settings.</p></li>
-
-<li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init();</code> with your CleverPush Channel ID.</p>
+<li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> Activity <span style="color:#f92672">{</span>
        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>

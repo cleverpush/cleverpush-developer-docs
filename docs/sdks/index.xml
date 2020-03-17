@@ -18,9 +18,9 @@
       
       <guid>/sdks/android/</guid>
       <description>Setup  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.5.6&amp;#39; }  The latest stable Android SDK version is 0.5.6
+dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.5.9&amp;#39; }  The latest stable Android SDK version is 0.5.9
  Add the following tags to your AndroidManifest.xml file
-&amp;lt;application ...&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  Alternatively, you can also leave this &amp;lt;meta-data.. line out and specify the App&amp;rsquo;s Package Name in the CleverPush channel settings.</description>
+&amp;lt;application ...&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID.</description>
     </item>
     
     <item>
@@ -104,12 +104,11 @@ This is required for correctly tracking notification deliveries and for displayi
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/ios/</guid>
-      <description>Installation  Add CleverPush to your Podfile
-pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.5.5&amp;#39; The latest stable iOS SDK version is 0.5.5
- Enable the required capabilities
- Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo; Enable &amp;ldquo;Push Notifications&amp;rdquo; Enable &amp;ldquo;Background Modes&amp;rdquo; and check &amp;ldquo;Remote notifications&amp;rdquo;  Add Notification Service Extension
-This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
- Select File &amp;gt; New &amp;gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Project&amp;rsquo;s Podfile</description>
+      <description>Installation  CocoaPods Installation:
+Add CleverPush to your Podfile:
+pod &amp;#39;CleverPush&amp;#39;, &amp;#39;~&amp;gt; 0.5.8&amp;#39; The latest stable iOS SDK version is 0.5.8
+  Manual Installation (not needed if you use CocoaPods):
+1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases 2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option. 3. Add `SystemConfiguration`, `UIKit`, and `UserNotifications`, `WebKit` to your frameworks. 4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension   Enable the required capabilities</description>
     </item>
     
   </channel>

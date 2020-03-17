@@ -10,11 +10,20 @@ toc = true
 
 ### Installation
 
-1. Add CleverPush to your Podfile
-    
-    {{< highlight bash >}}pod 'CleverPush', '~> 0.5.5'{{< /highlight >}}
+1. *CocoaPods Installation*:
 
-    The latest stable iOS SDK version is `0.5.5`
+    Add CleverPush to your Podfile:
+    
+    {{< highlight bash >}}pod 'CleverPush', '~> 0.5.8'{{< /highlight >}}
+
+    The latest stable iOS SDK version is `0.5.8`
+    
+   *Manual Installation* (not needed if you use CocoaPods):
+
+    1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
+    2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option.
+    3. Add `SystemConfiguration`, `UIKit`, and `UserNotifications`, `WebKit` to your frameworks.
+    4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
 
 2. Enable the required capabilities
 
@@ -34,7 +43,7 @@ toc = true
 
         {{< highlight bash >}}target 'CleverPushNotificationServiceExtension' do
 
-  pod 'CleverPush', '~> 0.5.5'
+  pod 'CleverPush', '~> 0.5.8'
 
 end
 {{< /highlight >}}
@@ -51,7 +60,7 @@ end
 
         {{< highlight bash >}}target 'CleverPushNotificationContentExtension' do
 
-  pod 'CleverPush', '~> 0.5.5'
+  pod 'CleverPush', '~> 0.5.8'
 
 end
 {{< /highlight >}}

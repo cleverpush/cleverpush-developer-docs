@@ -21,12 +21,11 @@
 
 
   <meta property="og:title" content="iOS SDK" />
-<meta property="og:description" content="Installation  Add CleverPush to your Podfile
-pod &#39;CleverPush&#39;, &#39;~&gt; 0.5.5&#39; The latest stable iOS SDK version is 0.5.5
- Enable the required capabilities
- Go to your root project and switch to the tab &ldquo;Capabilities&rdquo; Enable &ldquo;Push Notifications&rdquo; Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;  Add Notification Service Extension
-This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
- Select File &gt; New &gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Project&rsquo;s Podfile" />
+<meta property="og:description" content="Installation  CocoaPods Installation:
+Add CleverPush to your Podfile:
+pod &#39;CleverPush&#39;, &#39;~&gt; 0.5.8&#39; The latest stable iOS SDK version is 0.5.8
+  Manual Installation (not needed if you use CocoaPods):
+1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases 2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option. 3. Add `SystemConfiguration`, `UIKit`, and `UserNotifications`, `WebKit` to your frameworks. 4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension   Enable the required capabilities" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/ios/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -137,12 +136,24 @@ headingSelector: 'h3'
 <h3 id="installation">Installation</h3>
 
 <ol>
-<li><p>Add CleverPush to your Podfile</p>
+<li><p><em>CocoaPods Installation</em>:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.5&#39;</span></code></pre></div>
+<p>Add CleverPush to your Podfile:</p>
 
-<p>The latest stable iOS SDK version is <code>0.5.5</code></p></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.8&#39;</span></code></pre></div>
 
+<p>The latest stable iOS SDK version is <code>0.5.8</code></p></li>
+</ol>
+
+<p><em>Manual Installation</em> (not needed if you use CocoaPods):</p>
+
+<pre><code>1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
+2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option.
+3. Add `SystemConfiguration`, `UIKit`, and `UserNotifications`, `WebKit` to your frameworks.
+4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
+</code></pre>
+
+<ol>
 <li><p>Enable the required capabilities</p>
 
 <ol>
@@ -165,7 +176,7 @@ headingSelector: 'h3'
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationServiceExtension&#39;</span> <span style="color:#66d9ef">do</span>
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.5&#39;</span>
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.8&#39;</span>
 
 end</code></pre></div></li>
 </ol></li>
@@ -184,7 +195,7 @@ end</code></pre></div></li>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationContentExtension&#39;</span> <span style="color:#66d9ef">do</span>
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.5&#39;</span>
+  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 0.5.8&#39;</span>
 
 end</code></pre></div></li>
 
