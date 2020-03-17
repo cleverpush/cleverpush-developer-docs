@@ -22,7 +22,7 @@ toc = true
     **Manual Installation** (not needed if you use CocoaPods):
 
     1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
-    2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option.
+    2. Drop and drag `CleverPush/Framework/CleverPush.framework` into your Xcode project and check the copy option.
     3. Add `SystemConfiguration`, `UIKit`, and `UserNotifications`, `WebKit` to your frameworks.
     4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
 
