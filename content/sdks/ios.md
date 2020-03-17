@@ -10,15 +10,16 @@ toc = true
 
 ### Installation
 
-1. *CocoaPods Installation*:
+1. SDK Setup:
 
+    **CocoaPods Installation**
     Add CleverPush to your Podfile:
     
     {{< highlight bash >}}pod 'CleverPush', '~> 0.5.8'{{< /highlight >}}
 
     The latest stable iOS SDK version is `0.5.8`
-    
-   *Manual Installation* (not needed if you use CocoaPods):
+
+    **Manual Installation** (not needed if you use CocoaPods):
 
     1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
     2. Drop and drag CleverPush/Framework/CleverPush.framework into your Xcode project and check the copy option.
