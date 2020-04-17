@@ -44,7 +44,7 @@ This is required for correctly tracking notification deliveries and for displayi
       <pubDate>Mon, 10 Apr 2017 16:43:08 +0100</pubDate>
       
       <guid>/sdks/flutter/</guid>
-      <description>Installation  Add the following code to your pubspec.yaml file dependencies: cleverpush_flutter: ^1.0.0
+      <description>Installation  Add the following code to your pubspec.yaml file dependencies: cleverpush_flutter: ^1.0.5
  Run flutter packages get
   Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &amp;ldquo;Capabilities&amp;rdquo;

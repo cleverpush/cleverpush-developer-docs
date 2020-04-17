@@ -21,7 +21,7 @@
 
 
   <meta property="og:title" content="Flutter SDK" />
-<meta property="og:description" content="Installation  Add the following code to your pubspec.yaml file dependencies: cleverpush_flutter: ^1.0.0
+<meta property="og:description" content="Installation  Add the following code to your pubspec.yaml file dependencies: cleverpush_flutter: ^1.0.5
  Run flutter packages get
   Setup iOS  Enable the required capabilities
  Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
@@ -141,7 +141,7 @@ headingSelector: 'h3'
 <ol>
 <li><p>Add the following code to your <code>pubspec.yaml</code> file
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dependencies:
-    cleverpush_flutter: ^1.0.0</code></pre></div></p></li>
+    cleverpush_flutter: ^1.0.5</code></pre></div></p></li>
 
 <li><p>Run <code>flutter packages get</code></p></li>
 </ol>
@@ -321,12 +321,12 @@ Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
   Future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> initPlatformState() <span style="color:#66d9ef">async</span> {
     <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>mounted) <span style="color:#66d9ef">return</span>;
 
-    CleverPush.shared.setNotificationReceivedHandler((CPNotification notification) {
-      print(<span style="color:#e6db74">&#34;Notification received: </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">${</span>notification.jsonRepresentation()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>);
+    CleverPush.shared.setNotificationReceivedHandler((CPNotificationReceivedResult result) {
+      print(<span style="color:#e6db74">&#34;Notification received: </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">${</span>result.notification.jsonRepresentation()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>);
     });
 
     CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult result) {
-      print(<span style="color:#e6db74">&#34;Notification opened: </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">${</span>notification.jsonRepresentation()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>);
+      print(<span style="color:#e6db74">&#34;Notification opened: </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">${</span>result.notification.jsonRepresentation()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>);
     });
 
     CleverPush.shared.setSubscribedHandler((subscriptionId) {
@@ -334,6 +334,8 @@ Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
     });
 
     <span style="color:#66d9ef">await</span> CleverPush.shared.init(<span style="color:#e6db74">&#34;INSERT_CLEVERPUSH_CHANNEL_ID_HERE&#34;</span>);
+
+    CleverPush.shared.subscribe();
   }
   
   [...]

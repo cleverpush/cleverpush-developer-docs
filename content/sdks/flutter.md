@@ -12,7 +12,7 @@ toc = true
 
 1. Add the following code to your `pubspec.yaml` file
     {{< highlight bash >}}dependencies:
-    cleverpush_flutter: ^1.0.0{{< /highlight >}}
+    cleverpush_flutter: ^1.0.5{{< /highlight >}}
     
 2. Run `flutter packages get`
 
@@ -186,12 +186,12 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     if (!mounted) return;
 
-    CleverPush.shared.setNotificationReceivedHandler((CPNotification notification) {
-      print("Notification received: \n${notification.jsonRepresentation()}");
+    CleverPush.shared.setNotificationReceivedHandler((CPNotificationReceivedResult result) {
+      print("Notification received: \n${result.notification.jsonRepresentation()}");
     });
 
     CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult result) {
-      print("Notification opened: \n${notification.jsonRepresentation()}");
+      print("Notification opened: \n${result.notification.jsonRepresentation()}");
     });
 
     CleverPush.shared.setSubscribedHandler((subscriptionId) {
@@ -199,6 +199,8 @@ class _MyAppState extends State<MyApp> {
     });
 
     await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE");
+
+    CleverPush.shared.subscribe();
   }
   
   [...]
