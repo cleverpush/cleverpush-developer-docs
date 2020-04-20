@@ -192,6 +192,12 @@ headingSelector: 'h3'
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 
+<p>In project &lsquo;app&rsquo; a resolved Google Play services library dependency depends on another at an exact version (&hellip;):</p>
+
+<p>Add the following line at the bottom of <code>app/build.gradle</code>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">googleServices <span style="color:#f92672">{</span> disableVersionCheck <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">}</span></code></pre></div>
+
 <h3 id="basic-usage">Basic Usage</h3>
 
 <p>You can add a <code>NotificationReceivedListener</code> and a <code>NotificationOpenedListener</code> which fire when notifications have been received and/or opened:</p>

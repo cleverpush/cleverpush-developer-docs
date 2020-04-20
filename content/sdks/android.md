@@ -72,6 +72,14 @@ android {
 }
 {{< /highlight >}}
 
+In project 'app' a resolved Google Play services library dependency depends on another at an exact version (...):
+
+Add the following line at the bottom of `app/build.gradle`:
+
+{{< highlight groovy >}}
+googleServices { disableVersionCheck = true }
+{{< /highlight >}}
+
 
 
 ### Basic Usage
