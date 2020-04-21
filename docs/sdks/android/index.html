@@ -24,7 +24,10 @@
 <meta property="og:description" content="Setup  Add the needed libraries to your app/build.gradle config under dependencies
 dependencies { [...] implementation &#39;com.cleverpush:cleverpush:1.0.0&#39; } In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID.
 public class MainActivity extends Activity { public void onCreate(Bundle savedInstanceState) { CleverPush.getInstance(this).init(&#34;CLEVERPUSH_CHANNEL_ID&#34;); } }   Upgrading 1.0.0
-Breaking Changes * Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate * Needed minSdkVersion in build.gradle: 16 * You can remove the following lines from your AndroidManifest." />
+Breaking Changes
+ Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate
+ Needed minSdkVersion in build.gradle: 16
+ You can remove the following lines from your AndroidManifest." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/android/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -156,11 +159,15 @@ headingSelector: 'h3'
 
 <p><strong>1.0.0</strong></p>
 
-<p>Breaking Changes
-* Migrated to AndroidX, see: <a href="https://developer.android.com/jetpack/androidx/migrate">https://developer.android.com/jetpack/androidx/migrate</a>
-* Needed minSdkVersion in build.gradle: 16
-* You can remove the following lines from your AndroidManifest.xml file:
-   <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">   <span style="color:#f92672">&lt;service</span>
+<p>Breaking Changes</p>
+
+<ol>
+<li><p>Migrated to AndroidX, see: <a href="https://developer.android.com/jetpack/androidx/migrate">https://developer.android.com/jetpack/androidx/migrate</a></p></li>
+
+<li><p>Needed minSdkVersion in build.gradle: 16</p></li>
+
+<li><p>You can remove the following lines from your AndroidManifest.xml file:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">   <span style="color:#f92672">&lt;service</span>
        <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;</span><span style="color:#f92672">&gt;</span>
        <span style="color:#f92672">&lt;intent-filter&gt;</span>
            <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.google.firebase.MESSAGING_EVENT&#34;</span> <span style="color:#f92672">/&gt;</span>
@@ -171,7 +178,8 @@ headingSelector: 'h3'
        <span style="color:#f92672">&lt;intent-filter&gt;</span>
            <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.google.firebase.INSTANCE_ID_EVENT&#34;</span> <span style="color:#f92672">/&gt;</span>
        <span style="color:#f92672">&lt;/intent-filter&gt;</span>
-   <span style="color:#f92672">&lt;/service&gt;</span></code></pre></div></p>
+   <span style="color:#f92672">&lt;/service&gt;</span></code></pre></div></p></li>
+</ol>
 
 <h3 id="troubleshooting">Troubleshooting</h3>
 

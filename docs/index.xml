@@ -20,7 +20,10 @@
       <description>Setup  Add the needed libraries to your app/build.gradle config under dependencies
 dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:1.0.0&amp;#39; } In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID.
 public class MainActivity extends Activity { public void onCreate(Bundle savedInstanceState) { CleverPush.getInstance(this).init(&amp;#34;CLEVERPUSH_CHANNEL_ID&amp;#34;); } }   Upgrading 1.0.0
-Breaking Changes * Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate * Needed minSdkVersion in build.gradle: 16 * You can remove the following lines from your AndroidManifest.</description>
+Breaking Changes
+ Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate
+ Needed minSdkVersion in build.gradle: 16
+ You can remove the following lines from your AndroidManifest.</description>
     </item>
     
     <item>
