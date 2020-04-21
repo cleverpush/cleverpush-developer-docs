@@ -266,33 +266,6 @@ Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
    <span style="color:#f92672">}</span>
     
    <span style="color:#f92672">...</span></code></pre></div></li>
-
-<li><p>Uncomment or remove Expo&rsquo;s FCM listener from <code>android/app/src/AndroidManifest.xml</code>:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- FCM --&gt;</span>
-<span style="color:#f92672">&lt;service</span>
-  <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.fcm.ExpoFcmMessagingService&#34;</span><span style="color:#f92672">&gt;</span>
-  <span style="color:#f92672">&lt;intent-filter&gt;</span>
-    <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.google.firebase.MESSAGING_EVENT&#34;</span><span style="color:#f92672">/&gt;</span>
-  <span style="color:#f92672">&lt;/intent-filter&gt;</span>
-<span style="color:#f92672">&lt;/service&gt;</span></code></pre></div></p></li>
-
-<li><p>Add our FCM listeners to <code>android/app/src/AndroidManifest.xml</code>:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;application</span> <span style="color:#960050;background-color:#1e0010">...</span><span style="color:#f92672">&gt;</span>
-    
-   <span style="color:#f92672">&lt;service</span>
-       <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.cleverpush.service.CleverPushFcmListenerService&#34;</span><span style="color:#f92672">&gt;</span>
-       <span style="color:#f92672">&lt;intent-filter&gt;</span>
-           <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.google.firebase.MESSAGING_EVENT&#34;</span> <span style="color:#f92672">/&gt;</span>
-       <span style="color:#f92672">&lt;/intent-filter&gt;</span>
-   <span style="color:#f92672">&lt;/service&gt;</span>
-   <span style="color:#f92672">&lt;service</span>
-       <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.cleverpush.service.CleverPushInstanceIDListenerService&#34;</span><span style="color:#f92672">&gt;</span>
-       <span style="color:#f92672">&lt;intent-filter&gt;</span>
-           <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;com.google.firebase.INSTANCE_ID_EVENT&#34;</span> <span style="color:#f92672">/&gt;</span>
-       <span style="color:#f92672">&lt;/intent-filter&gt;</span>
-   <span style="color:#f92672">&lt;/service&gt;</span>
-
- <span style="color:#f92672">&lt;/application&gt;</span></code></pre></div></p></li>
 </ol>
 
 <h3 id="usage">Usage</h3>

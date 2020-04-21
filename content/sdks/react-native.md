@@ -148,25 +148,6 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
   </intent-filter>
 </service>{{< /highlight >}}
 
-3. Add our FCM listeners to `android/app/src/AndroidManifest.xml`:
-   {{< highlight xml >}}<application ...>
-    
-   <service
-       android:name="com.cleverpush.service.CleverPushFcmListenerService">
-       <intent-filter>
-           <action android:name="com.google.firebase.MESSAGING_EVENT" />
-       </intent-filter>
-   </service>
-   <service
-       android:name="com.cleverpush.service.CleverPushInstanceIDListenerService">
-       <intent-filter>
-           <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-       </intent-filter>
-   </service>
-
- </application>
-{{< /highlight >}}
-
 
 ### Usage
 

@@ -18,28 +18,7 @@ toc = true
 }
 {{< /highlight >}}
 
-2. Add the following tags to your AndroidManifest.xml file
-
-    {{< highlight xml >}}
-     <application ...>
-
-       <service
-           android:name="com.cleverpush.service.CleverPushFcmListenerService">
-           <intent-filter>
-               <action android:name="com.google.firebase.MESSAGING_EVENT" />
-           </intent-filter>
-       </service>
-       <service
-           android:name="com.cleverpush.service.CleverPushInstanceIDListenerService">
-           <intent-filter>
-               <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-           </intent-filter>
-       </service>
-    
-     </application>
-    {{< /highlight >}}
-
-3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
+2. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
     
     {{< highlight java >}}
     public class MainActivity extends Activity {
@@ -56,6 +35,21 @@ toc = true
 Breaking Changes
 * Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate
 * Needed minSdkVersion in build.gradle: 16
+* You can remove the following lines from your AndroidManifest.xml file:
+   {{< highlight xml >}}
+   <service
+       android:name="com.cleverpush.service.CleverPushFcmListenerService">
+       <intent-filter>
+           <action android:name="com.google.firebase.MESSAGING_EVENT" />
+       </intent-filter>
+   </service>
+   <service
+       android:name="com.cleverpush.service.CleverPushInstanceIDListenerService">
+       <intent-filter>
+           <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+       </intent-filter>
+   </service>
+{{< /highlight >}}
 
 ### Troubleshooting
 
