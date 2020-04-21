@@ -11,7 +11,7 @@ toc = true
 ### Installation
 
 1. Add the `CleverPush` NuGet Package
-    {{< highlight bash >}}Install-Package Com.CleverPush -Version 1.0.8{< /highlight >}}
+    {{< highlight bash >}}Install-Package Com.CleverPush -Version 1.0.8{{< /highlight >}}
 
 
 ### Setup iOS
