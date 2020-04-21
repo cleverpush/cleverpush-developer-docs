@@ -11,8 +11,7 @@ toc = true
 ### Installation
 
 1. Add the `CleverPush` NuGet Package
-    {{< highlight bash >}}dependencies:
-    cleverpush_flutter: ^1.0.0{{< /highlight >}}
+    {{< highlight bash >}}Install-Package Com.CleverPush -Version 1.0.8{< /highlight >}}
 
 
 ### Setup iOS

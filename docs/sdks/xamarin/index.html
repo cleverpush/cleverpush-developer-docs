@@ -21,13 +21,7 @@
 
 
   <meta property="og:title" content="Xamarin SDK" />
-<meta property="og:description" content="Installation  Add the CleverPush NuGet Package dependencies: cleverpush_flutter: ^1.0.0  Setup iOS  Enable the required capabilities
- Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;
- Enable &ldquo;Push Notifications&rdquo;
- Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;
-  Add Notification Service Extension
-This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
- Select File &gt; New &gt; Target in Xcode Choose Notification Service Extension and press Next Enter CleverPushNotificationServiceExtension as Product Name, choose Objective-C as language and press Finish Press Activate on the next prompt Add the following at the bottom of your Podfile" />
+<meta property="og:description" content="Installation  Add the CleverPush NuGet Package Install-Package Com.CleverPush -Version 1.0.8{&lt; /highlight &gt;}} ### Setup iOS 1. Enable the required capabilities 1. Go to your root project and switch to the tab &#34;Capabilities&#34; 2. Enable &#34;Push Notifications&#34; 3. Enable &#34;Background Modes&#34; and check &#34;Remote notifications&#34; 2. Add Notification Service Extension This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications. 1. Select `File` &gt; `New` &gt; `Target` in Xcode 2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/sdks/xamarin/" /><meta property="article:published_time" content="2017-04-10T16:43:08&#43;01:00"/>
 <meta property="article:modified_time" content="2017-04-10T16:43:08&#43;01:00"/>
@@ -139,163 +133,152 @@ headingSelector: 'h3'
 
 <ol>
 <li>Add the <code>CleverPush</code> NuGet Package
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dependencies:
-    cleverpush_flutter: ^1.0.0</code></pre></div></li>
-</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Install-Package Com.CleverPush -Version <span style="color:#ae81ff">1</span>.0.8<span style="color:#f92672">{</span>&lt; /highlight &gt;<span style="color:#f92672">}}</span>
 
-<h3 id="setup-ios">Setup iOS</h3>
 
-<ol>
-<li><p>Enable the required capabilities</p>
+<span style="color:#75715e">### Setup iOS</span>
 
-<ol>
-<li><p>Go to your root project and switch to the tab &ldquo;Capabilities&rdquo;</p></li>
+<span style="color:#ae81ff">1</span>. Enable the required capabilities
 
-<li><p>Enable &ldquo;Push Notifications&rdquo;</p></li>
+   <span style="color:#ae81ff">1</span>. Go to your root project and switch to the tab <span style="color:#e6db74">&#34;Capabilities&#34;</span>
+   
+   <span style="color:#ae81ff">2</span>. Enable <span style="color:#e6db74">&#34;Push Notifications&#34;</span>
+   
+   <span style="color:#ae81ff">3</span>. Enable <span style="color:#e6db74">&#34;Background Modes&#34;</span> and check <span style="color:#e6db74">&#34;Remote notifications&#34;</span>
 
-<li><p>Enable &ldquo;Background Modes&rdquo; and check &ldquo;Remote notifications&rdquo;</p></li>
-</ol></li>
+<span style="color:#ae81ff">2</span>. Add Notification Service Extension
 
-<li><p>Add Notification Service Extension</p>
+    This is required <span style="color:#66d9ef">for</span> correctly tracking notification deliveries and <span style="color:#66d9ef">for</span> displaying big images or videos in notifications.
 
-<p>This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</p>
+    <span style="color:#ae81ff">1</span>. Select <span style="color:#e6db74">`</span>File<span style="color:#e6db74">`</span> &gt; <span style="color:#e6db74">`</span>New<span style="color:#e6db74">`</span> &gt; <span style="color:#e6db74">`</span>Target<span style="color:#e6db74">`</span> in Xcode
+    <span style="color:#ae81ff">2</span>. Choose <span style="color:#e6db74">`</span>Notification Service Extension<span style="color:#e6db74">`</span> and press <span style="color:#e6db74">`</span>Next<span style="color:#e6db74">`</span>
+    <span style="color:#ae81ff">3</span>. Enter <span style="color:#e6db74">`</span>CleverPushNotificationServiceExtension<span style="color:#e6db74">`</span> as Product Name, choose <span style="color:#e6db74">`</span>Objective-C<span style="color:#e6db74">`</span> as language and press <span style="color:#e6db74">`</span>Finish<span style="color:#e6db74">`</span>
+    <span style="color:#ae81ff">4</span>. Press <span style="color:#e6db74">`</span>Activate<span style="color:#e6db74">`</span> on the next prompt
+    <span style="color:#ae81ff">5</span>. Add the following at the bottom of your Podfile
 
-<ol>
-<li>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</li>
-<li>Choose <code>Notification Service Extension</code> and press <code>Next</code></li>
-<li>Enter <code>CleverPushNotificationServiceExtension</code> as Product Name, choose <code>Objective-C</code> as language and press <code>Finish</code></li>
-<li>Press <code>Activate</code> on the next prompt</li>
+        &lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-bash&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bash&#34;</span>&gt;target &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#39;CleverPushNotificationServiceExtension&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;</span>
 
-<li><p>Add the following at the bottom of your Podfile</p>
+  pod &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#39;CleverPush&amp;#39;&lt;/span&gt;</span>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target <span style="color:#e6db74">&#39;CleverPushNotificationServiceExtension&#39;</span> <span style="color:#66d9ef">do</span>
+end&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    <span style="color:#ae81ff">6</span>. Run <span style="color:#e6db74">`</span>pod install<span style="color:#e6db74">`</span>
+    <span style="color:#ae81ff">7</span>. Open <span style="color:#e6db74">`</span>NotificationService.m<span style="color:#e6db74">`</span> and replace the whole content with the following:
 
-  pod <span style="color:#e6db74">&#39;CleverPush&#39;</span>
+        &lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-objective-c&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;objective-c&#34;</span>&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#75715e&#34;</span>&gt;#import &amp;lt;CleverPush/CleverPush.h&amp;gt;
+&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#75715e&#34;</span>&gt;&lt;/span&gt;
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#75715e&#34;</span>&gt;#import &amp;<span style="color:#75715e">#34;NotificationService.h&amp;#34;</span>
+&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#75715e&#34;</span>&gt;&lt;/span&gt;
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@interface&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;NotificationService&lt;/span&gt; <span style="color:#f92672">()</span>
 
-end</code></pre></div></li>
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@property&lt;/span&gt; <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;nonatomic&lt;/span&gt;, &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;strong&lt;/span&gt;<span style="color:#f92672">)</span> &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;void&lt;/span&gt; <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;^&lt;/span&gt;contentHandler<span style="color:#f92672">)(</span>UNNotificationContent &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;*&lt;/span&gt;contentToDeliver<span style="color:#f92672">)</span>;
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@property&lt;/span&gt; <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;nonatomic&lt;/span&gt;, &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;strong&lt;/span&gt;<span style="color:#f92672">)</span> UNNotificationRequest &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;*&lt;/span&gt;receivedRequest;
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@property&lt;/span&gt; <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;nonatomic&lt;/span&gt;, &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;strong&lt;/span&gt;<span style="color:#f92672">)</span> UNMutableNotificationContent &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;*&lt;/span&gt;bestAttemptContent;
 
-<li><p>Run <code>pod install</code></p></li>
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@end&lt;/span&gt;
 
-<li><p>Open <code>NotificationService.m</code> and replace the whole content with the following:</p>
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@implementation&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;NotificationService&lt;/span&gt;
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#75715e">#import &lt;CleverPush/CleverPush.h&gt;
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#import &#34;NotificationService.h&#34;
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">@interface</span> <span style="color:#a6e22e">NotificationService</span> ()
+- <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;void&lt;/span&gt;<span style="color:#f92672">)</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;didReceiveNotificationRequest:&lt;/span&gt;<span style="color:#f92672">(</span>UNNotificationRequest &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;*&lt;/span&gt;<span style="color:#f92672">)</span>request &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;withContentHandler:&lt;/span&gt;<span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;void&lt;/span&gt; <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;^&lt;/span&gt;<span style="color:#f92672">)(</span>UNNotificationContent &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;*&lt;/span&gt; _Nonnull<span style="color:#f92672">))</span>contentHandler <span style="color:#f92672">{</span>
+    self.receivedRequest &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">=</span>&lt;/span&gt; request;
+    self.contentHandler &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">=</span>&lt;/span&gt; contentHandler;
+    self.bestAttemptContent &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">=</span>&lt;/span&gt; <span style="color:#f92672">[</span>request.content mutableCopy<span style="color:#f92672">]</span>;
 
-<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) <span style="color:#66d9ef">void</span> (<span style="color:#f92672">^</span>contentHandler)(UNNotificationContent <span style="color:#f92672">*</span>contentToDeliver);
-<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) UNNotificationRequest <span style="color:#f92672">*</span>receivedRequest;
-<span style="color:#66d9ef">@property</span> (<span style="color:#66d9ef">nonatomic</span>, <span style="color:#66d9ef">strong</span>) UNMutableNotificationContent <span style="color:#f92672">*</span>bestAttemptContent;
+    <span style="color:#f92672">[</span>CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent<span style="color:#f92672">]</span>;
 
-<span style="color:#66d9ef">@end</span>
+    self.contentHandler<span style="color:#f92672">(</span>self.bestAttemptContent<span style="color:#f92672">)</span>;
+<span style="color:#f92672">}</span>
 
-<span style="color:#66d9ef">@implementation</span> <span style="color:#a6e22e">NotificationService</span>
+- <span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;void&lt;/span&gt;<span style="color:#f92672">)</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;serviceExtensionTimeWillExpire&lt;/span&gt; <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span>CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent<span style="color:#f92672">]</span>;
 
-- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">didReceiveNotificationRequest:</span>(UNNotificationRequest <span style="color:#f92672">*</span>)request <span style="color:#a6e22e">withContentHandler:</span>(<span style="color:#66d9ef">void</span> (<span style="color:#f92672">^</span>)(UNNotificationContent <span style="color:#f92672">*</span> _Nonnull))contentHandler {
-    self.receivedRequest <span style="color:#f92672">=</span> request;
-    self.contentHandler <span style="color:#f92672">=</span> contentHandler;
-    self.bestAttemptContent <span style="color:#f92672">=</span> [request.content mutableCopy];
+    self.contentHandler<span style="color:#f92672">(</span>self.bestAttemptContent<span style="color:#f92672">)</span>;
+<span style="color:#f92672">}</span>
 
-    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;@end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-    self.contentHandler(self.bestAttemptContent);
-}
+<span style="color:#ae81ff">3</span>. Create your iOS push certificate
 
-- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">serviceExtensionTimeWillExpire</span> {
-    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+   <span style="color:#ae81ff">1</span>. Open Keychain Access on your Mac. <span style="color:#f92672">(</span>Application &gt; Utilities &gt; Keychain Access<span style="color:#f92672">)</span>.
+   <span style="color:#ae81ff">2</span>. Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority...
+   <span style="color:#ae81ff">3</span>. Select the <span style="color:#e6db74">&#34;Save to disk&#34;</span> option and enter any information in the required fields
+   <span style="color:#ae81ff">4</span>. Go to the <span style="color:#f92672">[</span>Apple developer portal<span style="color:#f92672">](</span>https://developer.apple.com/account/ios/identifier/bundle<span style="color:#f92672">)</span>, <span style="color:#66d9ef">select</span> your app and press <span style="color:#e6db74">&#34;Edit&#34;</span>
+   <span style="color:#ae81ff">5</span>. Enable <span style="color:#e6db74">&#34;Push notifications&#34;</span> and press <span style="color:#e6db74">&#34;Done&#34;</span>
+   <span style="color:#ae81ff">6</span>. Go to the <span style="color:#f92672">[</span>Create new certificate page<span style="color:#f92672">](</span>https://developer.apple.com/account/ios/certificate/create<span style="color:#f92672">)</span>, <span style="color:#66d9ef">select</span> <span style="color:#e6db74">&#34;Apple Push Notification service SSL&#34;</span> and press <span style="color:#e6db74">&#34;Continue&#34;</span>
+   <span style="color:#ae81ff">7</span>. Select your Application Bundle ID and press <span style="color:#e6db74">&#34;Continue&#34;</span>
+   <span style="color:#ae81ff">8</span>. Press <span style="color:#e6db74">&#34;Choose File...&#34;</span>, <span style="color:#66d9ef">select</span> the previously generated <span style="color:#e6db74">&#34;certSigningRequest&#34;</span> file and <span style="color:#66d9ef">then</span> press <span style="color:#e6db74">&#34;Generate&#34;</span>
+   <span style="color:#ae81ff">9</span>. Press <span style="color:#e6db74">&#34;Download&#34;</span> and save your certificate
+   <span style="color:#ae81ff">10</span>. Click on the downloaded .cer file, Keychain Access should open
+   <span style="color:#ae81ff">11</span>. Select Login &gt; My Certificates <span style="color:#66d9ef">then</span> right click on your key and click <span style="color:#e6db74">&#34;Export (Apple Production iOS Push Services: com.your.bundle)...&#34;</span>
+   <span style="color:#ae81ff">12</span>. Give the file a unique name and press save, be sure to leave the password field blank!
+   <span style="color:#ae81ff">13</span>. Upload your certificate in the CleverPush channel settings
+   
 
-    self.contentHandler(self.bestAttemptContent);
-}
+<span style="color:#ae81ff">4</span>. Add AppGroup <span style="color:#f92672">(</span>optional<span style="color:#f92672">)</span>
 
-<span style="color:#66d9ef">@end</span></code></pre></div></li>
-</ol></li>
+    This is required <span style="color:#66d9ef">for</span> getting the received notifications via the <span style="color:#e6db74">`</span>getNotifications<span style="color:#e6db74">`</span> method
 
-<li><p>Create your iOS push certificate</p>
+    <span style="color:#ae81ff">1</span>. Select your main application Target in Xcode
+    <span style="color:#ae81ff">2</span>. Go to <span style="color:#e6db74">`</span>Capabilities<span style="color:#e6db74">`</span> and activate <span style="color:#e6db74">`</span>App Groups<span style="color:#e6db74">`</span>
+    <span style="color:#ae81ff">3</span>. Create a new App Group with the following Scheme: <span style="color:#e6db74">`</span>group.YOUR.BUNDLE.ID.cleverpush<span style="color:#e6db74">`</span> <span style="color:#f92672">(</span>replace <span style="color:#e6db74">`</span>YOUR.BUNDLE.ID<span style="color:#e6db74">`</span> with your application<span style="color:#960050;background-color:#1e0010">&#39;</span>s bundle identifier<span style="color:#f92672">)</span>.
+    <span style="color:#ae81ff">4</span>. Enable the created App Group by checking the checkbox next to it
+    <span style="color:#ae81ff">5</span>. Select The <span style="color:#e6db74">`</span>CleverPushNotificationExtension<span style="color:#e6db74">`</span> target and also enable the created App Group under <span style="color:#e6db74">`</span>Capabilities<span style="color:#e6db74">`</span>
 
-<ol>
-<li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
-<li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority&hellip;</li>
-<li>Select the &ldquo;Save to disk&rdquo; option and enter any information in the required fields</li>
-<li>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &ldquo;Edit&rdquo;</li>
-<li>Enable &ldquo;Push notifications&rdquo; and press &ldquo;Done&rdquo;</li>
-<li>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &ldquo;Apple Push Notification service SSL&rdquo; and press &ldquo;Continue&rdquo;</li>
-<li>Select your Application Bundle ID and press &ldquo;Continue&rdquo;</li>
-<li>Press &ldquo;Choose File&hellip;&rdquo;, select the previously generated &ldquo;certSigningRequest&rdquo; file and then press &ldquo;Generate&rdquo;</li>
-<li>Press &ldquo;Download&rdquo; and save your certificate</li>
-<li>Click on the downloaded .cer file, Keychain Access should open</li>
-<li>Select Login &gt; My Certificates then right click on your key and click &ldquo;Export (Apple Production iOS Push Services: com.your.bundle)&hellip;&rdquo;</li>
-<li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
-<li>Upload your certificate in the CleverPush channel settings
-<br /></li>
-</ol></li>
 
-<li><p>Add AppGroup (optional)</p>
+Common iOS errors:
 
-<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+&lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-javascript&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;javascript&#34;</span>&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;ld&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;:&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;library&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;not&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;found&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;for&lt;/span&gt; &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;-&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;lcleverpush&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;-&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;react&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;-&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;native&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-<ol>
-<li>Select your main application Target in Xcode</li>
-<li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
-<li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application&rsquo;s bundle identifier).</li>
-<li>Enable the created App Group by checking the checkbox next to it</li>
-<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
-</ol></li>
-</ol>
+Go in *Xcode* &gt; *Targets* &gt; Your App &gt; *Build Phases* &gt; *Link Binary With Library*.
+Click the + and <span style="color:#66d9ef">select</span> *libcleverpush-react-native.a*, <span style="color:#66d9ef">then</span> rebuild.
 
-<p>Common iOS errors:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">ld</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">library</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">found</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">lcleverpush</span><span style="color:#f92672">-</span><span style="color:#a6e22e">react</span><span style="color:#f92672">-</span><span style="color:#66d9ef">native</span>
-</code></pre></div>
+<span style="color:#75715e">### Setup Android</span>
 
-<p>Go in <em>Xcode</em> &gt; <em>Targets</em> &gt; Your App &gt; <em>Build Phases</em> &gt; <em>Link Binary With Library</em>.
-Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
+<span style="color:#ae81ff">1</span>. Add <span style="color:#e6db74">`</span>compileOptions<span style="color:#e6db74">`</span> to the <span style="color:#e6db74">`</span>android<span style="color:#e6db74">`</span> section in the <span style="color:#e6db74">`</span>android/app/build.gradle<span style="color:#e6db74">`</span> file:
 
-<h3 id="setup-android">Setup Android</h3>
-
-<ol>
-<li><p>Add <code>compileOptions</code> to the <code>android</code> section in the <code>android/app/build.gradle</code> file:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">android <span style="color:#f92672">{</span>
-   compileSdkVersion <span style="color:#ae81ff">27</span>
-   buildToolsVersion <span style="color:#e6db74">&#39;27.0.3&#39;</span>
+    &lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-groovy&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;groovy&#34;</span>&gt;android &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">{</span>&lt;/span&gt;
+   compileSdkVersion &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#ae81ff&#34;</span>&gt;27&lt;/span&gt;
+   buildToolsVersion &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#39;27.0.3&amp;#39;&lt;/span&gt;</span>
     
-   compileOptions <span style="color:#f92672">{</span>
-     sourceCompatibility JavaVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">VERSION_1_8</span>
-     targetCompatibility JavaVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">VERSION_1_8</span>
-   <span style="color:#f92672">}</span>
+   compileOptions &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">{</span>&lt;/span&gt;
+     sourceCompatibility JavaVersion&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;.&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;VERSION_1_8&lt;/span&gt;
+     targetCompatibility JavaVersion&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;.&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;VERSION_1_8&lt;/span&gt;
+   &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;<span style="color:#f92672">}</span>&lt;/span&gt;
     
-   <span style="color:#f92672">...</span></code></pre></div></li>
+   &lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f92672&#34;</span>&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+<span style="color:#75715e">### Usage</span>
+
+&lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-csharp&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;csharp&#34;</span>&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;using&lt;/span&gt; Com.CleverPush;
+
+&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#66d9ef&#34;</span>&gt;public&lt;/span&gt; App<span style="color:#f92672">()</span>
+<span style="color:#f92672">{</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;
+&lt;/span&gt;&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#a6e22e&#34;</span>&gt;  <span style="color:#f92672">[</span>...<span style="color:#f92672">]</span>&lt;/span&gt;
+
+  CleverPush.Current.StartInit<span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#34;CLEVERPUSH_CHANNEL_ID_HERE&amp;#34;&lt;/span&gt;)</span>
+  			.HandleNotificationOpened<span style="color:#f92672">((</span>result<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&amp;gt;
+              <span style="color:#f92672">{</span>
+                 Debug.WriteLine<span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#34;CleverPush HandleNotificationOpened: {0}&amp;#34;&lt;/span&gt;, result.notification.title);</span>
+              <span style="color:#f92672">})</span>
+             .HandleNotificationReceived<span style="color:#f92672">((</span>result<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&amp;gt;
+             <span style="color:#f92672">{</span>
+                Debug.WriteLine<span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#34;CleverPush HandleNotificationReceived: {0}&amp;#34;&lt;/span&gt;, result.notification.title);</span>
+             <span style="color:#f92672">})</span>
+  		   .HandleSubscribed<span style="color:#f92672">((</span>subscriptionId<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&amp;gt;
+  		   <span style="color:#f92672">{</span>
+  			   Debug.WriteLine<span style="color:#f92672">(</span>&lt;span style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#e6db74&#34;</span>&gt;&amp;<span style="color:#75715e">#34;CleverPush HandleSubscribed: {0}&amp;#34;&lt;/span&gt;, subscriptionId);</span>
+  		   <span style="color:#f92672">})</span>
+             .EndInit<span style="color:#f92672">()</span>;
+<span style="color:#f92672">}</span>&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+Basic features:
+
+&lt;div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;&lt;pre style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;code class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-csharp&#34;</span> data-lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;csharp&#34;</span>&gt;CleverPush.Current.Subscribe<span style="color:#f92672">()</span>;
+CleverPush.Current.Unsubscribe<span style="color:#f92672">()</span>;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre></div></li>
 </ol>
-
-<h3 id="usage">Usage</h3>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">using</span> Com.CleverPush;
-
-<span style="color:#66d9ef">public</span> App()
-{<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">  [...]</span>
-
-  CleverPush.Current.StartInit(<span style="color:#e6db74">&#34;CLEVERPUSH_CHANNEL_ID_HERE&#34;</span>)
-  			.HandleNotificationOpened((result) =&gt;
-              {
-                 Debug.WriteLine(<span style="color:#e6db74">&#34;CleverPush HandleNotificationOpened: {0}&#34;</span>, result.notification.title);
-              })
-             .HandleNotificationReceived((result) =&gt;
-             {
-                Debug.WriteLine(<span style="color:#e6db74">&#34;CleverPush HandleNotificationReceived: {0}&#34;</span>, result.notification.title);
-             })
-  		   .HandleSubscribed((subscriptionId) =&gt;
-  		   {
-  			   Debug.WriteLine(<span style="color:#e6db74">&#34;CleverPush HandleSubscribed: {0}&#34;</span>, subscriptionId);
-  		   })
-             .EndInit();
-}</code></pre></div>
-
-<p>Basic features:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">CleverPush.Current.Subscribe();
-CleverPush.Current.Unsubscribe();</code></pre></div>
 
 
     
@@ -317,7 +300,7 @@ CleverPush.Current.Unsubscribe();</code></pre></div>
             </li>
         </ul>
     </nav>
-    <p>Copyright &copy; 2019 CleverPush.</p>
+    <p>Copyright &copy; 2020 CleverPush.</p>
 </footer>
  </footer>
 

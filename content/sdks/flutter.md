@@ -12,7 +12,7 @@ toc = true
 
 1. Add the following code to your `pubspec.yaml` file
     {{< highlight bash >}}dependencies:
-    cleverpush_flutter: ^1.0.5{{< /highlight >}}
+    cleverpush_flutter: ^1.1.0{{< /highlight >}}
     
 2. Run `flutter packages get`
 
