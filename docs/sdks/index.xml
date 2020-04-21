@@ -18,9 +18,9 @@
       
       <guid>/sdks/android/</guid>
       <description>Setup  Add the needed libraries to your app/build.gradle config under dependencies
-dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:0.5.9&amp;#39; }  The latest stable Android SDK version is 0.5.9
- Add the following tags to your AndroidManifest.xml file
-&amp;lt;application ...&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID.</description>
+dependencies { [...] implementation &amp;#39;com.cleverpush:cleverpush:1.0.0&amp;#39; } Add the following tags to your AndroidManifest.xml file
+&amp;lt;application ...&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushFcmListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.MESSAGING_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;service android:name=&amp;#34;com.cleverpush.service.CleverPushInstanceIDListenerService&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;com.google.firebase.INSTANCE_ID_EVENT&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/service&amp;gt; &amp;lt;/application&amp;gt;  In the onCreate method of your Main activity, call CleverPush.getInstance(this).init(...) with your CleverPush Channel ID.
+public class MainActivity extends Activity { public void onCreate(Bundle savedInstanceState) { CleverPush.</description>
     </item>
     
     <item>

@@ -14,11 +14,9 @@ toc = true
 
     {{< highlight groovy >}}dependencies {
     [...]
-    implementation 'com.cleverpush:cleverpush:0.5.9'
+    implementation 'com.cleverpush:cleverpush:1.0.0'
 }
 {{< /highlight >}}
-
-The latest stable Android SDK version is `0.5.9`
 
 2. Add the following tags to your AndroidManifest.xml file
 
@@ -51,8 +49,19 @@ The latest stable Android SDK version is `0.5.9`
     }
     {{< /highlight >}}
 
+### Upgrading
+
+**1.0.0**
+
+Breaking Changes
+* Migrated to AndroidX, see: https://developer.android.com/jetpack/androidx/migrate
+* Needed minSdkVersion in build.gradle: 16
 
 ### Troubleshooting
+
+File google-services.json is missing. The Google Services Plugin cannot function without it.
+
+Please make sure to set up a project in the Firebase console, you can download this file there and place it inside your project: https://console.firebase.google.com/
 
 If you use ProGuard, you may need to add these exceptions:
 
