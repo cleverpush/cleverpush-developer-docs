@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Methods · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### Usage"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Methods · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="### Usage"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React Native SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Methods</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h3>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { Text, View } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native'</span>;
+<span class="hljs-keyword">import</span> CleverPush <span class="hljs-keyword">from</span> <span class="hljs-string">'cleverpush-react-native'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>();
+
+    <span class="hljs-keyword">this</span>.onOpened = <span class="hljs-keyword">this</span>.onOpened.bind(<span class="hljs-keyword">this</span>);
+    <span class="hljs-keyword">this</span>.onSubscribed = <span class="hljs-keyword">this</span>.onSubscribed.bind(<span class="hljs-keyword">this</span>);
+  }
+  
+  componentWillMount() {
+    CleverPush.init(<span class="hljs-string">'YOUR_CHANNEL_ID_HERE'</span>);
+    
+    <span class="hljs-comment">// optionally, you can disable the automatic push prompt:</span>
+    CleverPush.init(<span class="hljs-string">'YOUR_CHANNEL_ID_HERE'</span>, {
+      <span class="hljs-attr">autoRegister</span>: <span class="hljs-literal">false</span>
+    });
+
+    CleverPush.addEventListener(<span class="hljs-string">'opened'</span>, <span class="hljs-keyword">this</span>.onOpened);
+    CleverPush.addEventListener(<span class="hljs-string">'subscribed'</span>, <span class="hljs-keyword">this</span>.onSubscribed);
+  }
+
+  componentWillUnmount() {
+    CleverPush.removeEventListener(<span class="hljs-string">'opened'</span>, <span class="hljs-keyword">this</span>.onOpened);
+    CleverPush.removeEventListener(<span class="hljs-string">'subscribed'</span>, <span class="hljs-keyword">this</span>.onSubscribed);
+  }
+
+  onOpened(openResult) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Notification opened:'</span>, openResult);
+  }
+
+  onSubscribed(subscriptionId) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Subscribed with ID:'</span>, subscriptionId);
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.container}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>Open up App.js to start working on your app!<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>Tagging and Attributes:</p>
+<pre><code class="hljs css language-javascript">CleverPush.getAvailableTags(<span class="hljs-function">(<span class="hljs-params">err, channelTags</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(channelTags); <span class="hljs-comment">// [{ id: "tag1", name: "Tag 1" }]</span>
+});
+CleverPush.getAvailableAttributes(<span class="hljs-function">(<span class="hljs-params">err, customAttributes</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(customAttributes); <span class="hljs-comment">// [{ id: "attribute1", name: "Attribute 1" }]</span>
+});
+
+CleverPush.getSubscriptionTags(<span class="hljs-function">(<span class="hljs-params">err, tagIds</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(tagIds); <span class="hljs-comment">// ["tag_id_1", "tag_id_2"]</span>
+});
+CleverPush.getSubscriptionAttributes(<span class="hljs-function">(<span class="hljs-params">err, attributes</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(attributes); <span class="hljs-comment">// { attribute1: "value1", attribute2: "value2" }</span>
+});
+
+CleverPush.addSubscriptionTag(<span class="hljs-string">"tag_id"</span>);
+CleverPush.removeSubscriptionTag(<span class="hljs-string">"tag_id"</span>);
+CleverPush.setSubscriptionAttribute(<span class="hljs-string">"user_id"</span>, <span class="hljs-string">"1"</span>);
+
+CleverPush.hasSubscriptionTag(<span class="hljs-string">"tag_id"</span>, (err, hasTag) =&gt; {
+  <span class="hljs-built_in">console</span>.log(hasTag); <span class="hljs-comment">// false</span>
+});
+CleverPush.getSubscriptionAttribute(<span class="hljs-string">"user_id"</span>, (err, attributeValue) =&gt; {
+  <span class="hljs-built_in">console</span>.log(attributeValue); <span class="hljs-comment">// "value"</span>
+});
+CleverPush.setSubscriptionAttribute(<span class="hljs-string">"user_id"</span>, <span class="hljs-string">"1"</span>);
+
+CleverPush.setSubscriptionLanguage(<span class="hljs-string">"de"</span>); <span class="hljs-comment">// iso language code</span>
+CleverPush.setSubscriptionCountry(<span class="hljs-string">"DE"</span>); <span class="hljs-comment">// iso country code</span>
+
+CleverPush.isSubscribed(<span class="hljs-function">(<span class="hljs-params">err, isSubscribed</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(isSubscribed); <span class="hljs-comment">// true</span>
+});
+CleverPush.subscribe();
+CleverPush.unsubscribe();
+</code></pre>
+<p>Get received notifications:</p>
+<pre><code class="hljs css language-javascript">CleverPush.getNotifications(<span class="hljs-function">(<span class="hljs-params">err, notifications</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(notifications);
+});
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/react-native/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/xamarin/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2020 CleverPush</section></footer></div></body></html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Methods · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="#### &lt;code&gt;triggerOptIn&lt;/code&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Methods · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="#### &lt;code&gt;triggerOptIn&lt;/code&gt;"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>JavaScript SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Methods</h1></header><article><div><span><h4><a class="anchor" aria-hidden="true" id="codetriggeroptincode"></a><a href="#codetriggeroptincode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>triggerOptIn</code></h4>
+<p>Triggers the opt-in dialog.
+The appearance of the dialog and timing settings can be changed in your CleverPush account under <code>Channels / Select channel / Settings / Opt-In</code>.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'triggerOptIn'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, subscriptionId</span>) </span>{
+    <span class="hljs-keyword">if</span> (err) {
+        <span class="hljs-built_in">console</span>.error(err);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'successfully subscribed with id'</span>, subscriptionId);
+    }
+}]);
+
+<span class="hljs-comment">// set the second parameter to 'true' to skip the opt-in timeout:</span>
+
+CleverPush.push([<span class="hljs-string">'triggerOptIn'</span>, <span class="hljs-literal">true</span>, ...]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codesubscribecode"></a><a href="#codesubscribecode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>subscribe</code></h4>
+<p>Forces a subscription and shows the opt-in dialog immediately, if the user is not subscribed, yet. Callback is required.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'subscribe'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, subscriptionId</span>) </span>{
+    <span class="hljs-keyword">if</span> (err) {
+        <span class="hljs-built_in">console</span>.error(err);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'successfully subscribed with id'</span>, subscriptionId);
+    }
+}]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codetagsubscriptioncode"></a><a href="#codetagsubscriptioncode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>tagSubscription</code></h4>
+<p>Tags an existing subscription.
+You can also find your personal tagging codes in your CleverPush account under <code>Channels / Select channel / Settings / Tags</code>.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'tagSubscription'</span>, <span class="hljs-string">'INSERT_TAG_ID'</span>]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codeuntagsubscriptioncode"></a><a href="#codeuntagsubscriptioncode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>untagSubscription</code></h4>
+<p>Untags an existing subscription.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'untagSubscription'</span>, <span class="hljs-string">'INSERT_TAG_ID'</span>]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codesettopicscode"></a><a href="#codesettopicscode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setTopics</code></h4>
+<p>Programmatically sets the user's topics. This is not recommended, because tags should be used for automatic segmetation. Topics should only be managed by the user itself (via the notification bell panel, opt-in or content widget).
+This method automatically waits for an active subscription to be available before being executed.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'setTopics'</span>, [<span class="hljs-string">'TOPIC_ID_1'</span>, <span class="hljs-string">'TOPIC_ID_2'</span>, <span class="hljs-string">'...'</span>]]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codegettopicscode"></a><a href="#codegettopicscode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getTopics</code></h4>
+<p>Get a user's subscribed topics.
+This method automatically waits for an active subscription to be available before being executed.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'getTopics'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, topics</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(topics);
+}]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codesetattributecode"></a><a href="#codesetattributecode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setAttribute</code></h4>
+<p>Set's a custom subscription attribute. The attribute needs to be created in the channel settings first. Call this method with the attribute's ID and the desired value afterwards.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'setAttribute'</span>, <span class="hljs-string">'ATTRIBUTE_ID'</span>, <span class="hljs-string">'VALUE'</span>]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codegetattributecode"></a><a href="#codegetattributecode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getAttribute</code></h4>
+<p>Gets custom subscription attribute.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'getAttribute'</span>, <span class="hljs-string">'ATTRIBUTE_ID'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(value);
+}]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codeissubscribedcode"></a><a href="#codeissubscribedcode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>isSubscribed</code></h4>
+<p>Checks if the user is subscribed to push notifications.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'isSubscribed'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'isSubscribed result'</span>, result); <span class="hljs-comment">// true or false</span>
+}]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codeunsubscribecode"></a><a href="#codeunsubscribecode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>unsubscribe</code></h4>
+<p>Unsubscribes a subscribed user.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'unsubscribe'</span>]);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="codetriggerfollowupeventcode"></a><a href="#codetriggerfollowupeventcode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>triggerFollowUpEvent</code></h4>
+<p>Triggers a follow-up campaign event.
+You can also find the full event code in your CleverPush account under <code>Channels / Select channel / Follow-up campaigns</code>.
+Insert the desired follow-up campaign ID and the event name.
+The last argument are the event's parameters, which are completely optional. You can specify any parameters and use them in your follow-up notification templates.</p>
+<pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
+CleverPush.push([<span class="hljs-string">'triggerFollowUpEvent'</span>, <span class="hljs-string">'INSERT_FOLLOW_UP_CAMPAIGN_ID'</span>, <span class="hljs-string">'EVENT_NAME'</span>, { <span class="hljs-attr">productAmount</span>: <span class="hljs-number">2500.00</span>, <span class="hljs-attr">productName</span>: <span class="hljs-string">'iMac'</span> }]);
+</code></pre>
+<p><br/></p>
+<h3><a class="anchor" aria-hidden="true" id="initialization-event"></a><a href="#initialization-event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initialization event</h3>
+<p>You can listen for the global initialization event.
+This is very useful if you want to check if the current browser support Web Push notifications and then show a button to manually trigger the opt-in dialog.</p>
+<p>Will fail if:</p>
+<ul>
+<li>Browser does not support push notifications</li>
+<li>There is no connection to our API available</li>
+<li>SDK was already initialized</li>
+</ul>
+<p>Always make sure to insert this BEFORE your personal CleverPush loader code (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&quot; async&gt;&lt;/script&gt;</code>). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).</p>
+<p>Example:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> showPushOptIn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'#cleverpush-button'</span>).style.display = <span class="hljs-string">'block'</span>;
+}
+
+<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">window</span>.CleverPush || !<span class="hljs-built_in">window</span>.CleverPush.initialized) {
+    <span class="hljs-built_in">window</span>.cleverPushInitCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+        <span class="hljs-keyword">if</span> (err) {
+            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Init callback error:'</span>, err);
+        } <span class="hljs-keyword">else</span> {
+            showPushOptIn();
+        }
+    };
+} <span class="hljs-keyword">else</span> {
+    showPushOptIn();
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="subscription-events"></a><a href="#subscription-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscription Events</h3>
+<p>Several subscription events can be listened for with one of the following methods (can only be called after successful initialization, see above):</p>
+<pre><code class="hljs css language-js">CleverPush.on(event, callback)
+CleverPush.once(event, callback)
+</code></pre>
+<p><code>event</code> can be:</p>
+<ul>
+<li>'SUBSCRIBED' (after successful opt-in)</li>
+<li>'UNSUBSCRIBED' (after successful opt-out)</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="chat"></a><a href="#chat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chat</h3>
+<ol>
+<li>Additionally to the general CleverPush script, include the following script:</li>
+</ol>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://static.cleverpush.com/sdk/cleverpush-chat.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<ol start="2">
+<li>Place this empty div where you want the chat to appear:</li>
+</ol>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cleverpush-chat-target"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/javascript/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/ios/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2020 CleverPush</section></footer></div></body></html>

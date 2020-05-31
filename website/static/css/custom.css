@@ -1,0 +1,79 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ 
+/* your custom css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
+
+.projectTitle {
+    color: #333;
+    margin-bottom: 60px;
+}
+
+.projectTitle small {
+    color: #777;
+}
+
+
+
+.sdk-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sdk-box {
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .sdk-box {
+        width: 33.3333%;
+    }
+}
+
+.sdk-box a {
+    background-color: #fff;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    flex-direction: column;
+    padding: 25px;
+    transition: .2s all ease-in-out;
+}
+
+.sdk-box a:hover {
+    opacity: 0.7;
+}
+
+.sdk-box .fab, .sdk-box img {
+    color: #333;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-bottom: 25px;
+}

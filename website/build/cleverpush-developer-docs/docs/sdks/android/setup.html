@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setup · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### Setup"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setup · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="### Setup"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Android SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Setup</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h3>
+<ol>
+<li><p>Add the needed libraries to your <code>app/build.gradle</code> config under <code>dependencies</code></p>
+<pre><code class="hljs css language-groovy">dependencies {
+    [...]
+    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.0.0'</span>
+}
+</code></pre></li>
+<li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+       CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>);
+   }
+}
+</code></pre></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="upgrading"></a><a href="#upgrading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Upgrading</h3>
+<p><strong>1.0.0</strong></p>
+<p>Breaking Changes</p>
+<ol>
+<li><p>Migrated to AndroidX, see: <a href="https://developer.android.com/jetpack/androidx/migrate">https://developer.android.com/jetpack/androidx/migrate</a></p></li>
+<li><p>Needed minSdkVersion in build.gradle: 16</p></li>
+<li><p>You can remove the following lines from your AndroidManifest.xml file:</p>
+<pre><code class="hljs css language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">service</span>
+     <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.cleverpush.service.CleverPushFcmListenerService"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.google.firebase.MESSAGING_EVENT"</span> /&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">service</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">service</span>
+     <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.cleverpush.service.CleverPushInstanceIDListenerService"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.google.firebase.INSTANCE_ID_EVENT"</span> /&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">service</span>&gt;</span>
+</code></pre></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="troubleshooting"></a><a href="#troubleshooting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting</h3>
+<p>File google-services.json is missing. The Google Services Plugin cannot function without it.</p>
+<p>Please make sure to set up a project in the Firebase console, you can download this file there and place it inside your project: <a href="https://console.firebase.google.com/">https://console.firebase.google.com/</a></p>
+<p>If you use ProGuard, you may need to add these exceptions:</p>
+<pre><code class="hljs css language-java">-keep <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">com</span>.<span class="hljs-title">cleverpush</span>.** </span>{ *; }
+-keep <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">com</span>.<span class="hljs-title">cleverpush</span>.** </span>{ *; }
+</code></pre>
+<p>If you are not using Java 1.8 yet, please add this to your <code>app/build.gradle</code> if building fails with our SDK:</p>
+<pre><code class="hljs css language-groovy">android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+</code></pre>
+<p>In project 'app' a resolved Google Play services library dependency depends on another at an exact version (...):</p>
+<p>Add the following line at the bottom of <code>app/build.gradle</code>:</p>
+<pre><code class="hljs css language-groovy">googleServices { disableVersionCheck = <span class="hljs-literal">true</span> }
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/docs/sdks/android/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2020 CleverPush</section></footer></div></body></html>

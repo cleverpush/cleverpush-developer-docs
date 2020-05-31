@@ -1,0 +1,32 @@
+{
+  "sdks": {
+    "JavaScript SDK": [
+      "sdks/javascript/setup",
+      "sdks/javascript/methods"
+    ],
+    "iOS SDK": [
+      "sdks/ios/setup",
+      "sdks/ios/methods"
+    ],
+    "Android SDK": [
+      "sdks/android/setup",
+      "sdks/android/methods"
+    ],
+    "Cordova SDK": [
+      "sdks/cordova/setup",
+      "sdks/cordova/methods"
+    ],
+    "React Native SDK": [
+      "sdks/react-native/setup",
+      "sdks/react-native/methods"
+    ],
+    "Xamarin SDK": [
+      "sdks/xamarin/setup",
+      "sdks/xamarin/methods"
+    ],
+    "Flutter SDK": [
+      "sdks/flutter/setup",
+      "sdks/flutter/methods"
+    ]
+  }
+}
