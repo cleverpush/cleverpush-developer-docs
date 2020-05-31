@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setup · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### Installation"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setup · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/cleverpush-developer-docs/"/><meta property="og:description" content="### Installation"/><meta property="og:image" content="https://cleverpush.github.io/cleverpush-developer-docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/cleverpush-developer-docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/cleverpush-developer-docs/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/cleverpush-developer-docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/cleverpush-developer-docs/css/main.css"/><script src="/cleverpush-developer-docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/cleverpush-developer-docs/"><img class="logo" src="/cleverpush-developer-docs/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React Native SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/ios/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/android/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/cleverpush-developer-docs/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Setup</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h3>
+<ol>
+<li><p>Install via npm or yarn</p>
+<pre><code class="hljs css language-bash">npm i cleverpush-react-native -S
+</code></pre></li>
+<li><p>Link + install native Dependencies for iOS</p>
+<pre><code class="hljs css language-bash">react-native link
+</code></pre></li>
+<li><p>Install Pods for iOS (may be not needed)</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> ios
+pod install
+</code></pre></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="setup-ios"></a><a href="#setup-ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup iOS</h3>
+<ol>
+<li><p>Enable the required capabilities</p>
+<ol>
+<li><p>Go to your root project and switch to the tab &quot;Capabilities&quot;</p></li>
+<li><p>Enable &quot;Push Notifications&quot;</p></li>
+<li><p>Enable &quot;Background Modes&quot; and check &quot;Remote notifications&quot;</p></li>
+</ol></li>
+<li><p>Add Notification Service Extension</p>
+<p>This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</p>
+<ol>
+<li><p>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</p></li>
+<li><p>Choose <code>Notification Service Extension</code> and press <code>Next</code></p></li>
+<li><p>Enter <code>CleverPushNotificationServiceExtension</code> as Product Name, choose <code>Objective-C</code> as language and press <code>Finish</code></p></li>
+<li><p>Press <code>Activate</code> on the next prompt</p></li>
+<li><p>Add the following at the bottom of your Podfile</p>
+<pre><code class="hljs css language-bash">target <span class="hljs-string">'CleverPushNotificationServiceExtension'</span> <span class="hljs-keyword">do</span>
+
+  pod <span class="hljs-string">'CleverPush'</span>
+
+end
+</code></pre></li>
+<li><p>Run <code>pod install</code></p></li>
+<li><p>Open <code>NotificationService.m</code> and replace the whole content with the following:</p>
+<pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
+
+<span class="hljs-meta">#import <span class="hljs-meta-string">"NotificationService.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">NotificationService</span> ()</span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-keyword">void</span> (^contentHandler)(UNNotificationContent *contentToDeliver);
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNNotificationRequest *receivedRequest;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNMutableNotificationContent *bestAttemptContent;
+
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">NotificationService</span></span>
+
+- (<span class="hljs-keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="hljs-keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler {
+    <span class="hljs-keyword">self</span>.receivedRequest = request;
+    <span class="hljs-keyword">self</span>.contentHandler = contentHandler;
+    <span class="hljs-keyword">self</span>.bestAttemptContent = [request.content mutableCopy];
+
+    [CleverPush didReceiveNotificationExtensionRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
+
+    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
+}
+
+- (<span class="hljs-keyword">void</span>)serviceExtensionTimeWillExpire {
+    [CleverPush serviceExtensionTimeWillExpireRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
+
+    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre></li>
+</ol></li>
+<li><p>Create your iOS push certificate</p>
+<ol>
+<li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
+<li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority...</li>
+<li>Select the &quot;Save to disk&quot; option and enter any information in the required fields</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &quot;Edit&quot;</li>
+<li>Enable &quot;Push notifications&quot; and press &quot;Done&quot;</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &quot;Apple Push Notification service SSL&quot; and press &quot;Continue&quot;</li>
+<li>Select your Application Bundle ID and press &quot;Continue&quot;</li>
+<li>Press &quot;Choose File...&quot;, select the previously generated &quot;certSigningRequest&quot; file and then press &quot;Generate&quot;</li>
+<li>Press &quot;Download&quot; and save your certificate</li>
+<li>Click on the downloaded .cer file, Keychain Access should open</li>
+<li>Select Login &gt; My Certificates then right click on your key and click &quot;Export (Apple Production iOS Push Services: com.your.bundle)...&quot;</li>
+<li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
+<li>Upload your certificate in the CleverPush channel settings</li>
+</ol></li>
+</ol>
+<ol start="4">
+<li><p>Add AppGroup (optional)</p>
+<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+<ol>
+<li>Select your main application Target in Xcode</li>
+<li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
+<li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application's bundle identifier).</li>
+<li>Enable the created App Group by checking the checkbox next to it</li>
+<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
+</ol></li>
+</ol>
+<p>Common iOS errors:</p>
+<pre><code class="hljs">ld: library not found <span class="hljs-keyword">for</span> -lcleverpush-react-<span class="hljs-keyword">native</span>
+</code></pre>
+<p>Go in <em>Xcode</em> &gt; <em>Targets</em> &gt; Your App &gt; <em>Build Phases</em> &gt; <em>Link Binary With Library</em>.
+Click the + and select <em>libcleverpush-react-native.a</em>, then rebuild.</p>
+<h3><a class="anchor" aria-hidden="true" id="setup-android"></a><a href="#setup-android" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Android</h3>
+<ol>
+<li><p>Add <code>compileOptions</code> to the <code>android</code> section in the <code>android/app/build.gradle</code> file:</p>
+<pre><code class="hljs"><span class="hljs-attr">android</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">compileSdkVersion</span> <span class="hljs-string">27</span>
+<span class="hljs-attr">buildToolsVersion</span> <span class="hljs-string">'27.0.3'</span>
+
+<span class="hljs-attr">compileOptions</span> <span class="hljs-string">{</span>
+ <span class="hljs-attr">sourceCompatibility</span> <span class="hljs-string">JavaVersion.VERSION_1_8</span>
+ <span class="hljs-attr">targetCompatibility</span> <span class="hljs-string">JavaVersion.VERSION_1_8</span>
+<span class="hljs-attr">}</span>
+
+<span class="hljs-attr">...</span>
+</code></pre></li>
+<li><p>Uncomment or remove Expo's FCM listener from <code>android/app/src/AndroidManifest.xml</code>:</p>
+<pre><code class="hljs css language-xml"><span class="hljs-comment">&lt;!-- FCM --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">service</span>
+  <span class="hljs-attr">android:name</span>=<span class="hljs-string">".fcm.ExpoFcmMessagingService"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.google.firebase.MESSAGING_EVENT"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">service</span>&gt;</span>
+</code></pre></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/cleverpush-developer-docs/docs/sdks/cordova/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/cleverpush-developer-docs/docs/sdks/react-native/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2020 CleverPush</section></footer></div></body></html>
