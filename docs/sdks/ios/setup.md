@@ -12,10 +12,10 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 0.5.8'
+    pod 'CleverPush', '~> 0.5.9'
     ```
 
-    The latest stable iOS SDK version is `0.5.8`
+    The latest stable iOS SDK version is `0.5.9`
 
     **Manual Installation** (not needed if you use CocoaPods):
 
@@ -43,7 +43,7 @@ title: Setup
         ```bash
         target 'CleverPushNotificationServiceExtension' do
 
-          pod 'CleverPush', '~> 0.5.8'
+          pod 'CleverPush', '~> 0.5.9'
 
         end
         ```
@@ -61,7 +61,7 @@ title: Setup
         ```bash
         target 'CleverPushNotificationContentExtension' do
 
-          pod 'CleverPush', '~> 0.5.8'
+          pod 'CleverPush', '~> 0.5.9'
 
         end
         ```
