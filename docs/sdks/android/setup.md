@@ -5,16 +5,18 @@ title: Setup
 
 ### Setup
 
-1. Add the needed libraries to your `app/build.gradle` config under `dependencies`
+1. Setup Firebase inside your Android App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
+
+2. Add the needed libraries to your `app/build.gradle` config under `dependencies`
 
     ```groovy
     dependencies {
-        [...]
-        implementation 'com.cleverpush:cleverpush:1.0.0'
+        // ...
+        implementation 'com.cleverpush:cleverpush:1.1.0'
     }
     ```
 
-2. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
+3. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
     
     ```java
     public class MainActivity extends Activity {
@@ -23,6 +25,40 @@ title: Setup
        }
     }
     ```
+
+### Setup HMS (Huawei Mobile Services)
+
+These additional steps are recommended if you want to support the newest Huawei devices. Please note that you need at least CleverPush Android SDK version 1.1.0.
+
+1. Create a free Huawei Developer Account and get it verified:
+https://developer.huawei.com/consumer/en/console
+
+2. Create your app inside Huwei AppGallery Connect:
+https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app
+
+3. Enable the PushKit API:
+https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
+
+4. Add the following to your app level build.gradle:
+
+    ```groovy
+        // ...
+        implementation 'com.huawei.hms:push:4.0.3.301'
+    }
+    ```
+
+5. If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17
+
+6. Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.
+
+![](https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/e3ba1922aeb8774c.png)
+
+![](https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/1c8d1d055360d1a7.PNG)
+
+7. Enter the App ID + App Secret in the CleverPush Channel settings.
+
+![](https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png)
+
 
 ### Upgrading
 
@@ -81,3 +117,8 @@ Add the following line at the bottom of `app/build.gradle`:
 ```groovy
 googleServices { disableVersionCheck = true }
 ```
+
+
+Huawei Certificate Error:
+
+https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/game-preparation-v4#certificate
