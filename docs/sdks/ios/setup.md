@@ -12,10 +12,8 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 0.5.9'
+    pod 'CleverPush', '~> 0.5.10'
     ```
-
-    The latest stable iOS SDK version is `0.5.9`
 
     **Manual Installation** (not needed if you use CocoaPods):
 
@@ -43,7 +41,7 @@ title: Setup
         ```bash
         target 'CleverPushNotificationServiceExtension' do
 
-          pod 'CleverPush', '~> 0.5.9'
+          pod 'CleverPush', '~> 0.5.10'
 
         end
         ```
@@ -61,12 +59,13 @@ title: Setup
         ```bash
         target 'CleverPushNotificationContentExtension' do
 
-          pod 'CleverPush', '~> 0.5.9'
+          pod 'CleverPush', '~> 0.5.10'
 
         end
         ```
-    5. Run `pod install`
-    6. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
+
+5. Run `pod install`
+6. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
         Objective-C:
 

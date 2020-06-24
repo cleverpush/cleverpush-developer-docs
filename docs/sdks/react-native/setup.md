@@ -10,16 +10,15 @@ title: Setup
     npm i cleverpush-react-native -S
     ```
     
-2. Link + install native Dependencies for iOS
+2. Link native Dependencies (only needed for React Native < 0.60.0)
     ```bash
     react-native link
     ```
     
-3. Install Pods for iOS (may be not needed)
+3. Install Pods for iOS
  
     ```bash
-    cd ios
-    pod install
+    cd ios && pod install && cd ..
     ```
 
 
@@ -41,7 +40,7 @@ title: Setup
     2. Choose `Notification Service Extension` and press `Next`
     3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
     4. Press `Activate` on the next prompt
-    5. Add the following at the bottom of your Podfile
+    5. Add the following at the bottom of your Project's Podfile
 
         ```bash
         target 'CleverPushNotificationServiceExtension' do
@@ -50,8 +49,29 @@ title: Setup
 
         end
         ```
-    6. Run `pod install`
-    7. Open `NotificationService.m` and replace the whole content with the following:
+
+3. Add Notification Content Extension
+
+    This is required for displaying custom notification contents (e.g. Carousel Notifications).
+
+    1. Select `File` > `New` > `Target` in Xcode
+    2. Choose `Notification Content Extension` and press `Next`
+    3. Enter `CleverPushNotificationContentExtension` as Product Name, choose `Objective-C` as language and press `Finish`
+    4. Press `Activate` on the next prompt
+    5. Add the following at the bottom of your Project's Podfile
+
+        ```bash
+        target 'CleverPushNotificationContentExtension' do
+
+          pod 'CleverPush'
+
+        end
+        ```
+
+4. Run `pod install`
+5. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
+
+        Objective-C:
 
         ```objective-c
         #import <CleverPush/CleverPush.h>
@@ -87,7 +107,135 @@ title: Setup
         @end
         ```
 
-3. Create your iOS push certificate
+        Swift:
+
+        ```swift
+        import UserNotifications
+
+        import CleverPush
+
+        class NotificationService: UNNotificationServiceExtension {
+
+            var contentHandler: ((UNNotificationContent) -> Void)?
+            var receivedRequest: UNNotificationRequest!
+            var bestAttemptContent: UNMutableNotificationContent?
+
+            override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+                self.receivedRequest = request;
+                self.contentHandler = contentHandler
+                bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+
+                if let bestAttemptContent = bestAttemptContent {
+                    CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    contentHandler(bestAttemptContent)
+                }
+            }
+
+            override func serviceExtensionTimeWillExpire() {
+                if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+                    CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    contentHandler(bestAttemptContent)
+                }
+            }
+
+        }
+        ```
+
+6. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:
+
+    Objective-C:
+
+    ```objective-c
+    #import <UIKit/UIKit.h>
+    #import <CleverPush/CleverPush.h>
+
+    @interface NotificationViewController : CPNotificationViewController
+
+    @end
+    ```
+
+    Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
+
+    Objective-C:
+
+    ```objective-c
+    #import "NotificationViewController.h"
+    #import <UserNotifications/UserNotifications.h>
+    #import <UserNotificationsUI/UserNotificationsUI.h>
+
+    @interface NotificationViewController () <UNNotificationContentExtension>
+
+    @end
+
+    @implementation NotificationViewController
+
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+    }
+
+    - (void)viewDidAppear:(BOOL)animated {
+        [super viewDidAppear:animated];
+    }
+
+    - (void)didReceiveNotification:(UNNotification *)notification {
+        [self cleverpushDidReceiveNotification:notification];
+    }
+
+    - (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion {
+        [self cleverpushDidReceiveNotificationResponse:response withCompletionHandler:completion];
+    }
+
+    @end
+    ```
+
+    Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>$(DEVELOPMENT_LANGUAGE)</string>
+        <key>CFBundleDisplayName</key>
+        <string>CleverPushNotificationContentExtension</string>
+        <key>CFBundleExecutable</key>
+        <string>$(EXECUTABLE_NAME)</string>
+        <key>CFBundleIdentifier</key>
+        <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
+        <key>CFBundleName</key>
+        <string>$(PRODUCT_NAME)</string>
+        <key>CFBundlePackageType</key>
+        <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+        <key>CFBundleShortVersionString</key>
+        <string>1.0</string>
+        <key>CFBundleVersion</key>
+        <string>1</string>
+        <key>NSExtension</key>
+        <dict>
+            <key>NSExtensionAttributes</key>
+            <dict>
+                <key>UNNotificationExtensionCategory</key>
+                <array>
+                    <string>carousel</string>
+                </array>
+                <key>UNNotificationExtensionDefaultContentHidden</key>
+                <false/>
+                <key>UNNotificationExtensionInitialContentSizeRatio</key>
+                <real>0.5</real>
+            </dict>
+            <key>NSExtensionPrincipalClass</key>
+            <string>NotificationViewController</string>
+            <key>NSExtensionPointIdentifier</key>
+            <string>com.apple.usernotifications.content-extension</string>
+        </dict>
+    </dict>
+    </plist>
+    ```
+
+7. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
@@ -104,7 +252,7 @@ title: Setup
    13. Upload your certificate in the CleverPush channel settings
    
 
-4. Add AppGroup (optional)
+8. Add AppGroup (optional)
 
     This is required for getting the received notifications via the `getNotifications` method
 
@@ -135,14 +283,14 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
    buildToolsVersion '27.0.3'
     
    compileOptions {
-     sourceCompatibility JavaVersion.VERSION_1_8
-     targetCompatibility JavaVersion.VERSION_1_8
+      sourceCompatibility JavaVersion.VERSION_1_8
+      targetCompatibility JavaVersion.VERSION_1_8
    }
     
-   ...
+   // ...
    ```
   
-2. Uncomment or remove Expo's FCM listener from `android/app/src/AndroidManifest.xml`:
+2. Comment or remove Expo's FCM listener (if it exists) from `android/app/src/AndroidManifest.xml`:
     ```xml
     <!-- FCM -->
     <service

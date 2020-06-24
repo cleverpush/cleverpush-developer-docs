@@ -5,6 +5,8 @@ title: Methods
 
 ### Usage
 
+Basic Example:
+
 ```jsx
 import React from 'react';
 import { Text, View } from 'react-native';
@@ -15,24 +17,31 @@ export default class App extends React.Component {
     super();
 
     this.onOpened = this.onOpened.bind(this);
+    this.onReceived = this.onReceived.bind(this);
     this.onSubscribed = this.onSubscribed.bind(this);
   }
   
   componentWillMount() {
     CleverPush.init('YOUR_CHANNEL_ID_HERE');
     
-    // optionally, you can disable the automatic push prompt:
+    // optionally, you can disable the automatic push prompt with 'autoRegister: false':
     CleverPush.init('YOUR_CHANNEL_ID_HERE', {
       autoRegister: false
     });
 
     CleverPush.addEventListener('opened', this.onOpened);
+    CleverPush.addEventListener('received', this.onReceived);
     CleverPush.addEventListener('subscribed', this.onSubscribed);
   }
 
   componentWillUnmount() {
     CleverPush.removeEventListener('opened', this.onOpened);
+    CleverPush.removeEventListener('received', this.onReceived);
     CleverPush.removeEventListener('subscribed', this.onSubscribed);
+  }
+
+  onReceived(receiveResult) {
+    console.log('Notification received:', receiveResult);
   }
 
   onOpened(openResult) {
@@ -51,6 +60,29 @@ export default class App extends React.Component {
     );
   }
 }
+```
+
+
+Get Subscription status:
+
+```javascript
+CleverPush.isSubscribed((err, isSubscribed) => {
+  console.log(isSubscribed); // true
+});
+```
+
+
+Subscribe:
+
+```javascript
+CleverPush.subscribe();
+```
+
+
+Unsubscribe:
+
+```javascript
+CleverPush.unsubscribe();
 ```
 
 
@@ -85,12 +117,6 @@ CleverPush.setSubscriptionAttribute("user_id", "1");
 
 CleverPush.setSubscriptionLanguage("de"); // iso language code
 CleverPush.setSubscriptionCountry("DE"); // iso country code
-
-CleverPush.isSubscribed((err, isSubscribed) => {
-  console.log(isSubscribed); // true
-});
-CleverPush.subscribe();
-CleverPush.unsubscribe();
 ```
 
 
