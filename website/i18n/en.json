@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "CleverPush is a feature-rich Push Notification Service for Webseites and Apps",
+    "tagline": "CleverPush is a feature-rich Push Notification Service for Websites and Apps",
     "docs": {
       "sdks/android/methods": {
         "title": "Methods"

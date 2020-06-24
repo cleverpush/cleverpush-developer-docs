@@ -31,10 +31,46 @@ Forces a subscription and shows the opt-in dialog immediately, if the user is no
 CleverPush = window.CleverPush || [];
 CleverPush.push(['subscribe', function(err, subscriptionId) {
     if (err) {
-        console.error(err);
+        console.log('CleverPush Subscription Error:');
+        console.warn(err);
     } else {
-        console.log('successfully subscribed with id', subscriptionId);
+        console.log('CleverPush Subscription was successful with ID', subscriptionId);
     }
+}]);
+```
+
+
+#### <code>isSubscribed</code>
+
+Checks if the user is subscribed to push notifications.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['isSubscribed', function(result) {
+  console.log('CleverPush isSubscribed result', result); // true or false
+}]);
+```
+
+
+#### <code>unsubscribe</code>
+
+Unsubscribes a subscribed user.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['unsubscribe']);
+```
+
+
+#### <code>getSubscriptionId</code>
+
+Gets the current subscription ID.
+Will return false otherwise
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['getSubscriptionId', function(subscriptionId) {
+    console.log('CleverPush Subscription ID', subscriptionId);
 }]);
 ```
 
@@ -103,28 +139,6 @@ CleverPush = window.CleverPush || [];
 CleverPush.push(['getAttribute', 'ATTRIBUTE_ID', function(value) {
     console.log(value);
 }]);
-```
-
-
-#### <code>isSubscribed</code>
-
-Checks if the user is subscribed to push notifications.
-
-```js
-CleverPush = window.CleverPush || [];
-CleverPush.push(['isSubscribed', function(result) {
-  console.log('isSubscribed result', result); // true or false
-}]);
-```
-
-
-#### <code>unsubscribe</code>
-
-Unsubscribes a subscribed user.
-
-```js
-CleverPush = window.CleverPush || [];
-CleverPush.push(['unsubscribe']);
 ```
 
 

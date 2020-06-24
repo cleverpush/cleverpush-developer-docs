@@ -22,8 +22,9 @@ const users = [
 
 const siteConfig = {
   title: 'CleverPush Developer Docs', // Title for your website.
-  tagline: 'CleverPush is a feature-rich Push Notification Service for Webseites and Apps',
+  tagline: 'CleverPush is a feature-rich Push Notification Service for Websites and Apps',
   url: 'https://cleverpush.github.io', // Your website URL
+  cname: 'developers.cleverpush.com',
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
