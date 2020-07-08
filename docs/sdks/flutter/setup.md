@@ -122,7 +122,7 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
     ```groovy
     android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '27.0.3'
       
     compileOptions {
@@ -132,3 +132,5 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
       
     ...
     ```
+
+2. Setup Firebase inside your Android Runner App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
