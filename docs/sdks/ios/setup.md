@@ -12,7 +12,7 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 0.5.10'
+    pod 'CleverPush', '~> 0.6.0'
     ```
 
     **Manual Installation** (not needed if you use CocoaPods):
@@ -41,7 +41,7 @@ title: Setup
         ```bash
         target 'CleverPushNotificationServiceExtension' do
 
-          pod 'CleverPush', '~> 0.5.10'
+          pod 'CleverPush'
 
         end
         ```
@@ -59,7 +59,7 @@ title: Setup
         ```bash
         target 'CleverPushNotificationContentExtension' do
 
-          pod 'CleverPush', '~> 0.5.10'
+          pod 'CleverPush'
 
         end
         ```

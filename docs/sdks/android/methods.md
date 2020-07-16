@@ -27,6 +27,19 @@ public class MainActivity extends Activity {
 ```
 
 
+Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
+
+```java
+CleverPush.getInstance(this).init("XXXXXXX", new NotificationReceivedCallbackListener() {
+   @Override
+   public boolean notificationReceivedCallback(NotificationOpenedResult notificationOpenedResult) {
+         boolean showNotification = true;
+         return showNotification;
+   }
+}, ...);
+```
+
+
 You can add a `SubscribedListener` which fires when the user has successfully been subscribed:
 
 
