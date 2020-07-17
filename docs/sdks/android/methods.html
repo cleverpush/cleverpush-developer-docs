@@ -139,9 +139,8 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptio
 <pre><code class="hljs css language-objective-c"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CleverPush</span>.</span></span>get<span class="hljs-constructor">Instance(<span class="hljs-params">this</span>)</span>.track<span class="hljs-constructor">PageView(<span class="hljs-string">"https://example.com/sports/article-123123"</span>)</span>;
 </code></pre>
 <p>We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: <code>params.category === &quot;sports&quot;</code>. This would then trigger the tag for a subscriber:</p>
-<pre><code class="hljs css language-objective-c">[CleverPush trackPageView:@<span class="hljs-string">"https://example.com/anything"</span> params:[NSDictionary dictionaryWithObjectsAndKeys: @<span class="hljs-string">"sports"</span>, @<span class="hljs-string">"category"</span>, nil]]
-CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackPageView(<span class="hljs-string">"https://example.com/anything"</span>, <span class="hljs-keyword">new</span> HashMap&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">String</span>&gt;() {{
-   <span class="hljs-built_in">put</span>(<span class="hljs-string">"category"</span>, <span class="hljs-string">"sports"</span>);
+<pre><code class="hljs css language-objective-c"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CleverPush</span>.</span></span>get<span class="hljs-constructor">Instance(<span class="hljs-params">this</span>)</span>.track<span class="hljs-constructor">PageView(<span class="hljs-string">"https://example.com/anything"</span>, <span class="hljs-params">new</span> HashMap&lt;String, String&gt;()</span> {{
+   put(<span class="hljs-string">"category"</span>, <span class="hljs-string">"sports"</span>);
 }}););
 </code></pre>
 <p>Once the <code>trackPageView</code> method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.</p>
