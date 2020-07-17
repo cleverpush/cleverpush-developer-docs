@@ -118,7 +118,6 @@ CleverPush.getInstance(this).trackPageView("https://example.com/sports/article-1
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
 
 ```objective-c
-[CleverPush trackPageView:@"https://example.com/anything" params:[NSDictionary dictionaryWithObjectsAndKeys: @"sports", @"category", nil]]
 CleverPush.getInstance(this).trackPageView("https://example.com/anything", new HashMap<String, String>() {{
    put("category", "sports");
 }}););
