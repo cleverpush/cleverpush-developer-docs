@@ -12,6 +12,11 @@ title: Setup
    ```
 
 
+### Setup Android
+
+1. Setup Firebase inside your Android App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
+
+
 ### Setup iOS
 
 1. Enable the required capabilities
