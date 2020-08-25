@@ -10,7 +10,8 @@
     ],
     "Android SDK": [
       "sdks/android/setup",
-      "sdks/android/methods"
+      "sdks/android/methods",
+      "sdks/android/extension"
     ],
     "Cordova SDK": [
       "sdks/cordova/setup",

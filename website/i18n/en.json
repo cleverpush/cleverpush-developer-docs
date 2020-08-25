@@ -5,6 +5,9 @@
     "previous": "Previous",
     "tagline": "CleverPush is a feature-rich Push Notification Service for Websites and Apps",
     "docs": {
+      "sdks/android/extension": {
+        "title": "Notification Extender Service"
+      },
       "sdks/android/methods": {
         "title": "Methods"
       },
