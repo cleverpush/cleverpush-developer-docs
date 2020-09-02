@@ -180,6 +180,23 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 ```
 
 
+### Tracking Consent
+
+You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
+
+Step 1: Call this before initializing the SDK:
+
+```java
+CleverPush.getInstance(this).setTrackingConsentRequired(true);
+```
+
+Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+```java
+CleverPush.getInstance(this).setTrackingConsent(true);
+```
+
+
 ### Chat
 
 Add the ChatView inside your Layout XML:

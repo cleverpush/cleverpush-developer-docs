@@ -112,6 +112,23 @@ Events can be used to trigger follow-up campaigns or to track conversions.
 ```
 
 
+### Tracking Consent
+
+You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
+
+Step 1: Call this before initializing the SDK:
+
+```objective-c
+[CleverPush setTrackingConsentRequired:YES];
+```
+
+Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+```objective-c
+[CleverPush setTrackingConsent:YES];
+```
+
+
 ### Chat
 
 1. Import "CleverPush/CPChatView.h":

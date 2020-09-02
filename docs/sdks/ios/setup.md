@@ -12,7 +12,7 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 0.6.0'
+    pod 'CleverPush', '~> 1.0.0'
     ```
 
     **Manual Installation** (not needed if you use CocoaPods):
@@ -67,75 +67,75 @@ title: Setup
 5. Run `pod install`
 6. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
-        Objective-C:
+    Objective-C:
 
-        ```objective-c
-        #import <CleverPush/CleverPush.h>
+    ```objective-c
+    #import <CleverPush/CleverPush.h>
 
-        #import "NotificationService.h"
+    #import "NotificationService.h"
 
-        @interface NotificationService ()
+    @interface NotificationService ()
 
-        @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-        @property (nonatomic, strong) UNNotificationRequest *receivedRequest;
-        @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+    @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+    @property (nonatomic, strong) UNNotificationRequest *receivedRequest;
+    @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
 
-        @end
+    @end
 
-        @implementation NotificationService
+    @implementation NotificationService
 
-        - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+    - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+        self.receivedRequest = request;
+        self.contentHandler = contentHandler;
+        self.bestAttemptContent = [request.content mutableCopy];
+
+        [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+        self.contentHandler(self.bestAttemptContent);
+    }
+
+    - (void)serviceExtensionTimeWillExpire {
+        [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+
+        self.contentHandler(self.bestAttemptContent);
+    }
+
+    @end
+    ```
+
+    Swift:
+
+    ```swift
+    import UserNotifications
+
+    import CleverPush
+
+    class NotificationService: UNNotificationServiceExtension {
+
+        var contentHandler: ((UNNotificationContent) -> Void)?
+        var receivedRequest: UNNotificationRequest!
+        var bestAttemptContent: UNMutableNotificationContent?
+
+        override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
             self.receivedRequest = request;
-            self.contentHandler = contentHandler;
-            self.bestAttemptContent = [request.content mutableCopy];
+            self.contentHandler = contentHandler
+            bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
-            [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-            self.contentHandler(self.bestAttemptContent);
-        }
-
-        - (void)serviceExtensionTimeWillExpire {
-            [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-            self.contentHandler(self.bestAttemptContent);
-        }
-
-        @end
-        ```
-
-        Swift:
-
-        ```swift
-        import UserNotifications
-
-        import CleverPush
-
-        class NotificationService: UNNotificationServiceExtension {
-
-            var contentHandler: ((UNNotificationContent) -> Void)?
-            var receivedRequest: UNNotificationRequest!
-            var bestAttemptContent: UNMutableNotificationContent?
-
-            override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-                self.receivedRequest = request;
-                self.contentHandler = contentHandler
-                bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-
-                if let bestAttemptContent = bestAttemptContent {
-                    CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
-                    contentHandler(bestAttemptContent)
-                }
+            if let bestAttemptContent = bestAttemptContent {
+                CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+                contentHandler(bestAttemptContent)
             }
-
-            override func serviceExtensionTimeWillExpire() {
-                if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-                    CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
-                    contentHandler(bestAttemptContent)
-                }
-            }
-
         }
-        ```
+
+        override func serviceExtensionTimeWillExpire() {
+            if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+                CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+                contentHandler(bestAttemptContent)
+            }
+        }
+
+    }
+    ```
 
 7. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:
 
