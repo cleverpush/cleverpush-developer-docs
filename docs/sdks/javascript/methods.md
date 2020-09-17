@@ -3,6 +3,10 @@ id: methods
 title: Methods
 ---
 
+
+## General
+
+
 #### <code>triggerOptIn</code>
 
 Triggers the opt-in dialog.
@@ -75,6 +79,9 @@ CleverPush.push(['getSubscriptionId', function(subscriptionId) {
 ```
 
 
+## Tags
+
+
 #### <code>tagSubscription</code>
 
 Tags an existing subscription.
@@ -94,6 +101,9 @@ Untags an existing subscription.
 CleverPush = window.CleverPush || [];
 CleverPush.push(['untagSubscription', 'INSERT_TAG_ID']);
 ```
+
+
+## Topics
 
 
 #### <code>setTopics</code>
@@ -120,6 +130,9 @@ CleverPush.push(['getTopics', function (err, topics) {
 ```
 
 
+## Attributes (single value)
+
+
 #### <code>setAttribute</code>
 
 Set's a custom subscription attribute. The attribute needs to be created in the channel settings first. Call this method with the attribute's ID and the desired value afterwards.
@@ -140,6 +153,74 @@ CleverPush.push(['getAttribute', 'ATTRIBUTE_ID', function(value) {
     console.log(value);
 }]);
 ```
+
+
+#### <code>hasAttribute</code>
+
+Check if subscription has attribute set.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['hasAttribute', 'ATTRIBUTE_ID', function(value) {
+    console.log(value);
+}]);
+```
+
+#### <code>incAttribute</code>
+
+Increment a numeric attribute value. If the value not exists, it will set it to the specified number.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['incAttribute', 'ATTRIBUTE_ID', 1, function() {
+    // completed
+}]);
+```
+
+
+## Attributes (multi value)
+
+You can add special multi value attributes at CleverPush (e.g. categories, products).
+
+
+#### <code>hasAttributeValue</code>
+
+Check if you have an attribute value.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['hasAttributeValue', 'ATTRIBUTE_ID', 'VALUE', function(result) {
+    console.log('has attribute value:', result);
+}]);
+```
+
+
+#### <code>pushAttributeValue</code>
+
+Push an attribute value to the array.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['pushAttributeValue', 'ATTRIBUTE_ID', 'VALUE', function() {
+    // completed
+}]);
+```
+
+
+#### <code>pullAttributeValue</code>
+
+Pull an attribute value from the array.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['pullAttributeValue', 'ATTRIBUTE_ID', 'VALUE', function() {
+    // completed
+}]);
+```
+
+
+
+## Follow ups
 
 
 #### <code>triggerFollowUpEvent</code>
