@@ -344,3 +344,12 @@ title: Setup
     3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
     4. Enable the created App Group by checking the checkbox next to it
     5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
+
+
+### Custom sounds
+
+iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 seconds.
+
+1. Add the sound file(s) to the Xcode project root and make sure "Add to targets" is selected when adding the files.
+2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
+3. If you send notifications via the API you can use the parameter "soundFilename".

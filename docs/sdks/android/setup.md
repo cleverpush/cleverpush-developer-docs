@@ -122,3 +122,12 @@ googleServices { disableVersionCheck = true }
 Huawei Certificate Error:
 
 https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/game-preparation-v4#certificate
+
+
+### Custom sounds
+
+Android supports `mp3`, `wav` and `ogg` audio files.
+
+1. Add the sound file(s) to the `res/raw` directory.
+2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
+3. If you send notifications via the API you can use the parameter "soundFilename".

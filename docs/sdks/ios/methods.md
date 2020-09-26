@@ -48,13 +48,13 @@ The SDK can also automatically assign tags by using the `trackPageView` method. 
 Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
 
 ```objective-c
-[CleverPush trackPageView:@"https://example.com/sports/article-123123"]
+[CleverPush trackPageView:@"https://example.com/sports/article-123123"];
 ```
 
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
 
 ```objective-c
-[CleverPush trackPageView:@"https://example.com/anything" params:[NSDictionary dictionaryWithObjectsAndKeys: @"sports", @"category", nil]]
+[CleverPush trackPageView:@"https://example.com/anything" params:[NSDictionary dictionaryWithObjectsAndKeys: @"sports", @"category", nil]];
 ```
 
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.

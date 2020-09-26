@@ -9,14 +9,19 @@ Add the initialization code to your `index.js` file
 
    ```javascript
    document.addEventListener('deviceready', function () {
-     var notificationOpenedCallback = function(data) {
-       console.log('notificationOpenedCallback:', JSON.stringify(data));
-     };
-     var subscribedCallback = function(subscriptionId) {
-       console.log('subscriptionId:', subscriptionId);
-     };
+      var notificationOpenedCallback = function(data) {
+        console.log('notificationOpenedCallback:', JSON.stringify(data));
+      };
 
-     window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID", notificationOpenedCallback, subscribedCallback);
+      var notificationReceivedCallback = function(data) {
+        console.log('notificationReceivedCallback:', JSON.stringify(data));
+      };
+
+      var subscribedCallback = function(subscriptionId) {
+        console.log('subscriptionId:', subscriptionId);
+      };
+
+      window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID", notificationOpenedCallback, notificationReceivedCallback, subscribedCallback);
    }, false);
    ```
 
