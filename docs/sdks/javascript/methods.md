@@ -277,14 +277,16 @@ if (!window.CleverPush || !window.CleverPush.initialized) {
 Several subscription events can be listened for with one of the following methods (can only be called after successful initialization, see above):
 
 ```js
-CleverPush.on(event, callback)
-CleverPush.once(event, callback)
+// will trigger always
+CleverPush.on(event, callback);
+// will trigger only once
+CleverPush.once(event, callback);
 ```
 
 `event` can be:
 
-* 'SUBSCRIBED' (after successful opt-in)
-* 'UNSUBSCRIBED' (after successful opt-out)
+* 'subscribed' (after successful opt-in)
+* 'unsubscribed' (after successful opt-out)
 
 
 ### Chat
