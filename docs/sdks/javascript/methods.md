@@ -285,8 +285,14 @@ CleverPush.once(event, callback);
 
 `event` can be:
 
+* 'initialized' (after successful initialization)
 * 'subscribed' (after successful opt-in)
 * 'unsubscribed' (after successful opt-out)
+* 'bellReady' (when subscription bell can be shown)
+* 'optInShown' (when opt-in prompt has been shown)
+* 'panelShown' (when sidebar panel is shown after click on the bell)
+* 'topicsSet' (when user has saved the preferred topics)
+* 'optInClosed' (when user has manually closed the opt-in layer via the X - not the native opt-in itself)
 
 
 ### Chat
