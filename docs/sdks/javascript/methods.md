@@ -30,6 +30,7 @@ CleverPush.push(['triggerOptIn', true, ...]);
 #### <code>subscribe</code>
 
 Forces a subscription and shows the opt-in dialog immediately, if the user is not subscribed, yet. Callback is required.
+Only show this in reaction to a user interaction. Otherwise please use `triggerOptIn` and specify `true` as first parameter to force the opt-in
 
 ```js
 CleverPush = window.CleverPush || [];
