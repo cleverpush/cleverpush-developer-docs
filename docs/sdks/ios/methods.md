@@ -73,14 +73,7 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 
 Here is how the topics dialog looks like:
 
-iOS:
-
-![Topics Dialog iOS](/img/topics-dialog-ios-png)
-
-Android:
-
-![Topics Dialog Android](/img/topics-dialog-android.png)
-
+![Topics Dialog iOS](/img/topics-dialog-ios.png)
 
 
 ### Attributes
