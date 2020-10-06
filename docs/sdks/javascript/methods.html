@@ -72,7 +72,8 @@ CleverPush.push([<span class="hljs-string">'triggerOptIn'</span>, <span class="h
 CleverPush.push([<span class="hljs-string">'triggerOptIn'</span>, <span class="hljs-literal">true</span>, ...]);
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="codesubscribecode"></a><a href="#codesubscribecode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>subscribe</code></h4>
-<p>Forces a subscription and shows the opt-in dialog immediately, if the user is not subscribed, yet. Callback is required.</p>
+<p>Forces a subscription and shows the opt-in dialog immediately, if the user is not subscribed, yet. Callback is required.
+Only show this in reaction to a user interaction. Otherwise please use <code>triggerOptIn</code> and specify <code>true</code> as first parameter to force the opt-in</p>
 <pre><code class="hljs css language-js">CleverPush = <span class="hljs-built_in">window</span>.CleverPush || [];
 CleverPush.push([<span class="hljs-string">'subscribe'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, subscriptionId</span>) </span>{
     <span class="hljs-keyword">if</span> (err) {
@@ -226,8 +227,14 @@ CleverPush.once(event, callback);
 </code></pre>
 <p><code>event</code> can be:</p>
 <ul>
+<li>'initialized' (after successful initialization)</li>
 <li>'subscribed' (after successful opt-in)</li>
 <li>'unsubscribed' (after successful opt-out)</li>
+<li>'bellReady' (when subscription bell can be shown)</li>
+<li>'optInShown' (when opt-in prompt has been shown)</li>
+<li>'panelShown' (when sidebar panel is shown after click on the bell)</li>
+<li>'topicsSet' (when user has saved the preferred topics)</li>
+<li>'optInClosed' (when user has manually closed the opt-in layer via the X - not the native opt-in itself)</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="chat"></a><a href="#chat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chat</h3>
 <ol>
