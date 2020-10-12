@@ -71,6 +71,10 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [CleverPush showTopicsDialog];
 ```
 
+Here is how the topics dialog looks like:
+
+![Topics Dialog iOS](/img/topics-dialog-ios.png)
+
 
 ### Attributes
 

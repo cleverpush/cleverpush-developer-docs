@@ -152,6 +152,10 @@ CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"})
 CleverPush.getInstance(this).showTopicsDialog();
 ```
 
+Here is how the topics dialog looks like:
+
+![Topics Dialog Android](/img/topics-dialog-android.png)
+
 
 ### Received Notifications
 
