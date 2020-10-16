@@ -133,7 +133,7 @@ Android supports `mp3`, `wav` and `ogg` audio files.
 3. If you send notifications via the API you can use the parameter "soundFilename".
 
 
-# Badge icon
+### Badge icon
 
 You can place your custom badge icon with the correct sizes in this folders, then the SDK will automatically use it:
 
