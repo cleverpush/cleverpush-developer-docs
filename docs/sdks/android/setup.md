@@ -12,7 +12,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.6.2'
+        implementation 'com.cleverpush:cleverpush:1.7.2'
     }
     ```
 
@@ -39,23 +39,50 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app
 3. Enable the PushKit API:
 https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
 
-4. Add the following to your app level build.gradle:
+4. Add the following to your project level build.gradle:
 
     ```groovy
-        // ...
-        implementation 'com.huawei.hms:push:4.0.3.301'
+    buildscript {
+        repositories {
+            // ...
+            maven { url 'http://developer.huawei.com/repo/' }
+        }
+
+        dependencies {
+            // ...
+            classpath 'com.huawei.agconnect:agcp:1.2.1.301'
+        }
+    }
+
+    allprojects {
+        repositories {
+            // ...
+            maven { url 'http://developer.huawei.com/repo/' }
+        }
     }
     ```
 
-5. If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17
+5. Add the following to your app level build.gradle:
 
-6. Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.
+    ```groovy
+    dependencies {
+        // ...
+        implementation 'com.huawei.hms:push:4.0.3.301'
+    }
+
+    // at the bottom
+    apply plugin: "com.huawei.agconnect"
+    ```
+
+6. If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17
+
+7. Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.
 
 ![](https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/e3ba1922aeb8774c.png)
 
 ![](https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/1c8d1d055360d1a7.PNG)
 
-7. Enter the App ID + App Secret in the CleverPush Channel settings.
+8. Enter the App ID + App Secret in the CleverPush Channel settings.
 
 ![](https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png)
 

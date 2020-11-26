@@ -60,7 +60,7 @@
 <li><p>Add the needed libraries to your <code>app/build.gradle</code> config under <code>dependencies</code></p>
 <pre><code class="hljs css language-groovy">dependencies {
     <span class="hljs-comment">// ...</span>
-    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.6.2'</span>
+    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.7.2'</span>
 }
 </code></pre></li>
 <li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
@@ -80,17 +80,41 @@
 <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app">https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app</a></p></li>
 <li><p>Enable the PushKit API:
 <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service">https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service</a></p></li>
+<li><p>Add the following to your project level build.gradle:</p>
+<pre><code class="hljs css language-groovy">buildscript {
+    repositories {
+        <span class="hljs-comment">// ...</span>
+        maven { url <span class="hljs-string">'http://developer.huawei.com/repo/'</span> }
+    }
+
+    dependencies {
+        <span class="hljs-comment">// ...</span>
+        classpath <span class="hljs-string">'com.huawei.agconnect:agcp:1.2.1.301'</span>
+    }
+}
+
+allprojects {
+    repositories {
+        <span class="hljs-comment">// ...</span>
+        maven { url <span class="hljs-string">'http://developer.huawei.com/repo/'</span> }
+    }
+}
+</code></pre></li>
 <li><p>Add the following to your app level build.gradle:</p>
-<pre><code class="hljs css language-groovy">    <span class="hljs-comment">// ...</span>
+<pre><code class="hljs css language-groovy">dependencies {
+    <span class="hljs-comment">// ...</span>
     implementation <span class="hljs-string">'com.huawei.hms:push:4.0.3.301'</span>
 }
+
+<span class="hljs-comment">// at the bottom</span>
+apply <span class="hljs-string">plugin:</span> <span class="hljs-string">"com.huawei.agconnect"</span>
 </code></pre></li>
 <li><p>If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17</p></li>
 <li><p>Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.</p></li>
 </ol>
 <p><img src="https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/e3ba1922aeb8774c.png" alt=""></p>
 <p><img src="https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/1c8d1d055360d1a7.PNG" alt=""></p>
-<ol start="7">
+<ol start="8">
 <li>Enter the App ID + App Secret in the CleverPush Channel settings.</li>
 </ol>
 <p><img src="https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png" alt=""></p>
