@@ -178,7 +178,7 @@ title: Setup
     }
 
     - (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion {
-        [self cleverpushDidReceiveNotificationResponse:response withCompletionHandler:completion];
+        [self cleverpushDidReceiveNotificationResponse:response completionHandler:completion];
     }
 
     @end
