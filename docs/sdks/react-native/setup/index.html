@@ -103,71 +103,78 @@ end
 
 end
 </code></pre></li>
+</ol></li>
 <li><p>Run <code>pod install</code></p></li>
 <li><p>Open <code>CleverPushNotificationServiceExtension/NotificationService.m</code> and replace the whole content with the following:</p>
-<p>Objective-C:</p>
-<pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
+<pre><code class="hljs"> Objective-C:
 
-<span class="hljs-meta">#import <span class="hljs-meta-string">"NotificationService.h"</span></span>
+ ```objective-c
+ #import &lt;CleverPush/CleverPush.h&gt;
 
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">NotificationService</span> ()</span>
+ #import &quot;NotificationService.h&quot;
 
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-keyword">void</span> (^contentHandler)(UNNotificationContent *contentToDeliver);
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNNotificationRequest *receivedRequest;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNMutableNotificationContent *bestAttemptContent;
+ @interface NotificationService ()
 
-<span class="hljs-keyword">@end</span>
+ @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+ @property (nonatomic, strong) UNNotificationRequest *receivedRequest;
+ @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
 
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">NotificationService</span></span>
+ @end
 
-- (<span class="hljs-keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="hljs-keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler {
-    <span class="hljs-keyword">self</span>.receivedRequest = request;
-    <span class="hljs-keyword">self</span>.contentHandler = contentHandler;
-    <span class="hljs-keyword">self</span>.bestAttemptContent = [request.content mutableCopy];
+ @implementation NotificationService
 
-    [CleverPush didReceiveNotificationExtensionRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
+ - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+     self.receivedRequest = request;
+     self.contentHandler = contentHandler;
+     self.bestAttemptContent = [request.content mutableCopy];
 
-    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
-}
+     [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
-- (<span class="hljs-keyword">void</span>)serviceExtensionTimeWillExpire {
-    [CleverPush serviceExtensionTimeWillExpireRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
+     self.contentHandler(self.bestAttemptContent);
+ }
 
-    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
-}
+ - (void)serviceExtensionTimeWillExpire {
+     [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>Swift:</p>
-<pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> UserNotifications
+     self.contentHandler(self.bestAttemptContent);
+ }
 
-<span class="hljs-keyword">import</span> CleverPush
+ @end
+ ```
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationService</span>: <span class="hljs-title">UNNotificationServiceExtension</span> </span>{
+ Swift:
 
-    <span class="hljs-keyword">var</span> contentHandler: ((<span class="hljs-type">UNNotificationContent</span>) -&gt; <span class="hljs-type">Void</span>)?
-    <span class="hljs-keyword">var</span> receivedRequest: <span class="hljs-type">UNNotificationRequest!</span>
-    <span class="hljs-keyword">var</span> bestAttemptContent: <span class="hljs-type">UNMutableNotificationContent?</span>
+ ```swift
+ import UserNotifications
 
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">didReceive</span><span class="hljs-params">(<span class="hljs-number">_</span> request: UNNotificationRequest, withContentHandler contentHandler: @escaping <span class="hljs-params">(UNNotificationContent)</span></span></span> -&gt; <span class="hljs-type">Void</span>) {
-        <span class="hljs-keyword">self</span>.receivedRequest = request;
-        <span class="hljs-keyword">self</span>.contentHandler = contentHandler
-        bestAttemptContent = (request.content.mutableCopy() <span class="hljs-keyword">as</span>? <span class="hljs-type">UNMutableNotificationContent</span>)
+ import CleverPush
 
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> bestAttemptContent = bestAttemptContent {
-            <span class="hljs-type">CleverPush</span>.didReceiveNotificationExtensionRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
+ class NotificationService: UNNotificationServiceExtension {
 
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serviceExtensionTimeWillExpire</span><span class="hljs-params">()</span></span> {
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> contentHandler = contentHandler, <span class="hljs-keyword">let</span> bestAttemptContent =  bestAttemptContent {
-            <span class="hljs-type">CleverPush</span>.serviceExtensionTimeWillExpireRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
+     var contentHandler: ((UNNotificationContent) -&gt; Void)?
+     var receivedRequest: UNNotificationRequest!
+     var bestAttemptContent: UNMutableNotificationContent?
 
-}
+     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void) {
+         self.receivedRequest = request;
+         self.contentHandler = contentHandler
+         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+
+         if let bestAttemptContent = bestAttemptContent {
+             CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+             contentHandler(bestAttemptContent)
+         }
+     }
+
+     override func serviceExtensionTimeWillExpire() {
+         if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+             CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+             contentHandler(bestAttemptContent)
+         }
+     }
+
+ }
+ ```
 </code></pre></li>
 <li><p>Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</p>
 <p>Objective-C:</p>
@@ -203,7 +210,7 @@ end
 }
 
 - (<span class="hljs-keyword">void</span>)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(<span class="hljs-keyword">void</span> (^)(UNNotificationContentExtensionResponseOption))completion {
-    [<span class="hljs-keyword">self</span> cleverpushDidReceiveNotificationResponse:response completionHandler:completion];
+    [<span class="hljs-keyword">self</span> cleverpushDidReceiveNotificationResponse:response withCompletionHandler:completion];
 }
 
 <span class="hljs-keyword">@end</span>
@@ -268,18 +275,18 @@ end
 <li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
 <li>Upload your certificate in the CleverPush channel settings</li>
 </ol></li>
+</ol>
+<ol start="8">
+<li><p>Add AppGroup (optional)</p>
+<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+<ol>
+<li>Select your main application Target in Xcode</li>
+<li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
+<li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application's bundle identifier).</li>
+<li>Enable the created App Group by checking the checkbox next to it</li>
+<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
 </ol></li>
 </ol>
-<pre><code class="hljs">8. Add AppGroup (optional)
-
-    This is required for getting the received notifications via the `getNotifications` method
-
-    1. Select your main application Target in Xcode
-    2. Go to `Capabilities` and activate `App Groups`
-    3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
-    4. Enable the created App Group by checking the checkbox next to it
-    5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
-</code></pre>
 <p>Common iOS errors:</p>
 <pre><code class="hljs">ld: library not found <span class="hljs-keyword">for</span> -lcleverpush-react-<span class="hljs-keyword">native</span>
 </code></pre>

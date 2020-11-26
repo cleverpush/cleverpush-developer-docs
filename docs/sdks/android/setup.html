@@ -60,7 +60,7 @@
 <li><p>Add the needed libraries to your <code>app/build.gradle</code> config under <code>dependencies</code></p>
 <pre><code class="hljs css language-groovy">dependencies {
     <span class="hljs-comment">// ...</span>
-    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.6.2'</span>
+    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.7.2'</span>
 }
 </code></pre></li>
 <li><p>In the <code>onCreate</code> method of your Main activity, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
@@ -80,17 +80,41 @@
 <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app">https://developer.huawei.com/consumer/en/doc/distribution/app/agc-create_app</a></p></li>
 <li><p>Enable the PushKit API:
 <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service">https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service</a></p></li>
+<li><p>Add the following to your project level build.gradle:</p>
+<pre><code class="hljs css language-groovy">buildscript {
+    repositories {
+        <span class="hljs-comment">// ...</span>
+        maven { url <span class="hljs-string">'http://developer.huawei.com/repo/'</span> }
+    }
+
+    dependencies {
+        <span class="hljs-comment">// ...</span>
+        classpath <span class="hljs-string">'com.huawei.agconnect:agcp:1.2.1.301'</span>
+    }
+}
+
+allprojects {
+    repositories {
+        <span class="hljs-comment">// ...</span>
+        maven { url <span class="hljs-string">'http://developer.huawei.com/repo/'</span> }
+    }
+}
+</code></pre></li>
 <li><p>Add the following to your app level build.gradle:</p>
-<pre><code class="hljs css language-groovy">    <span class="hljs-comment">// ...</span>
+<pre><code class="hljs css language-groovy">dependencies {
+    <span class="hljs-comment">// ...</span>
     implementation <span class="hljs-string">'com.huawei.hms:push:4.0.3.301'</span>
 }
+
+<span class="hljs-comment">// at the bottom</span>
+apply <span class="hljs-string">plugin:</span> <span class="hljs-string">"com.huawei.agconnect"</span>
 </code></pre></li>
 <li><p>If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17</p></li>
 <li><p>Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.</p></li>
 </ol>
 <p><img src="https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/e3ba1922aeb8774c.png" alt=""></p>
 <p><img src="https://developer.huawei.com/consumer/en/codelab/HMSPushKit/img/1c8d1d055360d1a7.PNG" alt=""></p>
-<ol start="7">
+<ol start="8">
 <li>Enter the App ID + App Secret in the CleverPush Channel settings.</li>
 </ol>
 <p><img src="https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png" alt=""></p>
@@ -143,8 +167,4 @@
 <li>When sending a notification you can enter the filename (with extension) in the field &quot;Sound&quot; in the advanced settings.</li>
 <li>If you send notifications via the API you can use the parameter &quot;soundFilename&quot;.</li>
 </ol>
-<h3><a class="anchor" aria-hidden="true" id="badge-icon"></a><a href="#badge-icon" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Badge icon</h3>
-<p>You can place your custom badge icon with the correct sizes in this folders, then the SDK will automatically use it:</p>
-<pre><code class="hljs"><span class="hljs-string">/drawable-</span>[SIZE]<span class="hljs-string">/cleverpush_notification_icon.png</span>
-</code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/docs/sdks/android/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2020 CleverPush</section></footer></div></body></html>
