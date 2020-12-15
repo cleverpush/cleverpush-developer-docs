@@ -166,9 +166,19 @@ Set<Notification> = CleverPush.getInstance(this).getNotifications();
 
 ### App Banners
 
+(Available from version 1.8.0)
+
 ```java
-// usually call this after initializing
-CleverPush.getInstance(this).showAppBanners();
+// Will be called, once a user presses a button in the banner
+CleverPush.getInstance(this).setAppBannerOpenedListener(action -> {
+   System.out.println("App Banner Opened");
+});
+
+// You can emit custom events and use them as a trigger for your banners
+CleverPush.getInstance(this).triggerAppBannerEvent("key", "value");
+
+// You can also show one banner by its ID (we recommend app banner events for production usage)
+CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 ```
 
 

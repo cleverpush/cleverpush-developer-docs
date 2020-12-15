@@ -98,9 +98,19 @@ NSArray* notifications = [CleverPush getNotifications];
 
 ### App Banners
 
+(Available from version 1.3.0)
+
 ```objective-c
-// usually call this after initializing
-[CleverPush showAppBanners];
+// Will be called, once a user presses a button in the banner
+[CleverPush setAppBannerOpenedCallback:^(CPAppBannerAction *action) {
+    NSLog(@"App Banner Opened");
+}];
+
+// You can emit custom events and use them as a trigger for your banners
+[CleverPush triggerAppBannerEvent:@"key" value:@"value"];
+
+// You can also show one banner by its ID (we recommend app banner events for production usage)
+[CleverPush showAppBanner:@"BANNER_ID"];
 ```
 
 

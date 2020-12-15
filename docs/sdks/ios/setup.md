@@ -12,7 +12,7 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 1.2.7'
+    pod 'CleverPush', '~> 1.3.0'
     ```
 
     **Manual Installation** (not needed if you use CocoaPods):

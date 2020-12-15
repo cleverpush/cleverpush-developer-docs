@@ -12,7 +12,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.7.2'
+        implementation 'com.cleverpush:cleverpush:1.8.0'
     }
     ```
 
