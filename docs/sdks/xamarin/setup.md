@@ -129,3 +129,14 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
     
    ...
    ```
+
+
+### Setup Huawei on Android
+
+Please see these following docs from Huawei to setup the HMS libs.
+
+1. Setup HMS: https://developer.huawei.com/consumer/en/doc/HMS-Plugin-Guides-V1/libbinding-0000001050138443-V1
+
+2. Integrate HMS Bindings: https://developer.huawei.com/consumer/en/doc/HMS-Plugin-Guides-V1/integratelibs-0000001050136494-V1
+
+3. Integrate HMS SDK: https://developer.huawei.com/consumer/en/doc/HMS-Plugin-Guides-V1/integrating-sdk-0000001050138445-V1
