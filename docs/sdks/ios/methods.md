@@ -157,3 +157,16 @@ Step 2: Call this when the user gave his consent (needs to be called on every la
 CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 [self.view addSubview:chatView];
 ```
+
+
+### Badge Counts
+
+Disable automatic clearing of badge count when opening a notification. Enabled by default.
+```objective-c
+[CleverPush setAutoClearBadge:NO];
+```
+
+Enable automatic incrementation of badge count. Disabled by default.
+```objective-c
+[CleverPush setIncrementBadge:YES];
+```
