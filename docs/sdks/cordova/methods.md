@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-### Usage
+## Usage
 
 Add the initialization code to your `index.js` file
 

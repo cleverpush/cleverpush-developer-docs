@@ -3,7 +3,7 @@ id: setup
 title: Setup
 ---
 
-### Installation
+## Installation
 
 1. Install via npm or yarn
     ```bash
@@ -22,7 +22,7 @@ title: Setup
     ```
 
 
-### Setup iOS
+## Setup iOS
 
 1. Enable the required capabilities
 
@@ -273,7 +273,7 @@ Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Librar
 Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 
-### Setup Android
+## Setup Android
 
 1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
 

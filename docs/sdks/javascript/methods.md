@@ -240,7 +240,7 @@ CleverPush.push(['triggerFollowUpEvent', 'INSERT_FOLLOW_UP_CAMPAIGN_ID', 'EVENT_
 <br/>
 
 
-### Initialization event
+## Initialization event
 
 You can listen for the global initialization event.
 This is very useful if you want to check if the current browser support Web Push notifications and then show a button to manually trigger the opt-in dialog.
@@ -273,7 +273,7 @@ if (!window.CleverPush || !window.CleverPush.initialized) {
 ```
 
 
-### Subscription Events
+## Subscription Events
 
 Several subscription events can be listened for with one of the following methods (can only be called after successful initialization, see above):
 
@@ -296,7 +296,7 @@ CleverPush.once(event, callback);
 * 'optInClosed' (when user has manually closed the opt-in layer via the X - not the native opt-in itself)
 
 
-### Chat
+## Chat
 
 1. Additionally to the general CleverPush script, include the following script:
 

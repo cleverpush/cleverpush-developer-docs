@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-### Basic Usage
+## Basic Usage
 
 You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` which fire when notifications have been received and/or opened:
 
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 ```
 
 
-### Tags
+## Tags
 
 ```java
 CleverPush.getInstance(this).getAvailableTags(tags -> {
@@ -105,7 +105,7 @@ boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get
 ```
 
 
-### Automatic Tag Assignment
+## Automatic Tag Assignment
 
 The SDK can also automatically assign tags by using the `trackPageView` method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.
 
@@ -126,7 +126,7 @@ CleverPush.getInstance(this).trackPageView("https://example.com/anything", new H
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
 
 
-### Attributes
+## Attributes
 
 ```java
 CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
@@ -141,7 +141,7 @@ CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 ```
 
 
-### Topics
+## Topics
 
 ```java
 Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
@@ -157,14 +157,14 @@ Here is how the topics dialog looks like:
 ![Topics Dialog Android](/img/topics-dialog-android.png)
 
 
-### Received Notifications
+## Received Notifications
 
 ```java
 Set<Notification> = CleverPush.getInstance(this).getNotifications();
 ```
 
 
-### App Banners
+## App Banners
 
 (Available from version 1.8.0)
 
@@ -182,7 +182,7 @@ CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 ```
 
 
-### Event Tracking
+## Event Tracking
 
 Events can be used to trigger follow-up campaigns or to track conversions.
 
@@ -194,7 +194,7 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 ```
 
 
-### Tracking Consent
+## Tracking Consent
 
 You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
 
@@ -211,7 +211,7 @@ CleverPush.getInstance(this).setTrackingConsent(true);
 ```
 
 
-### Chat
+## Chat
 
 Add the ChatView inside your Layout XML:
 

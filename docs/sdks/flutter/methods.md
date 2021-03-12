@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-### Usage
+## Usage
 
 ```dart
 import 'package:cleverpush_flutter/cleverpush_flutter.dart';

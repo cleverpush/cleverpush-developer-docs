@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-### Basic Usage
+## Basic Usage
 
 ```objective-c
 // init with autoRegister:false to manually subscribe later
@@ -24,7 +24,7 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 ```
 
 
-### Tags
+## Tags
 
 ```objective-c
 NSArray* channelTags = [CleverPush getAvailableTags];
@@ -41,7 +41,7 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 ```
 
 
-### Automatic Tag Assignment
+## Automatic Tag Assignment
 
 The SDK can also automatically assign tags by using the `trackPageView` method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.
 
@@ -60,7 +60,7 @@ We can also have more advanced use cases here by using Javascript functions for 
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
 
 
-### Topics
+## Topics
 
 ```objective-c
 NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
@@ -76,7 +76,7 @@ Here is how the topics dialog looks like:
 ![Topics Dialog iOS](/img/topics-dialog-ios.png)
 
 
-### Attributes
+## Attributes
 
 ```objective-c
 NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
@@ -89,14 +89,14 @@ NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
 ```
 
 
-### Received Notifications
+## Received Notifications
 (App Group from setup step 8 is required):
 ```objective-c
 NSArray* notifications = [CleverPush getNotifications];
 ```
 
 
-### App Banners
+## App Banners
 
 (Available from version 1.3.0)
 
@@ -114,7 +114,7 @@ NSArray* notifications = [CleverPush getNotifications];
 ```
 
 
-### Event Tracking
+## Event Tracking
 
 Events can be used to trigger follow-up campaigns or to track conversions.
 
@@ -126,7 +126,7 @@ Events can be used to trigger follow-up campaigns or to track conversions.
 ```
 
 
-### Tracking Consent
+## Tracking Consent
 
 You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
 
@@ -143,7 +143,7 @@ Step 2: Call this when the user gave his consent (needs to be called on every la
 ```
 
 
-### Chat
+## Chat
 
 1. Import "CleverPush/CPChatView.h":
 
@@ -159,7 +159,7 @@ CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.v
 ```
 
 
-### Badge Counts
+## Badge Counts
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
 ```objective-c

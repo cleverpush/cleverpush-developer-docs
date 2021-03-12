@@ -3,7 +3,7 @@ id: setup
 title: Setup
 ---
 
-### Installation
+## Installation
 
 1. SDK Setup:
 
@@ -12,7 +12,7 @@ title: Setup
     Add CleverPush to your Podfile:
     
     ```bash
-    pod 'CleverPush', '~> 1.4.4'
+    pod 'CleverPush', '~> 1.4.6'
     ```
 
     **Manual Installation** (not needed if you use CocoaPods):
@@ -346,7 +346,7 @@ title: Setup
     5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
 
 
-### Custom sounds
+## Custom sounds
 
 iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 seconds.
 

@@ -3,7 +3,7 @@ id: setup
 title: Setup
 ---
 
-### Setup
+## Setup
 
 1. Setup Firebase inside your Android App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
 
@@ -12,7 +12,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.8.2'
+        implementation 'com.cleverpush:cleverpush:1.8.7'
     }
     ```
 
@@ -26,7 +26,7 @@ title: Setup
     }
     ```
 
-### Setup HMS (Huawei Mobile Services)
+## Setup HMS (Huawei Mobile Services)
 
 These additional steps are recommended if you want to support the newest Huawei devices. Please note that you need at least CleverPush Android SDK version 1.1.0.
 
@@ -87,7 +87,7 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
 ![](https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png)
 
 
-### Upgrading
+## Upgrading
 
 **1.0.0**
 
@@ -113,7 +113,7 @@ Breaking Changes
     </service>
     ```
 
-### Troubleshooting
+## Troubleshooting
 
 File google-services.json is missing. The Google Services Plugin cannot function without it.
 
@@ -151,7 +151,7 @@ Huawei Certificate Error:
 https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/game-preparation-v4#certificate
 
 
-### Custom sounds
+## Custom sounds
 
 Android supports `mp3`, `wav` and `ogg` audio files.
 
@@ -160,7 +160,7 @@ Android supports `mp3`, `wav` and `ogg` audio files.
 3. If you send notifications via the API you can use the parameter "soundFilename".
 
 
-### Badge icon
+## Badge icon
 
 You can place your custom badge icon with the correct sizes in this folders, then the SDK will automatically use it:
 

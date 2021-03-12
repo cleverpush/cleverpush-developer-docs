@@ -10,7 +10,7 @@
 */
 
 ::selection {
-  background-color: #54b1c4;
+  background-color: #1338a0;
   color: #fff;
 }
 
@@ -78,7 +78,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: #f7ba45; }
 
 .focus {
-  color: #54b1c4; }
+  color: #1338a0; }
 
 .aluminum {
   color: #f8f8f8; }
@@ -114,7 +114,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #f7ba45; }
 
 .bg-focus {
-  background-color: #54b1c4; }
+  background-color: #1338a0; }
 
 .bg-aluminum {
   background-color: #f8f8f8; }
@@ -148,7 +148,7 @@ body {
   background-color: transparent; }
 
 a {
-  color: #54b1c4; }
+  color: #1338a0; }
 
 a:hover {
   color: #448d9c; }
@@ -337,7 +337,7 @@ mark {
 
 samp {
   color: #fff;
-  background: #54b1c4; }
+  background: #1338a0; }
 
 kbd {
   border: 1px solid rgba(0, 0, 0, 0.1); }
@@ -790,8 +790,8 @@ textarea:focus,
 select:focus {
   outline: none;
   background-color: #fff;
-  border-color: #54b1c4;
-  box-shadow: 0 0 1px #54b1c4 inset; }
+  border-color: #1338a0;
+  box-shadow: 0 0 1px #1338a0 inset; }
 
 input.error,
 textarea.error,
@@ -985,7 +985,7 @@ button,
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 15px;
   color: #fff;
-  background-color: #54b1c4;
+  background-color: #1338a0;
   border-radius: 3px;
   min-height: 40px;
   padding: 8px 20px;
@@ -1041,8 +1041,8 @@ button:hover,
 .button.outline {
   background: none;
   border-width: 2px;
-  border-color: #54b1c4;
-  color: #54b1c4; }
+  border-color: #1338a0;
+  color: #1338a0; }
   .button.outline:hover {
     background: none;
     color: #448d9c;
@@ -1184,12 +1184,12 @@ button:hover,
     color: #f7ba45; }
 
 .label.focus {
-  background: #54b1c4;
+  background: #1338a0;
   color: #fff; }
   .label.focus.tag, .label.focus.outline {
     background: none;
-    border-color: #54b1c4;
-    color: #54b1c4; }
+    border-color: #1338a0;
+    color: #1338a0; }
 
 .label.black {
   background: #0d0d0e;
@@ -2047,7 +2047,7 @@ button:hover,
   background: #f7ba45; }
 
 .message.focus {
-  background: #54b1c4;
+  background: #1338a0;
   color: #fff; }
 
 .message.black {

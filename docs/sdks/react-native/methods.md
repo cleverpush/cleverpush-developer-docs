@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-### Usage
+## Usage
 
 Basic Example:
 
