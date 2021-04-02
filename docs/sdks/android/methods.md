@@ -7,27 +7,43 @@ title: Methods
 
 You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` which fire when notifications have been received and/or opened:
 
-
+**JAVA**
 ```java
-public class MainActivity extends Activity {
-   public void onCreate(Bundle savedInstanceState) {
-       CleverPush.getInstance(this).init(new NotificationReceivedListener() {
-           @Override
-           public void notificationReceived(NotificationOpenedResult result) {
-              System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
-          }
-       }, new NotificationOpenedListener() {
-          @Override
-          public void notificationOpened(NotificationOpenedResult result) {
-             System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+         public class MainActivity extends Activity {
+            public void onCreate(Bundle savedInstanceState) {
+               CleverPush.getInstance(this).init(new NotificationReceivedListener(){
+                  @Override
+                  public void notificationReceived(NotificationOpenedResult result){
+                     System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
+                  }
+               }, new NotificationOpenedListener() {
+                  @Override
+                  public void notificationOpened(NotificationOpenedResult result) {
+                     System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+                  }
+               });
+            }
          }
-      });
-   }
+```
+**KOTLIN**
+```kotlin
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+    CleverPush.getInstance(this).init(object:NotificationReceivedListener() {
+      fun notificationReceived(result:NotificationOpenedResult) {
+        System.out.println("ReceivedCleverPushNotification: " + result.getNotification().getTitle())
+      }
+    }, object:NotificationOpenedListener() {
+      fun notificationOpened(result:NotificationOpenedResult) {
+        System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle())
+      }
+    })
+  }
 }
 ```
-
-
 Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
+
+**JAVA**
 
 ```java
 CleverPush.getInstance(this).init("XXXXXXX", new NotificationReceivedCallbackListener() {
@@ -39,9 +55,19 @@ CleverPush.getInstance(this).init("XXXXXXX", new NotificationReceivedCallbackLis
 }, ...);
 ```
 
+**KOTLIN**
 
+```kotlin
+CleverPush.getInstance(this).init("XXXXXXX", object:NotificationReceivedCallbackListener() {
+  fun notificationReceivedCallback(notificationOpenedResult:NotificationOpenedResult):Boolean {
+    val showNotification = true
+    return showNotification
+  }
+}, ...)
+```
 You can add a `SubscribedListener` which fires when the user has successfully been subscribed:
 
+**JAVA**
 
 ```java
 public class MainActivity extends Activity {
@@ -65,9 +91,34 @@ public class MainActivity extends Activity {
   }
 }
 ```
+**KOTLIN**
 
+```kotlin
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+      CleverPush.getInstance(this).init(new NotificationReceivedListener() {
+         @Override
+         public void notificationReceived(NotificationOpenedResult result) {
+            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+        }
+     }, new NotificationOpenedListener() {
+        @Override
+        public void notificationOpened(NotificationOpenedResult result) {
+           System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+        }
+     }, new SubscribedListener() {
+        @Override
+        public void subscribed(String subscriptionId) {
+           System.out.println("CleverPush Subscription ID: " + subscriptionId);+
+        }
+     });
+  }
+}
+```
 
-Subscribe (or unsubscribe) later:
+Subscribe/Unsubscribe :
+
+**JAVA**
 
 ```java
 public class MainActivity extends Activity {
@@ -86,10 +137,27 @@ public class MainActivity extends Activity {
   }
 }
 ```
+**KOTLIN**
 
+```kotlin
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+    // last parameter (autoRegister) is false
+    CleverPush.getInstance(this).init(...,false)
+    
+    // subscribe
+    CleverPush.getInstance(this).subscribe()
+    // or unsubscribe
+    CleverPush.getInstance(this).unsubscribe()
+    // get subscription status (true or false)
+    CleverPush.getInstance(this).isSubscribed()
+  }
+}
+```
 
 ## Tags
 
+**JAVA**
 ```java
 CleverPush.getInstance(this).getAvailableTags(tags -> {
     // returns Set<ChannelTag>
@@ -104,6 +172,16 @@ CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
 ```
 
+**KOTLIN**
+```kotlin
+CleverPush.getInstance(this).getAvailableTags({ tags-> 
+                                               // returns Set<ChannelTag>
+                                              })
+val subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags()
+CleverPush.getInstance(this).addSubscriptionTag("tag_id")
+CleverPush.getInstance(this).removeSubscriptionTag("tag_id")
+val hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId())
+```
 
 ## Automatic Tag Assignment
 
@@ -128,6 +206,7 @@ Once the `trackPageView` method has been implemented you can set up all the tags
 
 ## Attributes
 
+**JAVA**
 ```java
 CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
     // returns Set<CustomAttribute>
@@ -140,9 +219,19 @@ String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("u
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 ```
 
+**KOTLIN**
+```kotlin
+CleverPush.getInstance(this).getAvailableAttributes({ attributes-> 
+                                                     // returns Set<CustomAttribute>
+                                                    })
+val subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes()
+val attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id")
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
+```
 
 ## Topics
 
+**JAVA**
 ```java
 Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
 
@@ -150,6 +239,14 @@ CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"})
 
 // let the user choose his topics
 CleverPush.getInstance(this).showTopicsDialog();
+```
+**KOTLIN**
+```kotlin
+val subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics()
+CleverPush.getInstance(this).setSubscriptionTopics(arrayOf<String>("ID_1", "ID_2"))
+
+// let the user choose his topics
+CleverPush.getInstance(this).showTopicsDialog()
 ```
 
 Here is how the topics dialog looks like:
@@ -159,15 +256,20 @@ Here is how the topics dialog looks like:
 
 ## Received Notifications
 
+**JAVA**
 ```java
 Set<Notification> = CleverPush.getInstance(this).getNotifications();
 ```
-
+**KOTLIN**
+```java
+CleverPush.getInstance(this).getNotifications()
+```
 
 ## App Banners
 
 (Available from version 1.8.0)
 
+**JAVA**
 ```java
 // Will be called, once a user presses a button in the banner
 CleverPush.getInstance(this).setAppBannerOpenedListener(action -> {
@@ -181,11 +283,23 @@ CleverPush.getInstance(this).triggerAppBannerEvent("key", "value");
 CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 ```
 
+**KOTLIN**
+```kotlin
+// Will be called, once a user presses a button in the banner
+CleverPush.getInstance(this).setAppBannerOpenedListener({ action-> println("App Banner Opened") })
+
+// You can emit custom events and use them as a trigger for your banners
+CleverPush.getInstance(this).triggerAppBannerEvent("key", "value")
+
+// You can also show one banner by its ID (we recommend app banner events for production usage)
+CleverPush.getInstance(this).showAppBanner("BANNER_ID")
+```
 
 ## Event Tracking
 
 Events can be used to trigger follow-up campaigns or to track conversions.
 
+**JAVA**
 ```java
 CleverPush.getInstance(this).trackEvent("EVENT NAME");
 
@@ -193,6 +307,13 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME");
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 ```
 
+**KOTLIN**
+```kotlin
+CleverPush.getInstance(this).trackEvent("EVENT NAME")
+
+// track a conversion with a specified amount
+CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)
+```
 
 ## Tracking Consent
 
