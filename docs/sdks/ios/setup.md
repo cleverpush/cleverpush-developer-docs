@@ -323,14 +323,19 @@
         // Make sure to insert your CleverPush channelId
        
 
-            CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
+        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
             
             print("Received Notification with URL: " + result!.notification.url!)
-
             let alert = UIAlertController(title: result!.notification.title, message: "Message", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-            })
+            
+        }, handleSubscribed:{ subscriptionId in
+            
+            print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+            
+        })
+            
 
 
         return true
