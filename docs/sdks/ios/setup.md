@@ -1,11 +1,21 @@
 ---
-id: setup
-title: Setup
+**Id**: setup
+
+**Title**: Instructions for adding the CleverPush SDK to your iOS native app with `Swift` or `Objective-C`
+
 ---
 
 ## Installation
+**1. Tool Requirement and CleverPush Account setup guide:**
 
-1. SDK Setup:
+1. [Create A CleverPush Account](https://app.cleverpush.com/en/register) if you do not already have one
+2. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Advanced settings` > `Channel ID`  in the CleverPush Developer console.
+3. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
+4. A Mac with a new version of Xcode.
+
+
+
+**2. SDK Setup:**
 
     **CocoaPods Installation**
     
@@ -22,11 +32,11 @@ title: Setup
     3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit` and `JavaScriptCore` to your frameworks.
     4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
 
-2. Enable the required capabilities
+**3. Enable the required capabilities**
 
-    1. Go to your root project and switch to the tab "Capabilities"
-    2. Enable "Push Notifications"
-    3. Enable "Background Modes" and check "Remote notifications"
+    1. Go to your root project `Targets` > `Signing & Capabilities` > `Add Capabilities by clicking the "+ Capability" button`
+    2. Select "Push Notifications" from the list of the capabilities.
+    3. Select "Background Modes" from the list of the capabilities and tick on the option of "Remote notifications"
 
 3. Add Notification Service Extension
 
@@ -40,6 +50,7 @@ title: Setup
 
         ```bash
         target 'CleverPushNotificationServiceExtension' do
+          use_frameworks!
 
           pod 'CleverPush'
 
@@ -58,13 +69,16 @@ title: Setup
 
         ```bash
         target 'CleverPushNotificationContentExtension' do
+          use_frameworks!
 
           pod 'CleverPush'
 
         end
-        ```
+        ```    
+       
 
-5. Run `pod install`
+**4. Run `pod install`**
+
 6. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
     Objective-C:
@@ -307,19 +321,28 @@ title: Setup
     // ...
 
         // Make sure to insert your CleverPush channelId
-        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
-        print("Received Notification with URL: " + result!.notification["url"]);
+       
 
-        let alert = UIAlertController(title: result!.notification["title"], message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
+            
+            print("Received Notification with URL: " + result!.notification.url!)
+            let alert = UIAlertController(title: result!.notification.title, message: "Message", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            
+        }, handleSubscribed:{ subscriptionId in
+            
+            print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+            
         })
+            
+
 
         return true
     }
     ```
 
-9. Create your iOS push certificate
+**5. Create your iOS push certificate**
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
@@ -352,4 +375,7 @@ iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 sec
 
 1. Add the sound file(s) to the Xcode project root and make sure "Add to targets" is selected when adding the files.
 2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
-3. If you send notifications via the API you can use the parameter "soundFilename".
+3. If you send notifications via the API you can use the parameter "soundFilename".
+
+
+![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
