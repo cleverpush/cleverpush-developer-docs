@@ -11,7 +11,7 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 ```java
          public class MainActivity extends Activity {
             public void onCreate(Bundle savedInstanceState) {
-               CleverPush.getInstance(this).init(new NotificationReceivedListener(){
+               CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",new NotificationReceivedListener(){
                   @Override
                   public void notificationReceived(NotificationOpenedResult result){
                      System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
@@ -29,15 +29,9 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 ```kotlin
 class MainActivity:Activity() {
   fun onCreate(savedInstanceState:Bundle) {
-    CleverPush.getInstance(this).init(object:NotificationReceivedListener() {
-      fun notificationReceived(result:NotificationOpenedResult) {
-        System.out.println("ReceivedCleverPushNotification: " + result.getNotification().getTitle())
-      }
-    }, object:NotificationOpenedListener() {
-      fun notificationOpened(result:NotificationOpenedResult) {
-        System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle())
-      }
-    })
+     CleverPush.getInstance(this).init("",
+                NotificationReceivedListener { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
+                NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.title) })
   }
 }
 ```
@@ -85,7 +79,7 @@ public class MainActivity extends Activity {
      }, new SubscribedListener() {
         @Override
         public void subscribed(String subscriptionId) {
-           System.out.println("CleverPush Subscription ID: " + subscriptionId);+
+           System.out.println("CleverPush Subscription ID: " + subscriptionId);
         }
      });
   }
@@ -94,24 +88,13 @@ public class MainActivity extends Activity {
 **KOTLIN**
 
 ```kotlin
-public class MainActivity extends Activity {
-  public void onCreate(Bundle savedInstanceState) {
-      CleverPush.getInstance(this).init(new NotificationReceivedListener() {
-         @Override
-         public void notificationReceived(NotificationOpenedResult result) {
-            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
-        }
-     }, new NotificationOpenedListener() {
-        @Override
-        public void notificationOpened(NotificationOpenedResult result) {
-           System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-        }
-     }, new SubscribedListener() {
-        @Override
-        public void subscribed(String subscriptionId) {
-           System.out.println("CleverPush Subscription ID: " + subscriptionId);+
-        }
-     });
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+   CleverPush.getInstance(this).init("",
+                { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
+                { result -> println("Opened CleverPush Notification: " + result.notification.title) },
+                { subscriptionId -> System.out.println("CleverPush Subscription ID: $subscriptionId"); }
+        )
   }
 }
 ```
@@ -251,7 +234,7 @@ CleverPush.getInstance(this).showTopicsDialog()
 
 Here is how the topics dialog looks like:
 
-![Topics Dialog Android](/img/topics-dialog-android.png)
+![Topics Dialog Android](https://developers.cleverpush.com/img/topics-dialog-android.png)
 
 
 ## Received Notifications

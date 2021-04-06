@@ -11,9 +11,9 @@ Minimum Android SDK Version: 1.5.0
 
 1. Create a new Class which extends `com.cleverpush.service.NotificationExtenderService`
 
-```
+**JAVA**
+```java
 import androidx.core.app.NotificationCompat;
-
 import com.cleverpush.Notification;
 import com.cleverpush.service.NotificationExtenderService;
 
@@ -34,6 +34,28 @@ public class MyNotificationExtenderService extends NotificationExtenderService {
 		// return true to not display notification
 		return false;
 	}
+}
+
+```
+
+**KOTLIN**
+```kotlin
+import androidx.core.app.NotificationCompat
+import com.cleverpush.Notification
+import com.cleverpush.service.NotificationExtenderService
+import java.math.BigInteger
+class MyNotificationExtenderService:NotificationExtenderService() {
+  protected fun onNotificationProcessing(notification:Notification):Boolean {
+    // modify notification
+    notification.setExtender(object:NotificationCompat.Extender() {
+      fun extend(builder:NotificationCompat.Builder):NotificationCompat.Builder {
+        builder.setColor(BigInteger("FF00FF00", 16).toInt()) // Set notification color to green
+        return builder
+      }
+    })
+    // return true to not display notification
+    return false
+  }
 }
 
 ```
