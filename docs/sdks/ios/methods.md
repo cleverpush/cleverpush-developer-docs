@@ -4,7 +4,7 @@ title: Methods
 ---
 
 ## Basic Usage
-    Objective-C:
+Objective-C:
 ```objective-c
 // init with autoRegister:false to manually subscribe later
 [CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
@@ -22,16 +22,16 @@ title: Methods
 // get subscription status
 BOOL isSubscribed = [CleverPush isSubscribed]
 ```
-    Swift:
+Swift:
 ```swift
 // init with autoRegister:false to manually subscribe later
 CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened:{ result in
-            if let value = result?.notification.value(forKey: "url") {
-                print("Received Notification with URL: \(value)")
-            }
-        }, handleSubscribed:{ subscriptionId in
-            print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
-        }, autoRegister: false)
+    if let value = result?.notification.value(forKey: "url") {
+        print("Received Notification with URL: \(value)")
+    }
+}, handleSubscribed:{ subscriptionId in
+    print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+}, autoRegister: false)
 
 // subscribe
 CleverPush.subscribe()
@@ -43,7 +43,7 @@ CleverPush.unsubscribe()
 let isSubscribed = CleverPush.isSubscribed()
 ```
 ## Tags
-    Objective-C:
+Objective-C:
 
 ```objective-c
 NSArray* channelTags = [CleverPush getAvailableTags];
@@ -59,7 +59,7 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
 ```
 
-    Swift:
+Swift:
 
 ```swift
 let channelTags = CleverPush.getAvailableTags()
@@ -83,24 +83,24 @@ The SDK can also automatically assign tags by using the `trackPageView` method. 
 Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
 
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush trackPageView:@"https://example.com/sports/article-123123"];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.trackPageView("https://example.com/sports/article-123123")
 ```
 
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush trackPageView:@"https://example.com/anything" params:[NSDictionary dictionaryWithObjectsAndKeys: @"sports", @"category", nil]];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.trackPageView("https://example.com/anything", params: ["category" : "sports"])
 ```
@@ -110,7 +110,7 @@ Once the `trackPageView` method has been implemented you can set up all the tags
 
 
 ## Topics
-    Objective-C:
+Objective-C:
 ```objective-c
 NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 
@@ -120,7 +120,7 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [CleverPush showTopicsDialog];
 ```
 
-    Swift:
+Swift:
 ```swift
 let subscriptionTopics = CleverPush.getSubscriptionTopics()
 
@@ -138,7 +138,7 @@ Here is how the topics dialog looks like:
 
 
 ## Attributes
-    Objective-C:
+Objective-C:
 ```objective-c
 NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
 
@@ -149,7 +149,7 @@ NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
 NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
 ```
 
-    Swift:
+Swift:
 ```swift
 let customAttributes = CleverPush.getAvailableAttributes()
 
@@ -164,13 +164,13 @@ let attribute = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 ## Received Notifications
 (App Group from setup step 8 is required):
 
-    Objective-C:
+Objective-C:
 ```objective-c
 NSArray* notifications = [CleverPush getNotifications];
 
 ```
 
-    Swift:
+Swift:
 ```swift
 let notifications = CleverPush.getNotifications()
 
@@ -183,10 +183,10 @@ let notifications = CleverPush.getNotifications()
 
 (Available from version 1.3.0)
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush setAppBannerOpenedCallback:^(CPAppBannerAction *action) {
-    NSLog(@"App Banner Opened");
+NSLog(@"App Banner Opened");
 }];
 
 // You can emit custom events and use them as a trigger for your banners
@@ -197,10 +197,10 @@ let notifications = CleverPush.getNotifications()
 
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.setAppBannerOpenedCallback { (_: CPAppBannerAction?) in
-            print("App Banner Opened")
+        print("App Banner Opened")
 }
 
 // You can emit custom events and use them as a trigger for your banners
@@ -216,7 +216,7 @@ CleverPush.showAppBanner("BANNER_ID")
 
 Events can be used to trigger follow-up campaigns or to track conversions.
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush trackEvent:@"EVENT NAME"];
 
@@ -225,7 +225,7 @@ Events can be used to trigger follow-up campaigns or to track conversions.
 
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.trackEvent("EVENT NAME")
 
@@ -241,12 +241,12 @@ You can optionally require a tracking consent from the user (e.g. you get this c
 
 Step 1: Call this before initializing the SDK:
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush setTrackingConsentRequired:YES];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.setTrackingConsentRequired(true)
 ```
@@ -255,19 +255,19 @@ CleverPush.setTrackingConsentRequired(true)
 Step 2: Call this when the user gave his consent (needs to be called on every launch):
 
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush setTrackingConsent:YES];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.setTrackingConsent(true)
 ```
 
 
 ## Chat
-    Objective-C:
+Objective-C:
 1. Import "CleverPush/CPChatView.h":
 2. Add the Chat View:
 
@@ -277,7 +277,7 @@ CleverPush.setTrackingConsent(true)
 CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 [self.view addSubview:chatView];
 ```
-    Swift:
+Swift:
 1. import CleverPush
 2. Add the Chat View:
 
@@ -293,24 +293,24 @@ self.view.addSubview(chatView)
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
 
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush setAutoClearBadge:NO];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.setAutoClearBadge(false)
 ```
 
 Enable automatic incrementation of badge count. Disabled by default.
 
-    Objective-C:
+Objective-C:
 ```objective-c
 [CleverPush setIncrementBadge:YES];
 ```
 
-    Swift:
+Swift:
 ```swift
 CleverPush.incrementBadge = true
 ```

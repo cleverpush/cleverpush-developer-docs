@@ -14,6 +14,12 @@
       "sdks/android/setup": {
         "title": "Setup"
       },
+      "sdks/android/troubleshooting": {
+        "title": "Troubleshooting"
+      },
+      "sdks/android/upgrading": {
+        "title": "Upgrading"
+      },
       "sdks/cordova/methods": {
         "title": "Methods"
       },
