@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>sdks/ios/setup · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Installation"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="sdks/ios/setup · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="## Installation"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>iOS SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/sdks/ios/setup">sdks/ios/setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/methods">Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/extension">Notification Extender Service</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setup · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Installation"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setup · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="## Installation"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://api.cleverpush.com" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>iOS SDK</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">JavaScript SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/javascript/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">iOS SDK</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/sdks/ios/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/ios/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Android SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/android/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/methods">Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/extension">Notification Extender Service</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/troubleshooting">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/android/upgrading">Upgrading</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Cordova SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/cordova/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React Native SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/react-native/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Xamarin SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/xamarin/methods">Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flutter SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/setup">Setup</a></li><li class="navListItem"><a class="navItem" href="/docs/sdks/flutter/methods">Methods</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -54,7 +54,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">sdks/ios/setup</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Setup</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
 <p><strong>1. Tool Requirement and CleverPush Account setup guide:</strong></p>
 <ol>
 <li><a href="https://app.cleverpush.com/en/register">Create A CleverPush Account</a> if you do not already have one</li>
@@ -63,28 +63,24 @@
 <li>A Mac with a new version of Xcode.</li>
 </ol>
 <p><strong>2. SDK Setup:</strong></p>
-<pre><code class="hljs">**CocoaPods Installation**
-
-Add CleverPush to your Podfile:
-
-```bash
-pod 'CleverPush', '~&gt; 1.4.7'
-```
-
-**Manual Installation** (not needed if you use CocoaPods):
-
-1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
-2. Drop and drag `CleverPush/Framework/CleverPush.framework` into your Xcode project and check the copy option.
-3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit` and `JavaScriptCore` to your frameworks.
-4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
+<p><strong>CocoaPods Installation</strong></p>
+<p>Add CleverPush to your Podfile:</p>
+<pre><code class="hljs css language-bash">pod <span class="hljs-string">'CleverPush'</span>, <span class="hljs-string">'~&gt; 1.4.7'</span>
 </code></pre>
+<p>Manual Installation** (not needed if you use CocoaPods):</p>
+<ol>
+<li>Download the SDK release from <a href="https://github.com/cleverpush/cleverpush-ios-sdk/releases">https://github.com/cleverpush/cleverpush-ios-sdk/releases</a></li>
+<li>Drop and drag <code>CleverPush/Framework/CleverPush.framework</code> into your Xcode project and check the copy option.</li>
+<li>Add <code>SystemConfiguration</code>, <code>UIKit</code>, <code>UserNotifications</code>, <code>WebKit</code> and <code>JavaScriptCore</code> to your frameworks.</li>
+<li>Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension</li>
+</ol>
 <p><strong>3. Enable the required capabilities</strong></p>
-<pre><code class="hljs">1. Go to your root project `Targets` &gt; `Signing &amp; Capabilities` &gt; `Add Capabilities by clicking the &quot;+ Capability&quot; button`
-2. Select &quot;Push Notifications&quot; from the list of the capabilities.
-3. Select &quot;Background Modes&quot; from the list of the capabilities and tick on the option of &quot;Remote notifications&quot;
-</code></pre>
-<ol start="3">
-<li><p>Add Notification Service Extension</p>
+<ol>
+<li>Go to your root project <code>Targets</code> &gt; <code>Signing &amp; Capabilities</code> &gt; <code>Add Capabilities by clicking the &quot;+ Capability&quot; button</code></li>
+<li>Select &quot;Push Notifications&quot; from the list of the capabilities.</li>
+<li>Select &quot;Background Modes&quot; from the list of the capabilities and tick on the option of &quot;Remote notifications&quot;</li>
+</ol>
+<p><strong>4. Add Notification Service Extension</strong></p>
 <p>This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.</p>
 <ol>
 <li><p>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</p></li>
@@ -93,14 +89,14 @@ pod 'CleverPush', '~&gt; 1.4.7'
 <li><p>Press <code>Activate</code> on the next prompt</p></li>
 <li><p>Add the following at the bottom of your Project's Podfile</p>
 <pre><code class="hljs css language-bash">target <span class="hljs-string">'CleverPushNotificationServiceExtension'</span> <span class="hljs-keyword">do</span>
-  use_frameworks!
+    use_frameworks!
 
-  pod <span class="hljs-string">'CleverPush'</span>
+    pod <span class="hljs-string">'CleverPush'</span>
 
 end
 </code></pre></li>
-</ol></li>
-<li><p>Add Notification Content Extension</p>
+</ol>
+<p><strong>5. Add Notification Content Extension</strong></p>
 <p>This is required for displaying custom notification contents (e.g. Carousel Notifications).</p>
 <ol>
 <li><p>Select <code>File</code> &gt; <code>New</code> &gt; <code>Target</code> in Xcode</p></li>
@@ -109,17 +105,15 @@ end
 <li><p>Press <code>Activate</code> on the next prompt</p></li>
 <li><p>Add the following at the bottom of your Project's Podfile</p>
 <pre><code class="hljs css language-bash">target <span class="hljs-string">'CleverPushNotificationContentExtension'</span> <span class="hljs-keyword">do</span>
-  use_frameworks!
+    use_frameworks!
 
-  pod <span class="hljs-string">'CleverPush'</span>
+    pod <span class="hljs-string">'CleverPush'</span>
 
 end
 </code></pre></li>
-</ol></li>
 </ol>
-<p><strong>4. Run <code>pod install</code></strong></p>
-<ol start="6">
-<li><p>Open <code>CleverPushNotificationServiceExtension/NotificationService.m</code> and replace the whole content with the following:</p>
+<p><strong>6. Run <code>pod install</code></strong></p>
+<p><strong>7. Open <code>CleverPushNotificationServiceExtension/NotificationService.m</code> and replace the whole content with the following:</strong></p>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
 
@@ -183,8 +177,8 @@ end
     }
 
 }
-</code></pre></li>
-<li><p>Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</p>
+</code></pre>
+<p><strong>8. Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</strong></p>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;UIKit/UIKit.h&gt;</span></span>
 <span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
@@ -266,8 +260,10 @@ end
     <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span>
-</code></pre></li>
-<li><p>Add this code to your AppDelegate:</p>
+</code></pre>
+<ol start="8">
+<li>Add this code to your AppDelegate:</li>
+</ol>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
 
@@ -330,7 +326,7 @@ end
 <span class="hljs-comment">// ...</span>
 
     <span class="hljs-comment">// Make sure to insert your CleverPush channelId</span>
-   
+    
 
     <span class="hljs-type">CleverPush</span>.initWithLaunchOptions(launchOptions, channelId: <span class="hljs-string">"YOUR_CHANNEL_ID_HERE"</span>, handleNotificationOpened: { (result) <span class="hljs-keyword">in</span>
         
@@ -349,24 +345,24 @@ end
 
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 }
-</code></pre></li>
-</ol>
-<p><strong>5. Create your iOS push certificate</strong></p>
+</code></pre>
+<p><strong>9. Create your iOS push certificate</strong></p>
 <ol>
-<li><p>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</p></li>
-<li><p>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority...</p></li>
-<li><p>Select the &quot;Save to disk&quot; option and enter any information in the required fields</p></li>
-<li><p>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &quot;Edit&quot;</p></li>
-<li><p>Enable &quot;Push notifications&quot; and press &quot;Done&quot;</p></li>
-<li><p>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &quot;Apple Push Notification service SSL&quot; and press &quot;Continue&quot;</p></li>
-<li><p>Select your Application Bundle ID and press &quot;Continue&quot;</p></li>
-<li><p>Press &quot;Choose File...&quot;, select the previously generated &quot;certSigningRequest&quot; file and then press &quot;Generate&quot;</p></li>
-<li><p>Press &quot;Download&quot; and save your certificate</p></li>
-<li><p>Click on the downloaded .cer file, Keychain Access should open</p></li>
-<li><p>Select Login &gt; My Certificates then right click on your key and click &quot;Export (Apple Production iOS Push Services: com.your.bundle)...&quot;</p></li>
-<li><p>Give the file a unique name and press save, be sure to leave the password field blank!</p></li>
-<li><p>Upload your certificate in the CleverPush channel settings</p></li>
-<li><p>Add AppGroup (optional)</p>
+<li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
+<li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority...</li>
+<li>Select the &quot;Save to disk&quot; option and enter any information in the required fields</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &quot;Edit&quot;</li>
+<li>Enable &quot;Push notifications&quot; and press &quot;Done&quot;</li>
+<li>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &quot;Apple Push Notification service SSL&quot; and press &quot;Continue&quot;</li>
+<li>Select your Application Bundle ID and press &quot;Continue&quot;</li>
+<li>Press &quot;Choose File...&quot;, select the previously generated &quot;certSigningRequest&quot; file and then press &quot;Generate&quot;</li>
+<li>Press &quot;Download&quot; and save your certificate</li>
+<li>Click on the downloaded .cer file, Keychain Access should open</li>
+<li>Select Login &gt; My Certificates then right click on your key and click &quot;Export (Apple Production iOS Push Services: com.your.bundle)...&quot;</li>
+<li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
+<li>Upload your certificate in the CleverPush channel settings</li>
+</ol>
+<p><strong>10. Add AppGroup (optional)</strong></p>
 <p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
 <ol>
 <li>Select your main application Target in Xcode</li>
@@ -374,7 +370,6 @@ end
 <li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application's bundle identifier).</li>
 <li>Enable the created App Group by checking the checkbox next to it</li>
 <li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
-</ol></li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="custom-sounds"></a><a href="#custom-sounds" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom sounds</h2>
 <p>iOS supports <code>aiff</code>, <code>wav</code> and <code>caf</code> audio files with a maximum length of 30 seconds.</p>
