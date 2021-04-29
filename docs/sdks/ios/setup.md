@@ -356,13 +356,13 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 12. Give the file a unique name and press save, be sure to leave the password field blank!
 13. Upload your certificate in the CleverPush channel settings
 
-**10. Add AppGroup (optional)**
+**10. Add AppGroup (optional but recommended)**
 
-This is required for getting the received notifications via the `getNotifications` method
+This is required for getting the received notifications via the `getNotifications` method and also for automatic Badge Counting (i.e. when using `setIncrementBadge(true)`).
 
 1. Select your main application Target in Xcode
 2. Go to `Capabilities` and activate `App Groups`
-3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
+3. Create a new App Group with the exact following scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
 4. Enable the created App Group by checking the checkbox next to it
 5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
 

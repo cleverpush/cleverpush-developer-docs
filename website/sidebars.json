@@ -8,7 +8,6 @@
       "sdks/ios/setup",
       "sdks/ios/methods",
       "sdks/ios/troubleshooting"
-
     ],
     "Android SDK": [
       "sdks/android/setup",

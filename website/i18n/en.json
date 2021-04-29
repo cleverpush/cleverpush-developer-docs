@@ -38,6 +38,9 @@
       "sdks/ios/setup": {
         "title": "Setup"
       },
+      "sdks/ios/troubleshooting": {
+        "title": "Troubleshooting"
+      },
       "sdks/javascript/methods": {
         "title": "Methods"
       },

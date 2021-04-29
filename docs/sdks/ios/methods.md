@@ -291,7 +291,8 @@ self.view.addSubview(chatView)
 ## Badge Counts
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
-
+Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.
+For this to work, please set up the **App Group** like described in the Setup section.
 
 Objective-C:
 ```objective-c
