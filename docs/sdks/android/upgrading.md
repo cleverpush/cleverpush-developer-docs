@@ -2,9 +2,7 @@
 id: upgrading
 title: Upgrading
 ---
-## Upgrading
-
-**1.0.0**
+## 1.0.0
 
 Breaking Changes
 

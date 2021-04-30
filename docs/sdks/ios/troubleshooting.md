@@ -3,9 +3,7 @@ id: troubleshooting
 title: Troubleshooting
 ---
 
-## Troubleshooting
-
-**Notification with images (Rich Medias) are not working**
+## Notification with images (Rich Medias) are not working
 
 In the project navigator, select the top-level project directory and select the Open `CleverPushNotificationContentExtension` & `CleverPushNotificationServiceExtension` target in the project and targets list.
 
@@ -18,7 +16,7 @@ In the project navigator, select the top-level project directory and select the 
 4. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
 
 
-**When opening a Notification, all other Notifications get cleared**
+## When opening a Notification, all other Notifications get cleared
 
 This is due to iOS automatically clearing all notifications when our SDK reset the badge count to zero. This behaviour can be changed.
 Please refer to the **Badge Counts** section on the **Methods** page for further instructions.

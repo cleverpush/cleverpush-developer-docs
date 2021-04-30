@@ -3,8 +3,6 @@ id: extension
 title: Notification Extender Service
 ---
 
-## Notification Extender Service
-
 On Android you can modify the notification and optionally silence it with a Notification Extender Service. Here is how to set it up:
 
 Minimum Android SDK Version: 1.5.0

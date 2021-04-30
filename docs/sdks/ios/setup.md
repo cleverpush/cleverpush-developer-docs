@@ -377,3 +377,31 @@ iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 sec
 
 
 ![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
+
+## Badge Counts
+
+Disable automatic clearing of badge count when opening a notification. Enabled by default.
+Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.
+For this to work, please set up the **App Group** like described in the Setup section.
+
+Objective-C:
+```objective-c
+[CleverPush setAutoClearBadge:NO];
+```
+
+Swift:
+```swift
+CleverPush.setAutoClearBadge(false)
+```
+
+Enable automatic incrementation of badge count. Disabled by default.
+
+Objective-C:
+```objective-c
+[CleverPush setIncrementBadge:YES];
+```
+
+Swift:
+```swift
+CleverPush.incrementBadge = true
+```

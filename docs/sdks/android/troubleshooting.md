@@ -3,9 +3,7 @@ id: troubleshooting
 title: Troubleshooting
 ---
 
-## Troubleshooting
-
-File google-services.json is missing. The Google Services Plugin cannot function without it.
+## File google-services.json is missing. The Google Services Plugin cannot function without it.
 
 Please make sure to set up a project in the Firebase console, you can download this file there and place it inside your project: https://console.firebase.google.com/
 
@@ -22,7 +20,7 @@ android {
 }
 ```
 
-In project 'app' a resolved Google Play services library dependency depends on another at an exact version (...):
+## In project 'app' a resolved Google Play services library dependency depends on another at an exact version (...):
 
 Add the following line at the bottom of `app/build.gradle`:
 
@@ -31,6 +29,6 @@ googleServices { disableVersionCheck = true }
 ```
 
 
-Huawei Certificate Error:
+## Huawei Certificate Error:
 
 https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/game-preparation-v4#certificate

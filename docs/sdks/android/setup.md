@@ -3,7 +3,7 @@ id: setup
 title: Setup
 ---
 
-## Setup
+## Installation
 
 **Prerequisite**
 
@@ -123,4 +123,30 @@ You can place your custom badge icon with the correct sizes in this folders, the
 
 ```
 /drawable-[SIZE]/cleverpush_notification_icon.png
+```
+
+## Badge Counts
+
+Disable automatic clearing of badge count when opening a notification. Enabled by default.
+
+**JAVA**
+```java
+CleverPush.getInstance(this).setAutoClearBadge(false);
+```
+
+**KOTLIN**
+```kotlin
+CleverPush.getInstance(this).setAutoClearBadge(false)
+```
+
+Enable automatic incrementation of badge count. Disabled by default.
+
+**JAVA**
+```java
+CleverPush.getInstance(this).setIncrementBadge(false);
+```
+
+**KOTLIN**
+```kotlin
+CleverPush.getInstance(this).setIncrementBadge(false)
 ```
