@@ -364,7 +364,7 @@ This is required for getting the received notifications via the `getNotification
 2. Go to `Capabilities` and activate `App Groups`
 3. Create a new App Group with the exact following scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
 4. Enable the created App Group by checking the checkbox next to it
-5. Select The `CleverPushNotificationExtension` target and also enable the created App Group under `Capabilities`
+5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
 
 
 ## Custom sounds

@@ -135,14 +135,14 @@ end
 </ol></li>
 </ol>
 <ol start="4">
-<li><p>Add AppGroup (optional)</p>
-<p>This is required for getting the received notifications via the <code>getNotifications</code> method</p>
+<li><p>Add AppGroup (optional but recommended)</p>
+<p>This is required for getting the received notifications via the <code>getNotifications</code> method and also for automatic Badge Counting (i.e. when using <code>setIncrementBadge(true)</code>).</p>
 <ol>
 <li>Select your main application Target in Xcode</li>
 <li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
 <li>Create a new App Group with the following Scheme: <code>group.YOUR.BUNDLE.ID.cleverpush</code> (replace <code>YOUR.BUNDLE.ID</code> with your application's bundle identifier).</li>
 <li>Enable the created App Group by checking the checkbox next to it</li>
-<li>Select The <code>CleverPushNotificationExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
+<li>Select the <code>CleverPushNotificationServiceExtension</code> target and also enable the created App Group under <code>Capabilities</code></li>
 </ol></li>
 </ol>
 <p>Common iOS errors:</p>
