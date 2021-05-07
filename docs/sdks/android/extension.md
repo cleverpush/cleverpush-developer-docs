@@ -73,3 +73,9 @@ Also, if you return `true` the notification will not be displayed and remains si
     </intent-filter>
 </service>
 ```
+
+3. When you decide to not let the SDK display the notification and instead display it yourself, you will need to call this method when a Notification has been opened. Otherwise clicks will not be tracked anymore:
+
+```java
+CleverPush.getInstance(this).trackNotificationClicked(notification.getId());
+```
