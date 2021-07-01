@@ -19,7 +19,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.12.1'
+        implementation 'com.cleverpush:cleverpush:1.15.1'
     }
     ```
 
@@ -105,6 +105,8 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
 ```java
 -keep class com.cleverpush.** { *; }
 -keep interface com.cleverpush.** { *; }
+-keep class com.firebase.** { *; }
+-keep class com.google.cleverpush.** { *; }
 ```
 
 ## Custom sounds
