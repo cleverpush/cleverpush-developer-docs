@@ -47,11 +47,36 @@ let isSubscribed = CleverPush.isSubscribed()
 Objective-C:
 
 ```objective-c
+// get available tags
 NSArray* channelTags = [CleverPush getAvailableTags];
 
-[CleverPush addSubscriptionTag:@"TAG_ID"];
+// add/remove tag with action callback
+[CleverPush addSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
+    NSLog(@"%@",tagId);
+}];
 
-[CleverPush removeSubscriptionTag:@"TAG_ID"];
+[CleverPush removeSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
+    NSLog(@"%@",tagId);
+}];
+
+// add/remove multiple tags with action callback
+NSArray *tags = @[@"TAG_ID1", @"TAG_ID2"];
+
+[CleverPush addSubscriptionTags:tags callBack:^(NSArray *addedTags) {
+    NSLog(@"%@",addedTags);
+}];
+    
+[CleverPush removeSubscriptionTags:tags callBack:^(NSArray *remainingTags) {
+    NSLog(@"%@",remainingTags);
+}];
+
+// add/remove tag without action callback
+[CleverPush addSubscriptionTag:@"TAG_ID" callback:nil];
+[CleverPush removeSubscriptionTag:@"TAG_ID" callback:nil];
+
+// add/remove multiple tags without action callback
+[CleverPush addSubscriptionTags:tags callBack:nil];
+[CleverPush removeSubscriptionTags:tags callBack:nil];
 
 BOOL hasTag = [CleverPush hasSubscriptionTag:@"TAG_ID"];
 
@@ -63,11 +88,36 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 Swift:
 
 ```swift
+// get available tags
 let channelTags = CleverPush.getAvailableTags()
 
-CleverPush.addSubscriptionTag("TAG_ID")
+// add/remove tag with action callback
+CleverPush.addSubscriptionTag("TAG_ID", callback: { tagId in
+    print(tagId as Any)
+})
 
-CleverPush.removeSubscriptionTag("TAG_ID")
+CleverPush.removeSubscriptionTag("TAG_ID", callback: { tagId in
+    print(tagId as Any)
+})
+
+// add/remove multiple tags with action callback
+let tags = ["TAG_ID1", "TAG_ID2"];
+
+CleverPush.addSubscriptionTags(tags, callBack: { addedTags in
+    print(addedTags as Any)
+})
+  
+CleverPush.removeSubscriptionTags(tags, callBack: { remainingTags in
+    print(remainingTags as Any)
+})
+
+// add/remove tag without action callback
+CleverPush.addSubscriptionTag("TAG_ID", callback: nil)
+CleverPush.removeSubscriptionTag("TAG_ID", callback: nil)
+
+// add/remove multiple tags without action callback
+CleverPush.addSubscriptionTags(tags, callBack: nil)
+CleverPush.removeSubscriptionTags(tags, callBack: nil)
 
 let hasTag = CleverPush.hasSubscriptionTag("TAG_ID")
 
@@ -288,3 +338,37 @@ import CleverPush
 let chatView = CPChatView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
 self.view.addSubview(chatView)
 ```
+
+## Story
+Objective-C:
+1. Import "CleverPush/CPStoryView.h":
+2. Add the Story View:
+
+```objective-c
+#import <CleverPush/CPStoryView.h>
+
+CPStoryView *storyView = [[CPStoryView alloc] 
+initWithFrame:CGRectMake(0.0, 83.0, self.view.frame.size.width, 125.0)
+                            backgroundColor:[UIColor greenColor]
+                            textColor:[UIColor blackColor]
+                            fontFamily:@"AppleSDGothicNeo-Bold"
+                            borderColor:[UIColor redColor]
+                            storyWidgetId:@"STORY_WIDGET_ID"];
+
+[self.view addSubview:storyView];
+```
+Swift:
+1. import CleverPush
+2. Add the Story View:
+
+```swift
+import CleverPush
+
+let storyView = CPStoryView(frame: CGRect(x: 0.0, y: 83.0, width: self.view.frame.size.width, height: 125.0 ),
+            backgroundColor: UIColor.green,
+            textColor: UIColor.black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: UIColor.red,
+            storyWidgetId: "STORY_WIDGET_ID")!
+
+self.view.addSubview(storyView)
