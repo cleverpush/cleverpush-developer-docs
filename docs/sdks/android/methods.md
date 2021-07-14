@@ -148,9 +148,17 @@ CleverPush.getInstance(this).getAvailableTags(tags -> {
 
 Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
 
-CleverPush.getInstance(this).addSubscriptionTag("tag_id");
+// add single tag
+CleverPush.getInstance(this).addSubscriptionTag("tag_id")
 
-CleverPush.getInstance(this).removeSubscriptionTag("tag_id");
+// add multiple tags
+CleverPush.getInstance(this).addMultipleSubscriptionTags(new  String[] {});
+
+// remove single tag
+CleverPush.getInstance(this).removeSubscriptionTag("tag_id")
+
+// remove multiple tags
+CleverPush.getInstance(this).removeMultipleSubscriptionTags(new  String[] {});
 
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
 ```
@@ -161,8 +169,19 @@ CleverPush.getInstance(this).getAvailableTags({ tags->
                                                // returns Set<ChannelTag>
                                               })
 val subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags()
+
+// add single tag
 CleverPush.getInstance(this).addSubscriptionTag("tag_id")
+
+// add multiple tags
+CleverPush.getInstance(this).addMultipleSubscriptionTags(arrayOf<String>())
+
+// remove single tag
 CleverPush.getInstance(this).removeSubscriptionTag("tag_id")
+
+// remove multiple tags
+CleverPush.getInstance(this).removeMultipleSubscriptionTags(arrayOf<String>())
+
 val hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId())
 ```
 
@@ -172,13 +191,13 @@ The SDK can also automatically assign tags by using the `trackPageView` method. 
 
 Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
 
-```objective-c
+```java
 CleverPush.getInstance(this).trackPageView("https://example.com/sports/article-123123");
 ```
 
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
 
-```objective-c
+```java
 CleverPush.getInstance(this).trackPageView("https://example.com/anything", new HashMap<String, String>() {{
    put("category", "sports");
 }}););
@@ -325,3 +344,33 @@ Add the ChatView inside your Layout XML:
         android:layout_width="match_parent"
         />
 ```
+## Stories
+
+Add xml to your layout
+
+```xml
+
+ <com.cleverpush.stories.StoryView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:background_color="#000"
+        app:border_color="#cA4000"
+        app:fontFamily="CabinSketch-Bold"
+        app:story_view_height="500dp"
+        app:story_view_width="700dp"
+        app:text_color="#fff"
+        app:widget_id="o76hjaysdgohltyil"/>
+
+```
+-  `widget_id` set widget id using this attribute
+
+### Customizations
+
+You can customize the experience of `StoryView` using this attributes:
+
+-  `story_view_height` story view height in dp
+-  `story_view_width` story view width in dp
+-  `border_color` border color
+-  `background_color` story view background color
+-  `text_color` text color
+-  `font_family` text font family
