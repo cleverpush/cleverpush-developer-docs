@@ -51,22 +51,22 @@ Objective-C:
 NSArray* channelTags = [CleverPush getAvailableTags];
 
 // add/remove tag with action callback
-[CleverPush addSubscriptionTag:@"TAG_ID" callBack:^(NSString *tagId) {
+[CleverPush addSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
     NSLog(@"%@",tagId);
 }];
 
-[CleverPush removeSubscriptionTag:@"TAG_ID" callBack:^(NSString *tagId) {
+[CleverPush removeSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
     NSLog(@"%@",tagId);
 }];
 
 // add/remove multiple tags with action callback
 NSArray *tags = @[@"TAG_ID1", @"TAG_ID2"];
 
-[CleverPush addSubscriptionTags:tags callBack:^(NSArray *addedTags) {
+[CleverPush addSubscriptionTags:tags callback:^(NSArray *addedTags) {
     NSLog(@"%@",addedTags);
 }];
     
-[CleverPush removeSubscriptionTags:tags callBack:^(NSArray *remainingTags) {
+[CleverPush removeSubscriptionTags:tags callback:^(NSArray *remainingTags) {
     NSLog(@"%@",remainingTags);
 }];
 
@@ -92,22 +92,22 @@ Swift:
 let channelTags = CleverPush.getAvailableTags()
 
 // add/remove tag with action callback
-CleverPush.addSubscriptionTag("TAG_ID", callBack: { tagId in
+CleverPush.addSubscriptionTag("TAG_ID", callback: { tagId in
     print(tagId as Any)
 })
 
-CleverPush.removeSubscriptionTag("TAG_ID", callBack: { tagId in
+CleverPush.removeSubscriptionTag("TAG_ID", callback: { tagId in
     print(tagId as Any)
 })
 
 // add/remove multiple tags with action callback
 let tags = ["TAG_ID1", "TAG_ID2"];
 
-CleverPush.addSubscriptionTags(tags, callBack: { addedTags in
+CleverPush.addSubscriptionTags(tags, callback: { addedTags in
     print(addedTags as Any)
 })
   
-CleverPush.removeSubscriptionTags(tags, callBack: { remainingTags in
+CleverPush.removeSubscriptionTags(tags, callback: { remainingTags in
     print(remainingTags as Any)
 })
 
