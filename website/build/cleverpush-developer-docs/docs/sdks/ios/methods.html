@@ -93,24 +93,74 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="tags"></a><a href="#tags" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tags</h2>
 <p>Objective-C:</p>
-<pre><code class="hljs css language-objective-c"><span class="hljs-symbol">NSArray</span>* channelTags = [<span class="hljs-symbol">CleverPush</span> getAvailableTags];
+<pre><code class="hljs css language-objective-c">// get available tags
+NSArray* channelTags = [CleverPush getAvailableTags];
 
-[<span class="hljs-symbol">CleverPush</span> addSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+//<span class="hljs-built_in"> add/remove </span>tag with action callback
+[CleverPush addSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span> callback:^(NSString *tagId) {
+    NSLog(@<span class="hljs-string">"%@"</span>,tagId);
+}];
 
-[<span class="hljs-symbol">CleverPush</span> removeSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+[CleverPush removeSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span> callback:^(NSString *tagId) {
+    NSLog(@<span class="hljs-string">"%@"</span>,tagId);
+}];
 
-<span class="hljs-symbol">BOOL</span> hasTag = [<span class="hljs-symbol">CleverPush</span> hasSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+//<span class="hljs-built_in"> add/remove </span>multiple tags with action callback
+NSArray *tags = @[@<span class="hljs-string">"TAG_ID1"</span>, @<span class="hljs-string">"TAG_ID2"</span>];
 
-<span class="hljs-symbol">NSArray</span>* subscriptionTags = [<span class="hljs-symbol">CleverPush</span> getSubscriptionTags];
-<span class="hljs-symbol">NSArray</span>* subscriptionTopics = [<span class="hljs-symbol">CleverPush</span> getSubscriptionTopics];
-[<span class="hljs-symbol">CleverPush</span> setSubscriptionTopics:@{@<span class="hljs-string">"ID_1"</span>, @<span class="hljs-string">"ID_2"</span>}];
+[CleverPush addSubscriptionTags:tags callback:^(NSArray *addedTags) {
+    NSLog(@<span class="hljs-string">"%@"</span>,addedTags);
+}];
+    
+[CleverPush removeSubscriptionTags:tags callback:^(NSArray *remainingTags) {
+    NSLog(@<span class="hljs-string">"%@"</span>,remainingTags);
+}];
+
+//<span class="hljs-built_in"> add/remove </span>tag without action callback
+[CleverPush addSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+[CleverPush removeSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+
+//<span class="hljs-built_in"> add/remove </span>multiple tags without action callback
+[CleverPush addSubscriptionTags:tags];
+[CleverPush removeSubscriptionTags:tags];
+
+BOOL hasTag = [CleverPush hasSubscriptionTag:@<span class="hljs-string">"TAG_ID"</span>];
+
+NSArray* subscriptionTags = [CleverPush getSubscriptionTags];
+NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
+[CleverPush setSubscriptionTopics:@{@<span class="hljs-string">"ID_1"</span>, @<span class="hljs-string">"ID_2"</span>}];
 </code></pre>
 <p>Swift:</p>
-<pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> channelTags = <span class="hljs-type">CleverPush</span>.getAvailableTags()
+<pre><code class="hljs css language-swift"><span class="hljs-comment">// get available tags</span>
+<span class="hljs-keyword">let</span> channelTags = <span class="hljs-type">CleverPush</span>.getAvailableTags()
 
+<span class="hljs-comment">// add/remove tag with action callback</span>
+<span class="hljs-type">CleverPush</span>.addSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>, callback: { tagId <span class="hljs-keyword">in</span>
+    <span class="hljs-built_in">print</span>(tagId <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
+
+<span class="hljs-type">CleverPush</span>.removeSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>, callback: { tagId <span class="hljs-keyword">in</span>
+    <span class="hljs-built_in">print</span>(tagId <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
+
+<span class="hljs-comment">// add/remove multiple tags with action callback</span>
+<span class="hljs-keyword">let</span> tags = [<span class="hljs-string">"TAG_ID1"</span>, <span class="hljs-string">"TAG_ID2"</span>];
+
+<span class="hljs-type">CleverPush</span>.addSubscriptionTags(tags, callback: { addedTags <span class="hljs-keyword">in</span>
+    <span class="hljs-built_in">print</span>(addedTags <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
+  
+<span class="hljs-type">CleverPush</span>.removeSubscriptionTags(tags, callback: { remainingTags <span class="hljs-keyword">in</span>
+    <span class="hljs-built_in">print</span>(remainingTags <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
+
+<span class="hljs-comment">// add/remove tag without action callback</span>
 <span class="hljs-type">CleverPush</span>.addSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
-
 <span class="hljs-type">CleverPush</span>.removeSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
+
+<span class="hljs-comment">// add/remove multiple tags without action callback</span>
+<span class="hljs-type">CleverPush</span>.addSubscriptionTags(tags)
+<span class="hljs-type">CleverPush</span>.removeSubscriptionTags(tags)
 
 <span class="hljs-keyword">let</span> hasTag = <span class="hljs-type">CleverPush</span>.hasSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
 
@@ -254,7 +304,7 @@ CPChatView *chatView = <span class="hljs-literal">[[CPC<span class="hljs-identif
 </code></pre>
 <p>Swift:</p>
 <ol>
-<li>import CleverPush</li>
+<li>Import CleverPush</li>
 <li>Add the Chat View:</li>
 </ol>
 <pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> CleverPush
@@ -262,4 +312,41 @@ CPChatView *chatView = <span class="hljs-literal">[[CPC<span class="hljs-identif
 <span class="hljs-keyword">let</span> chatView = <span class="hljs-type">CPChatView</span>(frame: <span class="hljs-type">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>, width: <span class="hljs-keyword">self</span>.view.frame.size.width, height: <span class="hljs-keyword">self</span>.view.frame.size.height))
 <span class="hljs-keyword">self</span>.view.addSubview(chatView)
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/ios/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#topics">Topics</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
+<h2><a class="anchor" aria-hidden="true" id="stories"></a><a href="#stories" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stories</h2>
+<p>You can also implement CleverPush Stories into your application. For this, please set up a Story Widget in your CleverPush account. You can access stories via generated Widget Id and by following usage guide</p>
+<p>Here is how the Stories will looks like:</p>
+<p><img src="https://user-images.githubusercontent.com/44965555/125643070-36a7fa6c-959f-4c6e-93e1-c73e9ac17886.png" alt="StoryBanner">
+<img src="https://user-images.githubusercontent.com/44965555/125647371-a6d557e4-490e-4111-9276-7bd221e11cad.png" alt="StoryDetails"></p>
+<p>Objective-C:</p>
+<ol>
+<li>Import &quot;CleverPush/CPStoryView.h&quot;:</li>
+<li>Add the Story View:</li>
+</ol>
+<pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CPStoryView.h&gt;</span></span>
+
+CPStoryView *storyView = [[CPStoryView alloc] 
+initWithFrame:<span class="hljs-built_in">CGRectMake</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">83.0</span>, <span class="hljs-keyword">self</span>.view.frame.size.width, <span class="hljs-number">125.0</span>)
+                            backgroundColor:[<span class="hljs-built_in">UIColor</span> greenColor]
+                            textColor:[<span class="hljs-built_in">UIColor</span> blackColor]
+                            fontFamily:<span class="hljs-string">@"AppleSDGothicNeo-Bold"</span>
+                            borderColor:[<span class="hljs-built_in">UIColor</span> redColor]
+                            storyWidgetId:<span class="hljs-string">@"STORY_WIDGET_ID"</span>];
+
+[<span class="hljs-keyword">self</span>.view addSubview:storyView];
+</code></pre>
+<p>Swift:</p>
+<ol>
+<li>Import CleverPush</li>
+<li>Add the Story View:</li>
+</ol>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> CleverPush
+
+<span class="hljs-keyword">let</span> storyView = <span class="hljs-type">CPStoryView</span>(frame: <span class="hljs-type">CGRect</span>(x: <span class="hljs-number">0.0</span>, y: <span class="hljs-number">83.0</span>, width: <span class="hljs-keyword">self</span>.view.frame.size.width, height: <span class="hljs-number">125.0</span> ),
+            backgroundColor: <span class="hljs-type">UIColor</span>.green,
+            textColor: <span class="hljs-type">UIColor</span>.black,
+            fontFamily: <span class="hljs-string">"AppleSDGothicNeo-Bold"</span>,
+            borderColor: <span class="hljs-type">UIColor</span>.red,
+            storyWidgetId: <span class="hljs-string">"STORY_WIDGET_ID"</span>)!
+
+<span class="hljs-keyword">self</span>.view.addSubview(storyView)</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/ios/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#topics">Topics</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li><li><a href="#stories">Stories</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>

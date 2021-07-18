@@ -175,9 +175,17 @@
 
 Set&lt;String&gt; subscribedTagIds = CleverPush.getInstance(<span class="hljs-keyword">this</span>).getSubscriptionTags();
 
-CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTag(<span class="hljs-string">"tag_id"</span>);
+<span class="hljs-comment">// add single tag</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
 
-CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTag(<span class="hljs-string">"tag_id"</span>);
+<span class="hljs-comment">// add multiple tags</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTags(<span class="hljs-keyword">new</span> String[] {<span class="hljs-string">"TAG_ID_1"</span>, <span class="hljs-string">"TAG_ID_2"</span>});
+
+<span class="hljs-comment">// remove single tag</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
+
+<span class="hljs-comment">// remove multiple tags</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTags(<span class="hljs-keyword">new</span> String[] {<span class="hljs-string">"TAG_ID_1"</span>, <span class="hljs-string">"TAG_ID_2"</span>});
 
 <span class="hljs-keyword">boolean</span> hasTag = CleverPush.getInstance(<span class="hljs-keyword">this</span>).hasSubscriptionTag(channelTags.get(<span class="hljs-number">0</span>).getId());
 </code></pre>
@@ -186,17 +194,28 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptio
                                                <span class="hljs-comment">// returns Set&lt;ChannelTag&gt;</span>
                                               })
 <span class="hljs-keyword">val</span> subscribedTagIds = CleverPush.getInstance(<span class="hljs-keyword">this</span>).getSubscriptionTags()
-CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTag(<span class="hljs-string">"tag_id"</span>)
-CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTag(<span class="hljs-string">"tag_id"</span>)
+
+<span class="hljs-comment">// add single tag</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
+
+<span class="hljs-comment">// add multiple tags</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).addSubscriptionTags(arrayOf&lt;String&gt;(<span class="hljs-string">"TAG_ID_1"</span>, <span class="hljs-string">"TAG_ID_2"</span>))
+
+<span class="hljs-comment">// remove single tag</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTag(<span class="hljs-string">"TAG_ID"</span>)
+
+<span class="hljs-comment">// remove multiple tags</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).removeSubscriptionTags(arrayOf&lt;String&gt;(<span class="hljs-string">"TAG_ID_1"</span>, <span class="hljs-string">"TAG_ID_2"</span>))
+
 <span class="hljs-keyword">val</span> hasTag = CleverPush.getInstance(<span class="hljs-keyword">this</span>).hasSubscriptionTag(channelTags.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>).getId())
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="automatic-tag-assignment"></a><a href="#automatic-tag-assignment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Automatic Tag Assignment</h2>
 <p>The SDK can also automatically assign tags by using the <code>trackPageView</code> method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.</p>
 <p>Let's say you have created a tag with the URL pathname regex &quot;/sports&quot;. This would trigger the tag for a subscriber:</p>
-<pre><code class="hljs css language-objective-c"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CleverPush</span>.</span></span>get<span class="hljs-constructor">Instance(<span class="hljs-params">this</span>)</span>.track<span class="hljs-constructor">PageView(<span class="hljs-string">"https://example.com/sports/article-123123"</span>)</span>;
+<pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackPageView(<span class="hljs-string">"https://example.com/sports/article-123123"</span>);
 </code></pre>
 <p>We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: <code>params.category === &quot;sports&quot;</code>. This would then trigger the tag for a subscriber:</p>
-<pre><code class="hljs css language-objective-c"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CleverPush</span>.</span></span>get<span class="hljs-constructor">Instance(<span class="hljs-params">this</span>)</span>.track<span class="hljs-constructor">PageView(<span class="hljs-string">"https://example.com/anything"</span>, <span class="hljs-params">new</span> HashMap&lt;String, String&gt;()</span> {{
+<pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackPageView(<span class="hljs-string">"https://example.com/anything"</span>, <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;() {{
    put(<span class="hljs-string">"category"</span>, <span class="hljs-string">"sports"</span>);
 }}););
 </code></pre>
@@ -299,4 +318,38 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackEvent(<span 
         <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
         /&gt;</span>
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/android/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/android/extension"><span>Notification Extender Service</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#topics">Topics</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
+<h2><a class="anchor" aria-hidden="true" id="stories"></a><a href="#stories" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stories</h2>
+<p>You can also implement CleverPush Stories into your application. For this, please set up a Story Widget in your CleverPush account. You can access stories via generated Widget Id and by following usage guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="story-view"></a><a href="#story-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Story View</h3>
+<p><img src="https://user-images.githubusercontent.com/42137835/125639839-95583410-5d4d-4c39-a1ef-7f3c02833a04.png" alt="Screenshot_1626271406"></p>
+<h3><a class="anchor" aria-hidden="true" id="story-player"></a><a href="#story-player" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Story Player</h3>
+<p><img src="https://user-images.githubusercontent.com/42137835/125640072-5c155112-5a66-4bd9-9c93-055d9b3159f5.png" alt="Screenshot_1626271443"></p>
+<h3><a class="anchor" aria-hidden="true" id="how-to-use"></a><a href="#how-to-use" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to use</h3>
+<p>Add xml to your layout</p>
+<pre><code class="hljs css language-xml">
+ <span class="hljs-tag">&lt;<span class="hljs-name">com.cleverpush.stories.StoryView</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span>
+        <span class="hljs-attr">app:background_color</span>=<span class="hljs-string">"#000"</span>
+        <span class="hljs-attr">app:border_color</span>=<span class="hljs-string">"#cA4000"</span>
+        <span class="hljs-attr">app:fontFamily</span>=<span class="hljs-string">"CabinSketch-Bold"</span>
+        <span class="hljs-attr">app:story_view_height</span>=<span class="hljs-string">"500dp"</span>
+        <span class="hljs-attr">app:story_view_width</span>=<span class="hljs-string">"700dp"</span>
+        <span class="hljs-attr">app:text_color</span>=<span class="hljs-string">"#fff"</span>
+        <span class="hljs-attr">app:widget_id</span>=<span class="hljs-string">"o76hjaysdgohltyil"</span>/&gt;</span>
+
+</code></pre>
+<ul>
+<li><code>widget_id</code> Set the Story Widget ID using this attribute</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="customizations"></a><a href="#customizations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizations</h3>
+<p>You can customize the experience of <code>StoryView</code> using these attributes:</p>
+<ul>
+<li><code>story_view_height</code> story view height in dp</li>
+<li><code>story_view_width</code> story view width in dp</li>
+<li><code>border_color</code> border color</li>
+<li><code>background_color</code> story view background color</li>
+<li><code>text_color</code> text color</li>
+<li><code>font_family</code> text font family</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/android/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/android/extension"><span>Notification Extender Service</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#topics">Topics</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li><li><a href="#stories">Stories</a><ul class="toc-headings"><li><a href="#story-view">Story View</a></li><li><a href="#story-player">Story Player</a></li><li><a href="#how-to-use">How to use</a></li><li><a href="#customizations">Customizations</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
