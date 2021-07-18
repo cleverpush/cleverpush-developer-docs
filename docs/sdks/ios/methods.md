@@ -47,11 +47,36 @@ let isSubscribed = CleverPush.isSubscribed()
 Objective-C:
 
 ```objective-c
+// get available tags
 NSArray* channelTags = [CleverPush getAvailableTags];
 
-[CleverPush addSubscriptionTag:@"TAG_ID"];
+// add/remove tag with action callback
+[CleverPush addSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
+    NSLog(@"%@",tagId);
+}];
 
+[CleverPush removeSubscriptionTag:@"TAG_ID" callback:^(NSString *tagId) {
+    NSLog(@"%@",tagId);
+}];
+
+// add/remove multiple tags with action callback
+NSArray *tags = @[@"TAG_ID1", @"TAG_ID2"];
+
+[CleverPush addSubscriptionTags:tags callback:^(NSArray *addedTags) {
+    NSLog(@"%@",addedTags);
+}];
+    
+[CleverPush removeSubscriptionTags:tags callback:^(NSArray *remainingTags) {
+    NSLog(@"%@",remainingTags);
+}];
+
+// add/remove tag without action callback
+[CleverPush addSubscriptionTag:@"TAG_ID"];
 [CleverPush removeSubscriptionTag:@"TAG_ID"];
+
+// add/remove multiple tags without action callback
+[CleverPush addSubscriptionTags:tags];
+[CleverPush removeSubscriptionTags:tags];
 
 BOOL hasTag = [CleverPush hasSubscriptionTag:@"TAG_ID"];
 
@@ -63,11 +88,36 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 Swift:
 
 ```swift
+// get available tags
 let channelTags = CleverPush.getAvailableTags()
 
-CleverPush.addSubscriptionTag("TAG_ID")
+// add/remove tag with action callback
+CleverPush.addSubscriptionTag("TAG_ID", callback: { tagId in
+    print(tagId as Any)
+})
 
+CleverPush.removeSubscriptionTag("TAG_ID", callback: { tagId in
+    print(tagId as Any)
+})
+
+// add/remove multiple tags with action callback
+let tags = ["TAG_ID1", "TAG_ID2"];
+
+CleverPush.addSubscriptionTags(tags, callback: { addedTags in
+    print(addedTags as Any)
+})
+  
+CleverPush.removeSubscriptionTags(tags, callback: { remainingTags in
+    print(remainingTags as Any)
+})
+
+// add/remove tag without action callback
+CleverPush.addSubscriptionTag("TAG_ID")
 CleverPush.removeSubscriptionTag("TAG_ID")
+
+// add/remove multiple tags without action callback
+CleverPush.addSubscriptionTags(tags)
+CleverPush.removeSubscriptionTags(tags)
 
 let hasTag = CleverPush.hasSubscriptionTag("TAG_ID")
 
@@ -279,7 +329,7 @@ CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.v
 [self.view addSubview:chatView];
 ```
 Swift:
-1. import CleverPush
+1. Import CleverPush
 2. Add the Chat View:
 
 ```swift
@@ -288,3 +338,44 @@ import CleverPush
 let chatView = CPChatView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
 self.view.addSubview(chatView)
 ```
+
+## Stories
+You can also implement CleverPush Stories into your application. For this, please set up a Story Widget in your CleverPush account. You can access stories via generated Widget Id and by following usage guide
+
+Here is how the Stories will looks like:
+
+![StoryBanner](https://user-images.githubusercontent.com/44965555/125643070-36a7fa6c-959f-4c6e-93e1-c73e9ac17886.png)
+![StoryDetails](https://user-images.githubusercontent.com/44965555/125647371-a6d557e4-490e-4111-9276-7bd221e11cad.png)
+
+Objective-C:
+1. Import "CleverPush/CPStoryView.h":
+2. Add the Story View:
+
+```objective-c
+#import <CleverPush/CPStoryView.h>
+
+CPStoryView *storyView = [[CPStoryView alloc] 
+initWithFrame:CGRectMake(0.0, 83.0, self.view.frame.size.width, 125.0)
+                            backgroundColor:[UIColor greenColor]
+                            textColor:[UIColor blackColor]
+                            fontFamily:@"AppleSDGothicNeo-Bold"
+                            borderColor:[UIColor redColor]
+                            storyWidgetId:@"STORY_WIDGET_ID"];
+
+[self.view addSubview:storyView];
+```
+Swift:
+1. Import CleverPush
+2. Add the Story View:
+
+```swift
+import CleverPush
+
+let storyView = CPStoryView(frame: CGRect(x: 0.0, y: 83.0, width: self.view.frame.size.width, height: 125.0 ),
+            backgroundColor: UIColor.green,
+            textColor: UIColor.black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: UIColor.red,
+            storyWidgetId: "STORY_WIDGET_ID")!
+
+self.view.addSubview(storyView)
