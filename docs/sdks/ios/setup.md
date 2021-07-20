@@ -82,7 +82,7 @@ This is required for displaying custom notification contents (e.g. Carousel Noti
 Objective-C:
 
 ```objective-c
-#import <CleverPush/CleverPush.h>
+#import "CleverPush/CleverPush.h"
 
 #import "NotificationService.h"
 
@@ -155,7 +155,7 @@ Objective-C:
 
 ```objective-c
 #import <UIKit/UIKit.h>
-#import <CleverPush/CleverPush.h>
+#import "CleverPush/CleverPush.h"
 
 @interface NotificationViewController : CPNotificationViewController
 
@@ -248,7 +248,7 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 Objective-C:
 
 ```objective-c
-#import <CleverPush/CleverPush.h>
+#import "CleverPush/CleverPush.h"
 
 @implementation AppDelegate
 
