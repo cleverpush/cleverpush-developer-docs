@@ -8,20 +8,20 @@ steps:
   image: node
   pull: if-not-exists
   commands:
-    #- mkdir -p $HOME/.ssh
-    #- ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
-    #- echo "$GITHUB_PRIVATE_KEY > $HOME/.ssh/id_rsa"
-    #- chmod 0600 $HOME/.ssh/id_rsa
+    - mkdir -p $HOME/.ssh
+    - ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
+    - echo "$GITHUB_PRIVATE_KEY > $HOME/.ssh/id_rsa"
+    - chmod 0600 $HOME/.ssh/id_rsa
     - cd website
     - npm i
     - npm run publish-gh-pages-ci
   environment:
-    GIT_USER: $DRONE_COMMIT_AUTHOR
     CURRENT_BRANCH: master
-    GIT_PASS: $DRONE_NETRC_USERNAME
-    # the above is an interal drone implementation detail, so this is hacky
-    #USE_SSH: true
-    #GITHUB_PRIVATE_KEY: git_deploy_private_key
+    USE_SSH: true
+    GIT_USER:
+      from_secret: GH_PAGES_USER
+    GITHUB_PRIVATE_KEY:
+      from_secret: GH_PAGES_PRIVATE_SSH_KEY
   when:
     branch: master
-    #event: push
+    event: push
