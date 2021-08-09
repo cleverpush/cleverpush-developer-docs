@@ -4,6 +4,7 @@
     "start": "docusaurus-start",
     "build": "docusaurus-build",
     "publish-gh-pages": "GIT_USER=gbhrdt CURRENT_BRANCH=master USE_SSH=true docusaurus-publish",
+    "publish-gh-pages-ci": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
