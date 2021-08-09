@@ -18,8 +18,8 @@ steps:
   environment:
     GIT_USER: $DRONE_COMMIT_AUTHOR
     CURRENT_BRANCH: master
-    #USE_SSH: true
+    USE_SSH: true
     #GITHUB_PRIVATE_KEY: git_deploy_private_key
   when:
-    branch:
-    - master
+    branch: master
+    #event: push
