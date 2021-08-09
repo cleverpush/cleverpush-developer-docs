@@ -18,7 +18,9 @@ steps:
   environment:
     GIT_USER: $DRONE_COMMIT_AUTHOR
     CURRENT_BRANCH: master
-    USE_SSH: true
+    GIT_PASS: $DRONE_NETRC_USERNAME
+    # the above is an interal drone implementation detail, so this is hacky
+    #USE_SSH: true
     #GITHUB_PRIVATE_KEY: git_deploy_private_key
   when:
     branch: master
