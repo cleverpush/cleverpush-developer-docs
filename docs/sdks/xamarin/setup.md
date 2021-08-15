@@ -7,7 +7,7 @@ title: Setup
 
 1. Add the CleverPush NuGet Package
     ```bash
-    Install-Package Com.CleverPush -Version 1.1.0
+    Install-Package Com.CleverPush -Version 1.2.0
     ```
 
 

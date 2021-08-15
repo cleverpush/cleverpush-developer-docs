@@ -99,7 +99,7 @@ class MainActivity:Activity() {
 }
 ```
 
-Subscribe/Unsubscribe :
+Subscribe / Unsubscribe:
 
 **JAVA**
 
