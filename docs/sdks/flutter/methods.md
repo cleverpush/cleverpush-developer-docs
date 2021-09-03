@@ -3,58 +3,73 @@ id: methods
 title: Methods
 ---
 
-## Usage
-
+## Basic Usage
+dart:
 ```dart
+
 import 'package:cleverpush_flutter/cleverpush_flutter.dart';
 
-void main() => runApp(new MyApp());
+// init with autoRegister:false to manually subscribe later
+await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", false);
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => new _MyAppState();
-}
+// init with autoRegister:true to automatic subscribe 
 
-class _MyAppState extends State<MyApp> {
-  String _debugLabelString = "";
+await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", true);
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  Future<void> initPlatformState() async {
-    if (!mounted) return;
-
-    CleverPush.shared.setNotificationReceivedHandler((CPNotificationReceivedResult result) {
-      print("Notification received: \n${result.notification.jsonRepresentation()}");
-    });
-
-    CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult result) {
-      print("Notification opened: \n${result.notification.jsonRepresentation()}");
-    });
-
-    CleverPush.shared.setSubscribedHandler((subscriptionId) {
-      print("Subscribed: ${subscriptionId}");
-    });
-
-    await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE");
+// subscribe 
 
     CleverPush.shared.subscribe();
-  }
-  
-  [...]
-}
-```
 
+// unsubscribe 
+    
+    CleverPush.shared.unsubscribe();
 
-Basic features:
+// Get the subscription success callback with subscriptionId 
 
-```dart
+CleverPush.shared.setSubscribedHandler((subscriptionId) {
+      print("Subscribed: ${subscriptionId}");
+});
+
+// Get the subscription status by execute the following code
+
 CleverPush.shared.isSubscribed().then((status) {
   console.log(status);
 });
-CleverPush.shared.subscribe();
-CleverPush.shared.unsubscribe();
 ```
+## Topics
+dart:
+```dart
+var subscriptionTopics = await CleverPush.shared.getSubscriptionTopics();
+
+List<String> topics = ['ID_1', 'ID_2'];
+    CleverPush.shared.setSubscriptionTopics(topics);
+
+// let the user choose his topics
+CleverPush.shared.showTopicsDialog();
+
+// get all the available topics
+var availableTopics = await CleverPush.shared.getAvailableTopics();
+
+```
+Here is how the topics dialog looks like:
+
+![Topics Dialog iOS](https://developers.cleverpush.com/img/topics-dialog-ios.png)
+
+## Notifications
+dart:
+```dart
+// Get the notification callback once you recieve the notification 
+
+CleverPush.shared.setNotificationReceivedHandler((CPNotificationReceivedResult result) {
+      print("Notification received: \n${result.notification.jsonRepresentation()}");
+});
+
+// Get the notification callback once you open the notification
+
+CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult result) {
+      print("Notification opened: \n${result.notification.jsonRepresentation()}");
+});
+
+// Get all the recieved notification
+
+var notifications = await CleverPush.shared.getNotifications();
