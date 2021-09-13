@@ -309,3 +309,28 @@ CleverPush.once(event, callback);
 ```html
 <div class="cleverpush-chat-target"></div>
 ```
+
+
+## Wallet Passes
+
+`generateWalletPass(walletPassId, options, callback)`
+
+This method can generate individual Wallet Pass subscriptions.
+
+Arguments:
+* walletPassId: Die Wallet Pass ID, kann aus dem letzten Teil der URL auf der Pass-Bearbeiten Seite entnommen werden
+* options: Optionally, you can set topics, tags or attributes here.
+* callback: The callback will be called with an error as a first argument and if successful the pass URL as the second argument.
+
+Example:
+```javascript
+CleverPush.generateWalletPass(walletPassId, {
+  customAttributes: {
+    user_id: '123'
+  },
+  tags: ['TAG_ID'],
+  topics: ['TOPIC_ID'],
+}, (error, passUrl) => {
+  location.href = passUrl;
+});
+```
