@@ -163,20 +163,44 @@ Once the `trackPageView` method has been implemented you can set up all the tags
 ## Topics
 Objective-C:
 ```objective-c
+//set the tint color for the topic attributes (save button and switches)
+[CleverPush setNormalTintColor:[UIColor systemPurpleColor]];
+
+//set branding color while you're going to enable highlighting newly added topic
+[CleverPush setBrandingColor:[UIColor systemRedColor]];
+
+// get all the subscription topics
 NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 
+// set multiple subscription topics
 [CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
 
+// get all the available topics
+[CleverPush getAvailableTopics:^(NSArray* channelTopics_) {
+    NSLog(@"CleverPush: Available topics %@", channelTopics_);
+}];
 // let the user choose his topics
 [CleverPush showTopicsDialog];
 ```
 
 Swift:
 ```swift
+//set the tint color for the topic attributes (save button and switches)
+CleverPush.setNormalTintColor(UIColor .systemPurple);
+
+//set branding color while you're going to enable highlighting newly added topic
+CleverPush.setBrandingColor(UIColor .systemRed);
+
+// get all the subscription topics
 let subscriptionTopics = CleverPush.getSubscriptionTopics()
 
+// set multiple subscription topics
 CleverPush.setSubscriptionTopics(["ID_1","ID_2"])
 
+// get all the available topics
+CleverPush.getAvailableTopics { channelTopics_ in
+    print(channelTopics_ as Any)
+}
 // let the user choose his topics
 CleverPush.showTopicsDialog()
 ```
