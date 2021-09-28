@@ -313,6 +313,7 @@ CleverPush.once(event, callback);
 
 ## Wallet Passes
 
+
 `generateWalletPass(walletPassId, options, callback)`
 
 This method can generate individual Wallet Pass subscriptions.
