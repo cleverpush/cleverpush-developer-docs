@@ -275,7 +275,9 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 ## Setup Android
 
-1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
+1. Setup Firebase inside your Android App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
+
+2. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
 
     ```
     android {
@@ -290,7 +292,7 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
    // ...
    ```
   
-2. Comment or remove Expo's FCM listener (if it exists) from `android/app/src/AndroidManifest.xml`:
+3. Comment or remove Expo's FCM listener (if it exists) from `android/app/src/AndroidManifest.xml`:
     ```xml
     <!-- FCM -->
     <service
