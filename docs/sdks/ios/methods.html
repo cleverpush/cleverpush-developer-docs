@@ -63,6 +63,15 @@
     NSLog(@<span class="hljs-string">"Subscribed to CleverPush with ID: %@"</span>, subscriptionId);
 } <span class="hljs-string">autoRegister:</span><span class="hljs-literal">false</span>];
 
+<span class="hljs-comment">//get the locally stored notification.</span>
+NSArray *localNotifications = [CleverPush getNotifications];
+
+<span class="hljs-comment">// get remote notification and local notification based on the boolean argument.</span>
+<span class="hljs-comment">// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.</span>
+[CleverPush <span class="hljs-string">getNotifications:</span>YES <span class="hljs-string">callback:</span>^(NSArray *remoteNotification) {
+    NSLog(@<span class="hljs-string">"%@"</span>, remoteNotification);
+ }];
+
 <span class="hljs-comment">// subscribe</span>
 [CleverPush subscribe]
 
@@ -81,6 +90,15 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 }, handleSubscribed:{ subscriptionId <span class="hljs-keyword">in</span>
     <span class="hljs-built_in">print</span>(<span class="hljs-string">"Subscribed to CleverPush with ID: \(subscriptionId ?? "</span><span class="hljs-string">")"</span>)
 }, autoRegister: <span class="hljs-literal">false</span>)
+
+<span class="hljs-comment">//get the locally stored notification.</span>
+<span class="hljs-keyword">let</span> localNotifications = <span class="hljs-type">CleverPush</span>.getNotifications()
+
+<span class="hljs-comment">// get remote notification and local notification based on the boolean argument.</span>
+<span class="hljs-comment">// - if you pass boolean argument true you will get the list of remote notification else you will get the locally stored notification.</span>
+<span class="hljs-type">CleverPush</span>.getNotifications(<span class="hljs-literal">true</span>, callback: { remoteNotification <span class="hljs-keyword">in</span>
+    <span class="hljs-built_in">print</span>(remoteNotification <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
 
 <span class="hljs-comment">// subscribe</span>
 <span class="hljs-type">CleverPush</span>.subscribe()
