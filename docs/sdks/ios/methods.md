@@ -14,6 +14,15 @@ Objective-C:
     NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
 } autoRegister:false];
 
+//get the locally stored notification.
+NSArray *localNotifications = [CleverPush getNotifications];
+
+// get remote notification and local notification based on the boolean argument.
+// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
+[CleverPush getNotifications:YES callback:^(NSArray *remoteNotification) {
+    NSLog(@"%@", remoteNotification);
+ }];
+
 // subscribe
 [CleverPush subscribe]
 
@@ -33,6 +42,15 @@ CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE
 }, handleSubscribed:{ subscriptionId in
     print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
 }, autoRegister: false)
+
+//get the locally stored notification.
+let localNotifications = CleverPush.getNotifications()
+
+// get remote notification and local notification based on the boolean argument.
+// - if you pass boolean argument true you will get the list of remote notification else you will get the locally stored notification.
+CleverPush.getNotifications(true, callback: { remoteNotification in
+    print(remoteNotification as Any)
+})
 
 // subscribe
 CleverPush.subscribe()
