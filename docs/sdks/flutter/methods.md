@@ -63,3 +63,8 @@ CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult resul
 
 // Get all the recieved notification
 var notifications = await CleverPush.shared.getNotifications();
+
+// get remote notification and local notification based on the boolean argument.
+// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
+ bool combineWithApi = true;
+ var remoteNotifications = await CleverPush.shared.getNotificationsWithApi(combineWithApi);
