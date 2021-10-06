@@ -248,6 +248,10 @@ CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
 **JAVA**
 
 ```java
+CleverPush.getInstance(this).getAvailableTopics(topics -> {
+   // returns Set<ChannelTopic>
+});
+
 Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
 
 CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
@@ -259,6 +263,10 @@ CleverPush.getInstance(this).showTopicsDialog();
 **KOTLIN**
 
 ```kotlin
+CleverPush.getInstance(this).getAvailableTopics({ topics->
+                                             // returns Set<ChannelTopic>
+                                             })
+
 val subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics()
 CleverPush.getInstance(this).setSubscriptionTopics(arrayOf<String>("ID_1", "ID_2"))
 
