@@ -11,15 +11,14 @@ title: Setup
 
 ## Implementation
 
-Please navigate to Channels -> (select channel) in your CleverPush back office.
-There you will find the operation mode setting. Set this option to Own Domain (HTTPS).
-The cleverpush-worker.js file can then be downloaded by clicking the button.
-This file must now be placed in the main directory of your web server. So it should be available at https://your-domain.com/cleverpush-worker.js.Note: If you do not have the option of placing the file in the main directory of your website, you can define your own file paths under the operating mode setting.
-Now only the CleverPush Javascript snippet has to be integrated. The code for this is available in the channel settings in the sidebar under “Implementation”.This can be done in the <head> or in the <body> area of ​​the page.
-Google Tag Manager is also possible (with occasional ad blockers blocking the entire GTM code).
-In the Google Tag Manager, our Javascript code can easily be inserted as a “user-defined HTML tag”.
+1. Please navigate to Channels -> (select channel) -> Web Push in your CleverPush dashboard.
+2. There you will find the operation mode setting. Set this option to Own Domain (HTTPS).
+3. The cleverpush-worker.js file can then be downloaded by clicking the button.
+4. This file must now be placed in the main directory of your web server. So it should be available at https://your-domain.com/cleverpush-worker.js.Note: If 1. you do not have the option of placing the file in the main directory of your website, you can define your own file paths under the operating mode setting.
+5. Now only the CleverPush Javascript snippet has to be integrated. The code for this is available in the channel settings in the sidebar under “Implementation”. This can be done in the <head> or in the <body> area of ​​the page.
+6. Google Tag Manager is also possible (with occasional ad blockers blocking the entire GTM code).
+7. In the Google Tag Manager, our Javascript code can easily be inserted as a “user-defined HTML tag”.
 
- 
 
 ## Troubleshooting – opt-in does not work:
 
@@ -31,6 +30,7 @@ In the Google Tag Manager, our Javascript code can easily be inserted as a “us
 * When using your own file paths:
   * Paths should usually begin with a slash and do not contain any domains or protocols
   * Paths are absolute and not relative
+
 
 ## Using the SDK
 
@@ -48,6 +48,7 @@ Example method call:
 CleverPush = window.CleverPush || [];
 CleverPush.push(['triggerOptIn']);
 ```
+
 
 ## Calling the SDK from iFrames
 
