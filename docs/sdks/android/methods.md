@@ -216,6 +216,33 @@ CleverPush.getInstance(this).trackPageView("https://example.com/anything", new H
 
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
 
+## Automatic View Tracking
+
+The SDK can also automatically track view by using the `autoTrackWebViewPages` and `setWebViewClientListener` methods. 
+
+**autoTrackWebViewPages**
+You just need to add `autoTrackWebViewPages` to your webview clients `doUpdateVisitedHistory` method like below
+
+```java
+new WebViewClient(){
+            @Override
+            public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+                cleverPush.autoTrackWebViewPages(url);
+                super.doUpdateVisitedHistory(view, url, isReload);
+            }
+        }
+```
+
+**setWebViewClientListener**
+
+You can set a `setWebViewClientListener` it will do Automatic View Tracking and you will get all the callback of WebViewClient in Listener : 
+
+```java
+cleverPush.setWebViewClientListner(webView, new WebViewClientListener() {
+   ...
+}
+```
+
 ## Attributes
 
 **JAVA**
