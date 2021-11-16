@@ -342,6 +342,24 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 CleverPush.getInstance(this).getNotifications(true) { }
 ```
 
+## Notification Styles
+
+CleverPush automatically chooses the fitting Notification Style for you (e.g. [BigImageStyle](https://developer.android.com/reference/android/app/Notification.BigImageStyle) or [BigTextStyle](https://developer.android.com/reference/android/app/Notification.BigTextStyle)).
+We also provide a way that you can choose the displayed Notification style:
+
+**JAVA**
+
+```java
+// Available Notification styles:
+CleverPush.NotificationStyle.AUTO // default style
+CleverPush.NotificationStyle.BIG_TEXT // big text style
+CleverPush.NotificationStyle.BIG_PICTURE // big picture style
+CleverPush.NotificationStyle.TEXT_WITH_IMAGE // custom style with big image and text in expanded view
+
+CleverPush.getInstance(this).setNotificationStyle(CleverPush.NotificationStyle.AUTO);
+```
+
+
 ## App Banners
 
 (Available from version 1.8.0)
