@@ -22,8 +22,8 @@ CleverPush.push(['triggerOptIn', function(err, subscriptionId) {
     }
 }]);
 
-// set the second parameter to 'true' to skip the opt-in timeout:
-
+// Set the second parameter to 'true' to skip the opt-in timeout.
+// It will also show the opt-in if the user has previously denied or unsubscribed.
 CleverPush.push(['triggerOptIn', true, ...]);
 ```
 
