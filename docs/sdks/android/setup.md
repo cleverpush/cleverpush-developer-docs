@@ -107,6 +107,7 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
 -keep interface com.cleverpush.** { *; }
 -keep class com.firebase.** { *; }
 -keep class com.google.firebase.** { *; }
+-keep class com.google.gson.internal.LinkedTreeMap { *; }
 ```
 
 ## Custom sounds
