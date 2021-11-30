@@ -17,7 +17,8 @@
       "sdks/android/upgrading"
     ],
     "Cordova SDK": [
-      "sdks/cordova/setup",
+      "sdks/cordova/capacitor_setup",
+      "sdks/cordova/cordova_setup",
       "sdks/cordova/methods"
     ],
     "React Native SDK": [
