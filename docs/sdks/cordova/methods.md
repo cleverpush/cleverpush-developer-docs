@@ -3,7 +3,9 @@ id: methods
 title: Methods
 ---
 
-## Usage
+# Usage
+
+## Cordova
 
 Add the initialization code to your `index.js` file
 
@@ -27,7 +29,9 @@ document.addEventListener('deviceready', function () {
 
 Be sure to replace `INSERT_YOUR_CHANNEL_ID` with your CleverPush channel ID (can be found in the channel settings).
 
-If you are using Ionic, you can use platform.ready() instead of deviceready like this:
+## Capacitor
+
+Add the initialization code like this:
 
 ```javascript
 import { Component } from '@angular/core';
@@ -47,6 +51,17 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
     // ...
+      window['plugins'].CleverPush.setNotificationReceivedListener(function(data) {
+        console.log('CleverPush notification received:', JSON.stringify(data));
+      });
+
+      window['plugins'].CleverPush.setNotificationOpenedListener(function(data) {
+        console.log('CleverPush notification opened:', JSON.stringify(data));
+      });
+    
+      window['plugins'].CleverPush.setSubscribedListener(function(subscriptionId) {
+        console.log('CleverPush subscriptionId:', subscriptionId);
+      });
 
       window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID");
     });

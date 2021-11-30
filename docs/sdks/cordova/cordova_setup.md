@@ -1,6 +1,6 @@
 ---
-id: setup
-title: Setup
+id: cordova_setup
+title: Cordova Setup
 ---
 
 ## Intallation
