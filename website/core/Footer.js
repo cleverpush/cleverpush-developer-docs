@@ -37,8 +37,11 @@ class Footer extends React.Component {
             <a href="/docs/sdks/android/setup">
               Android
             </a>
-            <a href="/docs/sdks/cordova/setup">
+            <a href="/docs/sdks/cordova/cordova_setup">
               Cordova
+            </a>
+            <a href="/docs/sdks/cordova/capacitor_setup">
+              Capacitor
             </a>
             <a href="/docs/sdks/react-native/setup">
               React Native
