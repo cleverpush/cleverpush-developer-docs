@@ -256,7 +256,7 @@ Example:
 
 ```js
 var showPushOptIn = function() {
-    document.getElementById('#cleverpush-button').style.display = 'block';
+    document.getElementById('cleverpush-button').style.display = 'block';
 }
 
 if (!window.CleverPush || !window.CleverPush.initialized) {
