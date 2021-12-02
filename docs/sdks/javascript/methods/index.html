@@ -203,7 +203,7 @@ This is very useful if you want to check if the current browser support Web Push
 <p>Always make sure to insert this BEFORE your personal CleverPush loader code (<code>&lt;script src=&quot;https://static.cleverpush.com/channel/loader/XXXXXX.js&quot; async&gt;&lt;/script&gt;</code>). If this is not possible, you need to check, if CleverPush was already initialized (see the code below).</p>
 <p>Example:</p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> showPushOptIn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'#cleverpush-button'</span>).style.display = <span class="hljs-string">'block'</span>;
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'cleverpush-button'</span>).style.display = <span class="hljs-string">'block'</span>;
 }
 
 <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">window</span>.CleverPush || !<span class="hljs-built_in">window</span>.CleverPush.initialized) {
