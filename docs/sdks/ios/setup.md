@@ -340,21 +340,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-**9. Create your iOS push certificate**
+**9. Create your iOS Auth Key certificate**
 
-1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
-2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
-3. Select the "Save to disk" option and enter any information in the required fields
-4. Go to the [Apple developer portal](https://developer.apple.com/account/ios/identifier/bundle), select your app and press "Edit"
-5. Enable "Push notifications" and press "Done"
-6. Go to the [Create new certificate page](https://developer.apple.com/account/ios/certificate/create), select "Apple Push Notification service SSL" and press "Continue"
-7. Select your Application Bundle ID and press "Continue"
-8. Press "Choose File...", select the previously generated "certSigningRequest" file and then press "Generate"
-9. Press "Download" and save your certificate
-10. Click on the downloaded .cer file, Keychain Access should open
-11. Select Login > My Certificates then right click on your key and click "Export (Apple Production iOS Push Services: com.your.bundle)..."
-12. Give the file a unique name and press save, be sure to leave the password field blank!
-13. Upload your certificate in the CleverPush channel settings
+See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-ios-apns-auth-key)**
 
 **10. Add AppGroup (optional but recommended)**
 
@@ -405,7 +393,9 @@ Swift:
 ```swift
 CleverPush.incrementBadge = true
 ```
-**How to Create an iOS APNs Auth Key**
+
+
+## How to Create an iOS APNS Auth Key
 
 If you’d like to send push notifications to your iOS users, you will need to upload either an APNs Push Certificate, or an APNs Auth Key.
 
