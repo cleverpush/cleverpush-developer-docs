@@ -346,22 +346,8 @@ end
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 }
 </code></pre>
-<p><strong>9. Create your iOS push certificate</strong></p>
-<ol>
-<li>Open Keychain Access on your Mac. (Application &gt; Utilities &gt; Keychain Access).</li>
-<li>Select Keychain Access &gt; Certificate Assistant &gt; Request a Certificate From a Certificate Authority...</li>
-<li>Select the &quot;Save to disk&quot; option and enter any information in the required fields</li>
-<li>Go to the <a href="https://developer.apple.com/account/ios/identifier/bundle">Apple developer portal</a>, select your app and press &quot;Edit&quot;</li>
-<li>Enable &quot;Push notifications&quot; and press &quot;Done&quot;</li>
-<li>Go to the <a href="https://developer.apple.com/account/ios/certificate/create">Create new certificate page</a>, select &quot;Apple Push Notification service SSL&quot; and press &quot;Continue&quot;</li>
-<li>Select your Application Bundle ID and press &quot;Continue&quot;</li>
-<li>Press &quot;Choose File...&quot;, select the previously generated &quot;certSigningRequest&quot; file and then press &quot;Generate&quot;</li>
-<li>Press &quot;Download&quot; and save your certificate</li>
-<li>Click on the downloaded .cer file, Keychain Access should open</li>
-<li>Select Login &gt; My Certificates then right click on your key and click &quot;Export (Apple Production iOS Push Services: com.your.bundle)...&quot;</li>
-<li>Give the file a unique name and press save, be sure to leave the password field blank!</li>
-<li>Upload your certificate in the CleverPush channel settings</li>
-</ol>
+<p><strong>9. Create your iOS Auth Key certificate</strong></p>
+<p>See the section below: <strong><a href="#how-to-create-an-ios-apns-auth-key">How to Create an iOS APNS Auth Key</a></strong></p>
 <p><strong>10. Add AppGroup (optional but recommended)</strong></p>
 <p>This is required for getting the received notifications via the <code>getNotifications</code> method and also for automatic Badge Counting (i.e. when using <code>setIncrementBadge(true)</code>).</p>
 <ol>
@@ -396,7 +382,7 @@ For this to work, please set up the <strong>App Group</strong> like described in
 <p>Swift:</p>
 <pre><code class="hljs css language-swift"><span class="hljs-type">CleverPush</span>.incrementBadge = <span class="hljs-literal">true</span>
 </code></pre>
-<p><strong>How to Create an iOS APNs Auth Key</strong></p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-create-an-ios-apns-auth-key"></a><a href="#how-to-create-an-ios-apns-auth-key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Create an iOS APNS Auth Key</h2>
 <p>If you’d like to send push notifications to your iOS users, you will need to upload either an APNs Push Certificate, or an APNs Auth Key.</p>
 <p>We recommend that you create and upload an APNs Auth Key for the following reasons:</p>
 <p>No need to re-generate the push certificate every year</p>
@@ -426,4 +412,4 @@ To create an APNs auth key, follow the steps below.</li>
 <p>Paste the APNs Key ID which you have downloaded earlier, and paste your Team ID and your app’s bundle ID. Your app’s bundle ID can be found in Xcode.</p>
 <p>Also, Mention Store ID if your application is in production mode.</p>
 <p><img src="https://user-images.githubusercontent.com/44965555/144594306-3dbdf598-87a4-45b7-9457-6103a78c84cf.png" alt=""></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/javascript/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/docs/sdks/ios/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#custom-sounds">Custom sounds</a></li><li><a href="#badge-counts">Badge Counts</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/javascript/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/docs/sdks/ios/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#custom-sounds">Custom sounds</a></li><li><a href="#badge-counts">Badge Counts</a></li><li><a href="#how-to-create-an-ios-apns-auth-key">How to Create an iOS APNS Auth Key</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
