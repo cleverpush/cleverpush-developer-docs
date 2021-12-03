@@ -405,3 +405,55 @@ Swift:
 ```swift
 CleverPush.incrementBadge = true
 ```
+**How to Create an iOS APNs Auth Key**
+
+If you’d like to send push notifications to your iOS users, you will need to upload either an APNs Push Certificate, or an APNs Auth Key.
+
+We recommend that you create and upload an APNs Auth Key for the following reasons:
+
+No need to re-generate the push certificate every year
+
+One auth key can be used for all your apps – this avoids the complication of maintaining different certificates
+
+When sending push notifications using an APNs Auth Key, we require the following information about your app:
+
+- Auth Key file
+- Team ID
+- Your app’s bundle ID
+To create an APNs auth key, follow the steps below.
+
+Visit the [Apple developer portal](https://developer.apple.com/)
+
+![](https://user-images.githubusercontent.com/44965555/144593675-0f951c98-26a8-4899-817d-b2c8f849b529.png)
+
+Click on “Certificates, Identifiers & Profiles”.
+
+Go to Keys from the Left Menu.
+
+Create a new Auth Key by clicking on the “+” button beside the **Key**.
+
+![](https://user-images.githubusercontent.com/44965555/144594043-5939225c-484b-4c2c-a45b-ac9b33142d4a.png)
+
+On the following page, add a Key Name, and select APNs Hit the Continue button.
+
+![](https://user-images.githubusercontent.com/44965555/144594074-53f0bd00-6501-4edb-9eab-f289bad54eb6.png)  
+
+and save the APNs Key And download.
+
+![](https://user-images.githubusercontent.com/44965555/144594257-18a5c2c9-dcb8-4346-b176-477d08509f6d.png)
+
+On this page, you will be able to download your auth key file. Please do not rename this file, and upload it as it is to our dashboard, as shown later below.
+
+![](https://user-images.githubusercontent.com/44965555/144594154-af36cbe3-fe98-4d6d-bfe6-0346581c712b.png)
+
+Locate and copy your Team ID – click on your name/company name at the top right corner, then select “View Account”.
+
+![](https://user-images.githubusercontent.com/44965555/144594278-6b27143f-67af-4d30-9edc-65825f00d219.png)
+
+Copy your Team ID, and head over to the CleverPush dashboard, and navigate to Channels ->Select your channel -> App Push -> iOS 
+
+Paste the APNs Key ID which you have downloaded earlier, and paste your Team ID and your app’s bundle ID. Your app’s bundle ID can be found in Xcode.
+
+Also, Mention Store ID if your application is in production mode.
+
+![](https://user-images.githubusercontent.com/44965555/144594306-3dbdf598-87a4-45b7-9457-6103a78c84cf.png)
