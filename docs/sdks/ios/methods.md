@@ -270,6 +270,16 @@ let notifications = CleverPush.getNotifications()
 ```
 
 
+## Remove Notification
+You can remove notification stored locally using Notification ID
+Swift:
+```swift
+CleverPush.removeNotification("notification_Id")
+```
+Objective-C:
+```objective-c
+[CleverPush removeNotification:@"notification_Id"];
+```
 
 
 ## App Banners
