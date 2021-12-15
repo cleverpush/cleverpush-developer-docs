@@ -342,6 +342,23 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 CleverPush.getInstance(this).getNotifications(true) { }
 ```
 
+## Remove Notification
+
+You can remove notification stored locally using Notification ID
+
+**JAVA**
+
+```java
+
+CleverPush.getInstance(this).removeNotification("Notification ID");
+```
+
+**KOTLIN**
+
+```kotlin
+
+CleverPush.getInstance(this).removeNotification("Notification ID")
+```
 ## Notification Styles
 
 CleverPush automatically chooses the fitting Notification Style for you (e.g. [BigImageStyle](https://developer.android.com/reference/android/app/Notification.BigImageStyle) or [BigTextStyle](https://developer.android.com/reference/android/app/Notification.BigTextStyle)).
