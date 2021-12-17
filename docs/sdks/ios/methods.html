@@ -398,5 +398,60 @@ initWithFrame:<span class="hljs-built_in">CGRectMake</span>(<span class="hljs-nu
             borderColor: <span class="hljs-type">UIColor</span>.red,
             storyWidgetId: <span class="hljs-string">"STORY_WIDGET_ID"</span>)!
 
-<span class="hljs-keyword">self</span>.view.addSubview(storyView)</code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/ios/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#topics">Topics</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#remove-notification">Remove Notification</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li><li><a href="#stories">Stories</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
+<span class="hljs-keyword">self</span>.view.addSubview(storyView)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="inbox-view"></a><a href="#inbox-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inbox View</h2>
+<p>You can also implement CleverPush InboxView into your application. Inbox View will come up with the package of the all the notification you have recieved with the CleverPush. To use the InboxView you will need to use the sample code as described below.</p>
+<p>Objective-C:</p>
+<ol>
+<li>Import &quot;CleverPush/CPInboxView.h&quot;:</li>
+<li>Add the inbox view:</li>
+</ol>
+<pre><code class="hljs css language-objective-c">#import &lt;CleverPush/<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CPInboxView</span>.</span></span>h&gt;
+
+CPInboxView *inboxView = <span class="hljs-literal">[[CPI<span class="hljs-identifier">nboxView</span> <span class="hljs-identifier">alloc</span>]</span>initWithFrame:<span class="hljs-constructor">CGRectMake(0, 0, <span class="hljs-params">self</span>.<span class="hljs-params">view</span>.<span class="hljs-params">frame</span>.<span class="hljs-params">size</span>.<span class="hljs-params">width</span>, <span class="hljs-params">self</span>.<span class="hljs-params">view</span>.<span class="hljs-params">frame</span>.<span class="hljs-params">size</span>.<span class="hljs-params">height</span>)</span>
+                                              combine_with_api:YES
+                                                    read_color:<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">UIColor</span>.</span></span>whiteColor
+                                                  unread_color:<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">UIColor</span>.</span></span>lightGrayColor
+                                       notification_text_color:<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">UIColor</span>.</span></span>blackColor
+                                 notification_text_font_family:@<span class="hljs-string">"AppleSDGothicNeo-Reguler"</span>
+                                        notification_text_size:<span class="hljs-number">17</span>
+                                               date_text_color:<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">UIColor</span>.</span></span>blackColor
+                                         date_text_font_family:@<span class="hljs-string">"AppleSDGothicNeo-Reguler"</span>
+                                                date_text_size:<span class="hljs-number">12</span>
+                                                divider_colour:<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">UIColor</span>.</span></span>blackColor];
+    <span class="hljs-literal">[<span class="hljs-identifier">self</span>.<span class="hljs-identifier">view</span> <span class="hljs-identifier">addSubview</span>:<span class="hljs-identifier">inboxView</span>]</span>;
+</code></pre>
+<p>Swift:</p>
+<ol>
+<li>Import CleverPush</li>
+<li>Add the inbox view:</li>
+</ol>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> CleverPush
+
+        <span class="hljs-keyword">let</span> inboxView = <span class="hljs-type">CPInboxView</span>(frame: <span class="hljs-type">CGRect</span>(x: <span class="hljs-number">0.0</span>, y: <span class="hljs-number">0</span>, width: <span class="hljs-keyword">self</span>.view.frame.size.width, height: <span class="hljs-keyword">self</span>.view.frame.height ),
+                                    combine_with_api: <span class="hljs-literal">true</span>,
+                                    read_color: <span class="hljs-type">UIColor</span>.white,
+                                    unread_color: <span class="hljs-type">UIColor</span>.lightGray,
+                                    notification_text_color: <span class="hljs-type">UIColor</span>.black,
+                                    notification_text_font_family: <span class="hljs-string">"AppleSDGothicNeo-Reguler"</span>,
+                                    notification_text_size: <span class="hljs-number">17</span>,
+                                    date_text_color: <span class="hljs-type">UIColor</span>.black,
+                                    date_text_font_family: <span class="hljs-string">"AppleSDGothicNeo-Bold"</span>,
+                                    date_text_size: <span class="hljs-number">12</span>,
+                                    divider_colour: <span class="hljs-type">UIColor</span>.black)
+
+<span class="hljs-keyword">self</span>.view.addSubview(inboxView!)
+</code></pre>
+<p>and you can get the call back events when you tapped on the any of the index from the list.</p>
+<pre><code class="hljs css language-objective-c">[<span class="hljs-name">inboxView</span> notificationClickCallback:^(<span class="hljs-name">CPNotification</span> *result) {
+        NSLog(<span class="hljs-name">@</span><span class="hljs-string">"%@"</span>, result)<span class="hljs-comment">;</span>
+ }]<span class="hljs-comment">;</span>
+</code></pre>
+<pre><code class="hljs css language-swift">inboxView?.notificationClickCallback({ result <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(result <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
+})
+</code></pre>
+<p>Here is how the InboxView will looks.</p>
+<p><img src="https://user-images.githubusercontent.com/44965555/146535126-f41e22b2-a1aa-4466-a546-3b4157bd13f9.png" alt="SS"></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/setup"><span class="arrow-prev">← </span><span>Setup</span></a><a class="docs-next button" href="/docs/sdks/ios/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basic-usage">Basic Usage</a></li><li><a href="#tags">Tags</a></li><li><a href="#automatic-tag-assignment">Automatic Tag Assignment</a></li><li><a href="#topics">Topics</a></li><li><a href="#attributes">Attributes</a></li><li><a href="#received-notifications">Received Notifications</a></li><li><a href="#remove-notification">Remove Notification</a></li><li><a href="#app-banners">App Banners</a></li><li><a href="#event-tracking">Event Tracking</a></li><li><a href="#tracking-consent">Tracking Consent</a></li><li><a href="#chat">Chat</a></li><li><a href="#stories">Stories</a></li><li><a href="#inbox-view">Inbox View</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2021 CleverPush</section></footer></div></body></html>
