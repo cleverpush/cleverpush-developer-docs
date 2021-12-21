@@ -265,7 +265,9 @@ NSArray* notifications = [CleverPush getNotifications];
 
 Swift:
 ```swift
-let notifications = CleverPush.getNotifications()
+let notifications = CleverPush.getNotifications() as? [CPNotification]
+print(notifications as Any)
+print(notifications?[0].id as String)
 
 ```
 
