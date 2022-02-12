@@ -447,6 +447,21 @@ Step 2: Call this when the user gave his consent (needs to be called on every la
 CleverPush.getInstance(this).setTrackingConsent(true);
 ```
 
+## Geo Fencing
+
+For using Geo Fencing you need to request the location permission from the user.
+
+```java
+CleverPush.getInstance(this).requestLocationPermission();
+```
+
+You can also check at any time if the user has already granted the permission:
+
+```java
+boolean hasPermission = CleverPush.getInstance(this).hasLocationPermission();
+```
+
+
 ## Chat
 
 Add the ChatView inside your Layout XML:

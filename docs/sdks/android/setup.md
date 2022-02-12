@@ -7,10 +7,10 @@ title: Setup
 
 **Prerequisite**
 
-1. Add Firebase to your Android project.[ official docs](https://firebase.google.com/docs/android/setup) 
-2. Get your  [FCM Sender ID & FCM Server API Key](https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key).
+1. Add Firebase to your Android project. [official docs](https://firebase.google.com/docs/android/setup) 
+2. Get your [FCM Sender ID & FCM Server API Key](https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key).
 3. [Login/Register](https://cleverpush.com/en/) on CleverPush
-4. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Advanced settings` > `Channel ID`  in the CleverPush Developer console.
+4. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Implementation` > `Channel ID`  in the CleverPush Developer console.
 
 **SDK Setup**
 
@@ -19,11 +19,11 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.18.12'
+        implementation 'com.cleverpush:cleverpush:1.19.9'
     }
     ```
 
-2. In the `onCreate` method of your Main activity, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
+2. In the `onCreate` method of your Main activity or Application, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
 
 	**JAVA**
 	```java
@@ -89,7 +89,7 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
     apply plugin: "com.huawei.agconnect"
     ```
 
-6. If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17
+6. If your App has a minSdkVersion lower than 17, please set your minSdkVersion to at least 17.
 
 7. Copy the agconnect-services.json file from the Huawei Developer Console inside your project's app directory.
 
