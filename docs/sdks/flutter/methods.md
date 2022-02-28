@@ -29,6 +29,7 @@ CleverPush.shared.isSubscribed().then((status) {
   console.log(status);
 });
 ```
+
 ## Topics
 ```dart
 // get all the subscription topics
@@ -36,7 +37,7 @@ var subscriptionTopics = await CleverPush.shared.getSubscriptionTopics();
 
 // set multiple subscription topics
 List<String> topics = ['ID_1', 'ID_2'];
-    CleverPush.shared.setSubscriptionTopics(topics);
+CleverPush.shared.setSubscriptionTopics(topics);
 
 // let the user choose his topics
 CleverPush.shared.showTopicsDialog();
@@ -47,6 +48,32 @@ var availableTopics = await CleverPush.shared.getAvailableTopics();
 Here is how the topics dialog looks like:
 
 ![Topics Dialog iOS](https://developers.cleverpush.com/img/topics-dialog-ios.png)
+
+## Tags
+```dart
+// get all the subscription tags
+var subscriptionTags = await CleverPush.shared.getSubscriptionTags();
+
+// add or remove tags by their ID
+CleverPush.shared.addSubscriptionTag('TAG_ID');
+CleverPush.shared.removeSubscriptionTag('TAG_ID');
+
+// get all the available tags
+var availableTags = await CleverPush.shared.getAvailableTags();
+```
+
+## Attributes
+```dart
+// get all the subscription attributes
+var subscriptionAttributes = await CleverPush.shared.getSubscriptionAttributes();
+
+// set attribute values by their ID
+CleverPush.shared.setSubscriptionAttribute('ATTRIBUTE_ID', 'ATTRIBUTE_VALUE');
+var attributeValue = await CleverPush.shared.getSubscriptionAttribute('ATTRIBUTE_ID');
+
+// get all the available attributes
+var availableAttributes = await CleverPush.shared.getAvailableAttributes();
+```
 
 ## Notifications
 

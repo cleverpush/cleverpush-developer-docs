@@ -233,7 +233,9 @@ Here is how the topics dialog looks like:
 ## Attributes
 Objective-C:
 ```objective-c
-NSDictionary* customAttributes = [CleverPush getAvailableAttributes];
+[CleverPush getAvailableAttributes^(NSDictionary* availableAttributes) {
+    NSLog(@"CleverPush: Available attributes %@", availableAttributes);
+}];
 
 NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
 
@@ -244,11 +246,13 @@ NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
 
 Swift:
 ```swift
-let customAttributes = CleverPush.getAvailableAttributes()
-
-NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
+CleverPush.getAvailableAttributes { availableAttributes in
+    print(availableAttributes as Any)
+}
 
 let subscriptionAttributes = CleverPush.getSubscriptionAttributes()
+
+CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
 
 let attribute = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 ```
