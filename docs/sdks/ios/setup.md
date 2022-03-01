@@ -20,7 +20,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.16.1'
+pod 'CleverPush', '~> 1.16.2'
 ```
 
 Manual Installation** (not needed if you use CocoaPods):
@@ -392,6 +392,22 @@ Objective-C:
 Swift:
 ```swift
 CleverPush.incrementBadge = true
+```
+
+## Notification permission
+
+By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
+Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
+The SDK then also automatically subscribes all users, no matter if they accepted or denied the permission prompt.
+
+Objective-C:
+```objective-c
+[CleverPush setIgnoreDisabledNotificationPermission:YES];
+```
+
+Swift:
+```swift
+CleverPush.setIgnoreDisabledNotificationPermission(true)
 ```
 
 

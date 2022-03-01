@@ -19,7 +19,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.19.9'
+        implementation 'com.cleverpush:cleverpush:1.20.1'
     }
     ```
 
@@ -152,4 +152,13 @@ CleverPush.getInstance(this).setIncrementBadge(false);
 **KOTLIN**
 ```kotlin
 CleverPush.getInstance(this).setIncrementBadge(false)
+```
+
+## Notification permission
+
+By default, the SDK automatically unsubscribes users who have revoked their notification permission in the Android settings.
+Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
+
+```java
+CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true);
 ```
