@@ -30,6 +30,13 @@ CleverPush.shared.isSubscribed().then((status) {
 });
 ```
 
+### Hide Foreground Notifications (Android)
+
+```dart
+CleverPush.shared.setShowNotificationsInForeground(false);
+```
+
+
 ## Topics
 ```dart
 // get all the subscription topics
