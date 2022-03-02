@@ -20,3 +20,8 @@ In the project navigator, select the top-level project directory and select the 
 
 This is due to iOS automatically clearing all notifications when our SDK reset the badge count to zero. This behaviour can be changed.
 Please refer to the **Badge Counts** section on the **Methods** page for further instructions.
+
+
+## Notifications not received while developing
+
+In some cases it is needed to mark your subscriptions as "Sandbox mode" subscriptions in the CleverPush dashboard (Channels -> App Push -> Subscriptions -> Click on your subscription -> Mark as APNS Sandbox mode).
