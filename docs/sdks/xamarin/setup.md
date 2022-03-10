@@ -5,9 +5,9 @@ title: Setup
 
 ### Installation
 
-1. Add the CleverPush NuGet Package
+1. Add the `Com.CleverPush` NuGet Package
     ```bash
-    Install-Package Com.CleverPush -Version 1.2.1
+    Install-Package Com.CleverPush -Version 1.3.0
     ```
 
 
@@ -27,9 +27,10 @@ title: Setup
 
     1. Right click on the project in the navigator on the left, then select Add -> `Add New Project`.
     2. Select `iOS` -> `Extension` -> `Notification Service Extension`.
-    3. Right click on new Project’s References then select Edit References.
-    4. Add the `CleverPush` nuget.
-    5. Replace the `NotificationService.cs` file with the following contents:
+    3. Open the new Project's Options. Under `iOS Build` set `Linker behaviour` to `Link all` (for Debug and Release configuration)
+    4. Right click on new Project’s References then select Edit References.
+    5. Add the `CleverPush` NuGet.
+    6. Replace the `NotificationService.cs` file with the following contents:
 
       ```csharp
       using System;
@@ -114,20 +115,16 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 ### Setup Android
 
-1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
-
-    ```groovy
-    android {
-   compileSdkVersion 27
-   buildToolsVersion '27.0.3'
-    
-   compileOptions {
-     sourceCompatibility JavaVersion.VERSION_1_8
-     targetCompatibility JavaVersion.VERSION_1_8
-   }
-    
-   ...
+1. Add these additional NuGet packages:
    ```
+   GoogleGson
+   Xamarin.Firebase.Messaging
+   Xamarin.GooglePlayServices.Base
+   Xamarin.Google.Dagger
+   ```
+
+2. Set the minimum Android Version to API level 27
+3. Add the google-services.json file which can be downloded from the Firebase console like described here: https://docs.microsoft.com/en-us/xamarin/android/data-cloud/google-messaging/remote-notifications-with-fcm?tabs=macos#add-googleplayservices-json
 
 
 ### Setup Huawei on Android
