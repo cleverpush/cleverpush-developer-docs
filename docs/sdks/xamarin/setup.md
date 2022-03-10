@@ -25,54 +25,39 @@ title: Setup
 
     This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
 
-    1. Select `File` > `New` > `Target` in Xcode
-    2. Choose `Notification Service Extension` and press `Next`
-    3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
-    4. Press `Activate` on the next prompt
-    5. Add the following at the bottom of your Podfile
+    1. Right click on the project in the navigator on the left, then select Add -> `Add New Project`.
+    2. Select `iOS` -> `Extension` -> `Notification Service Extension`.
+    3. Right click on new Project’s References then select Edit References.
+    4. Add the `CleverPush` nuget.
+    5. Replace the `NotificationService.cs` file with the following contents:
 
-        ```bash
-        target 'CleverPushNotificationServiceExtension' do
+      ```csharp
+      [Register("NotificationService")]
+          public class NotificationService : UNNotificationServiceExtension
+          {
+              Action<UNNotificationContent> ContentHandler { get; set; }
+              UNMutableNotificationContent BestAttemptContent { get; set; }
+              UNNotificationRequest Request { get; set; }
 
-            pod 'CleverPush'
+              protected NotificationService(IntPtr handle) : base(handle)
+              {
+              }
 
-        end
-        ```
-    6. Run `pod install`
-    7. Open `NotificationService.m` and replace the whole content with the following:
+              public override void DidReceiveNotificationRequest(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
+              {
+                  Request = request;
+                  ContentHandler = contentHandler;
+                  BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
+                  CleverPush.DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
+                  ContentHandler(BestAttemptContent);
+              }
 
-        ```objective-c
-        #import <CleverPush/CleverPush.h>
-
-        #import "NotificationService.h"
-
-        @interface NotificationService ()
-
-        @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-        @property (nonatomic, strong) UNNotificationRequest *receivedRequest;
-        @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
-
-        @end
-
-        @implementation NotificationService
-
-        - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
-            self.receivedRequest = request;
-            self.contentHandler = contentHandler;
-            self.bestAttemptContent = [request.content mutableCopy];
-
-            [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-            self.contentHandler(self.bestAttemptContent);
-        }
-
-        - (void)serviceExtensionTimeWillExpire {
-            [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-            self.contentHandler(self.bestAttemptContent);
-        }
-
-        @end
+              public override void TimeWillExpire()
+              {
+                  CleverPush.ServiceExtensionTimeWillExpireRequest(Request, BestAttemptContent);
+                  ContentHandler(BestAttemptContent);
+              }
+          }
         ```
 
 3. Create your iOS push certificate
