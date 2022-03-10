@@ -77,32 +77,46 @@
 <li>Add the <code>CleverPush</code> nuget.</li>
 <li>Replace the <code>NotificationService.cs</code> file with the following contents:</li>
 </ol>
-<pre><code class="hljs css language-csharp">[<span class="hljs-meta">Register(<span class="hljs-meta-string">"NotificationService"</span>)</span>]
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">NotificationService</span> : <span class="hljs-title">UNNotificationServiceExtension</span>
+<pre><code class="hljs css language-csharp"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> Foundation;
+<span class="hljs-keyword">using</span> UIKit;
+<span class="hljs-keyword">using</span> UserNotifications;
+<span class="hljs-keyword">using</span> Com.CleverPush;
+<span class="hljs-keyword">using</span> Com.CleverPush.Abstractions;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">CleverPushNotificationServiceExtension</span>
+{
+  [<span class="hljs-meta">Register(<span class="hljs-meta-string">"NotificationService"</span>)</span>]
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">NotificationService</span> : <span class="hljs-title">UNNotificationServiceExtension</span>
+  {
+    Action&lt;UNNotificationContent&gt; ContentHandler { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    UNMutableNotificationContent BestAttemptContent { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    UNNotificationRequest ReceivedRequest { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">NotificationService</span>(<span class="hljs-params">IntPtr handle</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">handle</span>)</span>
     {
-        Action&lt;UNNotificationContent&gt; ContentHandler { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-        UNMutableNotificationContent BestAttemptContent { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-        UNNotificationRequest Request { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
 
-        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">NotificationService</span>(<span class="hljs-params">IntPtr handle</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">handle</span>)</span>
-        {
-        }
-
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DidReceiveNotificationRequest</span>(<span class="hljs-params">UNNotificationRequest request, Action&lt;UNNotificationContent&gt; contentHandler</span>)</span>
-        {
-            Request = request;
-            ContentHandler = contentHandler;
-            BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
-            CleverPush.DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
-            ContentHandler(BestAttemptContent);
-        }
-
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TimeWillExpire</span>(<span class="hljs-params"></span>)</span>
-        {
-            CleverPush.ServiceExtensionTimeWillExpireRequest(Request, BestAttemptContent);
-            ContentHandler(BestAttemptContent);
-        }
     }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DidReceiveNotificationRequest</span>(<span class="hljs-params">UNNotificationRequest request, Action&lt;UNNotificationContent&gt; contentHandler</span>)</span>
+    {
+      ReceivedRequest = request;
+      ContentHandler = contentHandler;
+      BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
+
+      (CleverPush.Current <span class="hljs-keyword">as</span> CleverPushImplementation).DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
+
+      ContentHandler(BestAttemptContent);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TimeWillExpire</span>(<span class="hljs-params"></span>)</span>
+    {
+      (CleverPush.Current <span class="hljs-keyword">as</span> CleverPushImplementation).ServiceExtensionTimeWillExpireRequest(ReceivedRequest, BestAttemptContent);
+
+      ContentHandler(BestAttemptContent);
+    }
+  }
+}
   ```
 
 </code></pre></li>
