@@ -30,7 +30,7 @@ CleverPush.shared.isSubscribed().then((status) {
 });
 ```
 
-### Hide Foreground Notifications (Android)
+### Show/Hide Foreground Notifications
 
 ```dart
 CleverPush.shared.setShowNotificationsInForeground(false);
@@ -100,5 +100,5 @@ var notifications = await CleverPush.shared.getNotifications();
 
 // get remote notification and local notification based on the boolean argument.
 // - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
- bool combineWithApi = true;
- var remoteNotifications = await CleverPush.shared.getNotificationsWithApi(combineWithApi);
+bool combineWithApi = true;
+var remoteNotifications = await CleverPush.shared.getNotificationsWithApi(combineWithApi);

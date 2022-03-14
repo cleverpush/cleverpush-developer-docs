@@ -25,9 +25,9 @@ public App()
     {
       Debug.WriteLine("CleverPush HandleSubscribed: {0}", subscriptionId);
     })
+    .AutoRegister(false) // set to false to prevent auto-subscribe on first launch
     .EndInit();
 
-  
 }
 ```
 
@@ -38,6 +38,13 @@ CleverPush.Current.Subscribe();
 CleverPush.Current.Unsubscribe();
 ```
 
+### Show/Hide Foreground Notifications
+
+Call this before the `Init()` call to change the behavior for notifications which are received when the app is in foreground.
+
+```csharp
+CleverPush.Current.SetShowNotificationsInForeground(false);
+```
 
 ## Tags
 

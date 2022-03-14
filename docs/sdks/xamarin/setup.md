@@ -7,7 +7,7 @@ title: Setup
 
 1. Add the `Com.CleverPush` NuGet Package
     ```bash
-    Install-Package Com.CleverPush -Version 1.3.0
+    Install-Package Com.CleverPush -Version 1.3.1
     ```
 
 
@@ -94,23 +94,13 @@ title: Setup
 
 4. Add AppGroup (optional but recommended)
 
-    This is required for getting the received notifications via the `getNotifications` method and also for automatic Badge Counting (i.e. when using `setIncrementBadge(true)`).
+    This is required for getting the received notifications via the `GetNotifications` method and also for automatic Badge Counting (i.e. when using `SetIncrementBadge(true)`).
 
-    1. Select your main application Target in Xcode
+    1. Select your iOS target in Visual Studio
     2. Go to `Capabilities` and activate `App Groups`
     3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
     4. Enable the created App Group by checking the checkbox next to it
     5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
-
-
-Common iOS errors:
-
-```
-ld: library not found for -lcleverpush-react-native
-```
-
-Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
-Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 
 ### Setup Android
@@ -136,3 +126,23 @@ Please see these following docs from Huawei to setup the HMS libs.
 2. Integrate HMS Bindings: https://developer.huawei.com/consumer/en/doc/HMS-Plugin-Guides-V1/integratelibs-0000001050136494-V1
 
 3. Integrate HMS SDK: https://developer.huawei.com/consumer/en/doc/HMS-Plugin-Guides-V1/integrating-sdk-0000001050138445-V1
+
+
+## Badge icon (Android)
+
+You can place your custom badge icon with the correct sizes in this Resources folders, then the SDK will automatically use it:
+
+```
+/drawable-[SIZE]/cleverpush_notification_icon.png
+```
+
+## Custom sounds
+
+iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 seconds.
+
+1. Add the sound file(s) to the Xcode project root and make sure "Add to targets" is selected when adding the files.
+2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
+3. If you send notifications via the API you can use the parameter "soundFilename".
+
+
+![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
