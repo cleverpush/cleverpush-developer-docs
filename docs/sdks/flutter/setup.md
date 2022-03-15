@@ -8,7 +8,7 @@ title: Setup
 1. Add the following code to your `pubspec.yaml` file
     ```bash
     dependencies:
-    cleverpush_flutter: ^1.9.0
+    cleverpush_flutter: ^1.12.3
     ```
     
 2. Run `flutter packages get`
@@ -104,16 +104,6 @@ title: Setup
     3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
     4. Enable the created App Group by checking the checkbox next to it
     5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
-
-
-Common iOS errors:
-
-```
-ld: library not found for -lcleverpush-react-native
-```
-
-Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
-Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 
 ### Setup Android

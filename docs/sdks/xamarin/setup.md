@@ -3,7 +3,7 @@ id: setup
 title: Setup
 ---
 
-### Installation
+## Installation
 
 1. Add the `Com.CleverPush` NuGet Package
     ```bash
@@ -11,7 +11,7 @@ title: Setup
     ```
 
 
-### Setup iOS
+## Setup iOS
 
 1. Enable the required capabilities
 
@@ -103,7 +103,7 @@ title: Setup
     5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
 
 
-### Setup Android
+## Setup Android
 
 1. Add these additional NuGet packages:
    ```
@@ -117,7 +117,7 @@ title: Setup
 3. Add the google-services.json file which can be downloded from the Firebase console like described here: https://docs.microsoft.com/en-us/xamarin/android/data-cloud/google-messaging/remote-notifications-with-fcm?tabs=macos#add-googleplayservices-json
 
 
-### Setup Huawei on Android
+## Setup Huawei on Android
 
 Please see these following docs from Huawei to setup the HMS libs.
 
@@ -138,11 +138,10 @@ You can place your custom badge icon with the correct sizes in this Resources fo
 
 ## Custom sounds
 
-iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 seconds.
+Android + iOS both support `wav` audio files with a maximum length of 30 seconds.
 
-1. Add the sound file(s) to the Xcode project root and make sure "Add to targets" is selected when adding the files.
+1. Add the sound file(s) to Resources (Resources root for iOS, `res/raw/` for Android) in the project.
 2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
-3. If you send notifications via the API you can use the parameter "soundFilename".
-
+3. If you send notifications via the API you can use the parameter "soundFilename".
 
 ![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
