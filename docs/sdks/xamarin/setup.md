@@ -15,65 +15,69 @@ title: Setup
 
 1. Enable the required capabilities
 
-   1. Go to your root project and switch to the tab "Capabilities"
-   
-   2. Enable "Push Notifications"
-   
-   3. Enable "Background Modes" and check "Remote notifications"
+  1. Go to your iOS project and open the `Entitlements.plist` file. At the bottom you can change to the second tab to see the settings UI.
+  1. Enable "Push Notifications"
+  2. Open the `Info.plist` file. At the bottom you can change to the second tab to see the settings UI.
+  3. Set the deployment target to at least iOS 9 or higher. We also recommend setting the Provisioning to Automatic Provisioning.
 
 2. Add Notification Service Extension
 
-    This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+  This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
 
-    1. Right click on the project in the navigator on the left, then select Add -> `Add New Project`.
-    2. Select `iOS` -> `Extension` -> `Notification Service Extension`.
-    3. Open the new Project's Options. Under `iOS Build` set `Linker behaviour` to `Link all` (for Debug and Release configuration)
-    4. Right click on new Project’s References then select Edit References.
-    5. Add the `CleverPush` NuGet.
-    6. Replace the `NotificationService.cs` file with the following contents:
+  1. Right click on the project in the navigator on the left, then select Add -> `Add New Project`.
+  2. Select `iOS` -> `Extension` -> `Notification Service Extension`.
+  3. Go to your new Service Extension project and open the `Entitlements.plist` file. At the bottom you can change to the second tab to see the settings UI.
+  4. Enable "Push Notifications"
+  5. Open the `Info.plist` file. At the bottom you can change to the second tab to see the settings UI.
+  6. Set the deployment target to at least iOS 10 or higher. We also recommend setting the Provisioning to Automatic Provisioning.
+  7. Open the new Project's Options.
+  8. Under `iOS Build` set `Linker behaviour` to `Link all` (for Debug and Release configuration).
+  9. Right click on new Project’s References then select Edit References.
+  10. Add the `CleverPush` NuGet.
+  11. Replace the `NotificationService.cs` file with the following contents:
 
-      ```csharp
-      using System;
-      using Foundation;
-      using UIKit;
-      using UserNotifications;
-      using Com.CleverPush;
-      using Com.CleverPush.Abstractions;
+    ```csharp
+    using System;
+    using Foundation;
+    using UIKit;
+    using UserNotifications;
+    using Com.CleverPush;
+    using Com.CleverPush.Abstractions;
 
-      namespace CleverPushNotificationServiceExtension
+    namespace CleverPushNotificationServiceExtension
+    {
+      [Register("NotificationService")]
+      public class NotificationService : UNNotificationServiceExtension
       {
-        [Register("NotificationService")]
-        public class NotificationService : UNNotificationServiceExtension
+        Action<UNNotificationContent> ContentHandler { get; set; }
+        UNMutableNotificationContent BestAttemptContent { get; set; }
+        UNNotificationRequest ReceivedRequest { get; set; }
+
+        protected NotificationService(IntPtr handle) : base(handle)
         {
-          Action<UNNotificationContent> ContentHandler { get; set; }
-          UNMutableNotificationContent BestAttemptContent { get; set; }
-          UNNotificationRequest ReceivedRequest { get; set; }
 
-          protected NotificationService(IntPtr handle) : base(handle)
-          {
+        }
 
-          }
+        public override void DidReceiveNotificationRequest(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
+        {
+          ReceivedRequest = request;
+          ContentHandler = contentHandler;
+          BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
 
-          public override void DidReceiveNotificationRequest(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
-          {
-            ReceivedRequest = request;
-            ContentHandler = contentHandler;
-            BestAttemptContent = (UNMutableNotificationContent)request.Content.MutableCopy();
+          (CleverPush.Current as CleverPushImplementation).DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
 
-            (CleverPush.Current as CleverPushImplementation).DidReceiveNotificationExtensionRequest(request, BestAttemptContent);
+          ContentHandler(BestAttemptContent);
+        }
 
-            ContentHandler(BestAttemptContent);
-          }
+        public override void TimeWillExpire()
+        {
+          (CleverPush.Current as CleverPushImplementation).ServiceExtensionTimeWillExpireRequest(ReceivedRequest, BestAttemptContent);
 
-          public override void TimeWillExpire()
-          {
-            (CleverPush.Current as CleverPushImplementation).ServiceExtensionTimeWillExpireRequest(ReceivedRequest, BestAttemptContent);
-
-            ContentHandler(BestAttemptContent);
-          }
+          ContentHandler(BestAttemptContent);
         }
       }
-        ```
+    }
+      ```
 
 3. Create your iOS push certificate
 
