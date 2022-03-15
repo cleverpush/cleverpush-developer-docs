@@ -38,7 +38,7 @@ CleverPush.Current.Subscribe();
 CleverPush.Current.Unsubscribe();
 ```
 
-### Show/Hide Foreground Notifications
+## Show/Hide Foreground Notifications
 
 Call this before the `Init()` call to change the behavior for notifications which are received when the app is in foreground.
 
