@@ -59,7 +59,7 @@
 <p><strong>JAVA</strong></p>
 <pre><code class="hljs css language-java">         <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
             <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-               CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>,<span class="hljs-keyword">new</span> NotificationReceivedListener(){
+               CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>, <span class="hljs-keyword">new</span> NotificationReceivedListener(){
                   <span class="hljs-meta">@Override</span>
                   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notificationReceived</span><span class="hljs-params">(NotificationOpenedResult result)</span></span>{
                      System.out.println(<span class="hljs-string">"Received CleverPush Notification: "</span> +result.getNotification().getTitle());
@@ -69,22 +69,22 @@
                   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notificationOpened</span><span class="hljs-params">(NotificationOpenedResult result)</span> </span>{
                      System.out.println(<span class="hljs-string">"Opened CleverPush Notification: "</span> + result.getNotification().getTitle());
                   }
-               });
+               }, <span class="hljs-keyword">true</span>); <span class="hljs-comment">// You can set this to false to prevent automatic subscribing on the first launch</span>
             }
          }
 </code></pre>
 <p><strong>KOTLIN</strong></p>
 <pre><code class="hljs css language-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span>:<span class="hljs-type">Activity</span></span>() {
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(savedInstanceState:<span class="hljs-type">Bundle</span>)</span></span> {
-   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(<span class="hljs-string">""</span>,
+   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>,
                NotificationReceivedListener { result -&gt; println(<span class="hljs-string">"ReceivedCleverPushNotification: "</span> + result.notification.title) },
                NotificationOpenedListener { result -&gt; println(<span class="hljs-string">"Opened CleverPush Notification: "</span> + result.notification.title) })
-}
+  }
 }
 </code></pre>
 <p>Instead of a <code>NotificationReceivedListener</code> you could also use a <code>NotificationReceivedCallbackListener</code>. This way you can dynamically control if you want to show a notification when the app is running in foreground:</p>
 <p><strong>JAVA</strong></p>
-<pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"XXXXXXX"</span>, <span class="hljs-keyword">new</span> NotificationReceivedCallbackListener() {
+<pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>, <span class="hljs-keyword">new</span> NotificationReceivedCallbackListener() {
    <span class="hljs-meta">@Override</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">notificationReceivedCallback</span><span class="hljs-params">(NotificationOpenedResult notificationOpenedResult)</span> </span>{
          <span class="hljs-keyword">boolean</span> showNotification = <span class="hljs-keyword">true</span>;
@@ -104,7 +104,7 @@
 <p><strong>JAVA</strong></p>
 <pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-      CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-keyword">new</span> NotificationReceivedListener() {
+      CleverPush.getInstance(<span class="hljs-keyword">this</span>).init(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>, <span class="hljs-keyword">new</span> NotificationReceivedListener() {
          <span class="hljs-meta">@Override</span>
          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notificationReceived</span><span class="hljs-params">(NotificationOpenedResult result)</span> </span>{
             System.out.println(<span class="hljs-string">"Received CleverPush Notification: "</span> + result.getNotification().getTitle());
@@ -126,12 +126,12 @@
 <p><strong>KOTLIN</strong></p>
 <pre><code class="hljs css language-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span>:<span class="hljs-type">Activity</span></span>() {
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(savedInstanceState:<span class="hljs-type">Bundle</span>)</span></span> {
-   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(<span class="hljs-string">""</span>,
+   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(<span class="hljs-string">"CLEVERPUSH_CHANNEL_ID"</span>,
                { result -&gt; println(<span class="hljs-string">"ReceivedCleverPushNotification: "</span> + result.notification.title) },
                { result -&gt; println(<span class="hljs-string">"Opened CleverPush Notification: "</span> + result.notification.title) },
                { subscriptionId -&gt; System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"CleverPush Subscription ID: <span class="hljs-variable">$subscriptionId</span>"</span>); }
       )
-}
+  }
 }
 </code></pre>
 <p>Subscribe / Unsubscribe:</p>
@@ -156,7 +156,7 @@
 <pre><code class="hljs css language-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span>:<span class="hljs-type">Activity</span></span>() {
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(savedInstanceState:<span class="hljs-type">Bundle</span>)</span></span> {
    <span class="hljs-comment">// last parameter (autoRegister) is false</span>
-   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(...,<span class="hljs-literal">false</span>)
+   CleverPush.getInstance(<span class="hljs-keyword">this</span>).<span class="hljs-keyword">init</span>(..., <span class="hljs-literal">false</span>)
 
    <span class="hljs-comment">// subscribe</span>
    CleverPush.getInstance(<span class="hljs-keyword">this</span>).subscribe()
