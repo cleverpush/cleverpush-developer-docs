@@ -19,7 +19,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.20.1'
+        implementation 'com.cleverpush:cleverpush:1.21.0'
     }
     ```
 
@@ -126,6 +126,14 @@ You can place your custom badge icon with the correct sizes in this folders, the
 
 ```
 /drawable-[SIZE]/cleverpush_notification_icon.png
+```
+
+## Notification open behaviour
+
+You can place this meta data option in your AndroidManifest.xml file to prevent our SDK from starting your launcher activity when a notification is opened:
+
+```
+<meta-data android:name="com.cleverpush.notification_open_activity_disabled" android:value="true" />
 ```
 
 ## Badge Counts

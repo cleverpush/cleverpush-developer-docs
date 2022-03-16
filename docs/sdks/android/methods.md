@@ -14,7 +14,7 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 ```java
          public class MainActivity extends Activity {
             public void onCreate(Bundle savedInstanceState) {
-               CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",new NotificationReceivedListener(){
+               CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener(){
                   @Override
                   public void notificationReceived(NotificationOpenedResult result){
                      System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
@@ -24,7 +24,7 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
                   public void notificationOpened(NotificationOpenedResult result) {
                      System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
                   }
-               });
+               }, true); // You can set this to false to prevent automatic subscribing on the first launch
             }
          }
 ```
@@ -34,10 +34,10 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 ```kotlin
 class MainActivity:Activity() {
 fun onCreate(savedInstanceState:Bundle) {
-   CleverPush.getInstance(this).init("",
+   CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",
                NotificationReceivedListener { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
                NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.title) })
-}
+  }
 }
 ```
 
@@ -46,7 +46,7 @@ Instead of a `NotificationReceivedListener` you could also use a `NotificationRe
 **JAVA**
 
 ```java
-CleverPush.getInstance(this).init("XXXXXXX", new NotificationReceivedCallbackListener() {
+CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedCallbackListener() {
    @Override
    public boolean notificationReceivedCallback(NotificationOpenedResult notificationOpenedResult) {
          boolean showNotification = true;
@@ -73,7 +73,7 @@ You can add a `SubscribedListener` which fires when the user has successfully be
 ```java
 public class MainActivity extends Activity {
 public void onCreate(Bundle savedInstanceState) {
-      CleverPush.getInstance(this).init(new NotificationReceivedListener() {
+      CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener() {
          @Override
          public void notificationReceived(NotificationOpenedResult result) {
             System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
@@ -98,12 +98,12 @@ public void onCreate(Bundle savedInstanceState) {
 ```kotlin
 class MainActivity:Activity() {
 fun onCreate(savedInstanceState:Bundle) {
-   CleverPush.getInstance(this).init("",
+   CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",
                { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
                { result -> println("Opened CleverPush Notification: " + result.notification.title) },
                { subscriptionId -> System.out.println("CleverPush Subscription ID: $subscriptionId"); }
       )
-}
+  }
 }
 ```
 
@@ -135,7 +135,7 @@ public void onCreate(Bundle savedInstanceState) {
 class MainActivity:Activity() {
 fun onCreate(savedInstanceState:Bundle) {
    // last parameter (autoRegister) is false
-   CleverPush.getInstance(this).init(...,false)
+   CleverPush.getInstance(this).init(..., false)
 
    // subscribe
    CleverPush.getInstance(this).subscribe()
