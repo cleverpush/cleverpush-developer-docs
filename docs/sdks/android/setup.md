@@ -45,6 +45,8 @@ title: Setup
 
 These additional steps are recommended if you want to support the newest Huawei devices. Please note that you need at least CleverPush Android SDK version 1.1.0.
 
+Important: we highly recommend to set up different build flavors/variants for Huawei and Firebase, because Google will not allow any apps in the Play Store with the Huawei SDK. You can then upload the Huawei build to the Huawei AppGallery and the Firebase build to the Google Play Store.
+
 1. Create a free Huawei Developer Account and get it verified:
 https://developer.huawei.com/consumer/en/console
 
