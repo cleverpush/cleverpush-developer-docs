@@ -86,6 +86,12 @@ CleverPush.unsubscribe();
 ```
 
 
+Topics:
+```javascript
+CleverPush.showTopicsDialog();
+```
+
+
 Tagging and Attributes:
 
 ```javascript
