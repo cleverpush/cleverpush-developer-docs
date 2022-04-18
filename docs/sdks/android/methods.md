@@ -409,9 +409,9 @@ CleverPush.getInstance(this).triggerAppBannerEvent("key", "value")
 CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 ```
 
-## Event Tracking
+## Conversion Event Tracking
 
-Events can be used to trigger follow-up campaigns or to track conversions.
+Events can be used to track conversions.
 
 **JAVA**
 
@@ -430,6 +430,33 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME")
 // track a conversion with a specified amount
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)
 ```
+```
+
+
+## Follow up Events
+
+Events can be used to trigger follow-up campaigns.
+
+**JAVA**
+
+```java
+CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME");
+
+// add custom parameters
+CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME", new HashMap<String, String>() {{
+  put("id", "123456");
+}});
+```
+
+**KOTLIN**
+
+```kotlin
+CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME")
+
+// add custom parameters
+CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME", hashMapOf("id" to "123456"))
+```
+
 
 ## Tracking Consent
 

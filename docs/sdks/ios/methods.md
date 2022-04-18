@@ -321,9 +321,9 @@ CleverPush.showAppBanner("BANNER_ID")
 ```
 
 
-## Event Tracking
+## Conversion Event Tracking
 
-Events can be used to trigger follow-up campaigns or to track conversions.
+Events can be used to track conversions.
 
 Objective-C:
 ```objective-c
@@ -340,6 +340,29 @@ CleverPush.trackEvent("EVENT NAME")
 
 // track a conversion with a specified amount
 CleverPush.trackEvent("EVENT NAME", amount: 37.50)
+
+```
+
+
+## Follow up Events
+
+Events can be used to trigger follow-up campaigns.
+
+Objective-C:
+```objective-c
+[CleverPush triggerFollowUpEvent:@"EVENT NAME"];
+
+// add custom parameters
+[CleverPush triggerFollowUpEvent:@"EVENT NAME" parameters:@{@"id": @"123456"}];
+
+```
+
+Swift:
+```swift
+CleverPush.triggerFollowUpEvent("EVENT NAME")
+
+// add custom parameters
+CleverPush.triggerFollowUpEvent("EVENT NAME", ["id": "123456"])
 
 ```
 
