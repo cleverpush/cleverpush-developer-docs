@@ -102,3 +102,21 @@ var notifications = await CleverPush.shared.getNotifications();
 // - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
 bool combineWithApi = true;
 var remoteNotifications = await CleverPush.shared.getNotificationsWithApi(combineWithApi);
+```
+
+
+## Tracking Consent
+
+You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
+
+Step 1: Call this before initializing the SDK:
+
+```dart
+CleverPush.shared.setTrackingConsentRequired(true);
+```
+
+Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+```dart
+CleverPush.shared.setTrackingConsent(true);
+```
