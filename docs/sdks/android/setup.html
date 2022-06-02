@@ -67,7 +67,7 @@
 <li><p>Add the dependency to your app-level <code>app/build.gradle</code> file</p>
 <pre><code class="hljs css language-groovy">dependencies {
     <span class="hljs-comment">// ...</span>
-    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.22.0'</span>
+    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.23.1'</span>
 }
 </code></pre></li>
 <li><p>In the <code>onCreate</code> method of your Main activity or Application, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
@@ -178,4 +178,84 @@ apply <span class="hljs-string">plugin:</span> <span class="hljs-string">"com.hu
 Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).</p>
 <pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).setIgnoreDisabledNotificationPermission(<span class="hljs-keyword">true</span>);
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/troubleshooting"><span class="arrow-prev">← </span><span>Troubleshooting</span></a><a class="docs-next button" href="/docs/sdks/android/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#setup-hms-huawei-mobile-services">Setup HMS (Huawei Mobile Services)</a></li><li><a href="#proguard">Proguard</a></li><li><a href="#custom-sounds">Custom sounds</a></li><li><a href="#badge-icon">Badge icon</a></li><li><a href="#notification-open-behaviour">Notification open behaviour</a></li><li><a href="#badge-counts">Badge Counts</a></li><li><a href="#notification-permission">Notification permission</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2022 CleverPush</section></footer></div></body></html>
+<h2><a class="anchor" aria-hidden="true" id="using-cleverpush-together-with-other-firebasemessagingservices"></a><a href="#using-cleverpush-together-with-other-firebasemessagingservices" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using CleverPush together with other FirebaseMessagingServices</h2>
+<p>As it is only possible to have one FirebaseMessagingService registered at the same time, we recommend the following code. The CleverPush FCM Service will only process CleverPush notifications and ignore all other messages.
+If you're only looking to customize the incoming CleverPush notifications, please look at the &quot;Notification Extender Service&quot; in the left menu.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">import</span> androidx.annotation.NonNull;
+
+<span class="hljs-keyword">import</span> com.cleverpush.service.CleverPushFcmListenerService;
+<span class="hljs-keyword">import</span> com.google.firebase.messaging.FirebaseMessagingService;
+<span class="hljs-keyword">import</span> com.google.firebase.messaging.RemoteMessage;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.Field;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirebaseMessagingServiceProxy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FirebaseMessagingService</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> List&lt;FirebaseMessagingService&gt; messagingServices = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-number">2</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FirebaseMessagingServiceProxy</span><span class="hljs-params">()</span> </span>{
+        messagingServices.add(<span class="hljs-keyword">new</span> CleverPushFcmListenerService());
+        <span class="hljs-comment">// Add any other FirebaseMessagingServices here</span>
+        messagingServices.add(<span class="hljs-keyword">new</span> CustomFirebaseMessagingService());
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNewToken</span><span class="hljs-params">(@NonNull String token)</span> </span>{
+        delegate(service -&gt; {
+            injectContext(service);
+            service.onNewToken(token);
+        });
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessageReceived</span><span class="hljs-params">(@NonNull RemoteMessage remoteMessage)</span> </span>{
+        delegate(service -&gt; {
+            injectContext(service);
+            service.onMessageReceived(remoteMessage);
+        });
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delegate</span><span class="hljs-params">(CPAction&lt;FirebaseMessagingService&gt; action)</span> </span>{
+        <span class="hljs-keyword">for</span> (FirebaseMessagingService service : messagingServices) {
+            action.run(service);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">injectContext</span><span class="hljs-params">(FirebaseMessagingService service)</span> </span>{
+        setField(service, <span class="hljs-string">"mBase"</span>, <span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">setField</span><span class="hljs-params">(Object targetObject, String fieldName, Object fieldValue)</span> </span>{
+        Field field;
+        <span class="hljs-keyword">try</span> {
+            field = targetObject.getClass().getDeclaredField(fieldName);
+        } <span class="hljs-keyword">catch</span> (NoSuchFieldException e) {
+            field = <span class="hljs-keyword">null</span>;
+        }
+        Class superClass = targetObject.getClass().getSuperclass();
+        <span class="hljs-keyword">while</span> (field == <span class="hljs-keyword">null</span> &amp;&amp; superClass != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">try</span> {
+                field = superClass.getDeclaredField(fieldName);
+            } <span class="hljs-keyword">catch</span> (NoSuchFieldException e) {
+                superClass = superClass.getSuperclass();
+            }
+        }
+        <span class="hljs-keyword">if</span> (field == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        field.setAccessible(<span class="hljs-keyword">true</span>);
+        <span class="hljs-keyword">try</span> {
+            field.set(targetObject, fieldValue);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">catch</span> (IllegalAccessException e) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+
+    <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">CPAction</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(T t)</span></span>;
+    }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/ios/troubleshooting"><span class="arrow-prev">← </span><span>Troubleshooting</span></a><a class="docs-next button" href="/docs/sdks/android/methods"><span>Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#setup-hms-huawei-mobile-services">Setup HMS (Huawei Mobile Services)</a></li><li><a href="#proguard">Proguard</a></li><li><a href="#custom-sounds">Custom sounds</a></li><li><a href="#badge-icon">Badge icon</a></li><li><a href="#notification-open-behaviour">Notification open behaviour</a></li><li><a href="#badge-counts">Badge Counts</a></li><li><a href="#notification-permission">Notification permission</a></li><li><a href="#using-cleverpush-together-with-other-firebasemessagingservices">Using CleverPush together with other FirebaseMessagingServices</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2022 CleverPush</section></footer></div></body></html>
