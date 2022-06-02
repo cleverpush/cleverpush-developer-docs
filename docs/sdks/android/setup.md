@@ -177,7 +177,8 @@ CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true);
 ## Using CleverPush together with other FirebaseMessagingServices
 
 As it is only possible to have one FirebaseMessagingService registered at the same time, we recommend the following code. The CleverPush FCM Service will only process CleverPush notifications and ignore all other messages.
-If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Extender Service" in the left menu.
+
+Create the FirebaseMessagingServiceProxy class:
 
 ```java
 import androidx.annotation.NonNull;
@@ -257,3 +258,17 @@ public class FirebaseMessagingServiceProxy extends FirebaseMessagingService {
     }
 }
 ```
+
+Add this to your AndroidManifest.xml inside the `<application>` tag:
+
+```xml
+<service
+    android:name=".FirebaseMessagingServiceProxy"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+```
+
+If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Extender Service" in the left menu.
