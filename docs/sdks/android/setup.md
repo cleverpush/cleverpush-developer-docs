@@ -19,7 +19,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.22.0'
+        implementation 'com.cleverpush:cleverpush:1.23.1'
     }
     ```
 
@@ -171,4 +171,89 @@ Sometimes it still makes sense to subscribe those users (e.g. for silent notific
 
 ```java
 CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true);
+```
+
+
+## Using CleverPush together with other FirebaseMessagingServices
+
+As it is only possible to have one FirebaseMessagingService registered at the same time, we recommend the following code. The CleverPush FCM Service will only process CleverPush notifications and ignore all other messages.
+If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Extender Service" in the left menu.
+
+```java
+import androidx.annotation.NonNull;
+
+import com.cleverpush.service.CleverPushFcmListenerService;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FirebaseMessagingServiceProxy extends FirebaseMessagingService {
+    private final List<FirebaseMessagingService> messagingServices = new ArrayList<>(2);
+
+    public FirebaseMessagingServiceProxy() {
+        messagingServices.add(new CleverPushFcmListenerService());
+        // Add any other FirebaseMessagingServices here
+        messagingServices.add(new CustomFirebaseMessagingService());
+    }
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        delegate(service -> {
+            injectContext(service);
+            service.onNewToken(token);
+        });
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        delegate(service -> {
+            injectContext(service);
+            service.onMessageReceived(remoteMessage);
+        });
+    }
+
+    private void delegate(CPAction<FirebaseMessagingService> action) {
+        for (FirebaseMessagingService service : messagingServices) {
+            action.run(service);
+        }
+    }
+
+    private void injectContext(FirebaseMessagingService service) {
+        setField(service, "mBase", this);
+    }
+
+    private boolean setField(Object targetObject, String fieldName, Object fieldValue) {
+        Field field;
+        try {
+            field = targetObject.getClass().getDeclaredField(fieldName);
+        } catch (NoSuchFieldException e) {
+            field = null;
+        }
+        Class superClass = targetObject.getClass().getSuperclass();
+        while (field == null && superClass != null) {
+            try {
+                field = superClass.getDeclaredField(fieldName);
+            } catch (NoSuchFieldException e) {
+                superClass = superClass.getSuperclass();
+            }
+        }
+        if (field == null) {
+            return false;
+        }
+        field.setAccessible(true);
+        try {
+            field.set(targetObject, fieldValue);
+            return true;
+        } catch (IllegalAccessException e) {
+            return false;
+        }
+    }
+
+    interface CPAction<T> {
+        void run(T t);
+    }
+}
 ```
