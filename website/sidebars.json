@@ -31,7 +31,8 @@
     ],
     "Flutter SDK": [
       "sdks/flutter/setup",
-      "sdks/flutter/methods"
+      "sdks/flutter/methods",
+      "sdks/flutter/troubleshooting"
     ]
   }
 }

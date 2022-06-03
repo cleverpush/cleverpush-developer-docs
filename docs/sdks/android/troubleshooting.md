@@ -8,11 +8,10 @@ title: Troubleshooting
 Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme).
 Example:
 
+```xml
 <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Show a splash screen on the activity. Automatically removed when
-             Flutter draws its first frame -->
-        <item name="android:windowBackground">@drawable/launch_background</item>
 </style>
+```
 
 ## File google-services.json is missing. The Google Services Plugin cannot function without it.
 
