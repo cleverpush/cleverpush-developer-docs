@@ -3,8 +3,8 @@ id: chat
 title: Chat
 ---
 
-## Chat
-Objective-C:
+## CleverPush Chat View
+
 1. Import the Chat View:
 
 ```dart

@@ -3,7 +3,8 @@ id: chat
 title: Chat
 ---
 
-## Chat
+## CleverPush Chat View
+
 Objective-C:
 1. Import "CleverPush/CPChatView.h":
 2. Add the Chat View:

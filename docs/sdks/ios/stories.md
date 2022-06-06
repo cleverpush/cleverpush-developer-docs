@@ -3,7 +3,8 @@ id: stories
 title: Stories
 ---
 
-## Stories
+## CleverPush Story Widget
+
 You can also implement CleverPush Stories into your application. For this, please set up a Story Widget in your CleverPush account. You can access stories via generated Widget Id and by following usage guide
 
 Here is how the Stories will looks like:

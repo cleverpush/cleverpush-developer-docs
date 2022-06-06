@@ -3,7 +3,7 @@ id: chat
 title: Chat
 ---
 
-## Chat
+## CleverPush Chat View
 
 Add the ChatView inside your Layout XML:
 
