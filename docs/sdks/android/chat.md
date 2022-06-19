@@ -13,3 +13,12 @@ Add the ChatView inside your Layout XML:
   android:layout_width="match_parent"
   />
 ```
+
+
+Handle opened URLs:
+
+```java
+CleverPush.getInstance(this).setChatUrlOpenedListener(url -> {
+  // do something with the opened URL
+});
+```

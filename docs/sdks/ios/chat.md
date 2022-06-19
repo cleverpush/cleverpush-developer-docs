@@ -25,3 +25,14 @@ import CleverPush
 let chatView = CPChatView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
 self.view.addSubview(chatView)
 ```
+
+
+Handle opened URLs:
+
+```objective-c
+[[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) urlOpenedCallback:^(NSURL *url) {
+  // do something with the opened URL
+} subscribeCallback:^() {
+  // user has subscribed via Chat
+}];
+```
