@@ -221,6 +221,13 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [<span class="hljs-meta">CleverPush getAvailableTopics:^(NSArray* channelTopics_) {
     NSLog(@<span class="hljs-meta-string">"CleverPush: Available topics %@"</span>, channelTopics_);
 }</span>];
+
+<span class="hljs-comment">// add a single topic</span>
+[<span class="hljs-meta">CleverPush addSubscriptionTopic:@<span class="hljs-meta-string">"ID_1"</span></span>];
+
+<span class="hljs-comment">// remove a single topic</span>
+[<span class="hljs-meta">CleverPush removeSubscriptionTopic:@<span class="hljs-meta-string">"ID_1"</span></span>];
+
 <span class="hljs-comment">// let the user choose his topics</span>
 [<span class="hljs-meta">CleverPush showTopicsDialog</span>];
 </code></pre>
@@ -235,12 +242,19 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 <span class="hljs-keyword">let</span> subscriptionTopics = <span class="hljs-type">CleverPush</span>.getSubscriptionTopics()
 
 <span class="hljs-comment">// set multiple subscription topics</span>
-<span class="hljs-type">CleverPush</span>.setSubscriptionTopics([<span class="hljs-string">"ID_1"</span>,<span class="hljs-string">"ID_2"</span>])
+<span class="hljs-type">CleverPush</span>.setSubscriptionTopics([<span class="hljs-string">"ID_1"</span>, <span class="hljs-string">"ID_2"</span>])
 
 <span class="hljs-comment">// get all the available topics</span>
 <span class="hljs-type">CleverPush</span>.getAvailableTopics { channelTopics_ <span class="hljs-keyword">in</span>
     <span class="hljs-built_in">print</span>(channelTopics_ <span class="hljs-keyword">as</span> <span class="hljs-type">Any</span>)
 }
+
+<span class="hljs-comment">// add a single topic</span>
+<span class="hljs-type">CleverPush</span>.addSubscriptionTopic(<span class="hljs-string">"ID_1"</span>)
+
+<span class="hljs-comment">// remove a single topic</span>
+<span class="hljs-type">CleverPush</span>.removeSubscriptionTopic(<span class="hljs-string">"ID_1"</span>)
+
 <span class="hljs-comment">// let the user choose his topics</span>
 <span class="hljs-type">CleverPush</span>.showTopicsDialog()
 </code></pre>

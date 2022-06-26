@@ -74,4 +74,25 @@
   ),
 );
 </code></pre>
+<p>Handle opened URLs in the chat:</p>
+<pre><code class="hljs css language-dart">CleverPush.shared.setChatUrlOpenedHandler((url) {
+  Widget continueButton = TextButton(
+    child: Text(<span class="hljs-string">"Ok"</span>),
+    onPressed: () =&gt; Navigator.pop(context, <span class="hljs-string">'Ok'</span>),
+  );
+  showDialog&lt;<span class="hljs-built_in">String</span>&gt;(
+    context: context,
+    builder: (BuildContext context) =&gt; AlertDialog(
+      title: <span class="hljs-keyword">const</span> Text(<span class="hljs-string">'Chat URL opened'</span>),
+      content: Text(url),
+      actions: &lt;Widget&gt;[
+        continueButton,
+      ],
+    ),
+  );
+});
+</code></pre>
+<p>Change the primary branding color:</p>
+<pre><code class="hljs css language-dart">CleverPush.shared.setBrandingColor(<span class="hljs-string">"#ff0000"</span>)
+</code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/sdks/flutter/methods"><span class="arrow-prev">← </span><span>Methods</span></a><a class="docs-next button" href="/docs/sdks/flutter/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#cleverpush-chat-view">CleverPush Chat View</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/cordova_setup">Cordova</a><a href="/docs/sdks/cordova/capacitor_setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a></div></section><section class="copyright">Copyright © 2022 CleverPush</section></footer></div></body></html>
