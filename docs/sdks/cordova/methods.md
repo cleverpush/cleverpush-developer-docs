@@ -10,20 +10,29 @@ title: Methods
 Add the initialization code to your `index.js` file
 
 ```javascript
-document.addEventListener('deviceready', function () {
-  window['plugins'].CleverPush.setNotificationReceivedListener(function(data) {
+document.addEventListener('deviceready', () => {
+  const notificationReceivedListener = (data) => {
     console.log('CleverPush notification received:', JSON.stringify(data));
-  });
+  };
 
-  window['plugins'].CleverPush.setNotificationOpenedListener(function(data) {
+  const notificationOpenedListener = (data) => {
     console.log('CleverPush notification opened:', JSON.stringify(data));
-  });
+  };
 
-  window['plugins'].CleverPush.setSubscribedListener(function(subscriptionId) {
+  const subscribedListener = (subscriptionId) => {
     console.log('CleverPush subscriptionId:', subscriptionId);
-  });
+  };
 
-  window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID");
+  // set this to `false` to prevent the SDK from automatically subscribing the user on the first launch of the SDK
+  const autoRegister = true;
+
+  window.plugins.CleverPush.init(
+    "INSERT_YOUR_CHANNEL_ID",
+    notificationReceivedListener,
+    notificationOpenedListener,
+    subscribedListener,
+    autoRegister
+  );
 }, false);
 ```
 
@@ -51,19 +60,29 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
     // ...
-      window['plugins'].CleverPush.setNotificationReceivedListener(function(data) {
-        console.log('CleverPush notification received:', JSON.stringify(data));
-      });
+        const notificationReceivedListener = (data) => {
+          console.log('CleverPush notification received:', JSON.stringify(data));
+        };
 
-      window['plugins'].CleverPush.setNotificationOpenedListener(function(data) {
-        console.log('CleverPush notification opened:', JSON.stringify(data));
-      });
-    
-      window['plugins'].CleverPush.setSubscribedListener(function(subscriptionId) {
-        console.log('CleverPush subscriptionId:', subscriptionId);
-      });
+        const notificationOpenedListener = (data) => {
+          console.log('CleverPush notification opened:', JSON.stringify(data));
+        };
 
-      window['plugins'].CleverPush.init("INSERT_YOUR_CHANNEL_ID");
+        const subscribedListener = (subscriptionId) => {
+          console.log('CleverPush subscriptionId:', subscriptionId);
+        };
+
+        // set this to `false` to prevent the SDK from automatically subscribing the user on the first launch of the SDK
+        const autoRegister = true;
+
+        window.plugins.CleverPush.init(
+          "INSERT_YOUR_CHANNEL_ID",
+          notificationReceivedListener,
+          notificationOpenedListener,
+          subscribedListener,
+          autoRegister
+        );
+      }, false);
     });
   }
 }
@@ -79,5 +98,17 @@ window['plugins'].CleverPush.setNotificationReceivedCallbackListener(function(da
   var showInForeground = true;
   window['plugins'].CleverPush.setNotificationReceivedCallbackResult(data.notification._id, showInForeground);
 });
+```
 
 (Only supported on Android)
+
+
+## App Banners
+
+This listener will be called when a button in an app banner is clicked.
+
+```javascript
+window.plugins.CleverPush.setAppBannerOpenedListener((action) => {
+  console.log('App Banner opened:', action);
+});
+```

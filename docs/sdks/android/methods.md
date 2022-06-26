@@ -12,21 +12,21 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 **JAVA**
 
 ```java
-         public class MainActivity extends Activity {
-            public void onCreate(Bundle savedInstanceState) {
-               CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener(){
-                  @Override
-                  public void notificationReceived(NotificationOpenedResult result){
-                     System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
-                  }
-               }, new NotificationOpenedListener() {
-                  @Override
-                  public void notificationOpened(NotificationOpenedResult result) {
-                     System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-                  }
-               }, true); // You can set this to false to prevent automatic subscribing on the first launch
-            }
-         }
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+      CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener(){
+        @Override
+        public void notificationReceived(NotificationOpenedResult result){
+            System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
+        }
+      }, new NotificationOpenedListener() {
+        @Override
+        public void notificationOpened(NotificationOpenedResult result) {
+            System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+        }
+      }, true); // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+  }
+}
 ```
 
 **KOTLIN**
@@ -41,6 +41,8 @@ fun onCreate(savedInstanceState:Bundle) {
 }
 ```
 
+Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you later call `unsubscribe()` the SDK will not automatically try to subscribe again, instead you would have to call `subscribe()` yourself again.
+
 Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
 
 **JAVA**
@@ -49,8 +51,8 @@ Instead of a `NotificationReceivedListener` you could also use a `NotificationRe
 CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedCallbackListener() {
    @Override
    public boolean notificationReceivedCallback(NotificationOpenedResult notificationOpenedResult) {
-         boolean showNotification = true;
-         return showNotification;
+      boolean showNotification = true;
+      return showNotification;
    }
 }, ...);
 ```
@@ -72,24 +74,24 @@ You can add a `SubscribedListener` which fires when the user has successfully be
 
 ```java
 public class MainActivity extends Activity {
-public void onCreate(Bundle savedInstanceState) {
-      CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener() {
-         @Override
-         public void notificationReceived(NotificationOpenedResult result) {
-            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+  public void onCreate(Bundle savedInstanceState) {
+    CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener() {
+      @Override
+      public void notificationReceived(NotificationOpenedResult result) {
+        System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
       }
-   }, new NotificationOpenedListener() {
+    }, new NotificationOpenedListener() {
       @Override
       public void notificationOpened(NotificationOpenedResult result) {
-         System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+        System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
       }
-   }, new SubscribedListener() {
+    }, new SubscribedListener() {
       @Override
       public void subscribed(String subscriptionId) {
-         System.out.println("CleverPush Subscription ID: " + subscriptionId);
+        System.out.println("CleverPush Subscription ID: " + subscriptionId);
       }
-   });
-}
+    });
+  }
 }
 ```
 
@@ -113,19 +115,19 @@ Subscribe / Unsubscribe:
 
 ```java
 public class MainActivity extends Activity {
-public void onCreate(Bundle savedInstanceState) {
-      // last parameter (autoRegister) is false
-      CleverPush.getInstance(this).init(..., false);
+  public void onCreate(Bundle savedInstanceState) {
+    // last parameter (autoRegister) is false
+    CleverPush.getInstance(this).init(..., false);
 
-      // subscribe
-      CleverPush.getInstance(this).subscribe();
+    // subscribe
+    CleverPush.getInstance(this).subscribe();
 
-      // or unsubscribe
-      CleverPush.getInstance(this).unsubscribe();
+    // or unsubscribe
+    CleverPush.getInstance(this).unsubscribe();
 
-      // get subscription status (true or false)
-      CleverPush.getInstance(this).isSubscribed();
-}
+    // get subscription status (true or false)
+    CleverPush.getInstance(this).isSubscribed();
+  }
 }
 ```
 
@@ -133,17 +135,17 @@ public void onCreate(Bundle savedInstanceState) {
 
 ```kotlin
 class MainActivity:Activity() {
-fun onCreate(savedInstanceState:Bundle) {
-   // last parameter (autoRegister) is false
-   CleverPush.getInstance(this).init(..., false)
+  fun onCreate(savedInstanceState:Bundle) {
+    // last parameter (autoRegister) is false
+    CleverPush.getInstance(this).init(..., false)
 
-   // subscribe
-   CleverPush.getInstance(this).subscribe()
-   // or unsubscribe
-   CleverPush.getInstance(this).unsubscribe()
-   // get subscription status (true or false)
-   CleverPush.getInstance(this).isSubscribed()
-}
+    // subscribe
+    CleverPush.getInstance(this).subscribe()
+    // or unsubscribe
+    CleverPush.getInstance(this).unsubscribe()
+    // get subscription status (true or false)
+    CleverPush.getInstance(this).isSubscribed()
+  }
 }
 ```
 

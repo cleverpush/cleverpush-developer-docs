@@ -19,7 +19,7 @@ title: Setup
     ```groovy
     dependencies {
         // ...
-        implementation 'com.cleverpush:cleverpush:1.23.1'
+        implementation 'com.cleverpush:cleverpush:1.23.5'
     }
     ```
 
@@ -40,6 +40,8 @@ title: Setup
 			CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID")
 	  }
 	}	```
+
+Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
 ## Setup HMS (Huawei Mobile Services)
 

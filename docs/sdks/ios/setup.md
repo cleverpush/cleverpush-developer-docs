@@ -20,7 +20,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.19.0'
+pod 'CleverPush', '~> 1.20.0'
 ```
 
 **Swift Package Manager Integration** (not needed if you use CocoaPods):
@@ -298,21 +298,13 @@ Objective-C:
 ```objective-c
 // ...
 
-[CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+[CleverPush initWithLaunchOptions:launchOptions
+  channelId:@"YOUR_CHANNEL_ID_HERE"
+  handleNotificationOpened:^(CPNotificationOpenedResult *result) {
     NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
-    
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
-                                                                message:[result.notification valueForKey:@"text"]
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * action) {}];
-    
-    [alert addAction:defaultAction];
-    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
 } handleSubscribed:^(NSString *subscriptionId) {
     NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
-}];
+} autoRegister:YES];
 ```
 
 Swift:
@@ -321,29 +313,20 @@ Swift:
 // ...
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-// ...
+  // ...
+  CleverPush.initWithLaunchOptions(launchOptions,
+    channelId: "YOUR_CHANNEL_ID_HERE",
+    handleNotificationOpened: { (result) in
+      print("Received Notification with URL: " + result!.notification.url!)
+  }, handleSubscribed: { subscriptionId in
+      print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+  }, autoRegister: true)
 
-    // Make sure to insert your CleverPush channelId
-    
-
-    CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened: { (result) in
-        
-        print("Received Notification with URL: " + result!.notification.url!)
-        let alert = UIAlertController(title: result!.notification.title, message: "Message", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        
-    }, handleSubscribed:{ subscriptionId in
-        
-        print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
-        
-    })
-        
-
-
-    return true
+  return true
 }
 ```
+
+Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
 **9. Create your iOS Auth Key certificate**
 

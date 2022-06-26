@@ -197,6 +197,13 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 [CleverPush getAvailableTopics:^(NSArray* channelTopics_) {
     NSLog(@"CleverPush: Available topics %@", channelTopics_);
 }];
+
+// add a single topic
+[CleverPush addSubscriptionTopic:@"ID_1"];
+
+// remove a single topic
+[CleverPush removeSubscriptionTopic:@"ID_1"];
+
 // let the user choose his topics
 [CleverPush showTopicsDialog];
 ```
@@ -213,16 +220,22 @@ CleverPush.setBrandingColor(UIColor .systemRed);
 let subscriptionTopics = CleverPush.getSubscriptionTopics()
 
 // set multiple subscription topics
-CleverPush.setSubscriptionTopics(["ID_1","ID_2"])
+CleverPush.setSubscriptionTopics(["ID_1", "ID_2"])
 
 // get all the available topics
 CleverPush.getAvailableTopics { channelTopics_ in
     print(channelTopics_ as Any)
 }
+
+// add a single topic
+CleverPush.addSubscriptionTopic("ID_1")
+
+// remove a single topic
+CleverPush.removeSubscriptionTopic("ID_1")
+
 // let the user choose his topics
 CleverPush.showTopicsDialog()
 ```
-
 
 
 Here is how the topics dialog looks like:
