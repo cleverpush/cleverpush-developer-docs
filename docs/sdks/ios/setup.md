@@ -382,6 +382,22 @@ Swift:
 CleverPush.incrementBadge = true
 ```
 
+
+## Hiding notifications while in foreground
+
+You can disable the automatic showing of notifcations when the app is in foreground:
+
+Objective-C:
+```objective-c
+[CleverPush setShowNotificationsInForeground:NO];
+```
+
+Swift:
+```swift
+CleverPush.setShowNotificationsInForeground(false)
+```
+
+
 ## Notification permission
 
 By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
