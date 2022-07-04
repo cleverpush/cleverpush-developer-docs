@@ -38,6 +38,10 @@ Add the following line at the bottom of `app/build.gradle`:
 googleServices { disableVersionCheck = true }
 ```
 
+##  Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+
+Please upgrade atleast to CleverPush SDK version 1.17.0 when targeting Android API 31+.
+
 
 ## Huawei Certificate Error:
 
