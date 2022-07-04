@@ -55,7 +55,7 @@ for (const [sdk, url] of Object.entries(changelogs)) {
   };
 
   const response = await httpsRequest(requestOptions);
-  fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + response);
+  fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + response.replace('# Changelog', ''));
 }
 
 console.log('Changelogs downloaded successfully');
