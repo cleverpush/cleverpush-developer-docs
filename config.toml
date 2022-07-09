@@ -20,3 +20,7 @@ publishDir = "docs"
     weight = -100
     url = "https://api.cleverpush.com"
     target = "_blank"
+[[menu.main]]
+    name = "API Overview"
+    weight = -100
+    url = "/api/"

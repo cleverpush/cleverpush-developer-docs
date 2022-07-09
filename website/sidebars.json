@@ -45,5 +45,12 @@
       "sdks/flutter/troubleshooting",
       "sdks/flutter/changelog"
     ]
+  },
+  "api": {
+    "API Overview": [
+      "api/overview",
+      "api/subscriptions",
+      "api/notifications"
+    ]
   }
 }
