@@ -228,6 +228,8 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 <span class="hljs-comment">// remove a single topic</span>
 [<span class="hljs-meta">CleverPush removeSubscriptionTopic:@<span class="hljs-meta-string">"ID_1"</span></span>];
 
+BOOL hasTopic = [CleverPush hasSubscriptionTopic:<span class="hljs-string">@"TOPIC_ID"</span>];
+
 <span class="hljs-comment">// let the user choose his topics</span>
 [<span class="hljs-meta">CleverPush showTopicsDialog</span>];
 </code></pre>
@@ -254,6 +256,8 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 
 <span class="hljs-comment">// remove a single topic</span>
 <span class="hljs-type">CleverPush</span>.removeSubscriptionTopic(<span class="hljs-string">"ID_1"</span>)
+
+<span class="hljs-keyword">let</span> hasTopic = <span class="hljs-type">CleverPush</span>.hasSubscriptionTopic(<span class="hljs-string">"TOPIC_ID"</span>);
 
 <span class="hljs-comment">// let the user choose his topics</span>
 <span class="hljs-type">CleverPush</span>.showTopicsDialog()

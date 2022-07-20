@@ -269,6 +269,8 @@ Set&lt;String&gt; subscribedTopicIds = CleverPush.getInstance(<span class="hljs-
 
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).setSubscriptionTopics(<span class="hljs-keyword">new</span> String[]{<span class="hljs-string">"ID_1"</span>, <span class="hljs-string">"ID_2"</span>});
 
+<span class="hljs-keyword">boolean</span> hasTopic = CleverPush.getInstance(<span class="hljs-keyword">this</span>).hasSubscriptionTopic(<span class="hljs-string">"TOPIC_ID"</span>);
+
 <span class="hljs-comment">// let the user choose his topics</span>
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).showTopicsDialog();
 </code></pre>
@@ -279,6 +281,8 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).showTopicsDialog(
 
 <span class="hljs-keyword">val</span> subscribedTopicIds = CleverPush.getInstance(<span class="hljs-keyword">this</span>).getSubscriptionTopics()
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).setSubscriptionTopics(arrayOf&lt;String&gt;(<span class="hljs-string">"ID_1"</span>, <span class="hljs-string">"ID_2"</span>))
+
+<span class="hljs-keyword">val</span> hasTopic = CleverPush.getInstance(<span class="hljs-keyword">this</span>).hasSubscriptionTopic(<span class="hljs-string">"TOPIC_ID"</span>);
 
 <span class="hljs-comment">// let the user choose his topics</span>
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).showTopicsDialog()
