@@ -285,6 +285,8 @@ Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTop
 
 CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
 
+boolean hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID");
+
 // let the user choose his topics
 CleverPush.getInstance(this).showTopicsDialog();
 ```
@@ -298,6 +300,8 @@ CleverPush.getInstance(this).getAvailableTopics({ topics->
 
 val subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics()
 CleverPush.getInstance(this).setSubscriptionTopics(arrayOf<String>("ID_1", "ID_2"))
+
+val hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID");
 
 // let the user choose his topics
 CleverPush.getInstance(this).showTopicsDialog()

@@ -204,6 +204,8 @@ NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 // remove a single topic
 [CleverPush removeSubscriptionTopic:@"ID_1"];
 
+BOOL hasTopic = [CleverPush hasSubscriptionTopic:@"TOPIC_ID"];
+
 // let the user choose his topics
 [CleverPush showTopicsDialog];
 ```
@@ -232,6 +234,8 @@ CleverPush.addSubscriptionTopic("ID_1")
 
 // remove a single topic
 CleverPush.removeSubscriptionTopic("ID_1")
+
+let hasTopic = CleverPush.hasSubscriptionTopic("TOPIC_ID");
 
 // let the user choose his topics
 CleverPush.showTopicsDialog()
