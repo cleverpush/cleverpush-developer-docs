@@ -57,19 +57,25 @@
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Methods</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="basic-usage"></a><a href="#basic-usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basic Usage</h2>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c"><span class="hljs-comment">// init with autoRegister:false to manually subscribe later</span>
-[CleverPush <span class="hljs-string">initWithLaunchOptions:</span>launchOptions <span class="hljs-string">channelId:</span>@<span class="hljs-string">"YOUR_CHANNEL_ID_HERE"</span> <span class="hljs-string">handleNotificationOpened:</span>^(CPNotificationOpenedResult *result) {
-    NSLog(@<span class="hljs-string">"Received Notification with URL: %@"</span>, [result.notification <span class="hljs-string">valueForKey:</span>@<span class="hljs-string">"url"</span>]);
-} <span class="hljs-string">handleSubscribed:</span>^(NSString *subscriptionId) {
-    NSLog(@<span class="hljs-string">"Subscribed to CleverPush with ID: %@"</span>, subscriptionId);
-} <span class="hljs-string">autoRegister:</span><span class="hljs-literal">false</span>];
+[CleverPush initWithLaunchOptions:launchOptions
+            channelId:<span class="hljs-string">@"YOUR_CHANNEL_ID_HERE"</span>
+            handleNotificationReceived:^(CPNotificationReceivedResult *result) {
+              <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"Received Notification with URL: %@"</span>, [result.notification valueForKey:<span class="hljs-string">@"url"</span>]);
+            handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+              <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"Opened Notification with URL: %@"</span>, [result.notification valueForKey:<span class="hljs-string">@"url"</span>]);
+            } handleSubscribed:^(<span class="hljs-built_in">NSString</span> *subscriptionId) {
+                <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"Subscribed to CleverPush with ID: %@"</span>, subscriptionId);
+            }
+            autoRegister:<span class="hljs-literal">NO</span>
+];
 
 <span class="hljs-comment">//get the locally stored notification.</span>
-NSArray *localNotifications = [CleverPush getNotifications];
+<span class="hljs-built_in">NSArray</span> *localNotifications = [CleverPush getNotifications];
 
 <span class="hljs-comment">// get remote notification and local notification based on the boolean argument.</span>
 <span class="hljs-comment">// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.</span>
-[CleverPush <span class="hljs-string">getNotifications:</span>YES <span class="hljs-string">callback:</span>^(NSArray *remoteNotification) {
-    NSLog(@<span class="hljs-string">"%@"</span>, remoteNotification);
+[CleverPush getNotifications:<span class="hljs-literal">YES</span> callback:^(<span class="hljs-built_in">NSArray</span> *remoteNotification) {
+    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, remoteNotification);
  }];
 
 <span class="hljs-comment">// subscribe</span>
@@ -79,17 +85,27 @@ NSArray *localNotifications = [CleverPush getNotifications];
 [CleverPush unsubscribe]
 
 <span class="hljs-comment">// get subscription status</span>
-BOOL isSubscribed = [CleverPush isSubscribed]
+<span class="hljs-built_in">BOOL</span> isSubscribed = [CleverPush isSubscribed]
 </code></pre>
 <p>Swift:</p>
 <pre><code class="hljs css language-swift"><span class="hljs-comment">// init with autoRegister:false to manually subscribe later</span>
-<span class="hljs-type">CleverPush</span>.initWithLaunchOptions(launchOptions, channelId: <span class="hljs-string">"YOUR_CHANNEL_ID_HERE"</span>, handleNotificationOpened:{ result <span class="hljs-keyword">in</span>
+<span class="hljs-type">CleverPush</span>.initWithLaunchOptions(launchOptions,
+  channelId: <span class="hljs-string">"YOUR_CHANNEL_ID_HERE"</span>,
+  handleNotificationReceived:{ result <span class="hljs-keyword">in</span>
     <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> value = result?.notification.value(forKey: <span class="hljs-string">"url"</span>) {
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Received Notification with URL: \(value)"</span>)
+      <span class="hljs-built_in">print</span>(<span class="hljs-string">"Received Notification with URL: \(value)"</span>)
     }
-}, handleSubscribed:{ subscriptionId <span class="hljs-keyword">in</span>
+  },
+  handleNotificationOpened:{ result <span class="hljs-keyword">in</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> value = result?.notification.value(forKey: <span class="hljs-string">"url"</span>) {
+      <span class="hljs-built_in">print</span>(<span class="hljs-string">"Opened Notification with URL: \(value)"</span>)
+    }
+  },
+  handleSubscribed:{ subscriptionId <span class="hljs-keyword">in</span>
     <span class="hljs-built_in">print</span>(<span class="hljs-string">"Subscribed to CleverPush with ID: \(subscriptionId ?? "</span><span class="hljs-string">")"</span>)
-}, autoRegister: <span class="hljs-literal">false</span>)
+  },
+  autoRegister: <span class="hljs-literal">false</span>
+)
 
 <span class="hljs-comment">//get the locally stored notification.</span>
 <span class="hljs-keyword">let</span> localNotifications = <span class="hljs-type">CleverPush</span>.getNotifications()
@@ -288,7 +304,7 @@ BOOL hasTopic = [CleverPush hasSubscriptionTopic:<span class="hljs-string">@"TOP
 <span class="hljs-keyword">let</span> attribute = <span class="hljs-type">CleverPush</span>.getSubscriptionAttribute(<span class="hljs-string">"ATTRIBUTE_ID"</span>)
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="received-notifications"></a><a href="#received-notifications" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Received Notifications</h2>
-<p>(App Group from setup step 8 is required):</p>
+<p>(App Group from setup step 10 is required):</p>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c">NSArray* notifications = [CleverPush getNotifications]<span class="hljs-comment">;</span>
 
