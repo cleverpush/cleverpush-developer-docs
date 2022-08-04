@@ -8,11 +8,17 @@ title: Methods
 Objective-C:
 ```objective-c
 // init with autoRegister:false to manually subscribe later
-[CleverPush initWithLaunchOptions:launchOptions channelId:@"YOUR_CHANNEL_ID_HERE" handleNotificationOpened:^(CPNotificationOpenedResult *result) {
-    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
-} handleSubscribed:^(NSString *subscriptionId) {
-    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
-} autoRegister:false];
+[CleverPush initWithLaunchOptions:launchOptions
+            channelId:@"YOUR_CHANNEL_ID_HERE"
+            handleNotificationReceived:^(CPNotificationReceivedResult *result) {
+              NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+            handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+              NSLog(@"Opened Notification with URL: %@", [result.notification valueForKey:@"url"]);
+            } handleSubscribed:^(NSString *subscriptionId) {
+                NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+            }
+            autoRegister:NO
+];
 
 //get the locally stored notification.
 NSArray *localNotifications = [CleverPush getNotifications];
@@ -35,13 +41,23 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 Swift:
 ```swift
 // init with autoRegister:false to manually subscribe later
-CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationOpened:{ result in
+CleverPush.initWithLaunchOptions(launchOptions,
+  channelId: "YOUR_CHANNEL_ID_HERE",
+  handleNotificationReceived:{ result in
     if let value = result?.notification.value(forKey: "url") {
-        print("Received Notification with URL: \(value)")
+      print("Received Notification with URL: \(value)")
     }
-}, handleSubscribed:{ subscriptionId in
+  },
+  handleNotificationOpened:{ result in
+    if let value = result?.notification.value(forKey: "url") {
+      print("Opened Notification with URL: \(value)")
+    }
+  },
+  handleSubscribed:{ subscriptionId in
     print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
-}, autoRegister: false)
+  },
+  autoRegister: false
+)
 
 //get the locally stored notification.
 let localNotifications = CleverPush.getNotifications()
@@ -276,7 +292,7 @@ let attribute = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 
 
 ## Received Notifications
-(App Group from setup step 8 is required):
+(App Group from setup step 10 is required):
 
 Objective-C:
 ```objective-c
