@@ -258,7 +258,11 @@ Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSub
 
 String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
 
+// You can set string values like this
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
+
+// Please provide dates in the following format: YYYY-MM-DD
+CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD");
 ```
 
 **KOTLIN**
@@ -268,8 +272,14 @@ CleverPush.getInstance(this).getAvailableAttributes({ attributes->
                                                    // returns Set<CustomAttribute>
                                                    })
 val subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes()
+
 val attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id")
+
+// You can set string values like this
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
+
+// Please provide dates in the following format: YYYY-MM-DD
+CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
 ```
 
 ## Topics

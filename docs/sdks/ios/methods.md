@@ -272,9 +272,13 @@ Objective-C:
 
 NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
 
+NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
+
+// You can set string values like this
 [CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
 
-NSString* attribute = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
+// Please provide dates in the following format: YYYY-MM-DD
+[CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
 ```
 
 Swift:
@@ -285,9 +289,13 @@ CleverPush.getAvailableAttributes { availableAttributes in
 
 let subscriptionAttributes = CleverPush.getSubscriptionAttributes()
 
+let attributeValue = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
+
+// You can set string values like this
 CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
 
-let attribute = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
+// Please provide dates in the following format: YYYY-MM-DD
+CleverPush.setSubscriptionAttribute("birthdate", value: "2020-06-21")
 ```
 
 
