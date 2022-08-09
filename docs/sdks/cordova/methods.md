@@ -88,15 +88,42 @@ export class AppComponent {
 }
 ```
 
+## Basic usage
+
+
+Subscribe:
+```javascript
+window.plugins.CleverPush.subscribe();
+```
+
+Unsubscribe:
+```javascript
+window.plugins.CleverPush.unsubscribe();
+```
+
+Check if subscribed:
+```javascript
+window.plugins.CleverPush.isSubscribed((err, isSubscribed) => {
+  
+});
+```
+
+Get Subscription ID (after subscribe)
+```javascript
+window.plugins.CleverPush.getSubscriptionId((err, subscriptionId) => {
+  
+});
+```
+
 ## Notification Received Callback Listener
 
 Instead of a regular `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
 
 ```javascript
-window['plugins'].CleverPush.setNotificationReceivedCallbackListener(function(data) {
+window.plugins.CleverPush.setNotificationReceivedCallbackListener(function(data) {
   console.log('CleverPush notification received:', JSON.stringify(data));
   var showInForeground = true;
-  window['plugins'].CleverPush.setNotificationReceivedCallbackResult(data.notification._id, showInForeground);
+  window.plugins.CleverPush.setNotificationReceivedCallbackResult(data.notification._id, showInForeground);
 });
 ```
 
