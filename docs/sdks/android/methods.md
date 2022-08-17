@@ -446,7 +446,6 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME")
 // track a conversion with a specified amount
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)
 ```
-```
 
 
 ## Follow up Events
