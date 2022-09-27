@@ -25,9 +25,11 @@ export default class App extends React.Component {
     CleverPush.init('YOUR_CHANNEL_ID_HERE');
     
     // optionally, you can disable the automatic push prompt with 'autoRegister: false':
+    /*
     CleverPush.init('YOUR_CHANNEL_ID_HERE', {
       autoRegister: false
     });
+    */
 
     CleverPush.addEventListener('opened', this.onOpened);
     CleverPush.addEventListener('received', this.onReceived);
@@ -40,16 +42,30 @@ export default class App extends React.Component {
     CleverPush.removeEventListener('subscribed', this.onSubscribed);
   }
 
-  onReceived(receiveResult) {
-    console.log('Notification received:', receiveResult);
+  onReceived({ notification }) {
+    console.log('Notification received:', notification);
   }
 
-  onOpened(openResult) {
-    console.log('Notification opened:', openResult);
+  onOpened({ notification }) {
+    console.log('Notification opened:', notification);
+    /*
+    Example notification:
+
+    {
+      "_id": "Notification ID",
+      "url": "https://example.com",
+      "title": "Title…",
+      "text": "Text…",
+      "mediaUrl": "Image URL…",
+      "customData": {
+        "key": "value…"
+      }
+    }
+    */
   }
 
-  onSubscribed(subscriptionId) {
-    console.log('Subscribed with ID:', subscriptionId);
+  onSubscribed({ id }) {
+    console.log('Subscribed with ID:', id);
   }
 
   render() {
@@ -132,22 +148,20 @@ The SDK can also automatically assign tags by using the `trackPageView` method. 
 
 Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
 
-```csharp
+```javascript
 CleverPush.trackPageView("https://example.com/sports/article-123123");
 ```
 
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
 
-```csharp
+```javascript
 CleverPush.trackPageView("https://example.com/anything", { "category", "sports" });
 ```
 
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
 
 
-
-
-Get received notifications:
+## Get received notifications:
 
 ```javascript
 CleverPush.getNotifications((err, notifications) => {
