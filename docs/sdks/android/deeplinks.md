@@ -1,12 +1,12 @@
 ---
 id: extension
-title: Notification Extender Service
+title: Deep Links
 ---
 
-Deep Link Android
+Deep Links
 --------------------
 
-1. Navigate to the app > AndroidManifest.xml and add the below code to it. As we are creating a deep link for our MainActivity.java file so we have to add this code in the MainActivity part. Below is the code which is to be added to the AndroidManifext.xml file. Comments are added in the code to get to know in more detail.
+1. Navigate to app > AndroidManifest.xml and add the below code to it. As we are creating a deep link for our MainActivity.java file so we have to add this code in the MainActivity part. Comments are added in the code to get to know in more detail.
 
 2. 'AndroidManifest.xml'
 
@@ -15,27 +15,28 @@ Deep Link Android
   <category android:name="android.intent.category.DEFAULT" />
   <category android:name="android.intent.category.BROWSABLE" />
 
-  <!--on below line we are specifying the host name and the scheme type in add your App name -->
+  <!-- on below line we are specifying the host name and the scheme type in add your App name -->
    <data
         android:host="https://cleverpush.com"
         android:scheme="cleverpush" />
 </intent-filter>
   
-<!--below is the same filter as above just the scheme is changed to your app name -->
+<!-- below is the same filter as above just the scheme is changed to your app name -->
 <intent-filter>
   <action android:name="android.intent.action.VIEW" />
   <category android:name="android.intent.category.DEFAULT" />
   <category android:name="android.intent.category.BROWSABLE" />
-  
+<!-- here the host must be customer's website -->
   <data
     android:host="www.cleverpush.com"
     android:scheme="cleverpush" />
 </intent-filter>
 
-3. Working with the MainActivity.java file
+3. Working with the MainActivity.java file.
+```java
+Go to the MainActivity.java file and refer to the following code. Comments are added inside the code to understand the code in more detail.
 
-Go to the MainActivity.java file and refer to the following code. Below is the code for the MainActivity.java file. Comments are added inside the code to understand the code in more detail.
-
+```java
 public class MainActivity extends AppCompatActivity {
 
 @Override
@@ -55,7 +56,7 @@ protected void onCreate(Bundle savedInstanceState) {
 		// after that we are extracting string from that parameters.
 		String param = parameters.get(parameters.size() - 1);
 		
-		//You can check in our Logcat in your param parameter Log.
+		// You can check in our Logcat in your param parameter Log.
 		Log.e("param",param);
     
 	  }
