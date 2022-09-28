@@ -1,12 +1,12 @@
 ---
-id: Universal Link
-title: Universal Link
+id: deeplinks
+title: Deep Links
 ---
 
-## CleverPush Universal Link
+## CleverPush Deep Links
 
-1. Select the Project.
-2. Select the Project target.
+1. Open the Project in Xcode.
+2. Select the project's main target.
 3. Select the info tab.
 4. Select the url type.
 5. Select the url scheme and enter the url scheme (Example :- cleverpush)
@@ -15,8 +15,8 @@ title: Universal Link
 ```swift
 @IBAction func btnHandlerShareURL(_ sender: Any) {
 
-        // From here user can share the cleverpush url to another user using the share activity
-        let path = "cleverpush://"
+        // From here user can share their own url to another user using the share activity (Example :- let path = "cleverpush://") 
+        let path = "url://"
         let textToShare = [ path ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
@@ -26,7 +26,7 @@ title: Universal Link
     }
 ```
 
-7. Go to AppDelegate.Swift file (We have to add the below code into the AppDelegate.file)
+7. Add the following code in your AppDelegate.swift file
 
 ```swift
      func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
