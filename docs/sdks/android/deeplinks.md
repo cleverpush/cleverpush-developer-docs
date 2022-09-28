@@ -9,7 +9,7 @@ Deep Links
 1. Navigate to app > AndroidManifest.xml and add the below code to it. As we are creating a deep link for our MainActivity.java file so we have to add this code in the MainActivity part. Comments are added in the code to get to know in more detail.
 
 2. 'AndroidManifest.xml'
-```
+``` xml
 <intent-filter>
   <action android:name="android.intent.action.VIEW" />
   <category android:name="android.intent.category.DEFAULT" />
@@ -32,11 +32,10 @@ Deep Links
     android:scheme="cleverpush" />
 </intent-filter>
 ```
-
 3. Working with the MainActivity.java file.
-```
 Go to the MainActivity.java file and refer to the following code. Comments are added inside the code to understand the code in more detail.
 
+``` java
 public class MainActivity extends AppCompatActivity {
 
 @Override
