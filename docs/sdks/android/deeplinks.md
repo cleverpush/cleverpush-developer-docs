@@ -1,5 +1,5 @@
 ---
-id: extension
+id: deeplinks
 title: Deep Links
 ---
 
