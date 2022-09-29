@@ -31,8 +31,8 @@ title: Deep Links
 ```swift
      func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
-        // From here we can check that url contains cleverpush or not?
-        if url.absoluteString.contains("cleverpush") {
+        // From here we can check that url contains protocol or not? (Example :- if url.scheme == "cleverpush")
+        if url.scheme == "scheme" {
             let ab = UIStoryboard(name: "Main", bundle: nil)
             let vc = ab.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             window?.rootViewController = vc
