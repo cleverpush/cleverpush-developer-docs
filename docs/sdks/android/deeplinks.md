@@ -32,8 +32,8 @@ Deep Links
     android:scheme="cleverpush" />
 </intent-filter>
 ```
-3. Working with the MainActivity.java file.
-Go to the MainActivity.java file and refer to the following code. Comments are added inside the code to understand the code in more detail.
+
+3. Go to your `MainActivity.java` file and refer to the following code. Comments are added inside the code to understand the code in more detail.
 
 ``` java
 public class MainActivity extends AppCompatActivity {
