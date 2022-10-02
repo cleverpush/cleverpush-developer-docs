@@ -25,3 +25,21 @@ Please refer to the **Badge Counts** section on the **Methods** page for further
 ## Notifications not received while developing
 
 In some cases it is needed to mark your subscriptions as "Sandbox mode" subscriptions in the CleverPush dashboard (Channels -> App Push -> Subscriptions -> Click on your subscription -> Mark as APNS Sandbox mode).
+
+
+## `CleverPush-CleverPushResources` needs to have a Provisioning Profile selected.
+
+This is an issue since Xcode 14 as `CODE_SIGNING_ALLOWED` has been changed from `NO` to `YES` in Resources (see https://github.com/CocoaPods/CocoaPods/issues/11402). Add the following to the bottom of your `Podfile` and run `pod install` to solve it:
+
+```
+post_install do |installer|
+  assertDeploymentTarget(installer)
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
+    end
+  end
+end
+```
