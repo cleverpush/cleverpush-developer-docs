@@ -263,6 +263,10 @@ CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD");
+
+// You can also push/pull values to special array attributes (e.g. "categories")
+CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1");
+CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1");
 ```
 
 **KOTLIN**
@@ -280,6 +284,10 @@ CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
+
+// You can also push/pull values to special array attributes (e.g. "categories")
+CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1")
+CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1")
 ```
 
 ## Topics

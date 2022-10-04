@@ -279,6 +279,11 @@ NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"]
 
 // Please provide dates in the following format: YYYY-MM-DD
 [CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
+
+// You can also push/pull values to special array attributes (e.g. "categories")
+[CleverPush pushSubscriptionAttributeValue:@"categories" value:@"category_1"];
+[CleverPush pullSubscriptionAttributeValue:@"categories" value:@"category_1"];
+
 ```
 
 Swift:
@@ -296,6 +301,10 @@ CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.setSubscriptionAttribute("birthdate", value: "2020-06-21")
+
+// You can also push/pull values to special array attributes (e.g. "categories")
+CleverPush.pushSubscriptionAttributeValue("categories", value: "category_1");
+CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 ```
 
 
