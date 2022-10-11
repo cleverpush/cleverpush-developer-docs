@@ -291,6 +291,13 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).setSubscriptionTo
 
 <span class="hljs-comment">// let the user choose his topics</span>
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).showTopicsDialog();
+
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).setTopicsChangedListener(<span class="hljs-keyword">new</span> TopicsChangedListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">topicsChanged</span><span class="hljs-params">(Set&lt;String&gt; topicIds)</span> </span>{
+
+    }
+});
 </code></pre>
 <p><strong>KOTLIN</strong></p>
 <pre><code class="hljs css language-kotlin">CleverPush.getInstance(<span class="hljs-keyword">this</span>).getAvailableTopics({ topics-&gt;
@@ -320,11 +327,11 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).getNotifications(
 <pre><code class="hljs css language-java"><span class="hljs-comment">// get remote notification and local notification based on the boolean argument.</span>
 <span class="hljs-comment">// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.</span>
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).getNotifications(<span class="hljs-keyword">true</span>, <span class="hljs-keyword">new</span> NotificationsCallbackListener() {
-            <span class="hljs-meta">@Override</span>
-            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ready</span><span class="hljs-params">(Set&lt;Notification&gt; notifications)</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ready</span><span class="hljs-params">(Set&lt;Notification&gt; notifications)</span> </span>{
 
-            }
-      });
+    }
+});
 </code></pre>
 <p><strong>KOTLIN</strong></p>
 <pre><code class="hljs css language-kotlin"> <span class="hljs-comment">// get remote notification and local notification based on the boolean argument.</span>
