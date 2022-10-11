@@ -69,6 +69,20 @@ CleverPush.shared.removeSubscriptionTag('TAG_ID');
 var availableTags = await CleverPush.shared.getAvailableTags();
 ```
 
+## Automatic Tag Assignment
+
+The SDK can also automatically assign tags by using the `trackPageView` method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.
+
+Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
+
+
+```dart
+CleverPush.shared.trackPageView('https://example.com/sports/article-123123');
+```
+
+Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
+
+
 ## Attributes
 ```dart
 // get all the subscription attributes
