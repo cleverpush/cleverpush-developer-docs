@@ -307,6 +307,13 @@ boolean hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID")
 
 // let the user choose his topics
 CleverPush.getInstance(this).showTopicsDialog();
+
+CleverPush.getInstance(this).setTopicsChangedListener(new TopicsChangedListener() {
+    @Override
+    public void topicsChanged(Set<String> topicIds) {
+
+    }
+});
 ```
 
 **KOTLIN**
@@ -351,11 +358,11 @@ CleverPush.getInstance(this).getNotifications()
 // get remote notification and local notification based on the boolean argument.
 // - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
 CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackListener() {
-            @Override
-            public void ready(Set<Notification> notifications) {
+    @Override
+    public void ready(Set<Notification> notifications) {
 
-            }
-      });
+    }
+});
 ```
 
 **KOTLIN**

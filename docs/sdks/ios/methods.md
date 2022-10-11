@@ -224,6 +224,10 @@ BOOL hasTopic = [CleverPush hasSubscriptionTopic:@"TOPIC_ID"];
 
 // let the user choose his topics
 [CleverPush showTopicsDialog];
+
+[CleverPush setTopicsChangedListener:^(NSArray* topicsIds) {
+    NSLog(@"CleverPush: Changed topicsIds %@", topicsIds);
+});
 ```
 
 Swift:
