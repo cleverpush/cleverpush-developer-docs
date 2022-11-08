@@ -312,6 +312,21 @@ CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 ```
 
 
+## Country & Language
+
+You can optionally override the country & language which is automatically detected from the system and can be used for targeting / translations.
+
+```objective-c
+[CleverPush setSubscriptionLanguage:@"en"];
+[CleverPush setSubscriptionCountry: @"US"]
+```
+
+```swift
+CleverPush.setSubscriptionLanguage("en");
+CleverPush.setSubscriptionCountry("US");
+```
+
+
 ## Received Notifications
 (App Group from setup step 10 is required):
 

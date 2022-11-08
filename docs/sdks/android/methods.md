@@ -290,6 +290,19 @@ CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "categ
 CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1")
 ```
 
+
+## Country & Language
+
+You can optionally override the country & language which is automatically detected from the system and can be used for targeting / translations.
+
+**JAVA**
+
+```java
+CleverPush.getInstance(this).setSubscriptionLanguage("en");
+CleverPush.getInstance(this).setSubscriptionCountry("US");
+```
+
+
 ## Topics
 
 **JAVA**

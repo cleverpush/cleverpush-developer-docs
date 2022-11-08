@@ -96,6 +96,17 @@ var attributeValue = await CleverPush.shared.getSubscriptionAttribute('ATTRIBUTE
 var availableAttributes = await CleverPush.shared.getAvailableAttributes();
 ```
 
+
+## Country & Language
+
+You can optionally override the country & language which is automatically detected from the system and can be used for targeting / translations.
+
+```dart
+CleverPush.shared.setSubscriptionLanguage("en");
+CleverPush.shared.setSubscriptionCountry("US");
+```
+
+
 ## Notifications
 
 ```dart
