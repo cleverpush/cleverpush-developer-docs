@@ -9,6 +9,7 @@
       "sdks/ios/methods",
       "sdks/ios/chat",
       "sdks/ios/stories",
+      "sdks/ios/deeplinks",
       "sdks/ios/troubleshooting",
       "sdks/ios/changelog"
     ],
@@ -18,6 +19,7 @@
       "sdks/android/extension",
       "sdks/android/chat",
       "sdks/android/stories",
+      "sdks/android/deeplinks",
       "sdks/android/troubleshooting",
       "sdks/android/upgrading",
       "sdks/android/changelog"

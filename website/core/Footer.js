@@ -72,10 +72,13 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>More</h5>
-            <a href={`https://cleverpush.com/blog`} target="_blank">Blog</a>
+            <a href="https://api.cleverpush.com/" target="_blank">API Reference</a>
+            <a href="/docs/api/overview" target="_blank">API Overview</a>
+            <a href="https://cleverpush.com/blog" target="_blank">Blog</a>
             <a href="https://cleverpush.com/imprint" target="_blank">Imprint</a>
             <a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a>
             <a href="https://cleverpush.com/terms" target="_blank">Terms of service</a>
+            <a href="https://cleverpush.com/gdpr" target="_blank">GDPR</a>
           </div>
         </section>
 

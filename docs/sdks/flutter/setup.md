@@ -114,12 +114,12 @@ title: Setup
     android {
     compileSdkVersion 28
     buildToolsVersion '27.0.3'
-      
+
     compileOptions {
       sourceCompatibility JavaVersion.VERSION_1_8
       targetCompatibility JavaVersion.VERSION_1_8
     }
-      
+
     ...
     ```
 

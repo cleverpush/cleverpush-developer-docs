@@ -39,7 +39,9 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { href: 'https://api.cleverpush.com', label: 'API Reference' },
+    { href: '/', label: 'SDK Docs' },
+    { href: '/docs/api/overview', label: 'API Overview' },
+    { href: 'https://api.cleverpush.com/', label: 'API Reference' },
   ],
 
   // If you have users set above, you add it here:

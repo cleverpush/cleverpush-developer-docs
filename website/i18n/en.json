@@ -61,7 +61,8 @@
       }
     },
     "links": {
-      "API Reference": "API Reference"
+      "API Reference": "API Reference",
+      "API Overview": "API Overview"
     },
     "categories": {
       "JavaScript SDK": "JavaScript SDK",
