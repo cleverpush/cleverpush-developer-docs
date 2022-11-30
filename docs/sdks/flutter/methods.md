@@ -97,6 +97,32 @@ var availableAttributes = await CleverPush.shared.getAvailableAttributes();
 ```
 
 
+## Conversion Event Tracking
+
+Events can be used to track conversions.
+
+```dart
+await CleverPush.shared.trackEvent('EVENT NAME');
+
+// track a conversion with a specified amount
+await CleverPush.shared.trackEvent('EVENT NAME', 37.50);
+```
+
+
+## Follow up Events
+
+Events can be used to trigger follow-up campaigns.
+
+```dart
+await CleverPush.shared.triggerFollowUpEvent('EVENT NAME');
+
+// add custom parameters
+await CleverPush.shared.triggerFollowUpEvent('EVENT NAME', {
+  "id": "123456"
+});
+```
+
+
 ## Country & Language
 
 You can optionally override the country & language which is automatically detected from the system and can be used for targeting / translations.
