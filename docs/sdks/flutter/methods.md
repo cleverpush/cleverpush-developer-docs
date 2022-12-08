@@ -14,10 +14,10 @@ await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", false);
 await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", true);
 
 // subscribe 
-CleverPush.shared.subscribe();
+await CleverPush.shared.subscribe();
 
 // unsubscribe 
-CleverPush.shared.unsubscribe();
+await CleverPush.shared.unsubscribe();
 
 // Get the subscription success callback with subscriptionId 
 CleverPush.shared.setSubscribedHandler((subscriptionId) {
@@ -28,6 +28,9 @@ CleverPush.shared.setSubscribedHandler((subscriptionId) {
 CleverPush.shared.isSubscribed().then((status) {
   console.log(status);
 });
+
+// Get the subscription ID 
+var subscriptionId = await CleverPush.shared.getSubscriptionId();
 ```
 
 ### Show/Hide Foreground Notifications
