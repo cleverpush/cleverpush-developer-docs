@@ -5,8 +5,29 @@
     "previous": "Previous",
     "tagline": "CleverPush is a feature-rich Push Notification Service for Websites and Apps",
     "docs": {
+      "api/ios/liveactivity": {
+        "title": "Live Activities (iOS 16)"
+      },
+      "api/notifications": {
+        "title": "Notifications"
+      },
+      "api/overview": {
+        "title": "API Overview"
+      },
+      "api/subscriptions": {
+        "title": "Subscriptions"
+      },
+      "sdks/android/chat": {
+        "title": "Chat"
+      },
+      "sdks/android/deeplinks": {
+        "title": "Deep Links"
+      },
       "sdks/android/extension": {
         "title": "Notification Extender Service"
+      },
+      "sdks/android/inbox": {
+        "title": "Inbox View"
       },
       "sdks/android/methods": {
         "title": "Methods"
@@ -14,17 +35,26 @@
       "sdks/android/setup": {
         "title": "Setup"
       },
+      "sdks/android/stories": {
+        "title": "Stories"
+      },
       "sdks/android/troubleshooting": {
         "title": "Troubleshooting"
       },
       "sdks/android/upgrading": {
         "title": "Upgrading"
       },
+      "sdks/cordova/capacitor_setup": {
+        "title": "Capacitor Setup"
+      },
+      "sdks/cordova/cordova_setup": {
+        "title": "Cordova Setup"
+      },
       "sdks/cordova/methods": {
         "title": "Methods"
       },
-      "sdks/cordova/setup": {
-        "title": "Setup"
+      "sdks/flutter/chat": {
+        "title": "Chat"
       },
       "sdks/flutter/methods": {
         "title": "Methods"
@@ -32,11 +62,26 @@
       "sdks/flutter/setup": {
         "title": "Setup"
       },
+      "sdks/flutter/troubleshooting": {
+        "title": "Troubleshooting"
+      },
+      "sdks/ios/chat": {
+        "title": "Chat"
+      },
+      "sdks/ios/deeplinks": {
+        "title": "Deep Links"
+      },
+      "sdks/ios/inbox": {
+        "title": "Inbox View"
+      },
       "sdks/ios/methods": {
         "title": "Methods"
       },
       "sdks/ios/setup": {
         "title": "Setup"
+      },
+      "sdks/ios/stories": {
+        "title": "Stories"
       },
       "sdks/ios/troubleshooting": {
         "title": "Troubleshooting"
@@ -61,8 +106,9 @@
       }
     },
     "links": {
-      "API Reference": "API Reference",
-      "API Overview": "API Overview"
+      "SDK Docs": "SDK Docs",
+      "API Overview": "API Overview",
+      "API Reference": "API Reference"
     },
     "categories": {
       "JavaScript SDK": "JavaScript SDK",
@@ -71,7 +117,8 @@
       "Cordova SDK": "Cordova SDK",
       "React Native SDK": "React Native SDK",
       "Xamarin SDK": "Xamarin SDK",
-      "Flutter SDK": "Flutter SDK"
+      "Flutter SDK": "Flutter SDK",
+      "API Overview": "API Overview"
     }
   },
   "pages-strings": {
