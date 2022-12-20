@@ -54,7 +54,8 @@
     "API Overview": [
       "api/overview",
       "api/subscriptions",
-      "api/notifications"
+      "api/notifications",
+      "api/ios/liveactivity"
     ]
   }
 }
