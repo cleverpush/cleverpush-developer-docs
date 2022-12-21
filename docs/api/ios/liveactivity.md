@@ -3,7 +3,7 @@ id: liveactivity
 title: Live Activities (iOS 16)
 ---
 
-![Live Activities](/img/live-activity-demo.gif)
+![Live Activities](https://static.cleverpush.com/docs/live_activity_demo.gif)
 
 ## Register live activity with CleverPush API
 
