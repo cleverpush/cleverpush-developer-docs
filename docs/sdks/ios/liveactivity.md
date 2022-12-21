@@ -21,22 +21,22 @@ title: Live Activities
 ## Step 1: Add a live activity widget extension to the ios project
 > File > New > Target 
 
-![Import activities](https://i.ibb.co/s93xZB1/Screenshot-2022-12-20-at-6-50-54-PM.png)
+![Import activities](https://static.cleverpush.com/docs/Screenshot+2022-12-20+at+6.50.54+PM.png)
 
 ## Step 2: Select target as a widget extension
 > Target > Widget Extension 
 
-![Select extension type](https://i.ibb.co/hc2CZHZ/Screenshot-2022-12-20-at-6-51-06-PM.png)
+![Select extension type](https://static.cleverpush.com/docs/Screenshot+2022-12-20+at+6.51.06+PM.png)
 
 ## Step 3: Include live activity
 - Enter the widget extension name, and also select the checkmark of **Include Live Activity** because without selecting that widget extension will not be added.
 
-![Select extension type](https://i.ibb.co/09SkD7V/Screenshot-2022-12-21-at-5-16-40-PM.png)
+![Select extension type](https://static.cleverpush.com/docs/Screenshot-2022-12-21-at-5-16-40-PM.png)
 
 ## Step 4: Enable Supports Live Activities 
 - Go to the info.plist in the project add the key **Supports Live Activities** and set it to Yes
 
-![Select extension type](https://i.ibb.co/3Y1Fvd3/Screenshot-2022-12-21-at-5-24-40-PM.png)
+![Select extension type](https://static.cleverpush.com/docs/Screenshot-2022-12-21-at-5-24-40-PM.png)
 
 ## Step 5: Displaying live data with Live Activities
 - [Apple’s Guideline for creating live Activity](https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities)
