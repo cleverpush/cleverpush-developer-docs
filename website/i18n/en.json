@@ -74,6 +74,9 @@
       "sdks/ios/inbox": {
         "title": "Inbox View"
       },
+      "sdks/ios/liveactivity": {
+        "title": "Live Activities"
+      },
       "sdks/ios/methods": {
         "title": "Methods"
       },
