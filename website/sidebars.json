@@ -11,6 +11,7 @@
       "sdks/ios/chat",
       "sdks/ios/stories",
       "sdks/ios/deeplinks",
+      "sdks/ios/liveactivity",
       "sdks/ios/troubleshooting",
       "sdks/ios/changelog"
     ],
