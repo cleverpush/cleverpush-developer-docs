@@ -1,5 +1,5 @@
 ---
-id: live-activies
+id: live-activities
 title: Live Activities (iOS 16)
 ---
 

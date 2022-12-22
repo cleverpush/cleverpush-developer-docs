@@ -1,5 +1,5 @@
 ---
-id: liveactivity
+id: live-activities
 title: Live Activities
 ---
 
@@ -80,5 +80,5 @@ class ViewController: UIViewController {
    ```
 
 ## Live Activity API reference
-[How to send live activity updates](https://developers.cleverpush.com/docs/api/ios/liveactivity)
+[How to send live activity updates](https://developers.cleverpush.com/docs/api/ios/live-activities)
 
