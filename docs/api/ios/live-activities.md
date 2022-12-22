@@ -1,9 +1,11 @@
 ---
-id: liveactivity
+id: live-activies
 title: Live Activities (iOS 16)
 ---
 
 ![Live Activities](https://static.cleverpush.com/docs/live_activity_demo.gif)
+
+Available in iOS SDK version 1.24.0+
 
 ## Register live activity with CleverPush API
 

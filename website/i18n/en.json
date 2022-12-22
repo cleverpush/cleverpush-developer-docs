@@ -5,7 +5,7 @@
     "previous": "Previous",
     "tagline": "CleverPush is a feature-rich Push Notification Service for Websites and Apps",
     "docs": {
-      "api/ios/liveactivity": {
+      "api/ios/live-activities": {
         "title": "Live Activities (iOS 16)"
       },
       "api/notifications": {
@@ -74,7 +74,7 @@
       "sdks/ios/inbox": {
         "title": "Inbox View"
       },
-      "sdks/ios/liveactivity": {
+      "sdks/ios/live-activities": {
         "title": "Live Activities"
       },
       "sdks/ios/methods": {

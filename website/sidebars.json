@@ -11,7 +11,7 @@
       "sdks/ios/chat",
       "sdks/ios/stories",
       "sdks/ios/deeplinks",
-      "sdks/ios/liveactivity",
+      "sdks/ios/live-activities",
       "sdks/ios/troubleshooting",
       "sdks/ios/changelog"
     ],
@@ -56,7 +56,7 @@
       "api/overview",
       "api/subscriptions",
       "api/notifications",
-      "api/ios/liveactivity"
+      "api/ios/live-activities"
     ]
   }
 }
