@@ -1,6 +1,6 @@
 ---
 id: live-activities
-title: Live Activities (iOS 16)
+title: Live Activities
 ---
 
 ![Live Activities](https://static.cleverpush.com/docs/live_activity_demo.gif)
