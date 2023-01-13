@@ -140,6 +140,16 @@ You can place this meta data option in your AndroidManifest.xml file to prevent 
 <meta-data android:name="com.cleverpush.notification_open_activity_disabled" android:value="true" />
 ```
 
+This can be used in combination with the NotificationOpenedCallbackListener so that you can decide when to finish the NotificationOpenedActivity.
+
+```java
+public void notificationOpenedCallback(NotificationOpenedResult result, Activity notificationOpenedActivity) {
+    System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+    // Add your custom code here and afterwards call:
+    notificationOpenedActivity.finish();
+}
+```
+
 ## Badge Counts
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
