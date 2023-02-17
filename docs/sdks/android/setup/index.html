@@ -63,11 +63,12 @@
 <li>Your CleverPush Channel ID, available in <code>Channels</code> &gt; <code>App Push</code> &gt; <code>Implementation</code> &gt; <code>Channel ID</code>  in the CleverPush Developer console.</li>
 </ol>
 <p><strong>SDK Setup</strong></p>
+<p>You can find the newest sdk version number here <a href="https://github.com/cleverpush/cleverpush-android-sdk/tags">Android SDK</a></p>
 <ol>
-<li><p>Add the dependency to your app-level <code>app/build.gradle</code> file</p>
+<li><p>Add the dependency to your app-level <code>app/build.gradle</code> file.</p>
 <pre><code class="hljs css language-groovy">dependencies {
     <span class="hljs-comment">// ...</span>
-    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.27.3'</span>
+    implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.27.6'</span>
 }
 </code></pre></li>
 <li><p>In the <code>onCreate</code> method of your Main activity or Application, call <code>CleverPush.getInstance(this).init(...)</code> with your CleverPush Channel ID.</p>
