@@ -27,6 +27,7 @@ title: Capacitor Setup
       npx cap sync
    ```
 6. Go to your capacitor project's Android folder and Add the dependency to your app-level `app/build.gradle` file.
+You can find the newest sdk version number here [Android SDK](https://github.com/cleverpush/cleverpush-android-sdk/tags).
 
     ```bash
       dependencies {
