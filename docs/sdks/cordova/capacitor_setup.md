@@ -19,7 +19,22 @@ title: Capacitor Setup
 2. Get your [FCM Sender ID & FCM Server API Key](https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key).
 3. [Login/Register](https://cleverpush.com/en/) on CleverPush
 4. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Implementation` > `Channel ID`  in the CleverPush Developer console.
+5. Go to your capacitor project and enter the following commands into the terminal.
 
+    ```bash
+      npx cap add android
+      npx run build
+      npx cap sync
+   ```
+6. Go to your capacitor project's Android folder and Add the dependency to your app-level `app/build.gradle` file.
+
+    ```bash
+      dependencies {
+          // ...
+          implementation 'com.cleverpush:cleverpush:1.27.6'
+      }
+
+   ```
 
 ## Setup iOS
 
@@ -31,7 +46,7 @@ title: Capacitor Setup
       npx cap sync
    ```
 
-2. Go to your capacitor project's iOS folder and add CleverPush to your Podfile:
+2. Go to your capacitor project's iOS folder and add CleverPush to your `Podfile`:
 
   ```bash
       pod 'CleverPush'
