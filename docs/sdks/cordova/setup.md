@@ -1,5 +1,5 @@
 ---
-id: cordova_setup
+id: setup
 title: Cordova Setup
 ---
 

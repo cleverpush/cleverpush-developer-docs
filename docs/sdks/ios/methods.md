@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-## Basic Usage
+## Basic usage
 
 Objective-C:
 ```objective-c

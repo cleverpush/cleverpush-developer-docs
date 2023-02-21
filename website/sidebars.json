@@ -27,9 +27,13 @@
       "sdks/android/upgrading",
       "sdks/android/changelog"
     ],
+    "Capacitor SDK": [
+      "sdks/capacitor/setup",
+      "sdks/capacitor/methods",
+      "sdks/capacitor/changelog"
+    ],
     "Cordova SDK": [
-      "sdks/cordova/capacitor_setup",
-      "sdks/cordova/cordova_setup",
+      "sdks/cordova/setup",
       "sdks/cordova/methods",
       "sdks/cordova/changelog"
     ],
