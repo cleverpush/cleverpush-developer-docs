@@ -1,6 +1,6 @@
 ---
-id: capacitor_setup
-title: Capacitor Setup
+id: setup
+title: Setup
 ---
 
 ## Intallation
