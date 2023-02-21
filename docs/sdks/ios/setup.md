@@ -20,20 +20,20 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.24.0'
+pod 'CleverPush', '~> 1.24.3'
 ```
 
 **Swift Package Manager Integration** (not needed if you use CocoaPods):
 
 1. Add CleverPush Swift Package Manager from url: "https://github.com/cleverpush/cleverpush-ios-sdk.git", .upToNextMajor(from: "1.19.0")
-2. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
+2. Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension
 
 **Manual Installation** (not needed if you use CocoaPods):
 
 1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
 2. Drop and drag `CleverPush/Framework/CleverPush.framework` into your Xcode project and check the copy option.
 3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit` and `JavaScriptCore` to your frameworks.
-4. Continue to step 2. If you are at step 3 and 4, repeat these steps for the Service Extension and for the Content Extension
+4. Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension
 
 **3. Enable the required capabilities**
 
