@@ -14,6 +14,7 @@ title: Setup
 
 **SDK Setup**
 
+You can find the newest sdk version number here [Android SDK](https://github.com/cleverpush/cleverpush-android-sdk/tags)
 1. Add the dependency to your app-level `app/build.gradle` file
 
     ```groovy
