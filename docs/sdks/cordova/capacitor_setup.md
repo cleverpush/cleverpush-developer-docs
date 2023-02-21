@@ -5,17 +5,20 @@ title: Capacitor Setup
 
 ## Intallation
 
-1. Add the required Cordova plugin
+1. Add the required Capacitor plugin
 
    ```bash
-   npm install cleverpush-cordova-sdk
+   npm install cleverpush-capacitor-sdk
    npx cap sync
    ```
 
 
 ## Setup Android
 
-1. Setup Firebase inside your Android App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
+1. Add Firebase to your Android project. [official docs](https://firebase.google.com/docs/android/setup) 
+2. Get your [FCM Sender ID & FCM Server API Key](https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key).
+3. [Login/Register](https://cleverpush.com/en/) on CleverPush
+4. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Implementation` > `Channel ID`  in the CleverPush Developer console.
 
 
 ## Setup iOS
