@@ -367,9 +367,6 @@ Objective-C:
 NSLog(@"App Banner Opened");
 }];
 
-// You can emit custom events and use them as a trigger for your banners
-[CleverPush triggerAppBannerEvent:@"key" value:@"value"];
-
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 [CleverPush showAppBanner:@"BANNER_ID"];
 
@@ -381,18 +378,15 @@ CleverPush.setAppBannerOpenedCallback { (_: CPAppBannerAction?) in
         print("App Banner Opened")
 }
 
-// You can emit custom events and use them as a trigger for your banners
-CleverPush.triggerAppBannerEvent("key", value: "value")
-
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 CleverPush.showAppBanner("BANNER_ID")
 
 ```
 
 
-## Conversion Event Tracking
+## Event Tracking
 
-Events can be used to track conversions.
+Events can be used to track conversions or trigger app banners.
 
 Objective-C:
 ```objective-c

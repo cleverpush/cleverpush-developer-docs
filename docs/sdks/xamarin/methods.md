@@ -123,9 +123,6 @@ List<CPNotification> = CleverPush.Current.GetNotifications();
 
 ```csharp
 
-// You can emit custom events and use them as a trigger for your banners
-CleverPush.Current.TriggerAppBannerEvent("key", "value");
-
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 CleverPush.Current.ShowAppBanner("BANNER_ID");
 ```

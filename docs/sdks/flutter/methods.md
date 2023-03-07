@@ -100,7 +100,7 @@ var availableAttributes = await CleverPush.shared.getAvailableAttributes();
 ```
 
 
-## Conversion Event Tracking
+## Event Tracking
 
 Events can be used to track conversions.
 

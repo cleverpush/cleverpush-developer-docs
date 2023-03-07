@@ -433,9 +433,6 @@ CleverPush.getInstance(this).setAppBannerOpenedListener(action -> {
    System.out.println("App Banner Opened");
 });
 
-// You can emit custom events and use them as a trigger for your banners
-CleverPush.getInstance(this).triggerAppBannerEvent("key", "value");
-
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 ```
@@ -446,16 +443,13 @@ CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 // Will be called, once a user presses a button in the banner
 CleverPush.getInstance(this).setAppBannerOpenedListener({ action-> println("App Banner Opened") })
 
-// You can emit custom events and use them as a trigger for your banners
-CleverPush.getInstance(this).triggerAppBannerEvent("key", "value")
-
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 ```
 
-## Conversion Event Tracking
+## Event Tracking
 
-Events can be used to track conversions.
+Events can be used to track conversions or trigger app banners.
 
 **JAVA**
 
