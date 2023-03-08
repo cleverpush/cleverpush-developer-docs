@@ -389,7 +389,12 @@ CleverPush.getInstance(<span class="hljs-keyword">this</span>).showAppBanner(<sp
 <p><strong>JAVA</strong></p>
 <pre><code class="hljs css language-java">CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackEvent(<span class="hljs-string">"EVENT NAME"</span>);
 
-<span class="hljs-comment">// track a conversion with a specified amount</span>
+<span class="hljs-comment">// track an event with custom properties</span>
+CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackEvent(<span class="hljs-string">"EVENT NAME"</span>, <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;() {{
+    put(<span class="hljs-string">"property_1"</span>, <span class="hljs-string">"value"</span>);
+}});
+
+<span class="hljs-comment">// track an event with a specified amount</span>
 CleverPush.getInstance(<span class="hljs-keyword">this</span>).trackEvent(<span class="hljs-string">"EVENT NAME"</span>, <span class="hljs-number">37.50f</span>);
 </code></pre>
 <p><strong>KOTLIN</strong></p>
