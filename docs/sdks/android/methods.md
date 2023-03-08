@@ -456,7 +456,12 @@ Events can be used to track conversions or trigger app banners.
 ```java
 CleverPush.getInstance(this).trackEvent("EVENT NAME");
 
-// track a conversion with a specified amount
+// track an event with custom properties
+CleverPush.getInstance(this).trackEvent("EVENT NAME", new HashMap<String, Object>() {{
+    put("property_1", "value");
+}});
+
+// track an event with a specified amount
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 ```
 

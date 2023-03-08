@@ -392,7 +392,12 @@ Objective-C:
 ```objective-c
 [CleverPush trackEvent:@"EVENT NAME"];
 
-// track a conversion with a specified amount
+// track an event with custom properties
+[CleverPush trackEvent:@"EVENT NAME" properties:@{
+  @"property-1": @"value"
+}];
+
+// track an event with a specified amount
 [CleverPush trackEvent:@"EVENT NAME" amount:37.50];
 
 ```
@@ -401,7 +406,10 @@ Swift:
 ```swift
 CleverPush.trackEvent("EVENT NAME")
 
-// track a conversion with a specified amount
+// track an event with custom properties
+CleverPush.trackEvent("EVENT NAME", properties: ["property-1": "value"])
+
+// track an event with a specified amount
 CleverPush.trackEvent("EVENT NAME", amount: 37.50)
 
 ```
