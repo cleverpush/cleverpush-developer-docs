@@ -12,6 +12,11 @@ Flutter will soon [drop bitcode support](https://github.com/flutter/flutter/issu
 You should already be able to disable bitcode manually in the Xcode build settings by setting `ENABLE_BITCODE` to `NO` in all targets.
 
 
+## iOS: Multiple commands produce '/Users/.../build/ios/Debug-dev-iphoneos/XCFrameworkIntermediates/CleverPush/CleverPush.framework:
+
+Please make sure that the Deployment Target (iOS Version) for `Runner` and for the `CleverPushNotificationServiceExtension` target is the same.
+
+
 ## Android: The style on this component requires your app theme to be Theme.AppCompat (or a descendant).
 
 Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme).
