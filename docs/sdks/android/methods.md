@@ -447,6 +447,18 @@ CleverPush.getInstance(this).setAppBannerOpenedListener({ action-> println("App 
 CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 ```
 
+Get banners by categoryId
+
+```java
+// Will be called, once a user presses a button in the banner
+CleverPush.getInstance(this).getAppBannersByCategory((Collection<Banner> banners) -> {
+    for (Banner banner : banners) {
+      System.out.println(banner.getId());
+    }
+},
+categoryId);
+```
+
 ## Event Tracking
 
 Events can be used to track conversions or trigger app banners.
