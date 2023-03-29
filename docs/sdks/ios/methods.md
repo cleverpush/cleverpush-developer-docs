@@ -384,6 +384,15 @@ CleverPush.showAppBanner("BANNER_ID")
 ```
 
 
+### Development mode
+
+You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
+
+```objective-c
+[CleverPush enableDevelopmentMode];
+```
+
+
 ## Event Tracking
 
 Events can be used to track conversions or trigger app banners.

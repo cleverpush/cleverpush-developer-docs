@@ -457,6 +457,21 @@ CleverPush.getInstance(this).getAppBannersByCategory((Collection<Banner> banners
     }
 },
 categoryId);
+
+### Custom activity
+
+You can also set a custom activity, which will then be used to display the app banners:
+
+```java
+CleverPush.getInstance(this).setCustomActivity(activity);
+```
+
+### Development mode
+
+You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
+
+```java
+CleverPush.getInstance(this).enableDevelopmentMode();
 ```
 
 ## Event Tracking
