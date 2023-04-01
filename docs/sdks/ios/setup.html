@@ -119,70 +119,9 @@ end
 </ol>
 <p><strong>6. Run <code>pod install</code></strong></p>
 <p><strong>7. Open <code>CleverPushNotificationServiceExtension/NotificationService.m</code> and replace the whole content with the following:</strong></p>
-<p>Objective-C:</p>
-<pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span>
-
-<span class="hljs-meta">#import <span class="hljs-meta-string">"NotificationService.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">NotificationService</span> ()</span>
-
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-keyword">void</span> (^contentHandler)(UNNotificationContent *contentToDeliver);
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNNotificationRequest *receivedRequest;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNMutableNotificationContent *bestAttemptContent;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">NotificationService</span></span>
-
-- (<span class="hljs-keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="hljs-keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler {
-    <span class="hljs-keyword">self</span>.receivedRequest = request;
-    <span class="hljs-keyword">self</span>.contentHandler = contentHandler;
-    <span class="hljs-keyword">self</span>.bestAttemptContent = [request.content mutableCopy];
-
-    [CleverPush didReceiveNotificationExtensionRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
-
-    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
-}
-
-- (<span class="hljs-keyword">void</span>)serviceExtensionTimeWillExpire {
-    [CleverPush serviceExtensionTimeWillExpireRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];
-
-    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);
-}
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>Swift:</p>
-<pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> UserNotifications
-
-<span class="hljs-keyword">import</span> CleverPush
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationService</span>: <span class="hljs-title">UNNotificationServiceExtension</span> </span>{
-
-    <span class="hljs-keyword">var</span> contentHandler: ((<span class="hljs-type">UNNotificationContent</span>) -&gt; <span class="hljs-type">Void</span>)?
-    <span class="hljs-keyword">var</span> receivedRequest: <span class="hljs-type">UNNotificationRequest!</span>
-    <span class="hljs-keyword">var</span> bestAttemptContent: <span class="hljs-type">UNMutableNotificationContent?</span>
-
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">didReceive</span><span class="hljs-params">(<span class="hljs-number">_</span> request: UNNotificationRequest, withContentHandler contentHandler: @escaping <span class="hljs-params">(UNNotificationContent)</span></span></span> -&gt; <span class="hljs-type">Void</span>) {
-        <span class="hljs-keyword">self</span>.receivedRequest = request;
-        <span class="hljs-keyword">self</span>.contentHandler = contentHandler
-        bestAttemptContent = (request.content.mutableCopy() <span class="hljs-keyword">as</span>? <span class="hljs-type">UNMutableNotificationContent</span>)
-
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> bestAttemptContent = bestAttemptContent {
-            <span class="hljs-type">CleverPush</span>.didReceiveNotificationExtensionRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
-
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serviceExtensionTimeWillExpire</span><span class="hljs-params">()</span></span> {
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> contentHandler = contentHandler, <span class="hljs-keyword">let</span> bestAttemptContent =  bestAttemptContent {
-            <span class="hljs-type">CleverPush</span>.serviceExtensionTimeWillExpireRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
-
-}
-</code></pre>
+<div class="tabs"><div class="nav-tabs"><div id="tab-group-1-tab-2" class="nav-link active" data-group="group_1" data-tab="tab-group-1-content-2">Swift</div><div id="tab-group-1-tab-3" class="nav-link" data-group="group_1" data-tab="tab-group-1-content-3">Objective-C</div></div><div class="tab-content"><div id="tab-group-1-content-2" class="tab-pane active" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> UserNotifications<br /><br /><span class="hljs-keyword">import</span> CleverPush<br /><br /><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationService</span>: <span class="hljs-title">UNNotificationServiceExtension</span> </span>{<br /><br />    <span class="hljs-keyword">var</span> contentHandler: ((<span class="hljs-type">UNNotificationContent</span>) -&gt; <span class="hljs-type">Void</span>)?<br />    <span class="hljs-keyword">var</span> receivedRequest: <span class="hljs-type">UNNotificationRequest!</span><br />    <span class="hljs-keyword">var</span> bestAttemptContent: <span class="hljs-type">UNMutableNotificationContent?</span><br /><br />    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">didReceive</span><span class="hljs-params">(<span class="hljs-number">_</span> request: UNNotificationRequest, withContentHandler contentHandler: @escaping <span class="hljs-params">(UNNotificationContent)</span></span></span> -&gt; <span class="hljs-type">Void</span>) {<br />        <span class="hljs-keyword">self</span>.receivedRequest = request;<br />        <span class="hljs-keyword">self</span>.contentHandler = contentHandler<br />        bestAttemptContent = (request.content.mutableCopy() <span class="hljs-keyword">as</span>? <span class="hljs-type">UNMutableNotificationContent</span>)<br /><br />        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> bestAttemptContent = bestAttemptContent {<br />            <span class="hljs-type">CleverPush</span>.didReceiveNotificationExtensionRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)<br />            contentHandler(bestAttemptContent)<br />        }<br />    }<br /><br />    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serviceExtensionTimeWillExpire</span><span class="hljs-params">()</span></span> {<br />        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> contentHandler = contentHandler, <span class="hljs-keyword">let</span> bestAttemptContent =  bestAttemptContent {<br />            <span class="hljs-type">CleverPush</span>.serviceExtensionTimeWillExpireRequest(<span class="hljs-keyword">self</span>.receivedRequest, with: <span class="hljs-keyword">self</span>.bestAttemptContent)<br />            contentHandler(bestAttemptContent)<br />        }<br />    }<br /><br />}<br /></code></pre>
+</span></div></div><div id="tab-group-1-content-3" class="tab-pane" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;CleverPush/CleverPush.h&gt;</span></span><br /><br /><span class="hljs-meta">#import <span class="hljs-meta-string">"NotificationService.h"</span></span><br /><br /><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">NotificationService</span> ()</span><br /><br /><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-keyword">void</span> (^contentHandler)(UNNotificationContent *contentToDeliver);<br /><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNNotificationRequest *receivedRequest;<br /><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) UNMutableNotificationContent *bestAttemptContent;<br /><br /><span class="hljs-keyword">@end</span><br /><br /><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">NotificationService</span></span><br /><br />- (<span class="hljs-keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="hljs-keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler {<br />    <span class="hljs-keyword">self</span>.receivedRequest = request;<br />    <span class="hljs-keyword">self</span>.contentHandler = contentHandler;<br />    <span class="hljs-keyword">self</span>.bestAttemptContent = [request.content mutableCopy];<br /><br />    [CleverPush didReceiveNotificationExtensionRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];<br /><br />    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);<br />}<br /><br />- (<span class="hljs-keyword">void</span>)serviceExtensionTimeWillExpire {<br />    [CleverPush serviceExtensionTimeWillExpireRequest:<span class="hljs-keyword">self</span>.receivedRequest withMutableNotificationContent:<span class="hljs-keyword">self</span>.bestAttemptContent];<br /><br />    <span class="hljs-keyword">self</span>.contentHandler(<span class="hljs-keyword">self</span>.bestAttemptContent);<br />}<br /><br /><span class="hljs-keyword">@end</span><br /></code></pre>
+</span></div></div></div></div>
 <p><strong>8. Open <code>CleverPushNotificationContentExtension/NotificationViewController.h</code> and replace the whole content with the following:</strong></p>
 <p>Objective-C:</p>
 <pre><code class="hljs css language-objective-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;UIKit/UIKit.h&gt;</span></span>
