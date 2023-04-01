@@ -411,7 +411,7 @@ CleverPush.getInstance(this).showTopicsDialog()
 
 Here is how the topics dialog looks like:
 
-![Topics Dialog Android](https://developers.cleverpush.com/img/topics-dialog-android.png)
+<img src="https://developers.cleverpush.com/img/topics-dialog-android.png" alt="Topics Dialog Android" height="500">
 
 
 ## Received Notifications

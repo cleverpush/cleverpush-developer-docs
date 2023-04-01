@@ -299,7 +299,7 @@ BOOL hasTopic = [CleverPush hasSubscriptionTopic:@"TOPIC_ID"];
 
 Here is how the topics dialog looks like:
 
-<img src="https://developers.cleverpush.com/img/topics-dialog-ios.png" alt="Topics Dialog iOS" height="500>
+<img src="https://developers.cleverpush.com/img/topics-dialog-ios.png" alt="Topics Dialog iOS" height="500">
 
 
 ## Attributes
