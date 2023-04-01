@@ -17,8 +17,14 @@ Add the ChatView inside your Layout XML:
 
 Handle opened URLs:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setChatUrlOpenedListener(url -> {
   // do something with the opened URL
 });
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

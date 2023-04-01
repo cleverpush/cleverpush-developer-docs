@@ -56,7 +56,6 @@ This is required for correctly tracking notification deliveries and for displayi
         use_frameworks!
 
         pod 'CleverPush'
-
     end
     ```
 
@@ -75,7 +74,6 @@ This is required for displaying custom notification contents (e.g. Carousel Noti
         use_frameworks!
 
         pod 'CleverPush'
-
     end
     ```    
     
@@ -161,7 +159,9 @@ class NotificationService: UNNotificationServiceExtension {
 
 **8. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:**
 
-Objective-C:
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Objective-C-->
 
 ```objective-c
 #import <UIKit/UIKit.h>
@@ -172,9 +172,13 @@ Objective-C:
 @end
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
 
-Objective-C:
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Objective-C-->
 
 ```objective-c
 #import "NotificationViewController.h"
@@ -205,6 +209,8 @@ Objective-C:
 
 @end
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
 
@@ -255,7 +261,28 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 
 8. Add this code to your AppDelegate:
 
-Objective-C:
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+import CleverPush
+
+class AppDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
+
+        // Make sure to insert your CleverPush channelId
+        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
+
+        // You can also leave out the Channel ID. You will need to specify the App's Bundle Identifier in the CleverPush Channel Settings.
+        // CleverPush.initWithLaunchOptions(launchOptions);
+
+        return true
+    }
+}
+```
+
+<!--Objective-C-->
 
 ```objective-c
 #import <CleverPush/CleverPush.h>
@@ -277,42 +304,14 @@ return YES;
 @end
 ```
 
-Swift:
+<!--END_DOCUSAURUS_CODE_TABS-->
 
-```swift
-import CleverPush
-
-class AppDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
-
-        // Make sure to insert your CleverPush channelId
-        CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
-
-        // You can also leave out the Channel ID. You will need to specify the App's Bundle Identifier in the CleverPush Channel Settings.
-        // CleverPush.initWithLaunchOptions(launchOptions);
-
-        return true
-    }
-}
-```
 
 Optionally, you can also add your notification opened callback in your `didFinishLaunchingWithOptions` or the subscribed callback with the subscription ID like this:
 
-Objective-C:
+<!--DOCUSAURUS_CODE_TABS-->
 
-```objective-c
-// ...
-
-[CleverPush initWithLaunchOptions:launchOptions
-  channelId:@"YOUR_CHANNEL_ID_HERE"
-  handleNotificationOpened:^(CPNotificationOpenedResult *result) {
-    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
-} handleSubscribed:^(NSString *subscriptionId) {
-    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
-} autoRegister:YES];
-```
-
-Swift:
+<!--Swift-->
 
 ```swift
 // ...
@@ -330,6 +329,22 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   return true
 }
 ```
+
+<!--Objective-C-->
+
+```objective-c
+// ...
+
+[CleverPush initWithLaunchOptions:launchOptions
+  channelId:@"YOUR_CHANNEL_ID_HERE"
+  handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+} handleSubscribed:^(NSString *subscriptionId) {
+    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+} autoRegister:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
@@ -365,43 +380,61 @@ Disable automatic clearing of badge count when opening a notification. Enabled b
 Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.
 For this to work, please set up the **App Group** like described in the Setup section.
 
-Objective-C:
-```objective-c
-[CleverPush setAutoClearBadge:NO];
-```
+<!--DOCUSAURUS_CODE_TABS-->
 
-Swift:
+<!--Swift-->
+
 ```swift
 CleverPush.setAutoClearBadge(false)
 ```
 
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setAutoClearBadge:NO];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Enable automatic incrementation of badge count. Disabled by default.
 
-Objective-C:
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.incrementBadge = true
+```
+
+<!--Objective-C-->
+
 ```objective-c
 [CleverPush setIncrementBadge:YES];
 ```
 
-Swift:
-```swift
-CleverPush.incrementBadge = true
-```
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 
 ## Hiding notifications while in foreground
 
 You can disable the automatic showing of notifcations when the app is in foreground:
 
-Objective-C:
-```objective-c
-[CleverPush setShowNotificationsInForeground:NO];
-```
+<!--DOCUSAURUS_CODE_TABS-->
 
-Swift:
+<!--Swift-->
+
 ```swift
 CleverPush.setShowNotificationsInForeground(false)
 ```
 
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setShowNotificationsInForeground:NO];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Notification permission
 
@@ -409,16 +442,21 @@ By default, the SDK automatically unsubscribes users who have revoked their noti
 Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
 The SDK then also automatically subscribes all users, no matter if they accepted or denied the permission prompt.
 
-Objective-C:
-```objective-c
-[CleverPush setIgnoreDisabledNotificationPermission:YES];
-```
+<!--DOCUSAURUS_CODE_TABS-->
 
-Swift:
+<!--Swift-->
+
 ```swift
 CleverPush.setIgnoreDisabledNotificationPermission(true)
 ```
 
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setIgnoreDisabledNotificationPermission:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## How to Create an iOS APNS Auth Key
 

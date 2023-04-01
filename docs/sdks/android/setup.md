@@ -18,30 +18,39 @@ You can find the newest sdk version number here [Android SDK](https://github.com
 
 1. Add the dependency to your app-level `app/build.gradle` file
 
-    ```groovy
-    dependencies {
-        // ...
-        implementation 'com.cleverpush:cleverpush:1.29.3'
-    }
-    ```
+  ```groovy
+  dependencies {
+      // ...
+      implementation 'com.cleverpush:cleverpush:1.29.3'
+  }
+  ```
 
 2. In the `onCreate` method of your Main activity or Application, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
 
-	**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 	```java
-		public class MainActivity extends Activity {
-		   public void onCreate(Bundle savedInstanceState) {
-			   CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID");
-		   }
-		}
+  public class MainActivity extends Activity {
+      public void onCreate(Bundle savedInstanceState) {
+        CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID");
+      }
+  }
 	```
-	**KOTLIN**
+
+<!--Kotlin-->
+
 	```kotlin
 	   class MainActivity:Activity() {
 		 fun onCreate(savedInstanceState:Bundle) {
 			CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID")
 	  }
-	}	```
+	}
+  ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
@@ -107,7 +116,9 @@ https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service
 
 ![](https://cleverpush.zendesk.com/hc/article_attachments/360013127159/Bildschirmfoto_2020-06-13_um_13.21.40.png)
 
+
 ## Proguard
+
 ```java
 -keep class com.cleverpush.** { *; }
 -keep interface com.cleverpush.** { *; }
@@ -144,6 +155,10 @@ You can place this meta data option in your AndroidManifest.xml file to prevent 
 
 This can be used in combination with the NotificationOpenedCallbackListener so that you can decide when to finish the NotificationOpenedActivity.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 public void notificationOpenedCallback(NotificationOpenedResult result, Activity notificationOpenedActivity) {
     System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
@@ -152,47 +167,78 @@ public void notificationOpenedCallback(NotificationOpenedResult result, Activity
 }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Badge Counts
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setAutoClearBadge(false);
 ```
 
-**KOTLIN**
+<!--Kotlin-->
+
 ```kotlin
 CleverPush.getInstance(this).setAutoClearBadge(false)
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Enable automatic incrementation of badge count. Disabled by default.
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setIncrementBadge(false);
 ```
 
-**KOTLIN**
+<!--Kotlin-->
+
 ```kotlin
 CleverPush.getInstance(this).setIncrementBadge(false)
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Notification permission
 
 By default, the SDK automatically unsubscribes users who have revoked their notification permission in the Android settings.
 Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true);
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Using CleverPush together with other FirebaseMessagingServices
 
 As it is only possible to have one FirebaseMessagingService registered at the same time, we recommend the following code. The CleverPush FCM Service will only process CleverPush notifications and ignore all other messages.
 
-Create the FirebaseMessagingServiceProxy class:
+Create the `FirebaseMessagingServiceProxy` class:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 import androidx.annotation.NonNull;
@@ -272,6 +318,9 @@ public class FirebaseMessagingServiceProxy extends FirebaseMessagingService {
     }
 }
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 Add this to your AndroidManifest.xml inside the `<application>` tag:
 

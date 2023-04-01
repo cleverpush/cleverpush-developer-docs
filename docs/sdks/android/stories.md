@@ -20,7 +20,6 @@ You can also implement CleverPush Stories into your application. For this, pleas
 Add xml to your layout
 
 ```xml
-
 <com.cleverpush.stories.StoryView
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -31,7 +30,6 @@ Add xml to your layout
   app:story_view_width="700dp"
   app:text_color="#fff"
   app:widget_id="o76hjaysdgohltyil" />
-
 ```
 
 - `widget_id` Set the Story Widget ID using this attribute

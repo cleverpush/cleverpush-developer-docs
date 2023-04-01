@@ -9,7 +9,9 @@ title: Methods
 
 You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` which fire when notifications have been received and/or opened:
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 public class MainActivity extends Activity {
@@ -29,7 +31,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 class MainActivity:Activity() {
@@ -41,11 +43,16 @@ fun onCreate(savedInstanceState:Bundle) {
 }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you later call `unsubscribe()` the SDK will not automatically try to subscribe again, instead you would have to call `subscribe()` yourself again.
 
 Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedCallbackListener() {
@@ -57,7 +64,7 @@ CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationRecei
 }, ...);
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).init("XXXXXXX", object:NotificationReceivedCallbackListener() {
@@ -68,9 +75,14 @@ fun notificationReceivedCallback(notificationOpenedResult:NotificationOpenedResu
 }, ...)
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 You can add a `SubscribedListener` which fires when the user has successfully been subscribed:
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 public class MainActivity extends Activity {
@@ -95,7 +107,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 class MainActivity:Activity() {
@@ -109,9 +121,14 @@ fun onCreate(savedInstanceState:Bundle) {
 }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Subscribe / Unsubscribe:
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 public class MainActivity extends Activity {
@@ -131,7 +148,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 class MainActivity:Activity() {
@@ -149,9 +166,14 @@ class MainActivity:Activity() {
 }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Tags
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).getAvailableTags(tags -> {
@@ -175,7 +197,7 @@ CleverPush.getInstance(this).removeSubscriptionTags(new String[] {"TAG_ID_1", "T
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).getAvailableTags({ tags->
@@ -198,23 +220,39 @@ CleverPush.getInstance(this).removeSubscriptionTags(arrayOf<String>("TAG_ID_1", 
 val hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId())
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Automatic Tag Assignment
 
 The SDK can also automatically assign tags by using the `trackPageView` method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.
 
 Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).trackPageView("https://example.com/sports/article-123123");
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).trackPageView("https://example.com/anything", new HashMap<String, String>() {{
    put("category", "sports");
-}}););
+}});
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 Once the `trackPageView` method has been implemented you can set up all the tags dynamically in the CleverPush backend without touching your code.
 
@@ -224,6 +262,10 @@ The SDK can also automatically track view by using the `autoTrackWebViewPages` a
 
 **autoTrackWebViewPages**
 You just need to add `autoTrackWebViewPages` to your webview clients `doUpdateVisitedHistory` method like below
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 new WebViewClient(){
@@ -235,9 +277,16 @@ new WebViewClient(){
         }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 **setWebViewClientListener**
 
 You can set a `setWebViewClientListener` it will do Automatic View Tracking and you will get all the callback of WebViewClient in Listener : 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 cleverPush.setWebViewClientListner(webView, new WebViewClientListener() {
@@ -245,9 +294,14 @@ cleverPush.setWebViewClientListner(webView, new WebViewClientListener() {
 }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Attributes
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
@@ -269,7 +323,7 @@ CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "categ
 CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1");
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).getAvailableAttributes({ attributes->
@@ -290,22 +344,29 @@ CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "categ
 CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1")
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## Country & Language
 
 You can optionally override the country & language which is automatically detected from the system and can be used for targeting / translations.
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).setSubscriptionLanguage("en");
 CleverPush.getInstance(this).setSubscriptionCountry("US");
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Topics
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).getAvailableTopics(topics -> {
@@ -329,7 +390,7 @@ CleverPush.getInstance(this).setTopicsChangedListener(new TopicsChangedListener(
 });
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).getAvailableTopics({ topics->
@@ -345,27 +406,37 @@ val hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID");
 CleverPush.getInstance(this).showTopicsDialog()
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Here is how the topics dialog looks like:
 
 ![Topics Dialog Android](https://developers.cleverpush.com/img/topics-dialog-android.png)
 
+
 ## Received Notifications
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 //get the locally stored notification.
 Set<Notification> = CleverPush.getInstance(this).getNotifications();
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 //get the locally stored notification.
 CleverPush.getInstance(this).getNotifications()
 ```
 
-**JAVA**
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 // get remote notification and local notification based on the boolean argument.
@@ -378,7 +449,7 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 });
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
  // get remote notification and local notification based on the boolean argument.
@@ -390,25 +461,33 @@ CleverPush.getInstance(this).getNotifications(true) { }
 
 You can remove notification stored locally using Notification ID
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 
 CleverPush.getInstance(this).removeNotification("Notification ID");
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 
 CleverPush.getInstance(this).removeNotification("Notification ID")
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Notification Styles
 
 CleverPush automatically chooses the fitting Notification Style for you (e.g. [BigImageStyle](https://developer.android.com/reference/android/app/Notification.BigImageStyle) or [BigTextStyle](https://developer.android.com/reference/android/app/Notification.BigTextStyle)).
 We also provide a way that you can choose the displayed Notification style:
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 // Available Notification styles:
@@ -420,12 +499,16 @@ CleverPush.NotificationStyle.TEXT_WITH_IMAGE // custom style with big image and 
 CleverPush.getInstance(this).setNotificationStyle(CleverPush.NotificationStyle.AUTO);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## App Banners
 
 (Available from version 1.8.0)
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 // Will be called, once a user presses a button in the banner
@@ -437,7 +520,7 @@ CleverPush.getInstance(this).setAppBannerOpenedListener(action -> {
 CleverPush.getInstance(this).showAppBanner("BANNER_ID");
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 // Will be called, once a user presses a button in the banner
@@ -447,7 +530,14 @@ CleverPush.getInstance(this).setAppBannerOpenedListener({ action-> println("App 
 CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Get banners by group ID
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 // Will be called, once a user presses a button in the banner
@@ -457,26 +547,48 @@ CleverPush.getInstance(this).getAppBannersByGroup((Collection<Banner> banners) -
     }
 },
 groupId);
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ### Custom activity
 
 You can also set a custom activity, which will then be used to display the app banners:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setCustomActivity(activity);
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ### Development mode
 
 You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).enableDevelopmentMode();
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### HTML Banners
 
 CleverPush supports various JavaScript functions which can be called from HTML banners:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
 
 ```javascript
 CleverPush.subscribe();
@@ -495,13 +607,16 @@ CleverPush.removeSubscriptionTopic(topicId);
 CleverPush.showTopicsDialog();
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 
 ## Event Tracking
 
 Events can be used to track conversions or trigger app banners.
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).trackEvent("EVENT NAME");
@@ -515,7 +630,7 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME", new HashMap<String, Object
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).trackEvent("EVENT NAME")
@@ -524,12 +639,16 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME")
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## Follow up Events
 
 Events can be used to trigger follow-up campaigns.
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME");
@@ -540,7 +659,7 @@ CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME", new HashMap<Stri
 }});
 ```
 
-**KOTLIN**
+<!--Kotlin-->
 
 ```kotlin
 CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME")
@@ -549,6 +668,8 @@ CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME")
 CleverPush.getInstance(this).triggerFollowUpEvent("EVENT NAME", hashMapOf("id" to "123456"))
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## Tracking Consent
 
@@ -556,26 +677,53 @@ You can optionally require a tracking consent from the user (e.g. you get this c
 
 Step 1: Call this before initializing the SDK:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).setTrackingConsentRequired(true);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).setTrackingConsent(true);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Geo Fencing
 
 For using Geo Fencing you need to request the location permission from the user.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 CleverPush.getInstance(this).requestLocationPermission();
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 You can also check at any time if the user has already granted the permission:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
 
 ```java
 boolean hasPermission = CleverPush.getInstance(this).hasLocationPermission();
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

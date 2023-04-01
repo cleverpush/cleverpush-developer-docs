@@ -9,7 +9,10 @@ Minimum Android SDK Version: 1.5.0
 
 1. Create a new Class which extends `com.cleverpush.service.NotificationExtenderService`
 
-**JAVA**
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 import androidx.core.app.NotificationCompat;
 import com.cleverpush.Notification;
@@ -36,7 +39,8 @@ public class MyNotificationExtenderService extends NotificationExtenderService {
 
 ```
 
-**KOTLIN**
+<!--Kotlin-->
+
 ```kotlin
 import androidx.core.app.NotificationCompat
 import com.cleverpush.Notification
@@ -58,12 +62,14 @@ class MyNotificationExtenderService:NotificationExtenderService() {
 
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 You can now modify the Notification with a custom [NotificationCompat.Extender](https://developer.android.com/reference/androidx/core/app/NotificationCompat.Extender).
 Also, if you return `true` the notification will not be displayed and remains silent.
 
 2. Lastly you will need to reference your new service in the `AndroidManifest.xml` under the `application` tag
 
-```
+```xml
 <service
     android:name=".MyNotificationExtenderService"
     android:permission="android.permission.BIND_JOB_SERVICE"
@@ -76,6 +82,12 @@ Also, if you return `true` the notification will not be displayed and remains si
 
 3. When you decide to not let the SDK display the notification and instead display it yourself, you will need to call this method when a Notification has been opened. Otherwise clicks will not be tracked anymore:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 CleverPush.getInstance(this).trackNotificationClicked(notification.getId());
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

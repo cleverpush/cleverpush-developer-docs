@@ -5,19 +5,9 @@ title: Chat
 
 ## CleverPush Chat View
 
-Objective-C:
-1. Import "CleverPush/CPChatView.h":
-2. Add the Chat View:
+<!--DOCUSAURUS_CODE_TABS-->
 
-```objective-c
-#import <CleverPush/CPChatView.h>
-
-CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-[self.view addSubview:chatView];
-```
-Swift:
-1. Import CleverPush
-2. Add the Chat View:
+<!--Swift-->
 
 ```swift
 import CleverPush
@@ -26,8 +16,23 @@ let chatView = CPChatView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.
 self.view.addSubview(chatView)
 ```
 
+<!--Objective-C-->
+
+```objective-c
+#import <CleverPush/CPChatView.h>
+
+CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+[self.view addSubview:chatView];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 Handle opened URLs:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Objective-C-->
 
 ```objective-c
 [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) urlOpenedCallback:^(NSURL *url) {
@@ -36,3 +41,5 @@ Handle opened URLs:
   // user has subscribed via Chat
 }];
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

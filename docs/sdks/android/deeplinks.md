@@ -35,30 +35,34 @@ Deep Links
 
 3. Go to your `MainActivity.java` file and refer to the following code. Comments are added inside the code to understand the code in more detail.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ``` java
 public class MainActivity extends AppCompatActivity {
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_main);
-		
-	// getting the data from our intent in our uri.
-	Uri uri = getIntent().getData();
-	
-	// checking if the uri is null or not.
-	if (uri != null) {
-		// if the uri is not null then we are getting the
-		// path segments and storing it in list.
-		List<String> parameters = uri.getPathSegments();
-		
-		// after that we are extracting string from that parameters.
-		String param = parameters.get(parameters.size() - 1);
-		
-		// You can check in our Logcat in your param parameter Log.
-		Log.e("param",param);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+      
+    // getting the data from our intent in our uri.
+    Uri uri = getIntent().getData();
     
-	  }
+    // checking if the uri is null or not.
+    if (uri != null) {
+      // if the uri is not null then we are getting the
+      // path segments and storing it in list.
+      List<String> parameters = uri.getPathSegments();
+      
+      // after that we are extracting string from that parameters.
+      String param = parameters.get(parameters.size() - 1);
+      
+      // You can check in our Logcat in your param parameter Log.
+      Log.e("param", param);
+    }
   }
 }
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

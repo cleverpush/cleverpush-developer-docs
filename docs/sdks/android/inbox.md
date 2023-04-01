@@ -27,8 +27,14 @@ Add the InboxView inside your Layout XML:
 
 Handle opened Notifications:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
 ```java
 inboxView.setNotificationClickListener(notification -> {
   // do something with the opened notification
 });
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

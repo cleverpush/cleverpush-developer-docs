@@ -44,16 +44,26 @@ title: Live Activities
 ## Step 6: Create your live Activity
 - Import **CleverPush** and **ActivityKit** into your view controller
 
-   ```sh
-   import CleverPush
-   import ActivityKit
-   ```
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+import CleverPush
+import ActivityKit
+```
    
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Step 7: Enter the below code to start a Live Activity and register your activity_id with Cleverpush.
 - After registering live activity they will return the live Activity id and activity push token.
 - We must have to pass the **activity.id** and **activity.token** to the **CleverPush.startLiveActivity** method for sending updates or ending the activity
 
-```sh
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
 import ActivityKit
 import CleverPush
 
@@ -77,8 +87,9 @@ class ViewController: UIViewController {
         }
     }
 }
-   ```
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Live Activity API reference
 [How to send live activity updates](https://developers.cleverpush.com/docs/api/ios/live-activities)
-

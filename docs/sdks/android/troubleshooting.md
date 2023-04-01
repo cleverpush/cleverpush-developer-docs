@@ -18,7 +18,6 @@ Example:
 Please make sure to set up a project in the Firebase console, you can download this file there and place it inside your project: https://console.firebase.google.com/
 
 
-
 If you are not using Java 1.8 yet, please add this to your `app/build.gradle` if building fails with our SDK:
 
 ```groovy
