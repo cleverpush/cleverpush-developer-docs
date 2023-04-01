@@ -457,6 +457,8 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 CleverPush.getInstance(this).getNotifications(true) { }
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Remove Notification
 
 You can remove notification stored locally using Notification ID
