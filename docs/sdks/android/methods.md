@@ -687,6 +687,12 @@ Step 1: Call this before initializing the SDK:
 CleverPush.getInstance(this).setTrackingConsentRequired(true);
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setTrackingConsentRequired(true)
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
@@ -698,6 +704,12 @@ Step 2: Call this when the user gave his consent (needs to be called on every la
 
 ```java
 CleverPush.getInstance(this).setTrackingConsent(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setTrackingConsent(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -715,6 +727,12 @@ For using Geo Fencing you need to request the location permission from the user.
 CleverPush.getInstance(this).requestLocationPermission();
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).requestLocationPermission()
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
@@ -726,6 +744,12 @@ You can also check at any time if the user has already granted the permission:
 
 ```java
 boolean hasPermission = CleverPush.getInstance(this).hasLocationPermission();
+```
+
+<!--Kotlin-->
+
+```kotlin
+val hasPermission: Boolean = CleverPush.getInstance(this).hasLocationPermission()
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
