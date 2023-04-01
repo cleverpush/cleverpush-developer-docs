@@ -392,6 +392,26 @@ You can enable the development mode to disable caches for app banners, so you al
 [CleverPush enableDevelopmentMode];
 ```
 
+### HTML Banners
+
+CleverPush supports various JavaScript functions which can be called from HTML banners:
+
+```javascript
+CleverPush.subscribe();
+CleverPush.unsubscribe();
+CleverPush.closeBanner();
+CleverPush.trackEvent(eventId, propertiesObject);
+CleverPush.trackClick(buttonId);
+CleverPush.trackClick(buttonId, customDataObject);
+CleverPush.openWebView(url);
+CleverPush.setSubscriptionAttribute(attributeId, value);
+CleverPush.addSubscriptionTag(tagId);
+CleverPush.removeSubscriptionTag(tagId);
+CleverPush.setSubscriptionTopics(topicIds);
+CleverPush.addSubscriptionTopic(topicId);
+CleverPush.removeSubscriptionTopic(topicId);
+CleverPush.showTopicsDialog();
+```
 
 ## Event Tracking
 

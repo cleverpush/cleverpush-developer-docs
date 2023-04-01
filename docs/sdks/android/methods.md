@@ -447,16 +447,16 @@ CleverPush.getInstance(this).setAppBannerOpenedListener({ action-> println("App 
 CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 ```
 
-Get banners by categoryId
+Get banners by group ID
 
 ```java
 // Will be called, once a user presses a button in the banner
-CleverPush.getInstance(this).getAppBannersByCategory((Collection<Banner> banners) -> {
+CleverPush.getInstance(this).getAppBannersByGroup((Collection<Banner> banners) -> {
     for (Banner banner : banners) {
       System.out.println(banner.getId());
     }
 },
-categoryId);
+groupId);
 
 ### Custom activity
 
@@ -473,6 +473,29 @@ You can enable the development mode to disable caches for app banners, so you al
 ```java
 CleverPush.getInstance(this).enableDevelopmentMode();
 ```
+
+### HTML Banners
+
+CleverPush supports various JavaScript functions which can be called from HTML banners:
+
+```javascript
+CleverPush.subscribe();
+CleverPush.unsubscribe();
+CleverPush.closeBanner();
+CleverPush.trackEvent(eventId, propertiesObject);
+CleverPush.trackClick(buttonId);
+CleverPush.trackClick(buttonId, customDataObject);
+CleverPush.openWebView(url);
+CleverPush.setSubscriptionAttribute(attributeId, value);
+CleverPush.addSubscriptionTag(tagId);
+CleverPush.removeSubscriptionTag(tagId);
+CleverPush.setSubscriptionTopics(topicIds);
+CleverPush.addSubscriptionTopic(topicId);
+CleverPush.removeSubscriptionTopic(topicId);
+CleverPush.showTopicsDialog();
+```
+
+
 
 ## Event Tracking
 
