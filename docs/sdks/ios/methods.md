@@ -474,6 +474,10 @@ CleverPush.enableDevelopmentMode();
 
 CleverPush supports various JavaScript functions which can be called from HTML banners:
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
+
 ```javascript
 CleverPush.subscribe();
 CleverPush.unsubscribe();
@@ -490,6 +494,8 @@ CleverPush.addSubscriptionTopic(topicId);
 CleverPush.removeSubscriptionTopic(topicId);
 CleverPush.showTopicsDialog();
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Event Tracking
 
