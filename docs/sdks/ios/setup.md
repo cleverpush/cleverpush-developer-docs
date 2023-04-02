@@ -161,6 +161,17 @@ class NotificationService: UNNotificationServiceExtension {
 
 <!--DOCUSAURUS_CODE_TABS-->
 
+<!--Swift-->
+
+```swift
+import UIKit
+import CleverPush
+
+class NotificationViewController: CPNotificationViewController {
+
+}
+```
+
 <!--Objective-C-->
 
 ```objective-c
@@ -177,6 +188,33 @@ class NotificationService: UNNotificationServiceExtension {
 Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+import UIKit
+import UserNotifications
+import UserNotificationsUI
+
+class NotificationViewController: CPNotificationViewController, UNNotificationContentExtension {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+    func didReceive(_ notification: UNNotification) {
+        cleverpushDidReceiveNotification(notification)
+    }
+
+    func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+        cleverpushDidReceiveNotificationResponse(response, completionHandler: completion)
+    }
+}
+```
 
 <!--Objective-C-->
 
