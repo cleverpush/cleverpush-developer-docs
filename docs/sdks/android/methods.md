@@ -509,14 +509,12 @@ You can remove notification stored locally using Notification ID
 <!--Java-->
 
 ```java
-
 CleverPush.getInstance(this).removeNotification("Notification ID");
 ```
 
 <!--Kotlin-->
 
 ```kotlin
-
 CleverPush.getInstance(this).removeNotification("Notification ID")
 ```
 
@@ -602,6 +600,17 @@ CleverPush.getInstance(this).getAppBannersByGroup((Collection<Banner> banners) -
     }
 },
 groupId);
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Will be called, once a user presses a button in the banner
+CleverPush.getInstance(this).getAppBannersByGroup { banners ->
+    for (banner in banners) {
+        println(banner.id)
+    }
+}, groupId)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
