@@ -237,6 +237,12 @@ Let's say you have created a tag with the URL pathname regex "/sports". This wou
 CleverPush.getInstance(this).trackPageView("https://example.com/sports/article-123123");
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).trackPageView("https://example.com/sports/article-123123")
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 We can also have more advanced use cases here by using Javascript functions for matching. For example you created a tag with the following function in the CleverPush backend: `params.category === "sports"`. This would then trigger the tag for a subscriber:
@@ -249,6 +255,14 @@ We can also have more advanced use cases here by using Javascript functions for 
 CleverPush.getInstance(this).trackPageView("https://example.com/anything", new HashMap<String, String>() {{
    put("category", "sports");
 }});
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).trackPageView("https://example.com/anything", hashMapOf(
+  "category" to "sports"
+))
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -268,13 +282,25 @@ You just need to add `autoTrackWebViewPages` to your webview clients `doUpdateVi
 <!--Java-->
 
 ```java
-new WebViewClient(){
-            @Override
-            public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
-                cleverPush.autoTrackWebViewPages(url);
-                super.doUpdateVisitedHistory(view, url, isReload);
-            }
-        }
+new WebViewClient() {
+    @Override
+    public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+        cleverPush.autoTrackWebViewPages(url);
+        super.doUpdateVisitedHistory(view, url, isReload);
+    }
+}
+
+```
+
+<!--Kotlin-->
+
+```kotlin
+object : WebViewClient() {
+    override fun doUpdateVisitedHistory(view: WebView, url: String, isReload: Boolean) {
+        CleverPush.getInstance(view.context).autoTrackWebViewPages(url)
+        super.doUpdateVisitedHistory(view, url, isReload)
+    }
+}
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -289,9 +315,17 @@ You can set a `setWebViewClientListener` it will do Automatic View Tracking and 
 <!--Java-->
 
 ```java
-cleverPush.setWebViewClientListner(webView, new WebViewClientListener() {
-   ...
+CleverPush.getInstance(this).setWebViewClientListner(webView, new WebViewClientListener() {
+   // ...
 }
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setWebViewClientListener(webView, object : WebViewClientListener {
+    // ...
+})
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -360,6 +394,13 @@ CleverPush.getInstance(this).setSubscriptionLanguage("en");
 CleverPush.getInstance(this).setSubscriptionCountry("US");
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setSubscriptionLanguage("en")
+CleverPush.getInstance(this).setSubscriptionCountry("US")
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Topics
@@ -421,14 +462,14 @@ Here is how the topics dialog looks like:
 <!--Java-->
 
 ```java
-//get the locally stored notification.
+// get the locally stored notification.
 Set<Notification> = CleverPush.getInstance(this).getNotifications();
 ```
 
 <!--Kotlin-->
 
 ```kotlin
-//get the locally stored notification.
+// get the locally stored notification.
 CleverPush.getInstance(this).getNotifications()
 ```
 
@@ -452,7 +493,7 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 <!--Kotlin-->
 
 ```kotlin
- // get remote notification and local notification based on the boolean argument.
+// get remote notification and local notification based on the boolean argument.
 // - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
 CleverPush.getInstance(this).getNotifications(true) { }
 ```
@@ -499,6 +540,18 @@ CleverPush.NotificationStyle.BIG_PICTURE // big picture style
 CleverPush.NotificationStyle.TEXT_WITH_IMAGE // custom style with big image and text in expanded view
 
 CleverPush.getInstance(this).setNotificationStyle(CleverPush.NotificationStyle.AUTO);
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Available Notification styles:
+CleverPush.NotificationStyle.AUTO // default style
+CleverPush.NotificationStyle.BIG_TEXT // big text style
+CleverPush.NotificationStyle.BIG_PICTURE // big picture style
+CleverPush.NotificationStyle.TEXT_WITH_IMAGE // custom style with big image and text in expanded view
+
+CleverPush.getInstance(this).setNotificationStyle(CleverPush.NotificationStyle.AUTO)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -566,6 +619,12 @@ You can also set a custom activity, which will then be used to display the app b
 CleverPush.getInstance(this).setCustomActivity(activity);
 ```
 
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setCustomActivity(activity)
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
@@ -579,6 +638,12 @@ You can enable the development mode to disable caches for app banners, so you al
 
 ```java
 CleverPush.getInstance(this).enableDevelopmentMode();
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).enableDevelopmentMode()
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -636,6 +701,11 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f);
 
 ```kotlin
 CleverPush.getInstance(this).trackEvent("EVENT NAME")
+
+// track an event with custom properties
+CleverPush.getInstance(this).trackEvent("EVENT NAME", hashMapOf(
+    "property_1" to "value"
+))
 
 // track a conversion with a specified amount
 CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)

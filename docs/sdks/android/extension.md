@@ -5,7 +5,7 @@ title: Notification Extender Service
 
 On Android you can modify the notification and optionally silence it with a Notification Extender Service. Here is how to set it up:
 
-Minimum Android SDK Version: 1.5.0
+Minimum CleverPush Android SDK Version: 1.5.0
 
 1. Create a new Class which extends `com.cleverpush.service.NotificationExtenderService`
 
@@ -46,6 +46,7 @@ import androidx.core.app.NotificationCompat
 import com.cleverpush.Notification
 import com.cleverpush.service.NotificationExtenderService
 import java.math.BigInteger
+
 class MyNotificationExtenderService:NotificationExtenderService() {
   protected fun onNotificationProcessing(notification:Notification):Boolean {
     // modify notification
@@ -88,6 +89,12 @@ Also, if you return `true` the notification will not be displayed and remains si
 
 ```java
 CleverPush.getInstance(this).trackNotificationClicked(notification.getId());
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).trackNotificationClicked(notification.id)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

@@ -42,7 +42,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
 <!--Kotlin-->
 
 	```kotlin
-	   class MainActivity:Activity() {
+  class MainActivity:Activity() {
 		 fun onCreate(savedInstanceState:Bundle) {
 			CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID")
 	  }
@@ -164,6 +164,16 @@ public void notificationOpenedCallback(NotificationOpenedResult result, Activity
     System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
     // Add your custom code here and afterwards call:
     notificationOpenedActivity.finish();
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+fun notificationOpenedCallback(result: NotificationOpenedResult, notificationOpenedActivity: Activity) {
+  println("Opened CleverPush Notification: ${result.notification.title}")
+  // Add your custom code here and afterwards call:
+  notificationOpenedActivity.finish()
 }
 ```
 
@@ -315,6 +325,72 @@ public class FirebaseMessagingServiceProxy extends FirebaseMessagingService {
 
     interface CPAction<T> {
         void run(T t);
+    }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+import androidx.annotation.NonNull
+import com.cleverpush.service.CleverPushFcmListenerService
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+import java.lang.reflect.Field
+
+class FirebaseMessagingServiceProxy : FirebaseMessagingService() {
+    private val messagingServices = listOf<CleverPushFcmListenerService>(
+        CleverPushFcmListenerService(),
+        // Add any other FirebaseMessagingServices here
+        CustomFirebaseMessagingService()
+    )
+
+    override fun onNewToken(@NonNull token: String) {
+        delegate { service ->
+            injectContext(service)
+            service.onNewToken(token)
+        }
+    }
+
+    override fun onMessageReceived(@NonNull remoteMessage: RemoteMessage) {
+        delegate { service ->
+            injectContext(service)
+            service.onMessageReceived(remoteMessage)
+        }
+    }
+
+    private fun delegate(action: (FirebaseMessagingService) -> Unit) {
+        messagingServices.forEach(action)
+    }
+
+    private fun injectContext(service: FirebaseMessagingService) {
+        setField(service, "mBase", this)
+    }
+
+    private fun setField(targetObject: Any, fieldName: String, fieldValue: Any): Boolean {
+        var field: Field? = null
+        try {
+            field = targetObject.javaClass.getDeclaredField(fieldName)
+        } catch (e: NoSuchFieldException) {
+            var superClass: Class<*>? = targetObject.javaClass.superclass
+            while (field == null && superClass != null) {
+                try {
+                    field = superClass.getDeclaredField(fieldName)
+                } catch (e: NoSuchFieldException) {
+                    superClass = superClass.superclass
+                }
+            }
+        }
+        if (field == null) {
+            return false
+        }
+        field.isAccessible = true
+        try {
+            field.set(targetObject, fieldValue)
+            return true
+        } catch (e: IllegalAccessException) {
+            return false
+        }
     }
 }
 ```

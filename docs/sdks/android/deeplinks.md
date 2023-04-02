@@ -8,7 +8,7 @@ Deep Links
 
 1. Navigate to app > AndroidManifest.xml and add the below code to it. As we are creating a deep link for our MainActivity.java file so we have to add this code in the MainActivity part. Comments are added in the code to get to know in more detail.
 
-2. 'AndroidManifest.xml'
+2. `AndroidManifest.xml`
 ``` xml
 <intent-filter>
   <action android:name="android.intent.action.VIEW" />
