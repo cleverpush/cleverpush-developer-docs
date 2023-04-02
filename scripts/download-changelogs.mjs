@@ -7,6 +7,7 @@ const changelogs = {
   ios: 'https://raw.githubusercontent.com/cleverpush/cleverpush-ios-sdk/master/CHANGELOG.md',
   xamarin: 'https://raw.githubusercontent.com/cleverpush/cleverpush-xamarin-sdk/master/CHANGELOG.md',
   cordova: 'https://raw.githubusercontent.com/cleverpush/cleverpush-cordova-sdk/master/CHANGELOG.md',
+  capacitor: 'https://raw.githubusercontent.com/cleverpush/cleverpush-capacitor-sdk/master/CHANGELOG.md',
   'react-native': 'https://raw.githubusercontent.com/cleverpush/cleverpush-react-native-sdk/master/CHANGELOG.md',
   flutter: 'https://raw.githubusercontent.com/cleverpush/cleverpush-flutter-sdk/master/CHANGELOG.md',
 };
