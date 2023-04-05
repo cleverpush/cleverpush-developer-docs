@@ -439,12 +439,35 @@ CleverPush.showAppBanner("BANNER_ID")
 
 ```objective-c
 [CleverPush setAppBannerOpenedCallback:^(CPAppBannerAction *action) {
-NSLog(@"App Banner Opened");
+  NSLog(@"App Banner Opened");
 }];
 
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 [CleverPush showAppBanner:@"BANNER_ID"];
+```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+### Disabling banners
+
+You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.
+If a banner would show during this time, it is added to an internal queue and shown when calling `enableAppBanners`.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.disableAppBanners();
+CleverPush.enableAppBanners();
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush disableAppBanners];
+[CleverPush enableAppBanners];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

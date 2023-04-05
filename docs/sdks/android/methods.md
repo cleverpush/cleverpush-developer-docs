@@ -637,6 +637,30 @@ CleverPush.getInstance(this).setCustomActivity(activity)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+### Disabling banners
+
+You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.
+If a banner would show during this time, it is added to an internal queue and shown when calling `enableAppBanners`.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).disableAppBanners();
+CleverPush.getInstance(this).enableAppBanners();
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).disableAppBanners()
+CleverPush.getInstance(this).enableAppBanners()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### Development mode
 
 You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
