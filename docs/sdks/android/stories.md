@@ -30,6 +30,10 @@ Add xml to your layout
   app:story_view_height="500dp"
   app:story_view_width="700dp"
   app:text_color="#fff"
+  app:title_visibility="gone"
+  app:title_text_size="12sp"
+  app:story_icon_height="100dp"
+  app:story_icon_width="100dp"
   app:widget_id="o76hjaysdgohltyil" />
 ```
 
@@ -49,3 +53,7 @@ You can customize the experience of `StoryView` using these attributes:
 - `background_color` story view background color
 - `text_color` text color
 - `font_family` text font family
+- `title_visibility` title visibility
+- `title_text_size` title text size 
+- `story_icon_height` story icon height in dp
+- `story_icon_width` story icon width in dp
