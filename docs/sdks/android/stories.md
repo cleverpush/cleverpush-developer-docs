@@ -29,6 +29,10 @@ Add xml to your layout
   app:story_view_height="500dp"
   app:story_view_width="700dp"
   app:text_color="#fff"
+  app:title_visibility="gone"
+  app:title_text_size="12sp"
+  app:story_icon_height="100dp"
+  app:story_icon_width="100dp"
   app:widget_id="o76hjaysdgohltyil" />
 ```
 
