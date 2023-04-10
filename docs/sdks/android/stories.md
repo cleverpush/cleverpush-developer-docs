@@ -48,3 +48,7 @@ You can customize the experience of `StoryView` using these attributes:
 - `background_color` story view background color
 - `text_color` text color
 - `font_family` text font family
+- `title_visibility` title visibility
+- `title_text_size` title text size 
+- `story_icon_height` story icon height in dp
+- `story_icon_width` story icon width in dp
