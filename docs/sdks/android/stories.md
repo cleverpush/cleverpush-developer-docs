@@ -21,6 +21,7 @@ Add xml to your layout
 
 ```xml
 <com.cleverpush.stories.StoryView
+  android:id="@+id/storyView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   app:background_color="#000"
@@ -32,7 +33,11 @@ Add xml to your layout
   app:widget_id="o76hjaysdgohltyil" />
 ```
 
-- `widget_id` Set the Story Widget ID using this attribute
+- Stories will be load using `widget_id`. Story Widget ID can be set using widget_id attribute in xml or it can be set through instance of `StoryView` like, 
+  ```xml
+  StoryView storyView = findViewById(R.id.storyView);
+  storyView.setWidgetId("o76hjaysdgohltyil");
+  ```
 
 ### Customizations
 
