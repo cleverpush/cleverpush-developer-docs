@@ -37,9 +37,18 @@ title: Capacitor Setup
       npx cap sync
    ```
 
-2. Open iOS Project, Select Pods, Select Capacitor Pod, Go to Genenral tab, Add CleverPush.xcframework into the Framework and libraries 
+2. Go to your capacitor project's iOS folder and CleverPush to your `Podfile`:
 
-3. Enable the required capabilities 
+  ```bash
+      pod 'CleverPush'
+```
+
+3. Go to your capacitor project's iOS folder and open terminal and enter the following command.
+ ```bash
+      pod install
+```
+
+4. Enable the required capabilities 
 
    1. Go to your root project and switch to the tab "Capabilities"
    
@@ -47,7 +56,7 @@ title: Capacitor Setup
    
    3. Enable "Background Modes" and check "Remote notifications"
 
-4. Add Notification Service Extension
+5. Add Notification Service Extension
 
     This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
 
@@ -65,8 +74,8 @@ title: Capacitor Setup
       end
       ```
       
-    6. Run `pod install`
-    7. Open `NotificationService.m` and replace the whole content with the following:
+    7. Run `pod install`
+    8. Open `NotificationService.m` and replace the whole content with the following:
 
       ```objective-c
       #import <CleverPush/CleverPush.h>
@@ -102,7 +111,7 @@ title: Capacitor Setup
       @end
       ```
 
-5. Create your iOS push certificate
+6. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
