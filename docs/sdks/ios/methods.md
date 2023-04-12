@@ -449,6 +449,29 @@ CleverPush.showAppBanner("BANNER_ID")
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+Get banners by group ID
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.getAppBanners(byGroup: groupId) { banners in
+  // do something with the banners
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush getAppBannersByGroup:groupId callback:^(NSArray<CPAppBanner *> *banners) {
+  // do something with the banners
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### Disabling banners
 
 You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.

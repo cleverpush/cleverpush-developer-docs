@@ -593,7 +593,6 @@ Get banners by group ID
 <!--Java-->
 
 ```java
-// Will be called, once a user presses a button in the banner
 CleverPush.getInstance(this).getAppBannersByGroup((Collection<Banner> banners) -> {
     for (Banner banner : banners) {
       System.out.println(banner.getId());
@@ -605,7 +604,6 @@ groupId);
 <!--Kotlin-->
 
 ```kotlin
-// Will be called, once a user presses a button in the banner
 CleverPush.getInstance(this).getAppBannersByGroup { banners ->
     for (banner in banners) {
         println(banner.id)
