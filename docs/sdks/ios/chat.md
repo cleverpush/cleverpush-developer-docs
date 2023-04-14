@@ -35,11 +35,22 @@ Handle opened URLs:
 <!--Objective-C-->
 
 ```objective-c
-[[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) urlOpenedCallback:^(NSURL *url) {
+CPChatView *chatView = [[CPChatView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) urlOpenedCallback:^(NSURL *url) {
   // do something with the opened URL
 } subscribeCallback:^() {
   // user has subscribed via Chat
 }];
+
+// Colors can be modified:
+chatView.chatInputContainerBackgroundColor = [UIColor redColor];
+chatView.chatInputBackgroundColor = [UIColor redColor];
+chatView.chatInputTextColor = [UIColor redColor];
+chatView.chatSenderBubbleTextColor = [UIColor redColor];
+chatView.chatReceiverBubbleBackgroundColor = [UIColor redColor];
+chatView.chatReceiverBubbleTextColor = [UIColor redColor];
+chatView.chatSendButtonBackgroundColor = [UIColor redColor];
+chatView.chatTimestampTextColor = [UIColor redColor];
+
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
