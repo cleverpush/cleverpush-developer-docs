@@ -18,44 +18,10 @@ title: Setup
 1. Add Firebase to your Android project. [official docs](https://firebase.google.com/docs/android/setup) 
 2. Get your [FCM Sender ID & FCM Server API Key](https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key).
 3. [Login/Register](https://cleverpush.com/en/) on CleverPush
-4. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Implementation` > `Channel ID`  in the CleverPush Developer console.
-5. Go to your capacitor project and enter the following commands into the terminal.
-
-    ```bash
-      npx cap add android
-      npx run build
-      npx cap sync
-   ```
-6. Go to your capacitor project's Android folder and Add the dependency to your app-level `app/build.gradle` file.
-You can find the newest sdk version number here [Android SDK](https://github.com/cleverpush/cleverpush-android-sdk/tags).
-
-    ```bash
-      dependencies {
-          // ...
-          implementation 'com.cleverpush:cleverpush:1.27.6'
-      }
-
-   ```
 
 ## Setup iOS
 
-1. Go to your capacitor project and enter the following commands into the terminal.
-
-    ```bash
-      npx cap add iOS
-      npx run build
-      npx cap sync
-   ```
-
-2. Go to your capacitor project's iOS folder and add CleverPush to your `Podfile`:
-
-  ```bash
-      pod 'CleverPush'
-  ```
-
-3. Open iOS Project, Select Pods, Select Capacitor Pod, Go to Genenral tab, Add CleverPush.xcframework into the Framework and libraries 
-
-4. Enable the required capabilities 
+1. Enable the required capabilities 
 
    1. Go to your root project and switch to the tab "Capabilities"
    
@@ -63,7 +29,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
    
    3. Enable "Background Modes" and check "Remote notifications"
 
-5. Add Notification Service Extension
+2. Add Notification Service Extension
 
     This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
 
@@ -118,7 +84,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
       @end
       ```
 
-6. Create your iOS push certificate
+3. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
