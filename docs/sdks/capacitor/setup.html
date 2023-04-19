@@ -63,37 +63,12 @@ npx <span class="hljs-built_in">cap</span> sync
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="setup-android"></a><a href="#setup-android" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Android</h2>
 <ol>
-<li><p>Add Firebase to your Android project. <a href="https://firebase.google.com/docs/android/setup">official docs</a></p></li>
-<li><p>Get your <a href="https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key">FCM Sender ID &amp; FCM Server API Key</a>.</p></li>
-<li><p><a href="https://cleverpush.com/en/">Login/Register</a> on CleverPush</p></li>
-<li><p>Your CleverPush Channel ID, available in <code>Channels</code> &gt; <code>App Push</code> &gt; <code>Implementation</code> &gt; <code>Channel ID</code>  in the CleverPush Developer console.</p></li>
-<li><p>Go to your capacitor project and enter the following commands into the terminal.</p>
-<pre><code class="hljs css language-bash">  npx <span class="hljs-built_in">cap</span> add android
-  npx run build
-  npx <span class="hljs-built_in">cap</span> sync
-</code></pre></li>
-<li><p>Go to your capacitor project's Android folder and Add the dependency to your app-level <code>app/build.gradle</code> file.
-You can find the newest sdk version number here <a href="https://github.com/cleverpush/cleverpush-android-sdk/tags">Android SDK</a>.</p>
-<pre><code class="hljs css language-bash">  dependencies {
-      // ...
-      implementation <span class="hljs-string">'com.cleverpush:cleverpush:1.27.6'</span>
-  }
-
-</code></pre></li>
+<li>Add Firebase to your Android project. <a href="https://firebase.google.com/docs/android/setup">official docs</a></li>
+<li>Get your <a href="https://developer.clevertap.com/docs/find-your-fcm-sender-id-fcm-server-api-key">FCM Sender ID &amp; FCM Server API Key</a>.</li>
+<li><a href="https://cleverpush.com/en/">Login/Register</a> on CleverPush</li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="setup-ios"></a><a href="#setup-ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup iOS</h2>
 <ol>
-<li><p>Go to your capacitor project and enter the following commands into the terminal.</p>
-<pre><code class="hljs css language-bash">  npx <span class="hljs-built_in">cap</span> add iOS
-  npx run build
-  npx <span class="hljs-built_in">cap</span> sync
-</code></pre></li>
-<li><p>Go to your capacitor project's iOS folder and add CleverPush to your <code>Podfile</code>:</p></li>
-</ol>
-<pre><code class="hljs css language-bash">    pod <span class="hljs-string">'CleverPush'</span>
-</code></pre>
-<ol start="3">
-<li><p>Open iOS Project, Select Pods, Select Capacitor Pod, Go to Genenral tab, Add CleverPush.xcframework into the Framework and libraries</p></li>
 <li><p>Enable the required capabilities</p>
 <ol>
 <li><p>Go to your root project and switch to the tab &quot;Capabilities&quot;</p></li>
