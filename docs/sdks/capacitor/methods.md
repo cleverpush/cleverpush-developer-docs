@@ -8,8 +8,6 @@ title: Methods
 Add the initialization code like this:
 
 ```javascript
-import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import CleverPush from 'cleverpush-capacitor-sdk';
 
 const Home: React.FC = () => {
