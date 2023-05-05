@@ -43,6 +43,26 @@ Add xml to your layout
   storyView.setWidgetId("o76hjaysdgohltyil");
   ```
 
+Handle opened URLs:
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Java-->
+```java
+binding.storyView.setOpenedListener ((url) -> {
+  // do something with the opened URL
+});
+```
+
+<!--Kotlin-->
+```kotlin
+binding.storyView.setOpenedListener { url -> 
+  // do something with the opened URL
+}
+CleverPush.getInstance(this).setChatUrlOpenedListener { url ->
+  // do something with the opened URL
+}
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
 ### Customizations
 
 You can customize the experience of `StoryView` using these attributes:
