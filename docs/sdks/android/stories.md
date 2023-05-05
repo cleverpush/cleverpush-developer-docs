@@ -58,9 +58,6 @@ binding.storyView.setOpenedListener ((url) -> {
 binding.storyView.setOpenedListener { url -> 
   // do something with the opened URL
 }
-CleverPush.getInstance(this).setChatUrlOpenedListener { url ->
-  // do something with the opened URL
-}
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 ### Customizations
