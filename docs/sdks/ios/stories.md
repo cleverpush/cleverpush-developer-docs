@@ -24,7 +24,11 @@ let storyView = CPStoryView(frame: CGRect(x: 0.0, y: 83.0, width: self.view.fram
             textColor: UIColor.black,
             fontFamily: "AppleSDGothicNeo-Bold",
             borderColor: UIColor.red,
-            storyWidgetId: "STORY_WIDGET_ID")!
+            titleVisibility:true,
+            titleTextSize:10,
+            storyIconHeight:75,
+            storyIconWidth:105,
+            widgetId: "STORY_WIDGET_ID")!
 
 self.view.addSubview(storyView)
 ```
@@ -40,7 +44,11 @@ initWithFrame:CGRectMake(0.0, 83.0, self.view.frame.size.width, 125.0)
                             textColor:[UIColor blackColor]
                             fontFamily:@"AppleSDGothicNeo-Bold"
                             borderColor:[UIColor redColor]
-                            storyWidgetId:@"STORY_WIDGET_ID"];
+                            titleVisibility:true
+                            titleTextSize:10
+                            storyIconHeight:75
+                            storyIconWidth:105
+                            widgetId:@"STORY_WIDGET_ID"];
 
 [self.view addSubview:storyView];
 ```
