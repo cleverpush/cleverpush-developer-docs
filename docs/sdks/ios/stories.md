@@ -54,3 +54,27 @@ initWithFrame:CGRectMake(0.0, 83.0, self.view.frame.size.width, 125.0)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+Handle opened URLs in stories:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+storyView.setOpenedCallback:^(NSURL *url) {
+    NSLog(@"URL OPENED");
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+storyView.setOpenedCallback { url in
+    print("URL OPENED")
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+

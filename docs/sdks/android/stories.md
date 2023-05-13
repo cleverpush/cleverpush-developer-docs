@@ -37,29 +37,46 @@ Add xml to your layout
   app:widget_id="o76hjaysdgohltyil" />
 ```
 
-- Stories will be load using `widget_id`. Story Widget ID can be set using widget_id attribute in xml or it can be set through instance of `StoryView` like, 
-  ```xml
-  StoryView storyView = findViewById(R.id.storyView);
-  storyView.setWidgetId("o76hjaysdgohltyil");
-  ```
-
-Handle opened URLs:
+- Stories will be load edusing `widget_id`. Story Widget ID can be set using widget_id attribute in xml or it can be set through instance of  `StoryView` like:
 
 <!--DOCUSAURUS_CODE_TABS-->
+
 <!--Java-->
 ```java
-binding.storyView.setOpenedListener ((url) -> {
+StoryView storyView = findViewById(R.id.storyView);
+storyView.setWidgetId("o76hjaysdgohltyil");
+```
+
+
+<!--Kotlin-->
+```kotlin
+StoryView storyView = findViewById(R.id.storyView);
+storyView.setWidgetId("o76hjaysdgohltyil");
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Handle opened URLs in stories:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+storyView.setOpenedListener((url) -> {
   // do something with the opened URL
 });
 ```
 
 <!--Kotlin-->
 ```kotlin
-binding.storyView.setOpenedListener { url -> 
+storyView.setOpenedListener { url -> 
   // do something with the opened URL
 }
 ```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### Customizations
 
 You can customize the experience of `StoryView` using these attributes:
