@@ -32,6 +32,8 @@ You can find the newest sdk version number here [Android SDK](https://github.com
 <!--Java-->
 
 ```java
+import com.cleverpush.CleverPush;
+
 public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID");
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
 <!--Kotlin-->
 
 ```kotlin
+import com.cleverpush.CleverPush;
+
 class MainActivity:Activity() {
     fun onCreate(savedInstanceState:Bundle) {
         CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID")
