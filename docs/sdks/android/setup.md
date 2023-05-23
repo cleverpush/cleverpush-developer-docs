@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.29.3'
+      implementation 'com.cleverpush:cleverpush:1.30.10'
   }
   ```
 
@@ -50,6 +50,28 @@ class MainActivity:Activity() {
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+3. If you didnt already do this while adding firebase to your project or you have some error logs then do/check following points
+
+4. Put your google-services.json from firebase into the project e.g. in the app folder
+
+5. To your project gradle add following dependency
+
+
+```java
+buildscript {
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.3'
+    }
+}
+```
+
+6. And add this at the end of your app gradle file
+
+```java
+apply plugin: 'com.google.gms.google-services'
+googleServices { disableVersionCheck = true }
+```
 
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
