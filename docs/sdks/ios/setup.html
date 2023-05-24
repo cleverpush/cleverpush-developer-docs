@@ -72,6 +72,19 @@
 <li>Add CleverPush Swift Package Manager from url: &quot;<a href="https://github.com/cleverpush/cleverpush-ios-sdk.git">https://github.com/cleverpush/cleverpush-ios-sdk.git</a>&quot;, .upToNextMajor(from: &quot;1.19.0&quot;)</li>
 <li>Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension</li>
 </ol>
+<p><strong>Carthage Setup</strong>:</p>
+<ol>
+<li><p>Make sure you have <a href="https://github.com/Carthage/Carthage#installing-carthage">Carthage</a> installed before you begin.</p></li>
+<li><p>Create a <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Cartfile</a> in the same folder as your project.</p></li>
+<li><p>In your cartfile, include the CleverPush iOS SDK:</p>
+<pre><code class="hljs css language-bash">    github <span class="hljs-string">"cleverpush/cleverpush-ios-sdk"</span>
+</code></pre></li>
+<li><p>Navigate to the cartfile directory and run the following command in  the terminal.</p>
+<pre><code class="hljs css language-bash">carthage update --use-xcframeworks
+</code></pre></li>
+<li><p>When the command is executed correctly, a folder named Carthage is created. The Cleverpush Framework will be generated in the Carthage &gt; Build folder.</p></li>
+<li><p>Simply include the Cleverpush framework in your project.</p></li>
+</ol>
 <p><strong>Manual Installation</strong> (not needed if you use CocoaPods):</p>
 <ol>
 <li>Download the SDK release from <a href="https://github.com/cleverpush/cleverpush-ios-sdk/releases">https://github.com/cleverpush/cleverpush-ios-sdk/releases</a></li>
