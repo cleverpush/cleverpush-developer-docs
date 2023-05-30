@@ -79,6 +79,16 @@ CleverPush.push(['getSubscriptionId', function(subscriptionId) {
 }]);
 ```
 
+#### <code>getNotifications</code>
+
+Get the received notifications of a subscriber or the last 50 notifications that were sent if not subscribed
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['getNotifications', function (notifications) {
+    console.log('getNotifications', notifications);
+}]);
+```
 
 ## Tags
 
