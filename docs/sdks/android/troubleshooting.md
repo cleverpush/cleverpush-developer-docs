@@ -37,6 +37,9 @@ Add the following line at the bottom of `app/build.gradle`:
 googleServices { disableVersionCheck = true }
 ```
 
+## UI Graphic issues
+If you are seeing visual artifacts or other issues for example in our app-banners, check if you are applying stylings to global elements. 
+
 ##  Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
 
 Please upgrade atleast to CleverPush SDK version 1.17.0 when targeting Android API 31+.
