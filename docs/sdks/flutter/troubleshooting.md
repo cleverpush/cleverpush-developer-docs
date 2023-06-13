@@ -19,7 +19,7 @@ Please make sure that the Deployment Target (iOS Version) for `Runner` and for t
 
 ## Android: "The style on this component requires your app theme to be Theme.AppCompat (or a descendant)." OR "Error inflating class com.google.android.material.tabs.TabLayout"
 
-Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme).
+Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme) in `res/values/styles.xml` and `res/values-night/styles.xml`.
 Example:
 
 ```xml
