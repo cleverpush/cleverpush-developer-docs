@@ -17,7 +17,7 @@ You should already be able to disable bitcode manually in the Xcode build settin
 Please make sure that the Deployment Target (iOS Version) for `Runner` and for the `CleverPushNotificationServiceExtension` target is the same.
 
 
-## Android: The style on this component requires your app theme to be Theme.AppCompat (or a descendant).
+## Android: "The style on this component requires your app theme to be Theme.AppCompat (or a descendant)." OR "Error inflating class com.google.android.material.tabs.TabLayout"
 
 Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme).
 Example:
