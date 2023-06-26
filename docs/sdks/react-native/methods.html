@@ -130,6 +130,11 @@
   <span class="hljs-built_in">console</span>.log(isSubscribed); <span class="hljs-comment">// true</span>
 });
 </code></pre>
+<p>Check if notification permission is given:</p>
+<pre><code class="hljs css language-javascript">CleverPush.areNotificationsEnabled(<span class="hljs-function">(<span class="hljs-params">err, notificationsEnabled</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(notificationsEnabled); <span class="hljs-comment">// true</span>
+});
+</code></pre>
 <p>Subscribe:</p>
 <pre><code class="hljs css language-javascript">CleverPush.subscribe();
 </code></pre>
