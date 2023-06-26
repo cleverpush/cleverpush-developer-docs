@@ -88,6 +88,15 @@ CleverPush.isSubscribed((err, isSubscribed) => {
 ```
 
 
+Check if notification permission is given:
+
+```javascript
+CleverPush.areNotificationsEnabled((err, notificationsEnabled) => {
+  console.log(notificationsEnabled); // true
+});
+```
+
+
 Subscribe:
 
 ```javascript

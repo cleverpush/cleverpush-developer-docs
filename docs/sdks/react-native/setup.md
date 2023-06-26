@@ -9,13 +9,8 @@ title: Setup
     ```bash
     npm i cleverpush-react-native -S
     ```
-    
-2. Link native Dependencies (only needed for React Native < 0.60.0)
-    ```bash
-    react-native link
-    ```
-    
-3. Install Pods for iOS
+
+2. Install Pods for iOS
  
     ```bash
     cd ios && pod install && cd ..
