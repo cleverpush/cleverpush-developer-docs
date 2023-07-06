@@ -854,3 +854,21 @@ val hasPermission: Boolean = CleverPush.getInstance(this).hasLocationPermission(
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Authorization Token
+
+You can set an authorization token that will be used in an API call.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setAuthorizerToken("YOUR_AUTH_TOKEN_HERE");
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setAuthorizerToken("YOUR_AUTH_TOKEN_HERE")
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
