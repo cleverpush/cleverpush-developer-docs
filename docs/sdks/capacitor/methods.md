@@ -81,3 +81,62 @@ const appBannerOpenedListener = (subscriptionId) => {
 
 CleverPush.addListener('appBannerOpened', appBannerOpenedListener);
 ```
+
+## Automatic Tag Assignment
+
+The SDK can also automatically assign tags by using the `trackPageView` method. In simple cases you can just give the method a URL. In the CleverPush backoffice you can then set trigger the tags by matching URL Pathname RegExes. You can optionally also set combinations of min. visits, seconds or sessions for this tag.
+
+Let's say you have created a tag with the URL pathname regex "/sports". This would trigger the tag for a subscriber:
+
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+
+```
+CleverPush.trackPageView({ url: "" })
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+## Tags
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```
+// add subscription tag
+CleverPush.addSubscriptionTag({ tagId:""})
+```
+
+```
+// remove subscription tag
+CleverPush.removeSubscriptionTag({ tagId:""})
+```
+
+```
+// check subscription tag exists or not
+CleverPush.hasSubscriptionTag({tagId:""})
+```
+
+```
+// get subscription tags
+CleverPush.getSubscriptionTags()
+```
+
+```
+// set setSubscription topics
+CleverPush.setSubscriptionTopics({topics:["",""]})
+```
+
+```
+// get subscription topics
+CleverPush.getSubscriptionTopics()
+```
+
+```
+// get available topics
+CleverPush.getAvailableTopics()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
