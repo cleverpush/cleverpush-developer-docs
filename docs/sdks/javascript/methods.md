@@ -345,3 +345,17 @@ CleverPush.generateWalletPass(walletPassId, {
   location.href = passUrl;
 });
 ```
+
+
+## Authorizer Webhook
+
+
+This method can set your Authorization_Token for the channels where Authorizer Webhook is enabled.
+
+`ClevePush.setAuthorizerToken("YOUR_AUTH_TOKEN_HERE")`
+
+`YOUR_AUTH_TOKEN_HERE` can be used to: 
+
+1. Add or Remove attributes
+2. Add or Remove tags
+3. Add or Remove topics
