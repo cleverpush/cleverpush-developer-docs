@@ -140,3 +140,13 @@ CleverPush.getAvailableTopics()
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+
+## Get received notifications:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```javascript
+const { notifications } = await CleverPush.getNotifications();
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
