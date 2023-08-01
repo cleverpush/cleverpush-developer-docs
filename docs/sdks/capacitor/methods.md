@@ -91,9 +91,10 @@ Let's say you have created a tag with the URL pathname regex "/sports". This wou
 
 <!--DOCUSAURUS_CODE_TABS-->
 
+<!--JavaScript-->
 
-```
-CleverPush.trackPageView({ url: "" })
+```javascript
+CleverPush.trackPageView({ url: "https://..." })
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -103,39 +104,41 @@ CleverPush.trackPageView({ url: "" })
 
 <!--DOCUSAURUS_CODE_TABS-->
 
-```
+<!--JavaScript-->
+
+```javascript
 // add subscription tag
-CleverPush.addSubscriptionTag({ tagId:""})
+CleverPush.addSubscriptionTag({ tagId: "" })
 ```
 
-```
+```javascript
 // remove subscription tag
-CleverPush.removeSubscriptionTag({ tagId:""})
+CleverPush.removeSubscriptionTag({ tagId: "" })
 ```
 
-```
+```javascript
 // check subscription tag exists or not
-CleverPush.hasSubscriptionTag({tagId:""})
+const hasTag = await CleverPush.hasSubscriptionTag({ tagId: "" })
 ```
 
-```
+```javascript
 // get subscription tags
-CleverPush.getSubscriptionTags()
+const tags = CleverPush.getSubscriptionTags()
 ```
 
-```
+```javascript
 // set setSubscription topics
-CleverPush.setSubscriptionTopics({topics:["",""]})
+CleverPush.setSubscriptionTopics({ topics: ["", ""] })
 ```
 
-```
+```javascript
 // get subscription topics
-CleverPush.getSubscriptionTopics()
+const topics = await CleverPush.getSubscriptionTopics()
 ```
 
-```
+```javascript
 // get available topics
-CleverPush.getAvailableTopics()
+const availableTopics = await CleverPush.getAvailableTopics()
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -144,6 +147,8 @@ CleverPush.getAvailableTopics()
 ## Get received notifications:
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
 
 ```javascript
 const { notifications } = await CleverPush.getNotifications();
