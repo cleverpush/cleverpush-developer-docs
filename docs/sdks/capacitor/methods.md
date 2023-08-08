@@ -126,6 +126,15 @@ const hasTag = await CleverPush.hasSubscriptionTag({ tagId: "" })
 const tags = CleverPush.getSubscriptionTags()
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+## Topics
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
+
 ```javascript
 // set setSubscription topics
 CleverPush.setSubscriptionTopics({ topics: ["", ""] })
