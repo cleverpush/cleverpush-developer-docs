@@ -9,19 +9,20 @@ Add the InboxView inside your Layout XML:
 
 ```xml
 <com.cleverpush.inbox.InboxView
+  android:id="@+id/inboxView"
   android:layout_height="match_parent"
   android:layout_width="match_parent"
-  combine_with_api="true"
-  read_color="#fff"
-  unread_color="#ccc"
-  notification_text_color="#000"
-  notification_text_font_family="Open Sans"
-  notification_text_size="17"
-  date_text_color="#000"
-  date_text_font_family="Open Sans"
-  date_text_size="12"
-  divider_colour="#000"
-  />
+  app:combine_with_api="true"
+  app:read_color="#fff"
+  app:unread_color="#ccc"
+  app:notification_text_color="#000"
+  app:notification_text_font_family="Open Sans"
+  app:notification_text_size="17sp"
+  app:date_text_color="#000"
+  app:date_text_font_family="Open Sans"
+  app:date_text_size="12sp"
+  app:divider_colour="#000"
+/>
 ```
 
 
