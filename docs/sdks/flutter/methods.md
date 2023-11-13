@@ -68,6 +68,12 @@ var subscriptionTags = await CleverPush.shared.getSubscriptionTags();
 CleverPush.shared.addSubscriptionTag('TAG_ID');
 CleverPush.shared.removeSubscriptionTag('TAG_ID');
 
+// add or remove multiple subscription tags
+List<String> tagIds = ['TAG_ID1', 'TAG_ID2'];
+  
+CleverPush.shared.addSubscriptionTags(tagIds);
+CleverPush.shared.removeSubscriptionTags(tagIds);
+
 // get all the available tags
 var availableTags = await CleverPush.shared.getAvailableTags();
 ```
