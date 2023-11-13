@@ -109,6 +109,12 @@ CleverPush.shared.showTopicsDialog();
 CleverPush.shared.addSubscriptionTag(<span class="hljs-string">'TAG_ID'</span>);
 CleverPush.shared.removeSubscriptionTag(<span class="hljs-string">'TAG_ID'</span>);
 
+<span class="hljs-comment">// add or remove multiple subscription tags</span>
+<span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">String</span>&gt; tagIds = [<span class="hljs-string">'TAG_ID1'</span>, <span class="hljs-string">'TAG_ID2'</span>];
+  
+CleverPush.shared.addSubscriptionTags(tagIds);
+CleverPush.shared.removeSubscriptionTags(tagIds);
+
 <span class="hljs-comment">// get all the available tags</span>
 <span class="hljs-keyword">var</span> availableTags = <span class="hljs-keyword">await</span> CleverPush.shared.getAvailableTags();
 </code></pre>
