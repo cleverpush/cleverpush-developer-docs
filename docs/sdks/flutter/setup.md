@@ -36,9 +36,9 @@ title: Setup
 
         ```bash
         target 'CleverPushNotificationServiceExtension' do
+          use_frameworks!
 
           pod 'CleverPush'
-
         end
         ```
     6. Run `pod install`
