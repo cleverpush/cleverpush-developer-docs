@@ -13,7 +13,11 @@ In the project navigator, select the top-level project directory and select the 
 
 3. You will have to make sure all the deployment targets of the extensions must be the same.
 
-4. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
+4. In the Extension target, set `Skip Install` build setting to `NO` to test via Xcode
+
+5. Make sure the build number + version for the Extension target is same like the Main target
+
+6. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
 
 
 ## When opening a Notification, all other Notifications get cleared

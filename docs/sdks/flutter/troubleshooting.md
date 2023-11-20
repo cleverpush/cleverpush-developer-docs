@@ -3,6 +3,11 @@ id: troubleshooting
 title: Troubleshooting
 ---
 
+## iOS/Android: Notifications are not shown
+
+Please make sure you are not using the `firebase_messaging` dependency together with our SDK. The Android Firebase setup should be done directly in the Android project by following the official guide from the Firebase docs.
+
+
 ## iOS: [...] does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. [...]
 
 As we are using the newest iOS SDK with XCFramework support in the latest 1.17.5 version, our SDK does not come with bitcode support anymore, unfortunately. Also [Xcode 14 has deprecated bitcode submissions](https://developer.apple.com/documentation/xcode-release-notes/xcode-14-release-notes).
