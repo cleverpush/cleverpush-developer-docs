@@ -63,21 +63,14 @@ Here is how the topics dialog looks like:
 ```dart
 // get all the subscription tags
 var subscriptionTags = await CleverPush.shared.getSubscriptionTags();
-
-// add single tag by their ID
+// add or remove tags by their ID
 CleverPush.shared.addSubscriptionTag('TAG_ID');
-
-// add multiple tags by their ID
-List<String> tagIds = ['TAG_ID1', 'TAG_ID2'];
-CleverPush.shared.addSubscriptionTags(tagIds);
-
-// remove single tag by their ID
 CleverPush.shared.removeSubscriptionTag('TAG_ID');
-
-// remove multiple tags by their ID
+// add or remove multiple subscription tags
 List<String> tagIds = ['TAG_ID1', 'TAG_ID2'];
+  
+CleverPush.shared.addSubscriptionTags(tagIds);
 CleverPush.shared.removeSubscriptionTags(tagIds);
-
 // get all the available tags
 var availableTags = await CleverPush.shared.getAvailableTags();
 ```

@@ -36,9 +36,9 @@ title: Setup
 
         ```bash
         target 'CleverPushNotificationServiceExtension' do
+          use_frameworks!
 
           pod 'CleverPush'
-
         end
         ```
     6. Run `pod install`
@@ -108,19 +108,4 @@ title: Setup
 
 ### Setup Android
 
-1. Add `compileOptions` to the `android` section in the `android/app/build.gradle` file:
-
-    ```groovy
-    android {
-    compileSdkVersion 28
-    buildToolsVersion '27.0.3'
-
-    compileOptions {
-      sourceCompatibility JavaVersion.VERSION_1_8
-      targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    ...
-    ```
-
-2. Setup Firebase inside your Android Runner App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
+1. Setup Firebase inside your Android Runner App and register the Sender ID and the API Key inside the CleverPush Channel settings. Please refer to the official docs: https://firebase.google.com/docs/android/setup
