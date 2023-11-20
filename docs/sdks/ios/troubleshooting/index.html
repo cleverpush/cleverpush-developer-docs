@@ -60,6 +60,8 @@
 <li><p>Once you start with the fresh Xcode project, it will select last OS support as a deployment target for e.g (if you have generated project via XCode 12.4 and its latest OS support is 14.4 so 14.4 will be default selection on Xcode.)</p></li>
 <li><p>Unless you have a specific reason not to, you should set the Deployment Target to be iOS 10 which is the version of iOS that Apple released Rich Media for push. iOS versions under 10 will not be able to get Rich Media.</p></li>
 <li><p>You will have to make sure all the deployment targets of the extensions must be the same.</p></li>
+<li><p>In the Extension target, set <code>Skip Install</code> build setting to <code>NO</code> to test via Xcode</p></li>
+<li><p>Make sure the build number + version for the Extension target is same like the Main target</p></li>
 <li><p>An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.</p></li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="when-opening-a-notification-all-other-notifications-get-cleared"></a><a href="#when-opening-a-notification-all-other-notifications-get-cleared" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>When opening a Notification, all other Notifications get cleared</h2>
