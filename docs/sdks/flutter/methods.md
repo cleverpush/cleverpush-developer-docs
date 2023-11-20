@@ -64,9 +64,19 @@ Here is how the topics dialog looks like:
 // get all the subscription tags
 var subscriptionTags = await CleverPush.shared.getSubscriptionTags();
 
-// add or remove tags by their ID
+// add single tag by their ID
 CleverPush.shared.addSubscriptionTag('TAG_ID');
+
+// add multiple tags by their ID
+List<String> tagIds = ['TAG_ID1', 'TAG_ID2'];
+CleverPush.shared.addSubscriptionTags(tagIds);
+
+// remove single tag by their ID
 CleverPush.shared.removeSubscriptionTag('TAG_ID');
+
+// remove multiple tags by their ID
+List<String> tagIds = ['TAG_ID1', 'TAG_ID2'];
+CleverPush.shared.removeSubscriptionTags(tagIds);
 
 // get all the available tags
 var availableTags = await CleverPush.shared.getAvailableTags();
@@ -173,4 +183,12 @@ Step 2: Call this when the user gave his consent (needs to be called on every la
 
 ```dart
 CleverPush.shared.setTrackingConsent(true);
+```
+
+## Authorization Token
+
+You can set an authorization token that will be used in an API call.
+
+```dart
+CleverPush.shared.setAuthorizerToken('YOUR_AUTH_TOKEN_HERE');
 ```
