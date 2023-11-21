@@ -671,6 +671,7 @@ CleverPush.setAuthorizerToken("YOUR_AUTH_TOKEN_HERE")
 ## TCF2 CMP
 
 You can set IabTcfMode. Perform subscribe or tracking according to IabTcfMode if vendor consent is 1.
+
 Call this before initializing the SDK
 
 <!--DOCUSAURUS_CODE_TABS-->
@@ -683,8 +684,9 @@ CleverPush.setIabTcfMode(.subscribeWaitForConsent)
 
 <!--Objective-C-->
 ```objective-c
-// IabTcfModes are IabTcfMode.SUBSCRIBE_WAIT_FOR_CONSENT, IabTcfMode.TRACKING_WAIT_FOR_CONSENT, IabTcfMode.DISABLED
+// IabTcfModes are CPIabTcfModeSubscribeWaitForConsent, CPIabTcfModeTrackingWaitForConsent, CPIabTcfModeDisabled
 [CleverPush setIabTcfMode:CPIabTcfModeSubscribeWaitForConsent];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+    
