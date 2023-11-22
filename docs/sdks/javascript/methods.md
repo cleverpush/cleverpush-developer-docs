@@ -231,10 +231,30 @@ CleverPush.push(['pullAttributeValue', 'ATTRIBUTE_ID', 'VALUE', function() {
 
 
 
+## Events
+
+
+#### <code>trackEvent</code>
+
+Tracks a conversion Event
+The last argument are the event properties, which are completely optional. You can specify any parameters and use them in your follow-up notification templates.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['trackEvent', 'EVENT_NAME', { ... }]);
+```
+
+
+<br/>
+
+
+
 ## Follow ups
 
 
 #### <code>triggerFollowUpEvent</code>
+
+*Deprecated: Use `trackEvent` instead to trigger Follow-ups via Events.*
 
 Triggers a follow-up campaign event.
 You can also find the full event code in your CleverPush account under `Channels / Select channel / Follow-up campaigns`.
