@@ -57,6 +57,23 @@ You can save external User ID's to subscriptions when creating/updating a subscr
 The `user_id` attribute needs to be created before in the CleverPush channel settings under _attributes_. You can also include other attributes inside the request.
 
 
+
+## Date attributes
+
+You can also provide dates which can be used for segmentation or other automation features within CleverPush.
+Please provide dates always in ISO-8601 format.
+Date attribute IDs usually contain `date` or end with `_at`;
+
+```json
+{
+  "customAttributes": {
+    "birthdate": "2001-11-24T19:28:18.071Z"
+  }
+  …
+}
+```
+
+
 ### Get subscription by attribute (external user_id)
 
 API Endpoint: https://api.cleverpush.com/#api-Subscriptions-GetSubscription
