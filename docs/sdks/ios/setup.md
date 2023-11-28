@@ -317,17 +317,18 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </plist>
 ```
 
-8. Add this code to your AppDelegate:
+**9. Add this code to your AppDelegate:**
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
 
 ```swift
+import UIKit
 import CleverPush
-
-class AppDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {	        // ...
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Make sure to insert your CleverPush channelId
         CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE")
@@ -374,7 +375,7 @@ Optionally, you can also add your notification opened callback in your `didFinis
 ```swift
 // ...
 
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
   // ...
   CleverPush.initWithLaunchOptions(launchOptions,
     channelId: "YOUR_CHANNEL_ID_HERE",
@@ -406,11 +407,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
-**9. Create your iOS Auth Key certificate**
+**10. Create your iOS Auth Key certificate**
 
 See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-ios-apns-auth-key)**
 
-**10. Add AppGroup (optional but recommended)**
+**11. Add AppGroup (optional but recommended)**
 
 This is required for getting the received notifications via the `getNotifications` method and also for automatic Badge Counting (i.e. when using `setIncrementBadge(true)`).
 
