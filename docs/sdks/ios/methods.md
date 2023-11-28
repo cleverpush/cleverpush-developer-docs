@@ -320,6 +320,10 @@ let attributeValue = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 // You can set string values like this
 CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
 
+// You can also set array of string values like this
+let valArray = ["ATTRIBUTE_VALUE_ONE", "ATTRIBUTE_VALUE_TWO", "ATTRIBUTE_VALUE_THREE", "ATTRIBUTE_VALUE_FOUR"]
+CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", arrayValue: valArray)
+
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.setSubscriptionAttribute("birthdate", value: "2020-06-21")
 
@@ -341,6 +345,10 @@ NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"]
 
 // You can set string values like this
 [CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
+
+// You can also set array of string values like this
+NSArray *valArray = @[@"ATTRIBUTE_VALUE_ONE", @"ATTRIBUTE_VALUE_TWO", @"ATTRIBUTE_VALUE_THREE", @"ATTRIBUTE_VALUE_FOUR"];
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" arrayValue:valArray];
 
 // Please provide dates in the following format: YYYY-MM-DD
 [CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
@@ -690,3 +698,70 @@ CleverPush.setIabTcfMode(.subscribeWaitForConsent)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
     
+## Implementation of App Banner Delegate for Displaying Banners on Custom View Controllers
+
+Implemented an App Banner Delegate feature allowing the display of banners on custom view controllers. This feature introduces a custom delegate or protocol for passing a view controller, enabling the presentation of banners on specific, user-defined views.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setShowAppBannerCallback { viewController in
+            print("App Banner will be displayed on ViewController: \(viewController)")
+            // Implement your logic to show the banner on the provided viewController
+        }
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setShowAppBannerCallback:^(UIViewController *viewController) {
+        NSLog(@"App Banner will be displayed on ViewController: %@", viewController);
+        // Implement your logic to show the banner on the provided viewController
+    }];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+    
+## Auto Resubscribe
+
+When `setAutoResubscribe` is enabled (set to true), the SDK will automatically attempt to resubscribe the user in a specific scenario:
+If the user has granted notification permissions and If the subscription ID is nil, used to identify a user's subscription status, it is null or not set.
+In this scenario, the SDK will trigger an automatic resubscription process for the users.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// This method sets the boolean variable true or false.
+CleverPush.setAutoResubscribe(true)
+```
+
+<!--Objective-C-->
+```objective-c
+// This method sets the boolean variable true or false.
+[CleverPush setAutoResubscribe:TRUE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Auto Request Notification Permission
+
+This method determines whether the standard push notification permission dialogue will be displayed within the application.
+When `setAutoRequestNotificationPermission` is set to true, the SDK displays the system's default push notification permission dialogue. 
+when set to false, the SDK suppresses the standard permission dialogue, preventing it from being displayed.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// This method sets the boolean variable true or false.
+CleverPush.setAutoRequestNotificationPermission(true)
+```
+
+<!--Objective-C-->
+```objective-c
+// This method sets the boolean variable true or false.
+[CleverPush setAutoRequestNotificationPermission:TRUE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
