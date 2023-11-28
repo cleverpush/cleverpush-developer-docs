@@ -898,7 +898,47 @@ IabTcfMode.SUBSCRIBE_WAIT_FOR_CONSENT,
 IabTcfMode.TRACKING_WAIT_FOR_CONSENT, 
 IabTcfMode.DISABLED 
 */
-CleverPush.getInstance(this).setIabTcfMode(IabTcfMode.SUBSCRIBE_WAIT_FOR_CONSENT);
+CleverPush.getInstance(this).setIabTcfMode(IabTcfMode.SUBSCRIBE_WAIT_FOR_CONSENT)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Auto Request Notification Permission
+
+You can diable the notification permission dialog while subscribe.
+
+Default `autoRequestNotificationPermission` value is `true` so while subscribing it checks that if notification permission is not given then it will display the dialog. By seting `autoRequestNotificationPermission` value to `false` notification permission dialog will not display if permission is not given while subscribe. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setAutoRequestNotificationPermission(false);
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setAutoRequestNotificationPermission(false)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Auto Resubscribe
+
+You can perform auto resubscribe whenever app open if the user has given notification permission and subscriptionId is null.
+
+Default `autoResubscribe` value is `false`. By seting `autoResubscribe` value to `true` whenever app open it checks that the user has given notification permission and subscriptionId is null then perform subscribe. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setAutoResubscribe(true);
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setAutoResubscribe(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
