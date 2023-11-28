@@ -690,3 +690,26 @@ CleverPush.setIabTcfMode(.subscribeWaitForConsent)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
     
+## Implementation of App Banner Delegate for Displaying Banners on Custom View Controllers
+
+Implemented an App Banner Delegate feature allowing the display of banners on custom view controllers. This feature introduces a custom delegate or protocol for passing a view controller, enabling the presentation of banners on specific, user-defined views.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setShowAppBannerCallback { viewController in
+            print("App Banner will be displayed on ViewController: \(viewController)")
+            // Implement your logic to show the banner on the provided viewController
+        }
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setShowAppBannerCallback:^(UIViewController *viewController) {
+        NSLog(@"App Banner will be displayed on ViewController: %@", viewController);
+        // Implement your logic to show the banner on the provided viewController
+    }];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
