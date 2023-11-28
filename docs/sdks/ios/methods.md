@@ -716,7 +716,7 @@ CleverPush.setShowAppBannerCallback { viewController in
     
 ## Auto Resubscribe
 
-When autoResubscribe is enabled (set to true), the SDK will automatically attempt to resubscribe the user in a specific scenario:
+When `setAutoResubscribe` is enabled (set to true), the SDK will automatically attempt to resubscribe the user in a specific scenario:
 If the user has granted notification permissions and If the subscription ID is nil, used to identify a user's subscription status, it is null or not set.
 In this scenario, the SDK will trigger an automatic resubscription process for the users.
 
@@ -732,6 +732,28 @@ CleverPush.setAutoResubscribe(true)
 ```objective-c
 // This method sets the boolean variable true or false.
 [CleverPush setAutoResubscribe:TRUE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Auto Request Notification Permission
+
+This method determines whether the standard push notification permission dialogue will be displayed within the application.
+When `setAutoRequestNotificationPermission` is set to true, the SDK displays the system's default push notification permission dialogue. 
+when set to false, the SDK suppresses the standard permission dialogue, preventing it from being displayed.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// This method sets the boolean variable true or false.
+CleverPush.setAutoRequestNotificationPermission(true)
+```
+
+<!--Objective-C-->
+```objective-c
+// This method sets the boolean variable true or false.
+[CleverPush setAutoRequestNotificationPermission:TRUE];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
