@@ -354,7 +354,7 @@ CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
 
 // You can set array of string values like this
 String[] array = {"1", "2", "3"}; 
-CleverPush.getInstance(MainActivity.this).setSubscriptionAttributes("user_id", array);
+CleverPush.getInstance(MainActivity.this).setSubscriptionAttribute("user_id", array);
 
 // You can also push/pull values to special array attributes (e.g. "categories")
 CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1");
