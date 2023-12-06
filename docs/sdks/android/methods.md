@@ -946,3 +946,27 @@ CleverPush.getInstance(this).setAutoResubscribe(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## setLocalTrackEventRetentionDays
+
+App Banners: Targeting by events from previous sessions
+
+Added the `Add Event` feature in the `Targeting` section in the app banner. Where you can set the last x days event called and fulfil the specific condition then the banner will display.
+
+E.g `in last 5 days between from 5 to 10 event TEST`. It will store the banner event data in a local database and check from the current date to till next five days. If the event called count for that particular banner is between 5 to 10 or not. If it's between those values then the banner will display otherwise not. After 5 days banner will not display. 
+
+To delete the local database's table entry need to set `trackEventRetentionDays`. The default days are `90 days`. It will check each record's createdDateTime, if it's greater than trackEventRetentionDays then that data will be deleted from the table.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setLocalTrackEventRetentionDays(20);
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setLocalTrackEventRetentionDays(20)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->

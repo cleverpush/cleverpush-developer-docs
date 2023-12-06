@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.31.18'
+      implementation 'com.cleverpush:cleverpush:1.33.0'
   }
   ```
 
