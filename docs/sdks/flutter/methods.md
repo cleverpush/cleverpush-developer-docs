@@ -59,6 +59,7 @@ Here is how the topics dialog looks like:
 
 ![Topics Dialog iOS](https://developers.cleverpush.com/img/topics-dialog-ios.png)
 
+
 ## Tags
 ```dart
 // get all the subscription tags
@@ -161,6 +162,14 @@ var notifications = await CleverPush.shared.getNotifications();
 // - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
 bool combineWithApi = true;
 var remoteNotifications = await CleverPush.shared.getNotificationsWithApi(combineWithApi);
+```
+
+## App Banners
+
+```dart
+CleverPush.shared.setAppBannerOpenedHandler((CPAppBannerAction action) {
+      print("Banner action URL: \n${action.url}");
+});
 ```
 
 
