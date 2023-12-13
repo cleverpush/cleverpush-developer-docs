@@ -197,7 +197,7 @@ end
 <p><strong>10. Create your iOS Auth Key certificate</strong></p>
 <p>See the section below: <strong><a href="#how-to-create-an-ios-apns-auth-key">How to Create an iOS APNS Auth Key</a></strong></p>
 <p><strong>11. Add AppGroup (optional but recommended)</strong></p>
-<p>This is required for getting the received notifications via the <code>getNotifications</code> method and also for automatic Badge Counting (i.e. when using <code>setIncrementBadge(true)</code>).</p>
+<p>This is <strong>required</strong> for getting the received notifications via the <code>getNotifications</code> method and also for <strong>automatic Badge Counting</strong> (i.e. when using <code>setIncrementBadge(true)</code>).</p>
 <ol>
 <li>Select your main application Target in Xcode</li>
 <li>Go to <code>Capabilities</code> and activate <code>App Groups</code></li>
@@ -210,13 +210,17 @@ end
 <ol>
 <li>Add the sound file(s) to the Xcode project root and make sure &quot;Add to targets&quot; is selected when adding the files.</li>
 <li>When sending a notification you can enter the filename (with extension) in the field &quot;Sound&quot; in the advanced settings.</li>
-<li>If you send notifications via the API you can use the parameter &quot;soundFilename&quot;.</li>
+<li>If you send notifications via the API you can use the parameter &quot;soundFilename&quot;.</li>
 </ol>
 <p><img src="https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png" alt=""></p>
 <h2><a class="anchor" aria-hidden="true" id="badge-counts"></a><a href="#badge-counts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Badge Counts</h2>
 <p>Disable automatic clearing of badge count when opening a notification. Enabled by default.
-Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.
-For this to work, please set up the <strong>App Group</strong> like described in the Setup section.</p>
+Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.</p>
+<p>Required setup steps:</p>
+<ol>
+<li><span style="color: red">Please set up the <strong>App Group</strong> like described in the Setup section.</span></li>
+<li>Disable Badge Count in the CleverPush Channel Settings in the &quot;iOS&quot; section. It is not required anymore to send the Badge Count from the backend because the SDK will now handle the Badge Count by itself.</li>
+</ol>
 <div class="tabs"><div class="nav-tabs"><div id="tab-group-248-tab-249" class="nav-link active" data-group="group_248" data-tab="tab-group-248-content-249">Swift</div><div id="tab-group-248-tab-250" class="nav-link" data-group="group_248" data-tab="tab-group-248-content-250">Objective-C</div></div><div class="tab-content"><div id="tab-group-248-content-249" class="tab-pane active" data-group="group_248" tabindex="-1"><div><span><pre><code class="hljs css language-swift"><span class="hljs-type">CleverPush</span>.setAutoClearBadge(<span class="hljs-literal">false</span>)<br /></code></pre>
 </span></div></div><div id="tab-group-248-content-250" class="tab-pane" data-group="group_248" tabindex="-1"><div><span><pre><code class="hljs css language-objective-c"><span class="hljs-section">[CleverPush setAutoClearBadge:NO]</span><span class="hljs-comment">;</span><br /></code></pre>
 </span></div></div></div></div>
