@@ -413,7 +413,7 @@ See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-
 
 **11. Add AppGroup (optional but recommended)**
 
-This is required for getting the received notifications via the `getNotifications` method and also for automatic Badge Counting (i.e. when using `setIncrementBadge(true)`).
+This is **required** for getting the received notifications via the `getNotifications` method and also for **automatic Badge Counting** (i.e. when using `setIncrementBadge(true)`).
 
 1. Select your main application Target in Xcode
 2. Go to `Capabilities` and activate `App Groups`
@@ -428,7 +428,7 @@ iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 sec
 
 1. Add the sound file(s) to the Xcode project root and make sure "Add to targets" is selected when adding the files.
 2. When sending a notification you can enter the filename (with extension) in the field "Sound" in the advanced settings.
-3. If you send notifications via the API you can use the parameter "soundFilename".
+3. If you send notifications via the API you can use the parameter "soundFilename".
 
 
 ![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
@@ -437,7 +437,10 @@ iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 sec
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
 Please note that with the default behaviour (setting badge count to zero) iOS will automatically clear all notifications in the Notification Center.
-For this to work, please set up the **App Group** like described in the Setup section.
+
+Required setup steps:
+1. <span style="color: red">Please set up the **App Group** like described in the Setup section.</span>
+2. Disable Badge Count in the CleverPush Channel Settings in the "iOS" section. It is not required anymore to send the Badge Count from the backend because the SDK will now handle the Badge Count by itself.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
