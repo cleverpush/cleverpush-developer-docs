@@ -34,10 +34,10 @@ Learn more [Attributes](https://developers.cleverpush.com/docs/sdks/ios/methods#
 }
 ```
 
-## Now send updates to your live actiivty with notification/send api endpoint with following payload
+## Now send updates to your live activity with notification/send api endpoint with following payload
 
 Your live activity contains data with content-state variables (title, message, driverName, estimatedDeliveryTime, can be whatever you want) <br />
-We expecting here following payload to update an activity <br />
+We expecting here following payload to update an activity<br />
 
 - [iosLiveActivityContentState](https://developer.apple.com/documentation/activitykit/activity/contentstate-swift.typealias)
   - The type alias for the structure that describes the dynamic content of a Live Activity.
