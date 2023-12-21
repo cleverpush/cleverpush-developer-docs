@@ -722,11 +722,34 @@ CleverPush.setShowAppBannerCallback { viewController in
 
 <!--END_DOCUSAURUS_CODE_TABS-->
     
+## Auto Request Notification Permission
+
+You can diable the notification permission dialog while subscribe.
+
+Default `autoRequestNotificationPermission` value is `true` so while subscribing it checks that if notification permission is not given then it will display the dialog. By seting `autoRequestNotificationPermission` value to `false` notification permission dialog will not display if permission is not given while subscribe. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// This method sets the boolean variable true or false.
+CleverPush.setAutoRequestNotificationPermission(false)
+```
+
+<!--Objective-C-->
+```objective-c
+// This method sets the boolean variable true or false.
+[CleverPush setAutoRequestNotificationPermission:FALSE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Auto Resubscribe
 
-When `setAutoResubscribe` is enabled (set to true), the SDK will automatically attempt to resubscribe the user in a specific scenario:
-If the user has granted notification permissions and If the subscription ID is nil, used to identify a user's subscription status, it is null or not set.
-In this scenario, the SDK will trigger an automatic resubscription process for the users.
+You can perform auto resubscribe whenever app open if the user has given notification permission and subscriptionId is null.
+
+Default `autoResubscribe` value is `false`. By seting `autoResubscribe` value to `true` whenever app open it checks that the user has given notification permission and subscriptionId is null then perform subscribe. 
+
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -744,24 +767,28 @@ CleverPush.setAutoResubscribe(true)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## Auto Request Notification Permission
+## Set Local Track Event Retention Days
 
-This method determines whether the standard push notification permission dialogue will be displayed within the application.
-When `setAutoRequestNotificationPermission` is set to true, the SDK displays the system's default push notification permission dialogue. 
-when set to false, the SDK suppresses the standard permission dialogue, preventing it from being displayed.
+App Banners: Targeting by events from previous sessions
+
+Added the `Add Event` feature in the `Targeting` section in the app banner. Where you can set the last x days event called and fulfil the specific condition then the banner will display.
+
+E.g `in last 5 days between from 5 to 10 event TEST`. It will store the banner event data in a local database and check from the current date to till next five days. If the event called count for that particular banner is between 5 to 10 or not. If it's between those values then the banner will display otherwise not. After 5 days banner will not display. 
+
+To delete the local database's table entry need to set `trackEventRetentionDays`. The default days are `90 days`. It will check each record's createdDateTime, if it's greater than trackEventRetentionDays then that data will be deleted from the table.
+
+Call this before initializing the SDK
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
 ```swift
-// This method sets the boolean variable true or false.
-CleverPush.setAutoRequestNotificationPermission(true)
+CleverPush.setLocalEventTrackingRetentionDays(20)
 ```
 
 <!--Objective-C-->
 ```objective-c
-// This method sets the boolean variable true or false.
-[CleverPush setAutoRequestNotificationPermission:TRUE];
+[CleverPush setLocalEventTrackingRetentionDays:20];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
