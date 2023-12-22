@@ -52,7 +52,7 @@ pod 'CleverPush', '~> 1.28.4'
 
 1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
 2. Drop and drag `CleverPush/Framework/CleverPush.framework` into your Xcode project and check the copy option.
-3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit` and `JavaScriptCore` to your frameworks.
+3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit`, `JavaScriptCore`, `ImageIO` and `MobileCoreServices` to your frameworks.
 4. Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension
 
 **3. Enable the required capabilities**
