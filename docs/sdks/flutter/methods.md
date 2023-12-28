@@ -103,6 +103,10 @@ var attributeValue = await CleverPush.shared.getSubscriptionAttribute('ATTRIBUTE
 
 // get all the available attributes
 var availableAttributes = await CleverPush.shared.getAvailableAttributes();
+
+// You can also push/pull values to special array attributes (e.g. "categories")
+CleverPush.shared.pushSubscriptionAttributeValue("categories","categories_1");
+CleverPush.shared.pullSubscriptionAttributeValue("categories","categories_1");
 ```
 
 
