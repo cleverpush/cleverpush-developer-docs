@@ -861,6 +861,8 @@ val hasPermission: Boolean = CleverPush.getInstance(this).hasLocationPermission(
 
 ## Authorization Token
 
+(Available from version 1.31.13)
+
 You can set an authorization token that will be used in an API call.
 
 <!--DOCUSAURUS_CODE_TABS-->
@@ -878,6 +880,8 @@ CleverPush.getInstance(this).setAuthorizerToken("YOUR_AUTH_TOKEN_HERE")
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## TCF2 CMP
+
+(Available from version 1.32.0)
 
 You can set IabTcfMode. Perform subscribe or tracking according to IabTcfMode if vendor consent is 1.
 
@@ -909,6 +913,8 @@ CleverPush.getInstance(this).setIabTcfMode(IabTcfMode.SUBSCRIBE_WAIT_FOR_CONSENT
 
 ## Auto Request Notification Permission
 
+(Available from version 1.32.2)
+
 You can diable the notification permission dialog while subscribe.
 
 Default `autoRequestNotificationPermission` value is `true` so while subscribing it checks that if notification permission is not given then it will display the dialog. By seting `autoRequestNotificationPermission` value to `false` notification permission dialog will not display if permission is not given while subscribe. 
@@ -929,6 +935,8 @@ CleverPush.getInstance(this).setAutoRequestNotificationPermission(false)
 
 ## Auto Resubscribe
 
+(Available from version 1.32.2)
+
 You can perform auto resubscribe whenever app open if the user has given notification permission and subscriptionId is null.
 
 Default `autoResubscribe` value is `false`. By seting `autoResubscribe` value to `true` whenever app open it checks that the user has given notification permission and subscriptionId is null then perform subscribe. 
@@ -948,6 +956,8 @@ CleverPush.getInstance(this).setAutoResubscribe(true)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Set Local Track Event Retention Days
+
+(Available from version 1.33.0)
 
 App Banners: Targeting by events from previous sessions
 
