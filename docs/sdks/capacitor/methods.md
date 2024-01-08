@@ -150,8 +150,44 @@ const topics = await CleverPush.getSubscriptionTopics()
 const availableTopics = await CleverPush.getAvailableTopics()
 ```
 
+```javascript
+// let the user choose his topics
+CleverPush.showTopicsDialog()
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+Here is how the topics dialog looks like:
+
+<img src="https://developers.cleverpush.com/img/topics-dialog-ios.png" alt="Topics Dialog iOS" height="500">
+
+## Attributes
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```javascript
+CleverPush.getAvailableAttributes()
+```
+
+```javascript
+CleverPush.getSubscriptionAttribute({attributeId:"ATTRIBUTE_ID"})
+```
+
+```javascript
+CleverPush.getSubscriptionAttributes()
+```
+
+```javascript
+// You can set string values like this
+CleverPush.setSubscriptionAttribute({attributeId:"ATTRIBUTE_ID",value:"ATTRIBUTE_VALUE"})
+```
+
+```javascript
+// Please provide dates in the following format: YYYY-MM-DD
+CleverPush.setSubscriptionAttribute({attributeId:"birthdate",value:"2020-06-21"})
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Get received notifications:
 
@@ -161,6 +197,49 @@ const availableTopics = await CleverPush.getAvailableTopics()
 
 ```javascript
 const { notifications } = await CleverPush.getNotifications();
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Development mode
+
+You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```javascript
+CleverPush.enableDevelopmentMode()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Event Tracking
+
+Events can be used to track conversions or trigger app banners.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```javascript
+CleverPush.trackEvent({eventName:"TRACK_EVENT_DATA"})
+
+// track an event with custom properties
+ CleverPush.trackEvent({
+      eventName: "TRACK_EVENT_DATA",
+      properties: {
+        property1: 'value1',
+        property2: 'value2'
+      }
+    });
+```
+
+## Authorization Token
+
+You can set an authorization token that will be used in an API call.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+```javascript
+CleverPush.setAuthorizerToken({token:"set_Authorizer_Token"})
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
