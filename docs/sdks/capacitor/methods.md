@@ -161,9 +161,11 @@ CleverPush.showTopicsDialog()
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+
 Here is how the topics dialog looks like:
 
 <img src="https://developers.cleverpush.com/img/topics-dialog-ios.png" alt="Topics Dialog iOS" height="500">
+
 
 ## Attributes
 
