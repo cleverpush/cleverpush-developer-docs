@@ -213,6 +213,8 @@ You can enable the development mode to disable caches for app banners, so you al
 
 <!--DOCUSAURUS_CODE_TABS-->
 
+<!--JavaScript-->
+
 ```javascript
 CleverPush.enableDevelopmentMode()
 ```
@@ -224,6 +226,8 @@ CleverPush.enableDevelopmentMode()
 Events can be used to track conversions or trigger app banners.
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
 
 ```javascript
 CleverPush.trackEvent({eventName:"TRACK_EVENT_DATA"})
@@ -245,6 +249,8 @@ CleverPush.trackEvent({eventName:"TRACK_EVENT_DATA"})
 You can set an authorization token that will be used in an API call.
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--JavaScript-->
 
 ```javascript
 CleverPush.setAuthorizerToken({token:"set_Authorizer_Token"})
