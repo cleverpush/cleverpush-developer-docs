@@ -45,9 +45,13 @@ const Home: React.FC = () => {
 
 Subscribe:
 ```javascript
-CleverPush.subscribe().then(({ subscriptionId }) => {
-
-});
+CleverPush.subscribe()
+  .then(result => {
+    console.log("Subscription ID:", result.subscriptionId);
+  })
+  .catch(error => {
+    console.error("Subscription failed:", error);
+  });
 ```
 
 Unsubscribe:
