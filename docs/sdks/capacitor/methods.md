@@ -169,6 +169,8 @@ Here is how the topics dialog looks like:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
+<!--JavaScript-->
+
 ```javascript
 CleverPush.getAvailableAttributes()
 ```
