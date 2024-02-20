@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.33.3'
+      implementation 'com.cleverpush:cleverpush:1.33.6'
   }
   ```
 
@@ -437,3 +437,78 @@ Add this to your AndroidManifest.xml inside the `<application>` tag:
 ```
 
 If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Extender Service" in the left menu.
+
+## NotificationServiceExtension
+
+For displaying notifications, we previously used `NotificationExtenderService`, which is now deprecated. Please use `NotificationServiceExtension` instead.
+
+**Deprecation Notice:**
+
+`NotificationExtenderService` is deprecated. It is recommended to migrate to `NotificationServiceExtension`. Remove any references to `NotificationExtenderService` in your code and replace them with `NotificationServiceExtension`.
+
+Create the `MyNotificationServiceExtension` class:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+import android.util.Log;
+import androidx.core.app.NotificationCompat;
+import com.cleverpush.NotificationReceivedEvent;
+import com.cleverpush.NotificationServiceExtension;
+import java.math.BigInteger;
+
+public class MyNotificationServiceExtension implements NotificationServiceExtension {
+    @Override
+    public void onNotificationReceived(NotificationReceivedEvent event) {
+        // call `event.preventDefault()` to not display notification
+        // event.preventDefault();
+        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived");
+
+        // modify notification
+        event.getNotification().setExtender(new NotificationCompat.Extender() {
+            @Override
+            public NotificationCompat.Builder extend(NotificationCompat.Builder builder) {
+                builder.setColor(new BigInteger("FF00FF00", 16).intValue()); // Set notification color to green
+                return builder;
+            }
+        });
+    }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import com.cleverpush.NotificationReceivedEvent
+import com.cleverpush.NotificationServiceExtension
+import java.math.BigInteger
+
+class MyNotificationServiceExtension : NotificationServiceExtension {
+    override fun onNotificationReceived(event: NotificationReceivedEvent) {
+        // call `event.preventDefault()` to not display notification
+        // event.preventDefault()
+        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived")
+
+        // modify notification
+        event.notification?.setExtender(object : NotificationCompat.Extender {
+            override fun extend(builder: NotificationCompat.Builder): NotificationCompat.Builder {
+                builder.setColor(BigInteger("FF00FF00", 16).intValue()) // Set notification color to green
+                return builder
+            }
+        })
+    }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Add this to your AndroidManifest.xml inside the `<application>` tag:
+
+```xml
+ <meta-data android:name="com.cleverpush.NotificationServiceExtension"
+            android:value="com.cleverpush.cleverpush_example_android.MyNotificationServiceExtension" />
+```
