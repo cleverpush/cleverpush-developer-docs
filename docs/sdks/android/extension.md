@@ -1,11 +1,123 @@
 ---
 id: extension
-title: Notification Extender Service
+title: Notification Service Extension
 ---
 
-On Android you can modify the notification and optionally silence it with a Notification Extender Service. Here is how to set it up:
+On Android you can modify the notification and optionally silence it with a Notification Service Extension. Here is how to set it up:
 
 Minimum CleverPush Android SDK Version: 1.5.0
+
+For displaying notifications, we previously used `NotificationExtenderService`, which is now deprecated. Please use `NotificationServiceExtension` instead.
+
+**Deprecation Notice:**
+
+`NotificationExtenderService` is deprecated from the android sdk version 1.33.7. It is recommended to migrate to `NotificationServiceExtension`. Remove any references to `NotificationExtenderService` in your code and replace them with `NotificationServiceExtension`.
+
+Create the `MyNotificationServiceExtension` class:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+import android.util.Log;
+import androidx.core.app.NotificationCompat;
+import com.cleverpush.NotificationReceivedEvent;
+import com.cleverpush.NotificationServiceExtension;
+import java.math.BigInteger;
+
+public class MyNotificationServiceExtension implements NotificationServiceExtension {
+    @Override
+    public void onNotificationReceived(NotificationReceivedEvent event) {
+        // call `event.preventDefault()` to not display notification
+        // event.preventDefault();
+        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived");
+
+        // modify notification
+        event.getNotification().setExtender(new NotificationCompat.Extender() {
+            @Override
+            public NotificationCompat.Builder extend(NotificationCompat.Builder builder) {
+                builder.setColor(new BigInteger("FF00FF00", 16).intValue()); // Set notification color to green
+                return builder;
+            }
+        });
+    }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import com.cleverpush.NotificationReceivedEvent
+import com.cleverpush.NotificationServiceExtension
+import java.math.BigInteger
+
+class MyNotificationServiceExtension : NotificationServiceExtension {
+    override fun onNotificationReceived(event: NotificationReceivedEvent) {
+        // call `event.preventDefault()` to not display notification
+        // event.preventDefault()
+        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived")
+
+        // modify notification
+        event.notification?.setExtender(object : NotificationCompat.Extender {
+            override fun extend(builder: NotificationCompat.Builder): NotificationCompat.Builder {
+                builder.setColor(BigInteger("FF00FF00", 16).intValue()) // Set notification color to green
+                return builder
+            }
+        })
+    }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Add this to your AndroidManifest.xml inside the `<application>` tag:
+
+```xml
+ <meta-data android:name="com.cleverpush.NotificationServiceExtension"
+            android:value="com.cleverpush.cleverpush_example_android.MyNotificationServiceExtension" />
+```
+
+## Prevent Default Notification
+
+It can be used to prevent displaying of notification. (`event.preventDefault();`)
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+
+public class MyNotificationServiceExtension implements NotificationServiceExtension {
+    @Override
+    public void onNotificationReceived(NotificationReceivedEvent event) {
+        // call `event.preventDefault()` to not display notification
+        event.preventDefault();
+        ...
+    }
+}
+
+```
+
+<!--Kotlin-->
+
+```kotlin
+
+class MyNotificationServiceExtension : NotificationServiceExtension {
+    override fun onNotificationReceived(event: NotificationReceivedEvent) {
+        // call `event.preventDefault()` to not display notification
+        event.preventDefault()
+        ...
+    }
+}
+
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+**NotificationExtenderService Deprecated Code**
 
 1. Create a new Class which extends `com.cleverpush.service.NotificationExtenderService`
 
