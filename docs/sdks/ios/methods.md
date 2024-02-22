@@ -814,6 +814,10 @@ CleverPush.getBadgeCount{ badge in
         NSLog(@"Badge Count = %ld",badge);
     }];
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 2. to set the application notification badge count
 
 <!--DOCUSAURUS_CODE_TABS-->
