@@ -792,3 +792,40 @@ CleverPush.setLocalEventTrackingRetentionDays(20)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Set Application Notification Badge Count
+
+You can set or get your application's badge count using the methods provided below.
+
+1. to get the application notification badge count
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.getBadgeCount{ badge in
+            print("Badge Count = %ld",badge)
+      }
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush getBadgeCount:^(NSInteger badge) {
+        NSLog(@"Badge Count = %ld",badge);
+    }];
+```
+2. to set the application notification badge count
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setBadgeCount(10)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setBadgeCount:10];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
