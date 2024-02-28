@@ -24,7 +24,7 @@
         "title": "Deep Links"
       },
       "sdks/android/extension": {
-        "title": "Notification Extender Service"
+        "title": "Notification Service Extension"
       },
       "sdks/android/inbox": {
         "title": "Inbox View"

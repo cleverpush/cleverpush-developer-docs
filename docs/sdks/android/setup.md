@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.33.3'
+      implementation 'com.cleverpush:cleverpush:1.33.8'
   }
   ```
 
@@ -436,4 +436,4 @@ Add this to your AndroidManifest.xml inside the `<application>` tag:
 </service>
 ```
 
-If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Extender Service" in the left menu.
+If you're only looking to customize the incoming CleverPush notifications, please look at the "Notification Service Extension" in the left menu.
