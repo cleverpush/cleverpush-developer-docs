@@ -29,9 +29,20 @@ import java.math.BigInteger;
 public class MyNotificationServiceExtension implements NotificationServiceExtension {
     @Override
     public void onNotificationReceived(NotificationReceivedEvent event) {
+        Log.d("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived");
+
         // call `event.preventDefault()` to not display notification
         // event.preventDefault();
-        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived");
+
+        // to prevent the `default` notification channel creation, use `event.getNotification().setNotificationChannel()`
+        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel;
+            String channelId = "channel_id"; // replace with your desired channel id
+            CharSequence channelName = "Channel_Name"; // replace with your desired channel name
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            channel = new NotificationChannel(channelId, channelName, importance);
+            event.getNotification().setNotificationChannel(channel);
+        }*/
 
         // modify notification
         event.getNotification().setExtender(new NotificationCompat.Extender() {
@@ -56,9 +67,19 @@ import java.math.BigInteger
 
 class MyNotificationServiceExtension : NotificationServiceExtension {
     override fun onNotificationReceived(event: NotificationReceivedEvent) {
+        Log.d("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived")
+
         // call `event.preventDefault()` to not display notification
         // event.preventDefault()
-        Log.e("CleverPush", "CleverPush MyNotificationServiceExtension onNotificationReceived")
+
+        // To prevent the `default` notification channel creation, use `event.notification.setNotificationChannel()`
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "channel_id" // replace with your desired channel id
+            val channelName = "Channel_Name" // replace with your desired channel name
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance)
+            event.notification.setNotificationChannel(channel)
+        }*/
 
         // modify notification
         event.notification?.setExtender(object : NotificationCompat.Extender {
@@ -80,7 +101,7 @@ Add this to your AndroidManifest.xml inside the `<application>` tag:
             android:value="com.cleverpush.cleverpush_example_android.MyNotificationServiceExtension" />
 ```
 
-## Prevent Default Notification
+## Prevent Displaying Notification
 
 It can be used to prevent displaying of notification. (`event.preventDefault();`)
 
@@ -109,6 +130,56 @@ class MyNotificationServiceExtension : NotificationServiceExtension {
     override fun onNotificationReceived(event: NotificationReceivedEvent) {
         // call `event.preventDefault()` to not display notification
         event.preventDefault()
+        ...
+    }
+}
+
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Prevent Default Notification Channel Creation
+
+It can be used to prevent the `Default` notification channel creation, use `event.getNotification().setNotificationChannel()`
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+
+public class MyNotificationServiceExtension implements NotificationServiceExtension {
+    @Override
+    public void onNotificationReceived(NotificationReceivedEvent event) {
+        // to prevent the `default` notification channel creation, use `event.getNotification().setNotificationChannel()`
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel;
+            String channelId = "channel_id"; // replace with your desired channel id
+            CharSequence channelName = "Channel_Name"; // replace with your desired channel name
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            channel = new NotificationChannel(channelId, channelName, importance);
+            event.getNotification().setNotificationChannel(channel);
+        }
+        ...
+    }
+}
+
+```
+
+<!--Kotlin-->
+
+```kotlin
+
+class MyNotificationServiceExtension : NotificationServiceExtension {
+    override fun onNotificationReceived(event: NotificationReceivedEvent) {
+        // To prevent the `default` notification channel creation, use `event.notification.setNotificationChannel()`
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "channel_id" // replace with your desired channel id
+            val channelName = "Channel_Name" // replace with your desired channel name
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance)
+            event.notification.setNotificationChannel(channel)
+        }
         ...
     }
 }
