@@ -48,3 +48,26 @@ Please upgrade atleast to CleverPush SDK version 1.17.0 when targeting Android A
 ## Huawei Certificate Error:
 
 https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/game-preparation-v4#certificate
+
+## Huawei Unable to instantiate service com.cleverpush.service.CleverPushHmsListenerService
+
+In Huawei devices where both Huawei Mobile Services (HMS) and Google Mobile Services (GMS) are available, users might experience a crash when installing the app from App Gallery and then updating it from the Play Store. The error message displayed is:
+
+`Unable to instantiate service com.cleverpush.service.CleverPushHmsListenerService`
+
+To resolve this issue, you need to make adjustments in the `AndroidManifest.xml` file.
+
+Add `tools:node="remove"` in service
+
+```xml
+<application ...>
+    <service
+        android:name="com.cleverpush.service.CleverPushHmsListenerService"
+        android:exported="false"
+        tools:node="remove">
+        <intent-filter>
+            <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+</application>
+```
