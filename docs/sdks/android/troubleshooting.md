@@ -57,7 +57,7 @@ In Huawei devices where both Huawei Mobile Services (HMS) and Google Mobile Serv
 
 To resolve this issue, you need to make adjustments in the `AndroidManifest.xml` file.
 
-Add `tools:node="remove"` in service
+Add the attribute `tools:node="remove"` to the <service> tag. This tells the build tools to remove this service declaration during the merge process when generating the final manifest file.
 
 ```xml
 <application ...>
