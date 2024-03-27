@@ -84,7 +84,7 @@ Example:</p>
 <p>In Huawei devices where both Huawei Mobile Services (HMS) and Google Mobile Services (GMS) are available, users might experience a crash when installing the app from App Gallery and then updating it from the Play Store. The error message displayed is:</p>
 <p><code>Unable to instantiate service com.cleverpush.service.CleverPushHmsListenerService</code></p>
 <p>To resolve this issue, you need to make adjustments in the <code>AndroidManifest.xml</code> file.</p>
-<p>Add <code>tools:node=&quot;remove&quot;</code> in service</p>
+<p>Add the attribute <code>tools:node=&quot;remove&quot;</code> to the <service> tag. This tells the build tools to remove this service declaration during the merge process when generating the final manifest file.</p>
 <pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">application</span> <span class="hljs-attr">...</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">service</span>
         <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.cleverpush.service.CleverPushHmsListenerService"</span>
