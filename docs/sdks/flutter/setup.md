@@ -8,7 +8,7 @@ title: Setup
 1. Add the following code to your `pubspec.yaml` file
     ```bash
     dependencies:
-      cleverpush_flutter: ^1.23.17
+      cleverpush_flutter: ^1.23.20
     ```
     
 2. Run `flutter packages get`
