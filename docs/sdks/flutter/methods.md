@@ -176,6 +176,16 @@ CleverPush.shared.setAppBannerOpenedHandler((CPAppBannerAction action) {
 });
 ```
 
+### showAppBanner
+
+(Available from version 1.23.24)
+
+You can also show one banner by its ID (we recommend app banner events for production usage)
+
+```dart
+CleverPush.shared.showAppBanner("APP_BANNER_ID");
+```
+
 
 ## Tracking Consent
 
