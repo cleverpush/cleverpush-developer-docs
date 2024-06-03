@@ -378,12 +378,14 @@ Optionally, you can also add your notification opened callback in your `didFinis
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
   // ...
   CleverPush.initWithLaunchOptions(launchOptions,
-    channelId: "YOUR_CHANNEL_ID_HERE",
-    handleNotificationOpened: { (result) in
-      print("Received Notification with URL: " + result!.notification.url!)
-  }, handleSubscribed: { subscriptionId in
-      print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
-  }, autoRegister: true)
+        channelId: "YOUR_CHANNEL_ID_HERE",
+        handleNotificationReceived: { (result) in
+            print("Received Notification with URL: " + (result!.notification?.url)!)
+     }, handleNotificationOpened: { (result) in
+            print("Opened Notification with URL: " + (result!.notification?.url)!)
+     }, handleSubscribed: { subscriptionId in
+            print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+     }, autoRegister: true)
 
   return true
 }
@@ -395,12 +397,14 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 // ...
 
 [CleverPush initWithLaunchOptions:launchOptions
-  channelId:@"YOUR_CHANNEL_ID_HERE"
-  handleNotificationOpened:^(CPNotificationOpenedResult *result) {
-    NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
-} handleSubscribed:^(NSString *subscriptionId) {
-    NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
-} autoRegister:YES];
+        channelId:@"YOUR_CHANNEL_ID_HERE"
+        handleNotificationReceived:^(CPNotificationReceivedResult *result) {
+            NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+     }  handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+            NSLog(@"Opened Notification with URL: %@", [result.notification valueForKey:@"url"]);
+     }  handleSubscribed:^(NSString *subscriptionId) {
+            NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+     } autoRegister:YES];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
