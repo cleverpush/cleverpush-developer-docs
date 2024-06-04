@@ -16,17 +16,46 @@ You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` 
 ```java
 public class MainActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
-      CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener(){
-        @Override
-        public void notificationReceived(NotificationOpenedResult result){
-            System.out.println("Received CleverPush Notification: " +result.getNotification().getTitle());
+      CleverPush.getInstance(this).init(
+        "CLEVERPUSH_CHANNEL_ID",
+        new NotificationReceivedListener() {
+          @Override
+          public void notificationReceived(NotificationOpenedResult result) {
+            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+          }
+        },
+        new NotificationOpenedListener() {
+          @Override
+          public void notificationOpened(NotificationOpenedResult result) {
+            System.out.println("Opened CleverPush Notification: " + result.getNotification().getUrl());
+          }
+        },
+        new SubscribedListener() {
+          @Override
+          public void subscribed(String subscriptionId) {
+            System.out.println("CleverPush Subscription ID: " + subscriptionId);
+          }
+        },
+        true, // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+        new InitializeListener() {
+          @Override
+          public void onInitialized() {
+            Log.d("CleverPush", "CleverPush InitializeListener's default method Initialized");
+          }
+
+          @Override
+          public void onInitializationSuccess() {
+            InitializeListener.super.onInitializationSuccess();
+            Log.d("CleverPush", "CleverPush Initialization Successful");
+          }
+
+          @Override
+          public void onInitializationFailure(Throwable throwable) {
+            InitializeListener.super.onInitializationFailure(throwable);
+            Log.e("CleverPush", "CleverPush Initialization Failed: " + throwable.getMessage(), throwable);
+          }
         }
-      }, new NotificationOpenedListener() {
-        @Override
-        public void notificationOpened(NotificationOpenedResult result) {
-            System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-        }
-      }, true); // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+    );
   }
 }
 ```
