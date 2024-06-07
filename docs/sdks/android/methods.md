@@ -7,7 +7,159 @@ title: Methods
 
 ## Basic Usage
 
-You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` which fire when notifications have been received and/or opened:
+To initialize the CleverPush SDK, use the following method.
+
+CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+    CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID");
+  }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+    CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID")
+  }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` and a `SubscribedListener`
+
+NotificationReceivedListener: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
+
+NotificationOpenedListener: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a NotificationOpenedResult object containing the details of the opened notification. It fires when notifications have been opened.
+
+SubscribedListener: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+    CleverPush.getInstance(this).init(
+      "CLEVERPUSH_CHANNEL_ID",
+        new NotificationReceivedListener() {
+            @Override
+            public void notificationReceived(NotificationOpenedResult result) {
+              System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+            }
+        },
+        new NotificationOpenedListener() {
+            @Override
+            public void notificationOpened(NotificationOpenedResult result) {
+              System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+            }
+        },
+        new SubscribedListener() {
+            @Override
+            public void subscribed(String subscriptionId) {
+                System.out.println("CleverPush Subscription ID: " + subscriptionId);
+            }
+        }
+    );
+  }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+    CleverPush.getInstance(this).init(
+        "CLEVERPUSH_CHANNEL_ID",
+        NotificationReceivedListener { result -> println("Received CleverPush Notification: " + result.notification.title) },
+        NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.title) },
+    ) { subscriptionId -> println("CleverPush Subscription ID: $subscriptionId") }
+  }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+You can set autoRegister.
+
+autoRegister: The autoRegister parameter controls whether the CleverPush SDK will automatically attempt to subscribe the user upon the first launch of the app. In the below example, autoRegister is set to true. This means that the CleverPush SDK will automatically try to subscribe the user when they first launch the app. If you later call unsubscribe(), the SDK will not automatically try to subscribe the user again. You would need to call subscribe() manually to resubscribe the user.
+
+By default, the autoRegister parameter in the SDK is set to true. This ensures that new users are automatically subscribed unless explicitly specified otherwise.
+
+To prevent automatic subscribing on the first launch, set autoRegister to false in the initialization method. This allows you to control the subscription process manually.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+public class MainActivity extends Activity {
+  public void onCreate(Bundle savedInstanceState) {
+    CleverPush.getInstance(this).init(
+      "CLEVERPUSH_CHANNEL_ID",
+        new NotificationReceivedListener() {
+            @Override
+            public void notificationReceived(NotificationOpenedResult result) {
+              System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+            }
+        },
+        new NotificationOpenedListener() {
+            @Override
+            public void notificationOpened(NotificationOpenedResult result) {
+              System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
+            }
+        },
+        new SubscribedListener() {
+            @Override
+            public void subscribed(String subscriptionId) {
+                System.out.println("CleverPush Subscription ID: " + subscriptionId);
+            }
+        },
+        true // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+    );
+  }
+}
+```
+
+<!--Kotlin-->
+
+```kotlin
+class MainActivity:Activity() {
+  fun onCreate(savedInstanceState:Bundle) {
+    CleverPush.getInstance(this).init(
+        "CLEVERPUSH_CHANNEL_ID",
+        NotificationReceivedListener { result -> println("Received CleverPush Notification: " + result.notification.title) },
+        NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.title) },
+        { subscriptionId -> println("CleverPush Subscription ID: $subscriptionId") },
+        true // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+    )
+  }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+You can add a `InitializeListener`
+
+The `InitializeListener` handles the initialization status of the CleverPush SDK. It provides methods that are called at different stages of the initialization process, allowing developers to respond accordingly. Can get notified if the initialization was successful or if it failed,
+
+onInitialized(): This method is called when the initialization process starts. Logs that the initialization process has started.
+
+onInitializationSuccess(): This optional method is called when the initialization is successful. You can override this method to handle the initialization success. Logs that the initialization was successful.
+
+onInitializationFailure(Throwable throwable): This optional method is called when the initialization fails. You can override this method to handle the initialization failure. Logs the error message and details if the initialization fails.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -64,18 +216,35 @@ public class MainActivity extends Activity {
 
 ```kotlin
 class MainActivity:Activity() {
-fun onCreate(savedInstanceState:Bundle) {
-   CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",
-               NotificationReceivedListener { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
-               NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.title) })
+  fun onCreate(savedInstanceState:Bundle) {
+    CleverPush.getInstance(this).init(
+        "CLEVERPUSH_CHANNEL_ID",
+        NotificationReceivedListener { result -> println("Received CleverPush Notification: " + result.notification.title) },
+        NotificationOpenedListener { result -> println("Opened CleverPush Notification: " + result.notification.url) },
+        { subscriptionId -> println("CleverPush Subscription ID: $subscriptionId") },
+        true, // autoRegister: You can set this to false to prevent automatic subscribing on the first launch
+        object : InitializeListener {
+            override fun onInitialized() {
+                println("CleverPush InitializeListener's default method Initialized")
+            }
+
+            override fun onInitializationSuccess() {
+                super<InitializeListener>.onInitializationSuccess()
+                println("CleverPush Initialization Successful")
+            }
+
+            override fun onInitializationFailure(throwable: Throwable) {
+                super<InitializeListener>.onInitializationFailure(throwable)
+                println("CleverPush Initialization Failed: " + throwable.message)
+            }
+        }
+    )
   }
 }
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-
-Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you later call `unsubscribe()` the SDK will not automatically try to subscribe again, instead you would have to call `subscribe()` yourself again.
 
 Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
 
@@ -107,53 +276,7 @@ fun notificationReceivedCallback(notificationOpenedResult:NotificationOpenedResu
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-You can add a `SubscribedListener` which fires when the user has successfully been subscribed:
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Java-->
-
-```java
-public class MainActivity extends Activity {
-  public void onCreate(Bundle savedInstanceState) {
-    CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID", new NotificationReceivedListener() {
-      @Override
-      public void notificationReceived(NotificationOpenedResult result) {
-        System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
-      }
-    }, new NotificationOpenedListener() {
-      @Override
-      public void notificationOpened(NotificationOpenedResult result) {
-        System.out.println("Opened CleverPush Notification: " + result.getNotification().getTitle());
-      }
-    }, new SubscribedListener() {
-      @Override
-      public void subscribed(String subscriptionId) {
-        System.out.println("CleverPush Subscription ID: " + subscriptionId);
-      }
-    });
-  }
-}
-```
-
-<!--Kotlin-->
-
-```kotlin
-class MainActivity:Activity() {
-fun onCreate(savedInstanceState:Bundle) {
-   CleverPush.getInstance(this).init("CLEVERPUSH_CHANNEL_ID",
-               { result -> println("ReceivedCleverPushNotification: " + result.notification.title) },
-               { result -> println("Opened CleverPush Notification: " + result.notification.title) },
-               { subscriptionId -> System.out.println("CleverPush Subscription ID: $subscriptionId"); }
-      )
-  }
-}
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
-
-Subscribe / Unsubscribe:
+## Subscribe / Unsubscribe:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
