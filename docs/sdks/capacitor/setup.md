@@ -143,7 +143,7 @@ Since Capacitor 6, We must register custom plugins on iOS so that Capacitor can 
       import Capacitor
       import CleverpushCapacitorSdk
 
-      class MyViewController: UIViewController {
+      class MyViewController: CAPBridgeViewController {
 
           override open func capacitorDidLoad() {
              super.capacitorDidLoad()
