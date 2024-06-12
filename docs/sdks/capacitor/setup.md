@@ -99,3 +99,80 @@ title: Setup
    11. Select Login > My Certificates then right click on your key and click "Export (Apple Production iOS Push Services: com.your.bundle)..."
    12. Give the file a unique name and press save, be sure to leave the password field blank!
    13. Upload your certificate in the CleverPush channel settings
+
+# Registering the Plugin
+
+## Register the Plugin in iOS
+
+Since Capacitor 6, We must register custom plugins on iOS so that Capacitor can bridge between Swift and JavaScript.
+
+   1. If using Custom View Controller (UIViewController)
+
+        Then add a `viewDidLoad()` method override and register the plugin:
+
+      <!--DOCUSAURUS_CODE_TABS-->
+
+      <!--Swift-->
+
+      ```swift
+      import UIKit
+      import Capacitor
+      import CleverpushCapacitorSdk
+
+      class MyViewController: UIViewController {
+
+          override func viewDidLoad() {
+              super.viewDidLoad()
+              bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
+          }
+      }
+      ```
+
+      <!--END_DOCUSAURUS_CODE_TABS-->
+
+  2. If using Bridge View Controller (CAPBridgeViewController)
+
+        Then add a `capacitorDidLoad()` method override and register the plugin:
+
+      <!--DOCUSAURUS_CODE_TABS-->
+
+      <!--Swift-->
+
+      ```swift
+      import UIKit
+      import Capacitor
+      import CleverpushCapacitorSdk
+
+      class MyViewController: UIViewController {
+
+          override open func capacitorDidLoad() {
+             super.capacitorDidLoad()
+             bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
+          }
+      }
+      ```
+
+      <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Register the Plugin in Android
+
+Since Capacitor 6, We must register custom plugins on Android so that Capacitor can bridge between Java and JavaScript.
+
+In your app's MainActivity.java, use `registerPlugin()` or `registerPlugins()` to register your custom plugin(s).  
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+public class MainActivity extends BridgeActivity {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    registerPlugin(CleverPushCapacitorPlugin.class);
+    super.onCreate(savedInstanceState);
+  }
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
