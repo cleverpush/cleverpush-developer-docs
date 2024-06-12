@@ -110,10 +110,6 @@ Since Capacitor 6, We must register custom plugins on iOS so that Capacitor can 
 
 Then add a `viewDidLoad()` method override and register the plugin:
 
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Swift-->
-
 ```swift
 import UIKit
 import Capacitor
@@ -128,15 +124,9 @@ class MyViewController: UIViewController {
 }
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
-
 2. If using Bridge View Controller (CAPBridgeViewController)
 
 Then add a `capacitorDidLoad()` method override and register the plugin:
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Swift-->
 
 ```swift
 import UIKit
@@ -152,17 +142,11 @@ class MyViewController: CAPBridgeViewController {
 }
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
-
 ### Register the Plugin in Android
 
 Since Capacitor 6, We must register custom plugins on Android so that Capacitor can bridge between Java and JavaScript.
 
 In your app's MainActivity.java, use `registerPlugin()` or `registerPlugins()` to register your custom plugin(s).  
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Java-->
 
 ```java
 public class MainActivity extends BridgeActivity {
@@ -173,6 +157,3 @@ public class MainActivity extends BridgeActivity {
   }
 }
 ```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
