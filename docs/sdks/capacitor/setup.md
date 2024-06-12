@@ -100,61 +100,61 @@ title: Setup
    12. Give the file a unique name and press save, be sure to leave the password field blank!
    13. Upload your certificate in the CleverPush channel settings
 
-# Registering the Plugin
+## Registering the Plugin
 
-## Register the Plugin in iOS
+### Register the Plugin in iOS
 
 Since Capacitor 6, We must register custom plugins on iOS so that Capacitor can bridge between Swift and JavaScript.
 
-   1. If using Custom View Controller (UIViewController)
+1. If using Custom View Controller (UIViewController)
 
-        Then add a `viewDidLoad()` method override and register the plugin:
+Then add a `viewDidLoad()` method override and register the plugin:
 
-      <!--DOCUSAURUS_CODE_TABS-->
+<!--DOCUSAURUS_CODE_TABS-->
 
-      <!--Swift-->
+<!--Swift-->
 
-      ```swift
-      import UIKit
-      import Capacitor
-      import CleverpushCapacitorSdk
+```swift
+import UIKit
+import Capacitor
+import CleverpushCapacitorSdk
 
-      class MyViewController: UIViewController {
+class MyViewController: UIViewController {
 
-          override func viewDidLoad() {
-              super.viewDidLoad()
-              bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
-          }
-      }
-      ```
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
+    }
+}
+```
 
-      <!--END_DOCUSAURUS_CODE_TABS-->
+<!--END_DOCUSAURUS_CODE_TABS-->
 
-  2. If using Bridge View Controller (CAPBridgeViewController)
+2. If using Bridge View Controller (CAPBridgeViewController)
 
-        Then add a `capacitorDidLoad()` method override and register the plugin:
+Then add a `capacitorDidLoad()` method override and register the plugin:
 
-      <!--DOCUSAURUS_CODE_TABS-->
+<!--DOCUSAURUS_CODE_TABS-->
 
-      <!--Swift-->
+<!--Swift-->
 
-      ```swift
-      import UIKit
-      import Capacitor
-      import CleverpushCapacitorSdk
+```swift
+import UIKit
+import Capacitor
+import CleverpushCapacitorSdk
 
-      class MyViewController: CAPBridgeViewController {
+class MyViewController: CAPBridgeViewController {
 
-          override open func capacitorDidLoad() {
-             super.capacitorDidLoad()
-             bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
-          }
-      }
-      ```
+    override open func capacitorDidLoad() {
+      super.capacitorDidLoad()
+      bridge?.registerPluginInstance(CleverPushCapacitorPlugin())
+    }
+}
+```
 
-      <!--END_DOCUSAURUS_CODE_TABS-->
+<!--END_DOCUSAURUS_CODE_TABS-->
 
-## Register the Plugin in Android
+### Register the Plugin in Android
 
 Since Capacitor 6, We must register custom plugins on Android so that Capacitor can bridge between Java and JavaScript.
 
