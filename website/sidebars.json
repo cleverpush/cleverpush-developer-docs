@@ -25,6 +25,7 @@
       "sdks/android/deeplinks",
       "sdks/android/troubleshooting",
       "sdks/android/upgrading",
+      "sdks/android/geofencelocation",
       "sdks/android/changelog"
     ],
     "Capacitor SDK": [
