@@ -119,10 +119,17 @@ await CleverPush.shared.trackEvent('EVENT NAME');
 
 // track a conversion with a specified amount
 await CleverPush.shared.trackEvent('EVENT NAME', 37.50);
+
+// add custom parameters
+await CleverPush.shared.trackEvent('EVENT NAME', {
+  "id": "123456"
+});
 ```
 
 
 ## Follow up Events
+
+*Deprecated: Use `trackEvent` instead to trigger Follow-ups via Events.*
 
 Events can be used to trigger follow-up campaigns.
 

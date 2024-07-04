@@ -903,6 +903,8 @@ CleverPush.getInstance(this).trackEvent("EVENT NAME", 37.50f)
 
 ## Follow up Events
 
+*Deprecated: Use `trackEvent` instead to trigger Follow-ups via Events.*
+
 Events can be used to trigger follow-up campaigns.
 
 <!--DOCUSAURUS_CODE_TABS-->
