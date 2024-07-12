@@ -34,6 +34,10 @@ Add xml to your layout
   app:title_text_size="12sp"
   app:story_icon_height="100dp"
   app:story_icon_width="100dp"
+  app:story_icon_corner_radius="20dp"
+  app:story_icon_space="5dp"
+  app:story_icon_shadow="true"
+  app:border_visibility="gone"
   app:widget_id="o76hjaysdgohltyil" />
 ```
 
