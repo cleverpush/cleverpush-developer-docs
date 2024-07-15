@@ -20,6 +20,8 @@ jobs:
           node-version: 22
       - name: Deploy
         run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
           node scripts/download-changelogs.mjs
           mkdir -p $HOME/.ssh
           ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
