@@ -1,0 +1,44 @@
+name: CI Deploy
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SDK
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.RELEASE_TOKEN }}
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Deploy
+        run: |
+          node scripts/download-changelogs.mjs
+          mkdir -p $HOME/.ssh
+          ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
+          echo "$GITHUB_PRIVATE_KEY" > $HOME/.ssh/id_rsa
+          chmod 0600 $HOME/.ssh/id_rsa
+          cd website
+          npm i
+          npm run publish-gh-pages
+        env:
+          CURRENT_BRANCH: master
+          USE_SSH: true
+          GIT_USER: $DRONE_COMMIT_AUTHOR
+          GITHUB_PRIVATE_KEY: ${{ secrets.GH_PAGES_PRIVATE_SSH_KEY }}
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: ${{ vars.SLACK_CHANNEL }}
+          status: FAILED
+          color: danger
