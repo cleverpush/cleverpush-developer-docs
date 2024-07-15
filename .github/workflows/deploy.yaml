@@ -20,8 +20,6 @@ jobs:
           node-version: 22
       - name: Deploy
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
           node scripts/download-changelogs.mjs
           mkdir -p $HOME/.ssh
           ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
@@ -34,8 +32,7 @@ jobs:
           CURRENT_BRANCH: master
           USE_SSH: true
           GITHUB_PRIVATE_KEY: ${{ secrets.GH_PAGES_PRIVATE_SSH_KEY }}
-          GIT_USER_NAME: ${{ github.actor }}
-          GIT_USER_EMAIL: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
+          GIT_USER: ${{ github.actor }}
       - name: Notify slack fail
         if: failure()
         env:
