@@ -835,3 +835,59 @@ CleverPush.setBadgeCount(10)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Handling Universal Links
+
+When handling deep links automatically (setting in the CleverPush dashboard), you can instruct our SDK to open universal links (starting with `http`) inside the app instead of passing it as a deep link to the system. This is required to make universal links work.
+
+1. By setting `setHandleUniversalLinksInApp` value to `true` we will pass this URL as a NSUserActivity to the app itself.
+
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setHandleUniversalLinksInApp(true)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setHandleUniversalLinksInApp:TRUE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+2. You can then simply handle the Deep Links within your AppDelegate/SceneDelegate code like shown in the examples below:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+//For AppDelegate
+func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        print("URL = %@", userActivity.webpageURL)
+        return true;
+}
+
+//For SceneDelegate
+func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print("URL = %@", userActivity.webpageURL)
+}
+```
+<!--Objective-C-->
+```objective-c
+//For AppDelegate
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+    NSLog(@"URL = %@", userActivity.webpageURL);
+   return true;
+}
+
+//For SceneDelegate
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
+    NSLog(@"URL = %@", userActivity.webpageURL);
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
