@@ -835,3 +835,59 @@ CleverPush.setBadgeCount(10)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Handle Universal Link
+
+You can handle a universal link from an app that is also the destination of the link by using the provided methods.
+
+1. The default `handleUrlOnlyInApp` value is `false`. By setting `setHandleUniversalLinksInApp` value to `true` whenever a URL is fetched and only if the URL is a valid universal link and there is an installed app capable of opening that URL.
+
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setHandleUniversalLinksInApp(true)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setHandleUniversalLinksInApp:TRUE];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+2. You can fetch that url from notification click in below methods in AppDelegate/SceneDelegate and handle the operations like screen redirection (Below methods are required to add).
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+//For AppDelegate
+func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        print("URL = %@",userActivity.webpageURL)
+        return true;
+}
+
+//For SceneDelegate
+func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print("URL = %@",userActivity.webpageURL)
+}
+```
+<!--Objective-C-->
+```objective-c
+//For AppDelegate
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+    NSLog(@"URL = %@",userActivity.webpageURL);
+   return true;
+}
+
+//For SceneDelegate
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
+    NSLog(@"URL = %@",userActivity.webpageURL);
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
