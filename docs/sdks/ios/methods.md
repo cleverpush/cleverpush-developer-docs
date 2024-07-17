@@ -836,11 +836,11 @@ CleverPush.setBadgeCount(10)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## Handle Universal Link
+## Handling Universal Links
 
-You can handle a universal link from an app that is also the destination of the link by using the provided methods.
+When handling deep links automatically (setting in the CleverPush dashboard), you can instruct our SDK to open universal links (starting with `http`) inside the app instead of passing it as a deep link to the system. This is required to make universal links work.
 
-1. The default `handleUrlOnlyInApp` value is `false`. By setting `setHandleUniversalLinksInApp` value to `true` whenever a URL is fetched and only if the URL is a valid universal link and there is an installed app capable of opening that URL.
+1. By setting `setHandleUniversalLinksInApp` value to `true` we will pass this URL as a NSUserActivity to the app itself.
 
 
 <!--DOCUSAURUS_CODE_TABS-->
@@ -857,7 +857,7 @@ CleverPush.setHandleUniversalLinksInApp(true)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-2. You can fetch that url from notification click in below methods in AppDelegate/SceneDelegate and handle the operations like screen redirection (Below methods are required to add).
+2. You can then simply handle the Deep Links within your AppDelegate/SceneDelegate code like shown in the examples below:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -867,26 +867,26 @@ CleverPush.setHandleUniversalLinksInApp(true)
 func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        print("URL = %@",userActivity.webpageURL)
+        print("URL = %@", userActivity.webpageURL)
         return true;
 }
 
 //For SceneDelegate
 func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        print("URL = %@",userActivity.webpageURL)
+        print("URL = %@", userActivity.webpageURL)
 }
 ```
 <!--Objective-C-->
 ```objective-c
 //For AppDelegate
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
-    NSLog(@"URL = %@",userActivity.webpageURL);
+    NSLog(@"URL = %@", userActivity.webpageURL);
    return true;
 }
 
 //For SceneDelegate
 - (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
-    NSLog(@"URL = %@",userActivity.webpageURL);
+    NSLog(@"URL = %@", userActivity.webpageURL);
 }
 ```
 
