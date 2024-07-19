@@ -840,19 +840,21 @@ CleverPush.setBadgeCount(10)
 
 When handling deep links automatically (setting in the CleverPush dashboard), you can instruct our SDK to open universal links (starting with `http`) inside the app instead of passing it as a deep link to the system. This is required to make universal links work.
 
-1. By setting `setHandleUniversalLinksInApp` value to `true` we will pass this URL as a NSUserActivity to the app itself.
+1. To specify which domains should be handled as universal links inside the app, you can use the `setHandleUniversalLinksInAppForDomains` method. This method allows you to pass an array of domains. If a URL's domain matches any of the specified domains, we will pass that matched URL as an NSUserActivity to the app itself.
 
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
 ```swift
-CleverPush.setHandleUniversalLinksInApp(true)
+let domains = ["domain1.com", "domain2.com","cleverpush.com"]
+CleverPush.setHandleUniversalLinksInApp(forDomains: domains)
 ```
 
 <!--Objective-C-->
 ```objective-c
-[CleverPush setHandleUniversalLinksInApp:TRUE];
+NSArray<NSString *> *domains = @[@"domain1.com", @"domain2.com",@"cleverpush.com"];
+[CleverPush setHandleUniversalLinksInAppForDomains:domains];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
