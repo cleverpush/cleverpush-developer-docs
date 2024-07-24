@@ -43,4 +43,4 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-If device's API level is equal or above 29 than after giving location permission dialog will open. On click `Go to Settings` button app's setting screen will open and perform `Permission -> Location -> Allow all the time` for geo fence. 
+If the device's API level is 29 or above, a dialog will appear after granting location permission. Clicking the `Go to Settings` button will open the app's settings screen. From there, please navigate to `Permissions -> Location -> Allow all the time` to enable geofence functionality.
