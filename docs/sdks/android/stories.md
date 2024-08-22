@@ -9,7 +9,29 @@ You can also implement CleverPush Stories into your application. For this, pleas
 
 ### Story View
 
-![Screenshot_1626271406](https://user-images.githubusercontent.com/42137835/125639839-95583410-5d4d-4c39-a1ef-7f3c02833a04.png)
+1. For a Round-Shaped Story Widget
+
+![Round_Shaped](https://static.cleverpush.com/notification/icon/6Bphsyhtq47GyJKQw.png)
+
+2. For a Rectangular-Shaped Story Widget
+
+![Rectangular_Shaped](https://static.cleverpush.com/notification/icon/SfGMjEsRHNjSRwiyN.png)
+
+3. For a Rectangular-Shaped Story Widget with Shadow
+
+![Rectangular_Shaped_Shadow](https://static.cleverpush.com/notification/icon/JvE9zjCou3Tyrt4ug.png)
+
+4. For Displaying the Unread Count in the Story Widget
+
+![Unread_count](https://static.cleverpush.com/notification/icon/GMoAf5o4qwnqRpjPa.png)
+
+5. For Displaying Only 3 Items in the Story Widget According to Screen Width
+
+![three_item](https://static.cleverpush.com/notification/icon/RoWJTwRsKtrCDEtWT.png)
+
+6. For Displaying the Unread Count and Only 3 Items in the Story Widget According to Screen Width
+
+![Unread_count_three_item](https://static.cleverpush.com/notification/icon/AWQqEQ2ucSrWPag9s.png)
 
 ### Story Player
 
