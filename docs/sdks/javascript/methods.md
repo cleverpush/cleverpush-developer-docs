@@ -231,6 +231,23 @@ CleverPush.push(['pullAttributeValue', 'ATTRIBUTE_ID', 'VALUE', function() {
 
 
 
+## Web Banners
+
+
+#### <code>showWebBannerById</code>
+
+Shows an existing web banner by its ID.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['showWebBannerById', 'BANNER_ID']);
+```
+
+
+<br/>
+
+
+
 ## Events
 
 
