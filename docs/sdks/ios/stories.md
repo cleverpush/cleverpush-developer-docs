@@ -502,17 +502,17 @@ Handle opened URLs in stories:
 <!--Swift-->
 
 ```swift
-storyView.setOpenedCallback:^(NSURL *url) {
-    NSLog(@"URL OPENED");
-}
+ storyView?.setOpenedCallback({ url in
+    print("URL OPENED = ", url)
+})
 ```
 
 <!--Objective-C-->
 
 ```objective-c
-storyView.setOpenedCallback { url in
-    print("URL OPENED")
-}
+ [storyView setOpenedCallback:^(NSURL *url) {
+    NSLog(@"URL OPENED = %@", url);
+}];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
