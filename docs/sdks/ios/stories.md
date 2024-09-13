@@ -46,6 +46,7 @@ You can also implement CleverPush Stories into your application. For this, pleas
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -64,7 +65,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: false,
-            isFixedCellLayout: false,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: false,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -72,15 +73,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 35,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: false,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: false,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -99,17 +131,45 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:NO 
-        isFixedCellLayout:NO 
+        storyRestrictToItems:3 
         unreadStoryCountVisibility:NO 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
         storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
-        sortToLastIndex:YES 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
+
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:35 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:NO 
+        storyRestrictToItems:3 
+        unreadStoryCountVisibility:NO 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -121,6 +181,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -139,7 +200,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: false,
-            isFixedCellLayout: false,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: false,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -147,15 +208,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 10,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: false,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: false,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -174,17 +266,45 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:NO 
-        isFixedCellLayout:NO 
+        storyRestrictToItems:3 
         unreadStoryCountVisibility:NO 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
         storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
-        sortToLastIndex:YES 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
+
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:10 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:NO 
+        storyRestrictToItems:3 
+        unreadStoryCountVisibility:NO 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -196,6 +316,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -214,7 +335,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: true,
-            isFixedCellLayout: false,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: false,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -222,15 +343,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 10,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: true,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: false,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -249,7 +401,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:true 
-        isFixedCellLayout:NO 
+        storyRestrictToItems:3 
         unreadStoryCountVisibility:NO 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
@@ -257,9 +409,37 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
         sortToLastIndex:YES 
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
+
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame 
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:10 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:true 
+        storyRestrictToItems:3 
+        unreadStoryCountVisibility:NO 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES 
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -271,6 +451,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -289,7 +470,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: true,
-            isFixedCellLayout: false,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: true,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -297,15 +478,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 10,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: true,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: true,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -324,7 +536,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:true 
-        isFixedCellLayout:NO 
+        storyRestrictToItems:3 
         unreadStoryCountVisibility:YES 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
@@ -332,22 +544,51 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
         sortToLastIndex:YES 
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
+
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame 
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:10 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:true 
+        storyRestrictToItems:3 
+        unreadStoryCountVisibility:YES 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES 
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 5. For Displaying Only 3 Items in the Story Widget According to Screen Width
 
-Note: Set `isFixedCellLayout` to true, and then the story view icon's width will be dynamic based on the device's width.
+Note: Set `storyRestrictToItems` value in integer, and then the story view icon's width will be dynamic based on the device's width and number of stories will be displayed based on that integer value.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -366,7 +607,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: false,
-            isFixedCellLayout: true,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: false,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -374,15 +615,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 35,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: false,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: false,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -401,7 +673,7 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:NO 
-        isFixedCellLayout:YES 
+        storyRestrictToItems:3 
         unreadStoryCountVisibility:NO 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
@@ -409,9 +681,37 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
         sortToLastIndex:YES 
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
+
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame 
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:35 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:NO 
+        storyRestrictToItems:3 
+        unreadStoryCountVisibility:NO 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES 
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -419,13 +719,14 @@ CPStoryView *storyView = [[CPStoryView alloc]
 6. For Displaying the Unread Count and Only 3 Items in the Story Widget According to Screen Width
 
 
-Note: Set `isFixedCellLayout` to true, and then the story view icon's width will be dynamic based on the device's width.
+Note: Set `storyRestrictToItems` value in integer, and then the story view icon's width will be dynamic based on the device's width and number of stories will be displayed based on that integer value.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
 
 ```swift
+//Using a CPStoryView with frame
 import CleverPush
 
 let storyView = CPStoryView(
@@ -444,7 +745,7 @@ let storyView = CPStoryView(
             storyIconBorderMargin: 0,
             storyIconBorderWidth: 2,
             storyIconShadow: false,
-            isFixedCellLayout: true,
+            storyRestrictToItems: 3,
             unreadStoryCountVisibility: true,
             unreadStoryCountBackgroundColor: .red,
             unreadStoryCountTextColor: .white,
@@ -452,15 +753,46 @@ let storyView = CPStoryView(
             storyViewTextPosition: .insideBottom,
             storyWidgetShareButtonVisibility: false,
             sortToLastIndex: true,
+            allowAutoRotation: true,
             widgetId: "CyELm3daayQGuSGTD"
         )
 
         self.view.addSubview(storyView!)
+
+//Using a CPStoryView with autolayout
+storyView.configure(
+            withFrame:storyView.frame,
+            backgroundColor: .clear,
+            textColor: .black,
+            fontFamily: "AppleSDGothicNeo-Bold",
+            borderColor: .yellow,
+            titleVisibility: true,
+            titleTextSize: 10,
+            storyIconHeight: 70,
+            storyIconWidth: 70,
+            storyIconCornerRadius: 35,
+            storyIconSpacing: 0,
+            storyIconBorderVisibility: true,
+            storyIconBorderMargin: 0,
+            storyIconBorderWidth: 2,
+            storyIconShadow: false,
+            storyRestrictToItems: 3,
+            unreadStoryCountVisibility: true,
+            unreadStoryCountBackgroundColor: .red,
+            unreadStoryCountTextColor: .white,
+            storyViewCloseButtonPosition: .leftSide,
+            storyViewTextPosition: .insideBottom,
+            storyWidgetShareButtonVisibility: false,
+            sortToLastIndex: true,
+            allowAutoRotation: true,
+            widgetId: "CyELm3daayQGuSGTD"
+        )
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+//Using a CPStoryView with frame
 #import <CleverPush/CPStoryView.h>
 
 CPStoryView *storyView = [[CPStoryView alloc] 
@@ -479,19 +811,46 @@ CPStoryView *storyView = [[CPStoryView alloc]
         storyIconBorderMargin:0 
         storyIconBorderWidth:2.5 
         storyIconShadow:NO 
-        isFixedCellLayout:YES 
+        storyRestrictToItems: 3
         unreadStoryCountVisibility:YES 
         unreadStoryCountBackgroundColor:[UIColor redColor] 
         unreadStoryCountTextColor:[UIColor whiteColor] 
         storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
         storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
         storyWidgetShareButtonVisibility:NO 
-        sortToLastIndex:YES 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
         widgetId:@"CyELm3daayQGuSGTD"];
 
 [self.view addSubview:storyView];
-```
 
+//Using a CPStoryView with autolayout
+[self.storyView configureWithFrame:self.storyView.frame 
+        backgroundColor:[UIColor clearColor] 
+        textColor:[UIColor blackColor] 
+        fontFamily:@"AppleSDGothicNeo-Bold" 
+        borderColor:[UIColor yellowColor] 
+        titleVisibility:YES 
+        titleTextSize:10 
+        storyIconHeight:70 
+        storyIconWidth:70 
+        storyIconCornerRadius:35 
+        storyIconSpacing:0 
+        storyIconBorderVisibility:YES 
+        storyIconBorderMargin:0 
+        storyIconBorderWidth:2.5 
+        storyIconShadow:NO 
+        storyRestrictToItems: 3
+        unreadStoryCountVisibility:YES 
+        unreadStoryCountBackgroundColor:[UIColor redColor] 
+        unreadStoryCountTextColor:[UIColor whiteColor] 
+        storyViewCloseButtonPosition:CPStoryWidgetCloseButtonPositionLeftSide 
+        storyViewTextPosition:CPStoryWidgetTextPositionInsideBottom 
+        storyWidgetShareButtonVisibility:NO 
+        sortToLastIndex:YES
+        allowAutoRotation:YES
+        widgetId:@"CyELm3daayQGuSGTD"];
+```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
@@ -536,12 +895,13 @@ You can customize the experience of `StoryView` using these attributes:
 - `storyIconHeight`: Defines the height of the story icon.
 - `storyIconWidth`: Defines the width of the story icon.
 - `storyIconCornerRadius`: Sets the corner radius of the story icon.
-- `storyIconSpacing`: Specifies the space between individual stories.
+- `storyIconSpacing`: Specifies the space between individual stories. (Minimum spacing is 2.5)
 - `storyIconShadow`: Enables or disables a shadow around the story icon (boolean).
 - `unreadStoryCountVisibility`: Controls the visibility of the unread count for sub-stories.
 - `unreadStoryCountBackgroundColor`: Sets the background color of the sub-story unread count badge.
 - `unreadStoryCountTextColor`: Specifies the text color of the sub-story unread count badge.
-- `isFixedCellLayout`: Restricts the story view to display only three items (boolean).
+- `storyRestrictToItems`: Restricts the story view to display number of items (integer value).
 - `storyViewCloseButtonPosition`: Sets the position of the close button, either left or right.
 - `sortToLastIndex`: Determines whether seen stories are moved to the end of the list (position_end) or remain in their default position (position_default).
 - `storyWidgetShareButtonVisibility`: Controls the visibility of the share button for sub-stories.
+- `allowAutoRotation`: Controls the support of giving device orientation layout change support.
