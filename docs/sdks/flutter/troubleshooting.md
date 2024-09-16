@@ -18,7 +18,7 @@ If you want to use our SDK together with `firebase_messaging`, although we do no
         <action android:name="com.google.firebase.MESSAGING_EVENT" />
     </intent-filter>
 </service>
-``
+```
 
 2. Create the `FirebaseMessagingServiceProxy` class in your Android project:
 ```
