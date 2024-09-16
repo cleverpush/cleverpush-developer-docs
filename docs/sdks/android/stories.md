@@ -139,7 +139,7 @@ Add the following XML to your layout:
 
 5. For Displaying Only 3 Items in the Story Widget According to Screen Width
 
-Note: Set `story_view_width` to match_parent or a specific dp value. The `restrict_to_three_items` attribute will not work with wrap_content.
+Note: Set `story_view_width` to match_parent or a specific dp value. The `restrict_to_items` attribute will not work with wrap_content.
 
 Add the following XML to your layout:
 
@@ -161,13 +161,13 @@ Add the following XML to your layout:
   app:border_margin="4dp"
   app:border_width="4dp"
   app:close_button_position="right"
-  app:restrict_to_three_items="true"
+  app:restrict_to_items="3"
   app:widget_id="WIDGET_ID" />
 ```
 
 6. For Displaying the Unread Count and Only 3 Items in the Story Widget According to Screen Width
 
-Note: Set `story_view_width` to match_parent or a specific dp value. The `restrict_to_three_items` attribute will not work with wrap_content.
+Note: Set `story_view_width` to match_parent or a specific dp value. The `restrict_to_items` attribute will not work with wrap_content.
 
 Add the following XML to your layout:
 
@@ -189,7 +189,7 @@ Add the following XML to your layout:
   app:border_margin="4dp"
   app:border_width="4dp"
   app:close_button_position="right"
-  app:restrict_to_three_items="true"
+  app:restrict_to_items="3"
   app:title_position="position_inside_bottom"
   app:sub_story_unread_count_visibility="visible"
   app:sub_story_unread_count_background_color="@android:color/holo_red_dark"
@@ -261,6 +261,7 @@ You can customize the experience of `StoryView` using these attributes:
 - `title_text_size`: Sets the size of the story title text.
 - `title_position`: Defines the position of the title, with options like position_default, position_inside_bottom, or position_inside_top.
 - `story_icon_height`: Defines the height of the story icon in dp.
+- `story_icon_height_percentage`: Calculates the height of the story icon based on its width, setting the height as a percentage of the width (integer).
 - `story_icon_width`: Defines the width of the story icon in dp.
 - `story_icon_corner_radius`: Sets the corner radius of the story icon in dp.
 - `story_icon_space`: Specifies the space between individual stories in dp.
@@ -268,6 +269,6 @@ You can customize the experience of `StoryView` using these attributes:
 - `sub_story_unread_count_visibility`: Controls the visibility of the unread count for sub-stories.
 - `sub_story_unread_count_background_color`: Sets the background color of the sub-story unread count badge.
 - `sub_story_unread_count_text_color`: Specifies the text color of the sub-story unread count badge.
-- `restrict_to_three_items`: Restricts the story view to display only three items (boolean).
+- `restrict_to_items`: Sets the number of widgets want to display on the screen (integer).
 - `close_button_position`: Sets the position of the close button, either left or right.
 - `sort_to_last_index`: Determines whether seen stories are moved to the end of the list (position_end) or remain in their default position (position_default).

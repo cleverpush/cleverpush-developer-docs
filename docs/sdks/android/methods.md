@@ -859,6 +859,9 @@ CleverPush.setSubscriptionTopics(topicIds);
 CleverPush.addSubscriptionTopic(topicId);
 CleverPush.removeSubscriptionTopic(topicId);
 CleverPush.showTopicsDialog();
+CleverPush.goToScreen('screenId');
+CleverPush.nextScreen();
+CleverPush.previousScreen();
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
