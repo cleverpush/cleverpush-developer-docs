@@ -250,14 +250,18 @@ You can customize the experience of `StoryView` using these attributes:
 - `story_view_height`: Sets the height of the story view, which can be match_parent, wrap_content, or a specific value in dp.
 - `story_view_width`: Sets the width of the story view, which can be match_parent, wrap_content, or a specific value in dp.
 - `widget_id`: Specifies the ID of the story widget.
+- `dark_mode_enable`: Enables or disables dark mode support (boolean).
 - `border_color`: Defines the color of the border around the story.
+- `border_color_dark_mode`: Specifies the border color in dark mode.
 - `border_visibility`: Controls the visibility of the border around the story.
-- `border_margin`: Sets the margin between border and story icon in dp.
+- `border_margin`: Sets the margin between the border and the story icon in dp.
 - `border_width`: Defines the width of the border around the story in dp.
 - `background_color`: Sets the background color of the story view.
-- `text_color`: Specifies the color of the story title of story view.
+- `background_color_dark_mode`: Specifies the background color in dark mode.
+- `text_color`: Specifies the color of the story title in the story view.
+- `text_color_dark_mode`: Specifies the text color in dark mode.
 - `font_family`: Sets the font family for the story title.
-- `title_visibility`: Controls the visibility of the story title.
+- `title_visibility`: Controls the visibility of the story title (visible, invisible, or gone).
 - `title_text_size`: Sets the size of the story title text.
 - `title_position`: Defines the position of the title, with options like position_default, position_inside_bottom, or position_inside_top.
 - `story_icon_height`: Defines the height of the story icon in dp.
@@ -266,9 +270,11 @@ You can customize the experience of `StoryView` using these attributes:
 - `story_icon_corner_radius`: Sets the corner radius of the story icon in dp.
 - `story_icon_space`: Specifies the space between individual stories in dp.
 - `story_icon_shadow`: Enables or disables a shadow around the story icon (boolean).
-- `sub_story_unread_count_visibility`: Controls the visibility of the unread count for sub-stories.
+- `sub_story_unread_count_visibility`: Controls the visibility of the unread count for sub-stories (visible, invisible, or gone).
 - `sub_story_unread_count_background_color`: Sets the background color of the sub-story unread count badge.
+- `sub_story_unread_count_background_color_dark_mode`: Specifies the background color of the unread count badge in dark mode.
 - `sub_story_unread_count_text_color`: Specifies the text color of the sub-story unread count badge.
-- `restrict_to_items`: Sets the number of widgets want to display on the screen (integer).
+- `sub_story_unread_count_text_color_dark_mode`: Specifies the text color of the unread count badge in dark mode.
+- `restrict_to_items`: Sets the number of widgets to display on the screen (integer).
 - `close_button_position`: Sets the position of the close button, either left or right.
 - `sort_to_last_index`: Determines whether seen stories are moved to the end of the list (position_end) or remain in their default position (position_default).
