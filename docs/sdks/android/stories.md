@@ -124,6 +124,7 @@ Add the following XML to your layout:
   app:title_text_size="12sp"
   app:story_icon_height="85dp"
   app:story_icon_width="100dp"
+  app:story_icon_space="0dp"
   app:story_icon_corner_radius="10dp"
   app:story_icon_shadow="false"
   app:border_visibility="visible"
@@ -185,6 +186,7 @@ Add the following XML to your layout:
   app:story_icon_height="85dp"
   app:story_icon_corner_radius="10dp"
   app:story_icon_shadow="false"
+  app:story_icon_space="0dp"
   app:border_visibility="visible"
   app:border_margin="4dp"
   app:border_width="4dp"
@@ -214,8 +216,32 @@ storyView.setWidgetId("WIDGET_ID");
 
 <!--Kotlin-->
 ```kotlin
+val storyView = findViewById<StoryView>(R.id.storyView)
+storyView.widgetId = "WIDGET_ID"
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Handling Dark Mode
+
+The `setDarkModeEnabled` method allows you to adjust the appearance of the `StoryView` based on the system's dark mode settings. This method will automatically apply dark mode or light mode attributes depending on the system configuration.
+
+* If dark mode is enabled, the `setDarkModeEnabled(true)` method will apply the colors and images from the dark mode attribute values.
+
+* If dark mode is disabled, calling `setDarkModeEnabled(false)` will apply the default light mode colors and images instead.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
 StoryView storyView = findViewById(R.id.storyView);
-storyView.setWidgetId("WIDGET_ID");
+storyView.setDarkModeEnabled(true);
+```
+
+<!--Kotlin-->
+```kotlin
+val storyView = findViewById<StoryView>(R.id.storyView)
+storyView.setDarkModeEnabled(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -250,7 +276,6 @@ You can customize the experience of `StoryView` using these attributes:
 - `story_view_height`: Sets the height of the story view, which can be match_parent, wrap_content, or a specific value in dp.
 - `story_view_width`: Sets the width of the story view, which can be match_parent, wrap_content, or a specific value in dp.
 - `widget_id`: Specifies the ID of the story widget.
-- `dark_mode_enable`: Enables or disables dark mode support (boolean).
 - `border_color`: Defines the color of the border around the story.
 - `border_color_dark_mode`: Specifies the border color in dark mode.
 - `border_visibility`: Controls the visibility of the border around the story.
