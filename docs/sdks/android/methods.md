@@ -276,7 +276,7 @@ fun notificationReceivedCallback(notificationOpenedResult:NotificationOpenedResu
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-## Subscribe / Unsubscribe:
+## Subscribe / Unsubscribe
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -291,11 +291,26 @@ public class MainActivity extends Activity {
     // subscribe
     CleverPush.getInstance(this).subscribe();
 
+    CleverPush.getInstance(MainActivity.this).subscribe(new SubscribedCallbackListener() {
+      @Override
+      public void onSuccess(String subscriptionId) {
+        System.out.println("CleverPush Subscription ID: " + subscriptionId);
+      }
+
+      @Override
+      public void onFailure(Throwable exception) {
+        System.out.println("Error while subscribing: " + exception.getLocalizedMessage());
+      }
+    });
+
     // or unsubscribe
     CleverPush.getInstance(this).unsubscribe();
 
     // get subscription status (true or false)
     CleverPush.getInstance(this).isSubscribed();
+
+    // get subscription id
+    String subscriptionId = CleverPush.getInstance(this).getSubscriptionId(MainActivity.this);
   }
 }
 ```
@@ -310,10 +325,25 @@ class MainActivity:Activity() {
 
     // subscribe
     CleverPush.getInstance(this).subscribe()
+
+    CleverPush.getInstance(this@MainActivity).subscribe(object : SubscribedCallbackListener {
+      override fun onSuccess(subscriptionId: String) {
+        println("CleverPush Subscription ID: $subscriptionId")
+      }
+
+      override fun onFailure(exception: Throwable) {
+        println("Error while subscribing: ${exception.localizedMessage}")
+      }
+    })
+
     // or unsubscribe
     CleverPush.getInstance(this).unsubscribe()
+
     // get subscription status (true or false)
     CleverPush.getInstance(this).isSubscribed()
+
+     // get subscription id
+     val subscriptionId: String? = CleverPush.getInstance(this).getSubscriptionId(this@MainActivity)
   }
 }
 ```
@@ -341,7 +371,19 @@ CleverPush.getInstance(this).addSubscriptionTag("TAG_ID")
 CleverPush.getInstance(this).addSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
 
 // remove single tag
-CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID")
+CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID");
+
+CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID", new CompletionFailureListener() {
+  @Override
+  public void onComplete() {
+    System.out.println("Subscription tag removed successfully");
+  }
+
+  @Override
+  public void onFailure(Exception exception) {
+    System.out.println("Error while removing subscription tag: " + exception.getLocalizedMessage());
+  }
+});
 
 // remove multiple tags
 CleverPush.getInstance(this).removeSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
@@ -972,6 +1014,47 @@ CleverPush.getInstance(this).setTrackingConsent(true);
 
 ```kotlin
 CleverPush.getInstance(this).setTrackingConsent(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Subscribe Consent
+
+You can optionally require user consent for subscription (e.g., obtained through a CMP). If you tell our SDK to wait for the subscribe consent, it will not call subscribe features until the consent is available. Calls will be queued and automatically executed once consent is granted.
+
+Step 1: Call this before initializing the SDK:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).setSubscribeConsentRequired(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setSubscribeConsentRequired(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).setSubscribeConsent(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setSubscribeConsent(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

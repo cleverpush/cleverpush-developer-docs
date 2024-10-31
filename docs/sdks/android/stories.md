@@ -288,6 +288,8 @@ You can customize the experience of `StoryView` using these attributes:
 - `font_family`: Sets the font family for the story title.
 - `title_visibility`: Controls the visibility of the story title (visible, invisible, or gone).
 - `title_text_size`: Sets the size of the story title text.
+- `title_max_text_size`: Specifies the maximum text size for the story title. This allows text to grow only up to the defined size.
+- `title_min_text_size`: Specifies the minimum text size for the story title. This allows text to shrink to a specified size on smaller screens.
 - `title_position`: Defines the position of the title, with options like position_default, position_inside_bottom, or position_inside_top.
 - `story_icon_height`: Defines the height of the story icon in dp.
 - `story_icon_height_percentage`: Calculates the height of the story icon based on its width, setting the height as a percentage of the width (integer).
@@ -296,6 +298,8 @@ You can customize the experience of `StoryView` using these attributes:
 - `story_icon_space`: Specifies the space between individual stories in dp.
 - `story_icon_shadow`: Enables or disables a shadow around the story icon (boolean).
 - `sub_story_unread_count_visibility`: Controls the visibility of the unread count for sub-stories (visible, invisible, or gone).
+- `sub_story_unread_count_badge_height`: Sets the height of the unread count badge.
+- `sub_story_unread_count_badge_width`: Sets the width of the unread count badge.
 - `sub_story_unread_count_background_color`: Sets the background color of the sub-story unread count badge.
 - `sub_story_unread_count_background_color_dark_mode`: Specifies the background color of the unread count badge in dark mode.
 - `sub_story_unread_count_text_color`: Specifies the text color of the sub-story unread count badge.
