@@ -337,6 +337,32 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </dict>
 </plist>
 ```
+## Multi-Target Configuration for Notification Service Extensions
+
+If your app has multiple targets (e.g., Stage, Live), you will need to create separate Notification Service Extensions for each target. Follow these steps to properly configure them.
+
+1. **Create Separate Service Extensions**:  
+   Duplicate your existing Notification Service Extension for each target. Right-click on the extension folder in Xcode and select **Duplicate**.
+
+2. **Rename the Extensions**:  
+   Rename each duplicated extension to reflect the target environment (e.g., `CleverPushNotificationServiceExtensionStage`, `CleverPushNotificationServiceExtensionLive`).
+
+3. **Update Bundle Identifiers**:  
+   For each new extension, navigate to **Target Settings** > **General** and update the **Bundle Identifier**. Ensure they are unique (e.g., `com.example.app.NotificationServiceStage`).
+
+4. **Modify Info.plist for Each Extension**:  
+   Adjust the `Info.plist` file for each service extension to include environment-specific keys (like API keys or server URLs).
+
+5. **Embed App Extensions**:  
+   For each app target, go to **Build Phases** > **Embed App Extensions** and ensure the corresponding service extension is correctly embedded.
+
+6. **Configure Push Notifications**:  
+   Ensure Push Notifications and App Groups (if required) are enabled for each target and its corresponding service extension under **Capabilities**.
+
+7. **Testing Your Configuration**:  
+   Select the appropriate scheme in Xcode for each target to test and verify that notifications are functioning as expected across environments.
+
+By following these steps, you can effectively manage multiple Notification Service Extensions for your app's different environments, ensuring proper notification handling tailored to each target.
 
 **9. Add this code to your AppDelegate:**
 
