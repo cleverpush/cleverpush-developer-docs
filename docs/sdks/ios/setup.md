@@ -27,18 +27,26 @@ pod 'CleverPush', '~> 1.31.17'
 
 1. **Select your Project** > **Package Dependencies** > **+ button**.
 
-2. **Enter Package URL**:  
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step1.png)
+    
+2. **Enter Package URL & Click Add Package**:  
    `https://github.com/cleverpush/cleverpush-ios-sdk.git`  
    Make sure **Dependency Rule** is set to **Up to Next Major Version** from **1.31.17**.
 
+   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step2.png)
+
 3. **Click Add Package**.
 
-4. **Click Add Package**.
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step3.png)
 
-5. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
+4. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
    Check to ensure the required **CleverPushFramework** and any optionally selected libraries have been added.
 
-6. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
+   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step4.png)
+
+5. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
+
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step5.png)
 
 **Carthage Setup**:
 
