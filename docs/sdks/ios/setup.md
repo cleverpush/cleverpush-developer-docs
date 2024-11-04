@@ -25,9 +25,20 @@ pod 'CleverPush', '~> 1.31.17'
 
 **Swift Package Manager Integration** (not needed if you use CocoaPods):
 
-1. Add CleverPush Swift Package Manager from url: "https://github.com/cleverpush/cleverpush-ios-sdk.git", .upToNextMajor(from: "1.19.0")
-2. Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension
+1. **Select your Project** > **Package Dependencies** > **+ button**.
 
+2. **Enter Package URL**:  
+   `https://github.com/cleverpush/cleverpush-ios-sdk.git`  
+   Make sure **Dependency Rule** is set to **Up to Next Major Version** from **1.31.17**.
+
+3. **Click Add Package**.
+
+4. **Click Add Package**.
+
+5. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
+   Check to ensure the required **CleverPushFramework** and any optionally selected libraries have been added.
+
+6. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
 
 **Carthage Setup**:
 
