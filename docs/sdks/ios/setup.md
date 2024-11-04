@@ -444,6 +444,31 @@ This is **required** for getting the received notifications via the `getNotifica
 4. Enable the created App Group by checking the checkbox next to it
 5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
 
+## Managing Multiple Targets in Your App
+
+When developing an application with multiple targets (such as **Stage**, **Live**, **Master**, etc.), Here are the necessary steps and configurations:
+
+### 1. Service Extensions
+    - Each target should have its own service extension to handle notifications and functionalities independently.
+    - Add a new target for each service extension in your Xcode project.
+    - Ensure that each service extension is configured to handle notifications specific to its environment.
+    
+### 2. App Groups
+    - Set up separate App Groups for each target to enable communication between your app and its service extensions.
+    - Create distinct App Groups for Stage, Live, and Master targets in your project settings.
+    - Update the entitlements files for each target to include the corresponding App Group.
+    - Ensure that the logic in your app and extensions uses the correct App Group for data storage and sharing.
+
+### 3. Entitlements
+    - Confirm that the entitlements for each target are appropriately configured, including permissions for push notifications and shared capabilities.
+    - Review and customize the entitlements file for each target.
+    - Add capabilities relevant to the environment (e.g., Push Notifications, App Groups).
+
+### 4. Configuration Settings
+    - Each target may require different configuration settings such as Channel ID.
+    
+### 5. Info.plist Files
+    - Each target should have its own Info.plist file with environment-specific configurations.
 
 ## Custom sounds
 
