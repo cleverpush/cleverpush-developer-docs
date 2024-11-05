@@ -5,7 +5,7 @@ title: Setup
 
 ## Installation
 
-**1. Tool Requirement and CleverPush Account setup guide:**
+### 1. Tool Requirement and CleverPush Account setup guide:
 
 1. [Create A CleverPush Account](https://app.cleverpush.com/en/register) if you do not have one
 2. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Advanced settings` > `Channel ID`  in the CleverPush Developer console.
@@ -13,9 +13,9 @@ title: Setup
 4. A Mac with a new version of Xcode.
 
 
-**2. SDK Setup:**
+### 2. SDK Setup:
 
-**CocoaPods Installation**
+#### CocoaPods Installation
 
 Add CleverPush to your Podfile:
 
@@ -23,7 +23,8 @@ Add CleverPush to your Podfile:
 pod 'CleverPush', '~> 1.31.17'
 ```
 
-**Swift Package Manager Integration** (not needed if you use CocoaPods):
+#### Swift Package Manager Setup
+(not needed if you use CocoaPods)
 
 1. **Select your Project** > **Package Dependencies** > **+ button**.
 
@@ -48,7 +49,8 @@ pod 'CleverPush', '~> 1.31.17'
 
     ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step5.png)
 
-**Carthage Setup**:
+#### Carthage Setup
+(not needed if you use CocoaPods):
 
 1. Make sure you have [Carthage](https://github.com/Carthage/Carthage#installing-carthage) installed before you begin.
 
@@ -67,20 +69,21 @@ pod 'CleverPush', '~> 1.31.17'
 
 6. Simply include the Cleverpush framework in your project.
 
-**Manual Installation** (not needed if you use CocoaPods):
+#### Manual Setup
+(not needed if you use CocoaPods):
 
 1. Download the SDK release from https://github.com/cleverpush/cleverpush-ios-sdk/releases
 2. Drop and drag `CleverPush/Framework/CleverPush.framework` into your Xcode project and check the copy option.
 3. Add `SystemConfiguration`, `UIKit`, `UserNotifications`, `WebKit`, `JavaScriptCore`, `ImageIO` and `MobileCoreServices` to your frameworks.
 4. Continue to step 3. If you are at step 4 and 5, repeat these steps for the Service Extension and for the Content Extension
 
-**3. Enable the required capabilities**
+### 3. Enable the required capabilities
 
 1. Go to your root project `Targets` > `Signing & Capabilities` > `Add Capabilities by clicking the "+ Capability" button`
 2. Select "Push Notifications" from the list of the capabilities.
 3. Select "Background Modes" from the list of the capabilities and tick on the option of "Remote notifications"
 
-**4. Add Notification Service Extension**
+### 4. Add Notification Service Extension
 
 This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
 
@@ -98,9 +101,10 @@ This is required for correctly tracking notification deliveries and for displayi
     end
     ```
 
-**5. Add Notification Content Extension**
+### 5. Add Notification Content Extension
 
-This is required for displaying custom notification contents (e.g. Carousel Notifications).
+This is only required for displaying custom notification contents (e.g. Carousel Notifications).
+**Most use cases do not require this extension.**
 
 1. Select `File` > `New` > `Target` in Xcode
 2. Choose `Notification Content Extension` and press `Next`
@@ -117,9 +121,11 @@ This is required for displaying custom notification contents (e.g. Carousel Noti
     ```    
     
 
-**6. Run `pod install`**
+### 6. Run `pod install`
 
-**7. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:**
+### 7. Replace Notification Service Extension source code
+
+Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -196,7 +202,11 @@ class NotificationService: UNNotificationServiceExtension {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-**8. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:**
+### 8. Replace Notification Content Extension source code
+
+Only required if Notification Content Extension has been added.
+
+Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -336,7 +346,7 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </plist>
 ```
 
-**9. Add this code to your AppDelegate:**
+### 9. Initialize the SDK in your AppDelegate
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -430,11 +440,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
-**10. Create your iOS Auth Key certificate**
+### 10. Create your iOS Auth Key
 
 See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-ios-apns-auth-key)**
 
-**11. Add AppGroup (optional but recommended)**
+### 11. Add AppGroup (optional but recommended)
 
 This is **required** for getting the received notifications via the `getNotifications` method and also for **automatic Badge Counting** (i.e. when using `setIncrementBadge(true)`).
 
@@ -449,26 +459,26 @@ This is **required** for getting the received notifications via the `getNotifica
 When developing an application with multiple targets (such as **Stage**, **Live**, **Master**, etc.), Here are the necessary steps and configurations:
 
 ### 1. Service Extensions
-    - Each target should have its own service extension to handle notifications and functionalities independently.
-    - Add a new target for each service extension in your Xcode project.
-    - Ensure that each service extension is configured to handle notifications specific to its environment.
+- Each target should have its own service extension to handle notifications and functionalities independently.
+- Add a new target for each service extension in your Xcode project.
+- Ensure that each service extension is configured to handle notifications specific to its environment.
     
 ### 2. App Groups
-    - Set up separate App Groups for each target to enable communication between your app and its service extensions.
-    - Create distinct App Groups for Stage, Live, and Master targets in your project settings.
-    - Update the entitlements files for each target to include the corresponding App Group.
-    - Ensure that the logic in your app and extensions uses the correct App Group for data storage and sharing.
+- Set up separate App Groups for each target to enable communication between your app and its service extensions.
+- Create distinct App Groups for Stage, Live, and Master targets in your project settings.
+- Update the entitlements files for each target to include the corresponding App Group.
+- Ensure that the logic in your app and extensions uses the correct App Group for data storage and sharing.
 
 ### 3. Entitlements
-    - Confirm that the entitlements for each target are appropriately configured, including permissions for push notifications and shared capabilities.
-    - Review and customize the entitlements file for each target.
-    - Add capabilities relevant to the environment (e.g., Push Notifications, App Groups).
+- Confirm that the entitlements for each target are appropriately configured, including permissions for push notifications and shared capabilities.
+- Review and customize the entitlements file for each target.
+- Add capabilities relevant to the environment (e.g., Push Notifications, App Groups).
 
 ### 4. Configuration Settings
-    - Each target may require different configuration settings such as Channel ID.
+- Each target may require different configuration settings such as Channel ID.
     
 ### 5. Info.plist Files
-    - Each target should have its own Info.plist file with environment-specific configurations.
+- Each target should have its own Info.plist file with environment-specific configurations.
 
 ## Custom sounds
 
