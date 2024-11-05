@@ -8,9 +8,8 @@ title: Setup
 ### 1. CleverPush account
 
 1. [Create A CleverPush Account](https://app.cleverpush.com/en/register) if you do not have one
-2. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Advanced settings` > `Channel ID`  in the CleverPush Developer console.
-3. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
-4. A Mac with a new version of Xcode.
+2. You need your CleverPush Channel ID, available in `Channels` > `App Push` > `Implementation` > `Channel ID`  in the CleverPush Developer console.
+3. You need a Mac with the latest version of Xcode installed.
 
 
 ### 2. SDK Setup
