@@ -5,7 +5,7 @@ title: Setup
 
 ## Installation
 
-### 1. Tool Requirement and CleverPush Account setup guide:
+### 1. CleverPush account
 
 1. [Create A CleverPush Account](https://app.cleverpush.com/en/register) if you do not have one
 2. Your CleverPush Channel ID, available in `Channels` > `App Push` > `Advanced settings` > `Channel ID`  in the CleverPush Developer console.
@@ -13,7 +13,7 @@ title: Setup
 4. A Mac with a new version of Xcode.
 
 
-### 2. SDK Setup:
+### 2. SDK Setup
 
 #### CocoaPods Installation
 
@@ -28,26 +28,26 @@ pod 'CleverPush', '~> 1.31.17'
 
 1. **Select your Project** > **Package Dependencies** > **+ button**.
 
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step1.png)
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step1.png)
     
 2. **Enter Package URL & Click Add Package**:  
    `https://github.com/cleverpush/cleverpush-ios-sdk.git`  
-   Make sure **Dependency Rule** is set to **Up to Next Major Version** from **1.31.17**.
+   Make sure **Dependency Rule** is set to **Up to Next Major Version** [latest version].
 
-   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step2.png)
+   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step2.png)
 
 3. **Click Add Package**.
 
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step3.png)
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step3.png)
 
 4. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
    Check to ensure the required **CleverPushFramework** and any optionally selected libraries have been added.
 
-   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step4.png)
+   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step4.png)
 
 5. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
 
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/docs/sdks/static/img/iOS_Swift_Package_Manager_Step5.png)
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step5.png)
 
 #### Carthage Setup
 (not needed if you use CocoaPods):
@@ -91,7 +91,7 @@ This is required for correctly tracking notification deliveries and for displayi
 2. Choose `Notification Service Extension` and press `Next`
 3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
 4. Press `Activate` on the next prompt
-5. Add the following at the bottom of your Project's Podfile
+5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile
 
     ```bash
     target 'CleverPushNotificationServiceExtension' do
@@ -100,8 +100,9 @@ This is required for correctly tracking notification deliveries and for displayi
         pod 'CleverPush'
     end
     ```
+6. If you use CocoaPods: Run `pod install`
 
-### 5. Add Notification Content Extension
+### 5. Add Notification Content Extension (optional)
 
 This is only required for displaying custom notification contents (e.g. Carousel Notifications).
 **Most use cases do not require this extension.**
@@ -110,7 +111,7 @@ This is only required for displaying custom notification contents (e.g. Carousel
 2. Choose `Notification Content Extension` and press `Next`
 3. Enter `CleverPushNotificationContentExtension` as Product Name, choose `Objective-C` as language and press `Finish`
 4. Press `Activate` on the next prompt
-5. Add the following at the bottom of your Project's Podfile
+5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile
 
     ```bash
     target 'CleverPushNotificationContentExtension' do
@@ -119,9 +120,8 @@ This is only required for displaying custom notification contents (e.g. Carousel
         pod 'CleverPush'
     end
     ```    
-    
+6. If you use CocoaPods: Run `pod install`
 
-### 6. Run `pod install`
 
 ### 7. Replace Notification Service Extension source code
 
@@ -489,7 +489,7 @@ iOS supports `aiff`, `wav` and `caf` audio files with a maximum length of 30 sec
 3. If you send notifications via the API you can use the parameter "soundFilename".
 
 
-![](https://i.ibb.co/nssvMNk/Screenshot-2021-04-02-at-12-40-24-PM.png)
+![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/channel-settings-custom-sounds.png)
 
 ## Badge Counts
 
