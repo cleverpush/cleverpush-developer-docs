@@ -538,7 +538,7 @@ CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
 
 Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
 
-String attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
+Object attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
 
 // You can set string values like this
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");

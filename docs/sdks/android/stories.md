@@ -177,25 +177,41 @@ Add the following XML to your layout:
   android:id="@+id/storyView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  app:story_view_width="match_parent"
+  android:layout_margin="10dp"
+  android:elevation="0dp"
   app:background_color="#cde6e2"
-  app:border_color="#FFEB3B"
-  app:text_color="#000"
-  app:title_visibility="visible"
-  app:title_text_size="12sp"
-  app:story_icon_height="85dp"
+  app:background_color_dark_mode="#cde6e2"
+  app:border_color="#A2A4A5"
+  app:border_color_dark_mode="#FFC107"
+  app:border_color_loading="#B66C54"
+  app:border_color_loading_dark_mode="#4CAF50"
+  app:border_margin="4dp"
+  app:border_visibility="visible"
+  app:border_width="5dp"
+  app:close_button_position="right"
+  app:fontFamily="CabinSketch-Bold"
+  app:restrict_to_items="3"
   app:story_icon_corner_radius="10dp"
+  app:story_icon_height="90dp"
+  app:story_icon_height_percentage="75"
   app:story_icon_shadow="false"
   app:story_icon_space="0dp"
-  app:border_visibility="visible"
-  app:border_margin="4dp"
-  app:border_width="4dp"
-  app:close_button_position="right"
-  app:restrict_to_items="3"
-  app:title_position="position_inside_bottom"
-  app:sub_story_unread_count_visibility="visible"
+  app:story_icon_width="85dp"
+  app:story_view_width="match_parent"
   app:sub_story_unread_count_background_color="@android:color/holo_red_dark"
-  app:sub_story_unread_count_text_color="@color/white"
+  app:sub_story_unread_count_background_color_dark_mode="#000000"
+  app:sub_story_unread_count_badge_height="30dp"
+  app:sub_story_unread_count_badge_width="30dp"
+  app:sub_story_unread_count_text_color="#FFFFFF"
+  app:sub_story_unread_count_text_color_dark_mode="#FFFFFF"
+  app:sub_story_unread_count_visibility="visible"
+  app:text_color="#000000"
+  app:text_color_dark_mode="#FFFFFF"
+  app:title_max_text_size="18sp"
+  app:title_min_text_size="14sp"
+  app:title_position="position_inside_bottom"
+  app:title_text_size="15sp"
+  app:title_visibility="visible"
   app:widget_id="WIDGET_ID" />
 ```
 
@@ -278,6 +294,8 @@ You can customize the experience of `StoryView` using these attributes:
 - `widget_id`: Specifies the ID of the story widget.
 - `border_color`: Defines the color of the border around the story.
 - `border_color_dark_mode`: Specifies the border color in dark mode.
+- `border_color_loading`: Specifies the color of the border during loading deatil screen.
+- `border_color_loading_dark_mode`: Specifies the border color during loading deatil screen in dark mode.
 - `border_visibility`: Controls the visibility of the border around the story.
 - `border_margin`: Sets the margin between the border and the story icon in dp.
 - `border_width`: Defines the width of the border around the story in dp.
