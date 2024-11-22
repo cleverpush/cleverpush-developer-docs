@@ -904,6 +904,7 @@ CleverPush.showTopicsDialog();
 CleverPush.goToScreen('screenId');
 CleverPush.nextScreen();
 CleverPush.previousScreen();
+CleverPush.copyToClipboard('text');
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
