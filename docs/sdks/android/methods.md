@@ -895,6 +895,7 @@ CleverPush.trackClick(buttonId);
 CleverPush.trackClick(buttonId, customDataObject);
 CleverPush.openWebView(url);
 CleverPush.setSubscriptionAttribute(attributeId, value);
+var attributeValue = CleverPush.getSubscriptionAttribute('attributeId');
 CleverPush.addSubscriptionTag(tagId);
 CleverPush.removeSubscriptionTag(tagId);
 CleverPush.setSubscriptionTopics(topicIds);
