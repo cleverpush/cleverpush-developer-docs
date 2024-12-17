@@ -1264,3 +1264,69 @@ CleverPush.getInstance(this).setBadgeCount(10)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+
+## Set Custom Notification Activity Enabled
+
+(Available from version 1.34.18)
+
+The `setCustomNotificationActivityEnabled` method allows to enable launching a custom activity when a notification is opened. 
+
+By default, the `customNotificationActivityEnabled` value is set to `false`. To enable this functionality, set the value to `true` and call it within the `NotificationOpenedListener`.
+
+Call this in `NotificationOpenedListener`
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setCustomNotificationActivityEnabled(true);
+
+CleverPush.getInstance(context).init(
+    getString(R.string.channel_id),
+    new NotificationReceivedListener() {
+        @Override
+        public void notificationReceived(NotificationOpenedResult result) {
+            System.out.println("Received CleverPush Notification: " + result.getNotification().getTitle());
+        }
+    },
+    new NotificationOpenedListener() {
+        @Override
+        public void notificationOpened(NotificationOpenedResult result) {
+            if (result != null && result.getNotification().getUrl() != null) {
+                String url = result.getNotification().getUrl();
+                deepLinkUri = Uri.parse(url);
+                try {
+                    CleverPush.getInstance(MainActivity.this).setCustomNotificationActivityEnabled(true);
+
+                    Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(deepLinkUri);
+                    intent.addCategory(Intent.CATEGORY_APP_BROWSER);
+                    intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Logger.e("CleverPush", "createNotificationOpenedListener error: " + e, e);
+                }
+            } else {
+                Logger.w("CleverPush", "initializeCleverPush Couldn't extract url from notification.");
+            }
+        }
+    },
+    new SubscribedListener() {
+        @Override
+        public void subscribed(String subscriptionId) {
+            // Implement subscription logic here if needed
+        }
+    },
+    autoRegister
+);
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setCustomNotificationActivityEnabled(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
