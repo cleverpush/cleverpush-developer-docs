@@ -1280,8 +1280,6 @@ Call this in `NotificationOpenedListener`
 
 <!--Java-->
 ```java
-CleverPush.getInstance(this).setCustomNotificationActivityEnabled(true);
-
 CleverPush.getInstance(context).init(
     getString(R.string.channel_id),
     new NotificationReceivedListener() {
