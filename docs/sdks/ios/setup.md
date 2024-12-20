@@ -39,22 +39,14 @@ pod 'CleverPush', '~> 1.32.0'
 
     ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step3.png)
 
-4. **If you are using CleverPush SDK version 1.32.0 or higher, you can also use the CleverPushExtension package as a separate package for the Notification Service Extension.**
-
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step4.png)
-
-5. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
+4. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
    Check to ensure the required **CleverPushFramework** and any optionally selected libraries have been added.
 
-   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step5.png)
+   ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step4.png)
 
-6. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
+5. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushExtension** is included.
 
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step6.png)
-
-7. **If you are using CleverPush SDK version 1.32.0 or higher and the CleverPushExtension package as a separate package for the Notification Service Extension, ensure that the **CleverPushExtension** is included.**
-
-    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step7.png)
+    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step5.png)
 
 #### Carthage Setup
 (not needed if you use CocoaPods):
@@ -98,18 +90,7 @@ This is required for correctly tracking notification deliveries and for displayi
 2. Choose `Notification Service Extension` and press `Next`
 3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
 4. Press `Activate` on the next prompt
-5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile (If you dont want to use CleverPush Notification Service Extension pod as a separate pod) 
-
-    ```bash
-    target 'CleverPushNotificationServiceExtension' do
-        use_frameworks!
-
-        pod 'CleverPush'
-    end
- 
-6. If you use CocoaPods: Add the following at the bottom of your Project's Podfile (If you want to use CleverPush Notification Service Extension pod as a separate pod) 
-
-**CleverPush Notification Service Extension pod as a separate pod is only supported from Cleverpush SDK version 1.32.0 and above.**
+5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile.
 
     ```bash
     target 'CleverPushNotificationServiceExtension' do
@@ -118,7 +99,7 @@ This is required for correctly tracking notification deliveries and for displayi
           pod 'CleverPush/CleverPushExtension'
     end
     ```
-7. If you use CocoaPods: Run `pod install`
+6. If you use CocoaPods: Run `pod install`
 
 ### 5. Add Notification Content Extension (optional)
 
@@ -140,88 +121,7 @@ This is only required for displaying custom notification contents (e.g. Carousel
     ```    
 6. If you use CocoaPods: Run `pod install`
 
-
-### 7. Replace Notification Service Extension source code (If you dont want to use CleverPush Notification Service Extension pod as a separate pod) 
-
-Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Swift-->
-
-```swift
-import UserNotifications
-
-import CleverPush
-
-class NotificationService: UNNotificationServiceExtension {
-
-    var contentHandler: ((UNNotificationContent) -> Void)?
-    var receivedRequest: UNNotificationRequest!
-    var bestAttemptContent: UNMutableNotificationContent?
-
-    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        self.receivedRequest = request;
-        self.contentHandler = contentHandler
-        bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-
-        if let bestAttemptContent = bestAttemptContent {
-            CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
-
-    override func serviceExtensionTimeWillExpire() {
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
-            contentHandler(bestAttemptContent)
-        }
-    }
-
-}
-```
-
-<!--Objective-C-->
-
-```objective-c
-#import <CleverPush/CleverPush.h>
-
-#import "NotificationService.h"
-
-@interface NotificationService ()
-
-@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-@property (nonatomic, strong) UNNotificationRequest *receivedRequest;
-@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
-
-@end
-
-@implementation NotificationService
-
-- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
-    self.receivedRequest = request;
-    self.contentHandler = contentHandler;
-    self.bestAttemptContent = [request.content mutableCopy];
-
-    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-    self.contentHandler(self.bestAttemptContent);
-}
-
-- (void)serviceExtensionTimeWillExpire {
-    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-
-    self.contentHandler(self.bestAttemptContent);
-}
-
-@end
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
-### 8. Replace Notification Service Extension source code (If you want to use CleverPush Notification Service Extension pod as a separate pod) 
-
-**CleverPush Notification Service Extension pod as a separate pod is only supported from Cleverpush SDK version 1.32.0 and above.**
+### 7. Replace Notification Service Extension source code.
 
 Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
@@ -298,7 +198,7 @@ class NotificationService: UNNotificationServiceExtension {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### 9. Replace Notification Content Extension source code
+### 8. Replace Notification Content Extension source code
 
 Only required if Notification Content Extension has been added.
 
@@ -442,7 +342,7 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </plist>
 ```
 
-### 10. Initialize the SDK in your AppDelegate
+### 9. Initialize the SDK in your AppDelegate
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -536,11 +436,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
-### 11. Create your iOS Auth Key
+### 10. Create your iOS Auth Key
 
 See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-ios-apns-auth-key)**
 
-### 12. Add AppGroup (optional but recommended)
+### 11. Add AppGroup (optional but recommended)
 
 This is **required** for getting the received notifications via the `getNotifications` method and also for **automatic Badge Counting** (i.e. when using `setIncrementBadge(true)`).
 
