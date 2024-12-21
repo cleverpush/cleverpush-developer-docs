@@ -42,7 +42,7 @@ title: Setup
       ```bash
       target 'CleverPushNotificationServiceExtension' do
 
-        pod 'CleverPush'
+        pod 'CleverPush/CleverPushExtension'
 
       end
       ```

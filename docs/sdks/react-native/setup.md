@@ -40,31 +40,13 @@ title: Setup
         ```bash
         target 'CleverPushNotificationServiceExtension' do
 
-          pod 'CleverPush'
+          pod 'CleverPush/CleverPushExtension'
 
         end
         ```
 
-3. Add Notification Content Extension
-
-    This is required for displaying custom notification contents (e.g. Carousel Notifications).
-
-    1. Select `File` > `New` > `Target` in Xcode
-    2. Choose `Notification Content Extension` and press `Next`
-    3. Enter `CleverPushNotificationContentExtension` as Product Name, choose `Objective-C` as language and press `Finish`
-    4. Press `Activate` on the next prompt
-    5. Add the following at the bottom of your Project's Podfile
-
-        ```bash
-        target 'CleverPushNotificationContentExtension' do
-
-          pod 'CleverPush'
-
-        end
-        ```
-
-    4. Run `pod install`
-    5. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
+    6. Run `pod install`
+    7. Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
         Objective-C:
 
@@ -136,101 +118,7 @@ title: Setup
         }
         ```
 
-    6. Open `CleverPushNotificationContentExtension/NotificationViewController.h` and replace the whole content with the following:
-
-        Objective-C:
-
-        ```objective-c
-        #import <UIKit/UIKit.h>
-        #import <CleverPush/CleverPush.h>
-
-        @interface NotificationViewController : CPNotificationViewController
-
-        @end
-        ```
-
-        Open `CleverPushNotificationContentExtension/NotificationViewController.m` and replace the whole content with the following:
-
-        Objective-C:
-
-        ```objective-c
-        #import "NotificationViewController.h"
-        #import <UserNotifications/UserNotifications.h>
-        #import <UserNotificationsUI/UserNotificationsUI.h>
-
-        @interface NotificationViewController () <UNNotificationContentExtension>
-
-        @end
-
-        @implementation NotificationViewController
-
-        - (void)viewDidLoad {
-            [super viewDidLoad];
-        }
-
-        - (void)viewDidAppear:(BOOL)animated {
-            [super viewDidAppear:animated];
-        }
-
-        - (void)didReceiveNotification:(UNNotification *)notification {
-            [self cleverpushDidReceiveNotification:notification];
-        }
-
-        - (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion {
-            [self cleverpushDidReceiveNotificationResponse:response completionHandler:completion];
-        }
-
-        @end
-        ```
-
-        Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole content with the following:
-
-        ```xml
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleDevelopmentRegion</key>
-            <string>$(DEVELOPMENT_LANGUAGE)</string>
-            <key>CFBundleDisplayName</key>
-            <string>CleverPushNotificationContentExtension</string>
-            <key>CFBundleExecutable</key>
-            <string>$(EXECUTABLE_NAME)</string>
-            <key>CFBundleIdentifier</key>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-            <key>CFBundleInfoDictionaryVersion</key>
-            <string>6.0</string>
-            <key>CFBundleName</key>
-            <string>$(PRODUCT_NAME)</string>
-            <key>CFBundlePackageType</key>
-            <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>CFBundleVersion</key>
-            <string>1</string>
-            <key>NSExtension</key>
-            <dict>
-                <key>NSExtensionAttributes</key>
-                <dict>
-                    <key>UNNotificationExtensionCategory</key>
-                    <array>
-                        <string>carousel</string>
-                    </array>
-                    <key>UNNotificationExtensionDefaultContentHidden</key>
-                    <false/>
-                    <key>UNNotificationExtensionInitialContentSizeRatio</key>
-                    <real>0.5</real>
-                </dict>
-                <key>NSExtensionPrincipalClass</key>
-                <string>NotificationViewController</string>
-                <key>NSExtensionPointIdentifier</key>
-                <string>com.apple.usernotifications.content-extension</string>
-            </dict>
-        </dict>
-        </plist>
-        ```
-
-    7. Create your iOS push certificate
+    8. Create your iOS push certificate
 
         1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
         2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...
@@ -245,9 +133,8 @@ title: Setup
         11. Select Login > My Certificates then right click on your key and click "Export (Apple Production iOS Push Services: com.your.bundle)..."
         12. Give the file a unique name and press save, be sure to leave the password field blank!
         13. Upload your certificate in the CleverPush channel settings
-        
 
-    8. Add AppGroup (optional but recommended)
+    9. Add AppGroup (optional but recommended)
 
         This is required for getting the received notifications via the `getNotifications` method and also for automatic Badge Counting (i.e. when using `setIncrementBadge(true)`).
 

@@ -96,7 +96,7 @@ This is required for correctly tracking notification deliveries and for displayi
     target 'CleverPushNotificationServiceExtension' do
         use_frameworks!
 
-          pod 'CleverPush/CleverPushExtension'
+        pod 'CleverPush/CleverPushExtension'
     end
     ```
 6. If you use CocoaPods: Run `pod install`
