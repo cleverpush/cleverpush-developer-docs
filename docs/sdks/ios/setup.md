@@ -19,7 +19,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.31.22'
+pod 'CleverPush', '~> 1.32.0'
 ```
 
 #### Swift Package Manager Setup
@@ -44,7 +44,7 @@ pod 'CleverPush', '~> 1.31.22'
 
    ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step4.png)
 
-5. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushFramework** is included.
+5. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets to ensure the **CleverPushExtension** is included.
 
     ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step5.png)
 
@@ -90,13 +90,13 @@ This is required for correctly tracking notification deliveries and for displayi
 2. Choose `Notification Service Extension` and press `Next`
 3. Enter `CleverPushNotificationServiceExtension` as Product Name, choose `Objective-C` as language and press `Finish`
 4. Press `Activate` on the next prompt
-5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile
+5. If you use CocoaPods: Add the following at the bottom of your Project's Podfile.
 
     ```bash
     target 'CleverPushNotificationServiceExtension' do
         use_frameworks!
 
-        pod 'CleverPush'
+          pod 'CleverPush/CleverPushExtension'
     end
     ```
 6. If you use CocoaPods: Run `pod install`
@@ -121,8 +121,7 @@ This is only required for displaying custom notification contents (e.g. Carousel
     ```    
 6. If you use CocoaPods: Run `pod install`
 
-
-### 7. Replace Notification Service Extension source code
+### 7. Replace Notification Service Extension source code.
 
 Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
@@ -132,8 +131,7 @@ Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace 
 
 ```swift
 import UserNotifications
-
-import CleverPush
+import CleverPushExtension
 
 class NotificationService: UNNotificationServiceExtension {
 
@@ -147,14 +145,14 @@ class NotificationService: UNNotificationServiceExtension {
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
         if let bestAttemptContent = bestAttemptContent {
-            CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+            CleverPushExtension.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
             contentHandler(bestAttemptContent)
         }
     }
 
     override func serviceExtensionTimeWillExpire() {
         if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+            CleverPushExtension.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
             contentHandler(bestAttemptContent)
         }
     }
@@ -165,8 +163,7 @@ class NotificationService: UNNotificationServiceExtension {
 <!--Objective-C-->
 
 ```objective-c
-#import <CleverPush/CleverPush.h>
-
+#import "CleverPushExtension/CleverPushExtension.h"
 #import "NotificationService.h"
 
 @interface NotificationService ()
@@ -184,13 +181,13 @@ class NotificationService: UNNotificationServiceExtension {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
 
-    [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+    [CleverPushExtension didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }
 
 - (void)serviceExtensionTimeWillExpire {
-    [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+    [CleverPushExtension serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
     self.contentHandler(self.bestAttemptContent);
 }
