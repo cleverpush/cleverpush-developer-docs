@@ -47,3 +47,11 @@ post_install do |installer|
   end
 end
 ```
+
+## Custom Delegate in UNUserNotificationCenter Breaking SDK
+
+Adding a custom delegate to UNUserNotificationCenter may break the CleverPush SDK's functionality and prevent notifications from being handled correctly.
+
+Avoid setting a custom delegate for UNUserNotificationCenter in your project. The CleverPush SDK internally manages notification handling, and overriding this delegate will conflict with our implementation, causing notification delivery and interaction issues.
+
+To ensure seamless integration with CleverPush, remove any custom UNUserNotificationCenter delegate code from your app.
