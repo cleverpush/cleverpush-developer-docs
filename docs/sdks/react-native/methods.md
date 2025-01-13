@@ -3,7 +3,7 @@ id: methods
 title: Methods
 ---
 
-## Usage
+## Basic Usage
 
 To initialize the CleverPush SDK, use the following method.
 
@@ -86,6 +86,15 @@ export default class App extends React.Component {
     );
   }
 }
+```
+
+
+### Show/Hide Foreground Notifications
+
+(Available from version 1.7.5)
+
+```javascript
+CleverPush.setShowNotificationsInForeground(true);
 ```
 
 
@@ -282,11 +291,3 @@ For using Geo Fencing you need to request the location permission from the user.
 CleverPush.requestLocationPermission();
 ```
 
-
-### Show/Hide Foreground Notifications
-
-(Available from version 1.7.5)
-
-```javascript
-CleverPush.setShowNotificationsInForeground(true);
-```
