@@ -116,6 +116,20 @@ You should already be able to disable bitcode manually in the Xcode build settin
 Please make sure that the Deployment Target (iOS Version) for `Runner` and for the `CleverPushNotificationServiceExtension` target is the same.
 
 
+## iOS: Issues with flutter_local_notifications plugin
+
+If you encounter issues with `flutter_local_notifications` callbacks not being called, please make sure to add the following to your `ios/Runner/AppDelegate.swift` file:
+
+```swift
+override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+  super.userNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
+}
+
+override func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+  super.userNotificationCenter(center, didReceive: response, withCompletionHandler: completionHandler)
+}
+```
+
 ## Android: "The style on this component requires your app theme to be Theme.AppCompat (or a descendant)." OR "Error inflating class com.google.android.material.tabs.TabLayout"
 
 Please use a parent theme which starts with "Theme.AppCompat.XXX" in your main theme (e.g. LaunchTheme) in `res/values/styles.xml` and `res/values-night/styles.xml`.
