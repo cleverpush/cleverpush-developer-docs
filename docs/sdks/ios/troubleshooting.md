@@ -55,3 +55,17 @@ Adding a custom delegate to UNUserNotificationCenter may break the CleverPush SD
 Avoid setting a custom delegate for UNUserNotificationCenter in your project. The CleverPush SDK internally manages notification handling, and overriding this delegate will conflict with our implementation, causing notification delivery and interaction issues.
 
 To ensure seamless integration with CleverPush, remove any custom UNUserNotificationCenter delegate code from your app.
+
+# Silent Notification Limitations and Restrictions for iOS
+
+1. Silent notifications do not work on the iOS Simulator.You must test silent notifications on a **physical device** to ensure that background tasks and data processing are triggered properly.
+
+2. Silent notifications may not be delivered immediately, as the system prioritizes resources to optimize battery life and prevent unnecessary background activity.If your app uses background fetch, silent notifications can trigger it, but you must ensure that **background fetch is enabled** in your app settings.
+
+3. If your app performs too many background tasks or notifications within a short period, the system may throttle or defer the delivery of notifications.
+
+4. Silent notifications may also be deferred when the device is in **Low Power Mode** to preserve battery life.
+
+5. Sending too many silent notifications in a short time could lead to delivery issues or **throttling** by the system.
+
+6. If your app sends too many silent notifications within a short time, iOS may throttle or delay their delivery to optimize battery life and device performance.
