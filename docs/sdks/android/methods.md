@@ -550,6 +550,12 @@ CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
 String[] array = {"1", "2", "3"}; 
 CleverPush.getInstance(MainActivity.this).setSubscriptionAttribute("user_id", array);
 
+// You can set multiple key-value pairs like this
+Map<String, String> attributes = new HashMap<>();
+attributes.put("user_id", "1");
+attributes.put("zip", "20097");
+CleverPush.getInstance(this).setSubscriptionAttributes(attributes);
+
 // You can also push/pull values to special array attributes (e.g. "categories")
 CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1");
 CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1");
