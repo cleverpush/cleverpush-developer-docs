@@ -19,7 +19,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.32.3'
+pod 'CleverPush', '~> 1.32.4'
 ```
 
 #### Swift Package Manager Setup
@@ -100,6 +100,7 @@ This is required for correctly tracking notification deliveries and for displayi
     end
     ```
 6. If you use CocoaPods: Run `pod install`
+7. **Important:** In the target’s Build Phases > Embed App Extensions section, make sure the "Copy only when installing" checkbox is **unchecked**, otherwise, the service extension won’t run.
 
 ### 5. Add Notification Content Extension (optional)
 
@@ -121,7 +122,7 @@ This is only required for displaying custom notification contents (e.g. Carousel
     ```    
 6. If you use CocoaPods: Run `pod install`
 
-### 7. Replace Notification Service Extension source code.
+### 6. Replace Notification Service Extension source code.
 
 Open `CleverPushNotificationServiceExtension/NotificationService.m` and replace the whole content with the following:
 
@@ -198,7 +199,7 @@ class NotificationService: UNNotificationServiceExtension {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### 8. Replace Notification Content Extension source code
+### 7. Replace Notification Content Extension source code
 
 Only required if Notification Content Extension has been added.
 
@@ -342,7 +343,7 @@ Open `CleverPushNotificationContentExtension/Info.plist` and replace the whole c
 </plist>
 ```
 
-### 9. Initialize the SDK in your AppDelegate
+### 8. Initialize the SDK in your AppDelegate
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -436,11 +437,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
-### 10. Create your iOS Auth Key
+### 9. Create your iOS Auth Key
 
 See the section below: **[How to Create an iOS APNS Auth Key](#how-to-create-an-ios-apns-auth-key)**
 
-### 11. Add AppGroup (optional but recommended)
+### 10. Add AppGroup (optional but recommended)
 
 This is **required** for getting the received notifications via the `getNotifications` method and also for **automatic Badge Counting** (i.e. when using `setIncrementBadge(true)`).
 
