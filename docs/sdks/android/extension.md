@@ -281,3 +281,23 @@ CleverPush.getInstance(this).trackNotificationClicked(notification.id)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Send Notifications with Pop-up, Sound & Vibration, or Silent Mode
+
+If you want to send notifications as a pop-up, with sound and vibration, or silently with vibration only, you can set a category when creating a push notification.
+
+By default, if you create a push notification without selecting a category, it will be displayed in the status bar with sound.
+
+You can also set a default category in the `General Settings` to avoid selecting a category manually every time you create a push notification.
+
+![Default_Category](https://static.cleverpush.com/notification/icon/WiiWotRb7NgB9S4tK.png)
+
+To customize the notification behavior, you can create a category and set the Importance level as follows:
+
+`Urgent/High` – Displays a high-priority pop-up notification with sound and vibration.
+
+`Medium` – Displays the notification with sound and vibration, but without a pop-up.
+
+`Low` – Displays the notification without sound.
+
+![Category](https://static.cleverpush.com/notification/icon/Muzg6n6n7ZDWAbh3i.png)
