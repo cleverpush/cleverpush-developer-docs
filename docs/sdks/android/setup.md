@@ -173,13 +173,21 @@ You can place your custom badge icon with the correct sizes in this folders, the
 
 ## Notification open behaviour
 
-You can place this meta data option in your AndroidManifest.xml file to prevent our SDK from starting your launcher activity when a notification is opened:
+You can add the following meta-data option to your AndroidManifest.xml file to prevent our SDK from launching any activity when a notification is opened.
+
+When the app is in the background or killed state, clicking the notification will not open the application. It will neither call the SDK's launcher activity nor any custom launcher activity.
+
+This meta-data option is used to prevent the app from opening when a notification is clicked.
+
+If you want to open a custom activity when a notification is clicked, do not use this meta-data option. Instead, refer to: [Set Custom Notification Activity](https://developers.cleverpush.com/docs/sdks/android/methods#set-custom-notification-activity-enabled).
+
+To prevent our SDK from launching the default launcher activity when a notification is opened, add the following to your AndroidManifest.xml file:
 
 ```
 <meta-data android:name="com.cleverpush.notification_open_activity_disabled" android:value="true" />
 ```
 
-This can be used in combination with the NotificationOpenedCallbackListener so that you can decide when to finish the NotificationOpenedActivity.
+This can be used in combination with the NotificationOpenedCallbackListener, allowing you to decide when to finish the NotificationOpenedActivity.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
