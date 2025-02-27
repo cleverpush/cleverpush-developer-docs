@@ -291,3 +291,11 @@ For using Geo Fencing you need to request the location permission from the user.
 CleverPush.requestLocationPermission();
 ```
 
+## Notification Center
+
+Clear all delivered notifications from the Notification Center (iOS only):
+
+```javascript
+CleverPush.clearNotificationsFromNotificationCenter();
+```
+
