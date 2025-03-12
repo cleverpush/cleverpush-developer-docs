@@ -19,7 +19,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.32.7'
+pod 'CleverPush', '~> 1.33.7'
 ```
 
 #### Swift Package Manager Setup
@@ -436,6 +436,50 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
+
+You can add a `handleInitialized` callback
+
+The `handleInitialized` callback is invoked when the CleverPush SDK initialization process completes. It provides information about whether the initialization was successful or if it failed, allowing developers to respond accordingly.
+
+- `success`: A boolean value indicating whether the initialization was successful (TRUE) or failed (FALSE).
+- `failureMessage`: A nullable string containing the error message if initialization failed. This parameter will be nil if initialization was successful.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush initWithLaunchOptions:launchOptions 
+            channelId:@"YOUR_CHANNEL_ID_HERE" 
+            handleNotificationReceived:^(CPNotificationReceivedResult * _Nullable result) {
+                    NSLog(@"Recieved Notification with URL: %@", [result.notification valueForKey:@"url"]);
+        }   handleNotificationOpened:^(CPNotificationOpenedResult * _Nullable result) {
+                    NSLog(@"Opened Notification with URL: %@", [result.notification valueForKey:@"url"]);
+        }   handleSubscribed:^(NSString * _Nullable result) {
+                    NSLog(@"Subscribed to CleverPush with ID: %@", result);
+        }   autoRegister:YES 
+            handleInitialized:^(BOOL success, NSString * _Nullable failureMessage) {
+                    NSLog(@"init success = %s", success ? "TRUE" : "FALSE");
+                    NSLog(@"init failure = %@", failureMessage);
+}];
+```
+
+<!--Swift-->
+
+```swift
+CleverPush.initWithLaunchOptions(launchOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationReceived: { result in
+            print("Receieved Notification URL: \(result?.notification?.url)")
+        }, handleNotificationOpened: { result in
+            print("Opened Notification URL: \(result?.notification?.url)")
+        }, handleSubscribed: { result in
+            print("Subscription ID: \(subscriptionId)")
+        }, autoRegister: true) { success, failureMessage in
+            print("init success = %s", success ? "TRUE" : "FALSE")
+            print("init failure = %@", failureMessage)
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ### 9. Create your iOS Auth Key
 
