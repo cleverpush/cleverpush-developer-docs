@@ -40,6 +40,19 @@ CleverPush.shared.setShowNotificationsInForeground(false);
 ```
 
 
+### Notification permission
+
+By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
+Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
+The SDK then also automatically subscribes all users, no matter if they accepted or denied the permission prompt.
+
+
+```dart
+CleverPush.shared.setIgnoreDisabledNotificationPermission(true);
+```
+
+
+
 ## Topics
 ```dart
 // get all the subscription topics
