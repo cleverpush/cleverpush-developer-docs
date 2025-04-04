@@ -893,6 +893,7 @@ func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Customizing Notification Permissions And Settings
 
 You can customize which notification permission options are requested when prompting the user for notification permissions.
