@@ -1231,47 +1231,6 @@ CleverPush.getInstance(this).setLocalTrackEventRetentionDays(20)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## Set and Get Notification Badge Count
-
-(Available from version 1.33.14)
-
-### getBadgeCount
-
-Retrieves the badge count. For devices with SDK versions below Marshmallow, badge count retrieval is not supported.
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Java-->
-```java
-CleverPush.getInstance(this).getBadgeCount();
-```
-
-<!--Kotlin-->
-```kotlin
-CleverPush.getInstance(this).getBadgeCount()
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
-### setBadgeCount
-
-Sets the badge count to the specified value.
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Java-->
-```java
-CleverPush.getInstance(this).setBadgeCount(10);
-```
-
-<!--Kotlin-->
-```kotlin
-CleverPush.getInstance(this).setBadgeCount(10)
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
-
 ## Set Custom Notification Activity Enabled
 
 (Available from version 1.34.31)

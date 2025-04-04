@@ -213,6 +213,25 @@ fun notificationOpenedCallback(result: NotificationOpenedResult, notificationOpe
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Badges
+
+Unlike iOS, Android does not provide a native API to manually set or update the badge count on the app icon.
+
+The badge count is typically updated only when the device receives a notification. Without a notification, the badge count will not change.
+
+Some Android devices (e.g., Samsung, Xiaomi, Oppo) support numeric badge counts, while others (e.g., Google Pixel) show only a notification dot. The behavior varies based on the OEM (Original Equipment Manufacturer).
+
+You can't update the badge count without sending a notification. However, you can send a silent notification (without sound/vibration) to update the count.
+
+A silent notification is a type of notification that:
+* Does not play a sound
+* Does not vibrate the device
+* Does not show a heads-up notification (popup on the screen)
+* But still appears in the status bar and notification shade
+
+Manually setting the badge count on the app icon (launcher) is not possible on Android. The badge count is displayed only on certain devices when a notification is received. On most devices, a notification dot is shown instead of a numeric badge.
+
+If you want to update the badge count, it cannot be done without sending a notification. To update the badge count, the device must receive a notification; without this, the badge count will not change.
 
 ## Badge Counts
 
