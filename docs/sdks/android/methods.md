@@ -1274,7 +1274,7 @@ CleverPush.getInstance(this).setBadgeCount(10)
 
 ## Set Custom Notification Activity Enabled
 
-(Available from version 1.34.18)
+(Available from version 1.34.31)
 
 The `setCustomNotificationActivityEnabled` method allows to enable launching a custom activity when a notification is opened. 
 

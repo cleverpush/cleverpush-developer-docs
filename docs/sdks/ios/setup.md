@@ -19,7 +19,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.33.7'
+pod 'CleverPush', '~> 1.34.2'
 ```
 
 #### Swift Package Manager Setup

@@ -893,3 +893,37 @@ func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+## Customizing Notification Permissions And Settings
+
+You can customize which notification permission options are requested when prompting the user for notification permissions.
+
+These methods should be called before initializing the SDK to customize which notification permission options will be requested from the user. Each option can be enabled or disabled independently.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// Control whether notifications can show alerts (default: true)
+CleverPush.setDisplayAlertEnabledForNotifications(true)
+
+// Control whether notifications can play sounds (default: true)
+CleverPush.setSoundEnabledForNotifications(true)
+
+// Control whether notifications can update the app's badge count (default: true)
+CleverPush.setBadgeCountEnabledForNotifications(true)
+```
+
+<!--Objective-C-->
+```objective-c
+// Control whether notifications can show alerts (default: true)
+[CleverPush setDisplayAlertEnabledForNotifications:YES];
+
+// Control whether notifications can play sounds (default: true)
+[CleverPush setSoundEnabledForNotifications:YES];
+
+// Control whether notifications can update the app's badge count (default: true)
+[CleverPush setBadgeCountEnabledForNotifications:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
