@@ -229,10 +229,6 @@ A silent notification is a type of notification that:
 * Does not show a heads-up notification (popup on the screen)
 * But still appears in the status bar and notification shade
 
-Manually setting the badge count on the app icon (launcher) is not possible on Android. The badge count is displayed only on certain devices when a notification is received. On most devices, a notification dot is shown instead of a numeric badge.
-
-If you want to update the badge count, it cannot be done without sending a notification. To update the badge count, the device must receive a notification; without this, the badge count will not change.
-
 ## Badge Counts
 
 Disable automatic clearing of badge count when opening a notification. Enabled by default.
