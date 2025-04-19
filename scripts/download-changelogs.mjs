@@ -21,6 +21,17 @@ title: Changelog
 
 `;
 
+const EMAIL_OPT_IN_FORM_HTML = (id) => `<script>window.cleverpushEmailConfig = { channelId: '2tzq9STK6ijriQd5m' };</script>
+<script src="https://static.clpsh.com/sdk/cleverpush-email.js" async></script>
+<div class="cleverpush-email-form" data-id="${id}"></div>`;
+
+const EMAIL_OPT_IN_FORM_IDS = {
+  android: 'XrfXEFqsY8HTfr7Ct',
+  ios: 'ouncguiZqpPnsXtDn',
+  flutter: 'tW6ggrDJC5DitianT',
+  'react-native': 'KZyuNK2r9u4fqDPon',
+};
+
 console.log('Downloading Changelogs …');
 
 /**
@@ -55,8 +66,13 @@ for (const [sdk, url] of Object.entries(changelogs)) {
     method: 'GET',
   };
 
+  let emailOptInForm = '';
+  if (EMAIL_OPT_IN_FORM_IDS[sdk]) {
+    emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]);
+  }
+
   const response = await httpsRequest(requestOptions);
-  fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + response.replace('# Changelog', ''));
+  fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + emailOptInForm + response.replace('# Changelog', ''));
 }
 
 console.log('Changelogs downloaded successfully');
