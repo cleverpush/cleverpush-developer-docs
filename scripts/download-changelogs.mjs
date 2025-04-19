@@ -21,9 +21,11 @@ title: Changelog
 
 `;
 
-const EMAIL_OPT_IN_FORM_HTML = (id) => `<script>window.cleverpushEmailConfig = { channelId: '2tzq9STK6ijriQd5m' };</script>
+const EMAIL_OPT_IN_FORM_HTML = (id) => `
+<script>window.cleverpushEmailConfig = { channelId: '2tzq9STK6ijriQd5m' };</script>
 <script src="https://static.clpsh.com/sdk/cleverpush-email.js" async></script>
-<div class="cleverpush-email-form" data-id="${id}"></div>`;
+<div class="cleverpush-email-form" data-id="${id}"></div>
+`;
 
 const EMAIL_OPT_IN_FORM_IDS = {
   android: 'XrfXEFqsY8HTfr7Ct',
