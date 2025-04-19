@@ -70,7 +70,7 @@ for (const [sdk, url] of Object.entries(changelogs)) {
 
   let emailOptInForm = '';
   if (EMAIL_OPT_IN_FORM_IDS[sdk]) {
-    emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]);
+    emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]) + '\n\n';
   }
 
   const response = await httpsRequest(requestOptions);
