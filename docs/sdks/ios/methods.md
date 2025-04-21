@@ -441,6 +441,11 @@ CleverPush.setAppBannerOpenedCallback { (_: CPAppBannerAction?) in
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 CleverPush.showAppBanner("BANNER_ID")
 
+// You can show a banner by its ID and receive a callback when it is dismissed (available from version 1.34.7).
+CleverPush.showAppBanner("APP_BANNER_ID") {
+        print("App banner was dismissed");
+};
+
 ```
 
 <!--Objective-C-->
@@ -452,6 +457,11 @@ CleverPush.showAppBanner("BANNER_ID")
 
 // You can also show one banner by its ID (we recommend app banner events for production usage)
 [CleverPush showAppBanner:@"BANNER_ID"];
+
+// You can show a banner by its ID and receive a callback when it is dismissed (available from version 1.34.7).
+[CleverPush showAppBanner:@"APP_BANNER_ID" appBannerClosedCallback:^{
+        NSLog(@"App banner was dismissed");
+}];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
