@@ -51,7 +51,7 @@ title: Setup
         Objective-C:
 
         ```objective-c
-        #import <CleverPush/CleverPush.h>
+        #import <CleverPushExtension/CleverPushExtension.h>
 
         #import "NotificationService.h"
 
@@ -70,13 +70,13 @@ title: Setup
             self.contentHandler = contentHandler;
             self.bestAttemptContent = [request.content mutableCopy];
 
-            [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+            [CleverPushExtension didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
 
         - (void)serviceExtensionTimeWillExpire {
-            [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+            [CleverPushExtension serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
@@ -89,7 +89,7 @@ title: Setup
         ```swift
         import UserNotifications
 
-        import CleverPush
+        import CleverPushExtension
 
         class NotificationService: UNNotificationServiceExtension {
 
@@ -103,14 +103,14 @@ title: Setup
                 bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
                 if let bestAttemptContent = bestAttemptContent {
-                    CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    CleverPushExtension.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
                     contentHandler(bestAttemptContent)
                 }
             }
 
             override func serviceExtensionTimeWillExpire() {
                 if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-                    CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    CleverPushExtension.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
                     contentHandler(bestAttemptContent)
                 }
             }
