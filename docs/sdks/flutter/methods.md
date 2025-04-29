@@ -206,6 +206,13 @@ You can also show one banner by its ID (we recommend app banner events for produ
 CleverPush.shared.showAppBanner("APP_BANNER_ID");
 ```
 
+You can show one banner by its ID and listen when it is closed (we recommend app banner events for production usage)
+
+```dart
+CleverPush.shared.showAppBanner("APP_BANNER_ID", () {
+    print("APP BANNER CLOSED");
+});
+```
 
 ## Tracking Consent
 

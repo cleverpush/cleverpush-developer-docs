@@ -170,6 +170,27 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
     </service>
     ```
 
+###  Set Custom Notification Icon
+
+You can define a custom notification icon that will be used by the CleverPush SDK for all push notifications.
+
+The image must be named: ```cleverpush_notification_icon.png```
+
+The SDK will automatically use this icon if it's found with the correct name.
+
+Place your custom icon image in the appropriate drawable resource folders:
+
+```
+/drawable-[SIZE]/cleverpush_notification_icon.png
+```
+
+Examples:
+
+```
+/res/drawable-mdpi/cleverpush_notification_icon.png
+/res/drawable-hdpi/cleverpush_notification_icon.png
+/res/drawable-xhdpi/cleverpush_notification_icon.png
+``` 
 
 ## Badge Counts
 

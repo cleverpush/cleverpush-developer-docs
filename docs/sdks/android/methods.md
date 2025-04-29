@@ -789,6 +789,33 @@ CleverPush.getInstance(this).showAppBanner("BANNER_ID")
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+(Available from version 1.34.36)
+
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// You can show one banner by its ID and listen when it is closed (we recommend app banner events for production usage)
+CleverPush.getInstance(this).showAppBanner("BANNER_ID", new AppBannerClosedListener() {
+    @Override
+    public void closed() {
+        System.out.println("App banner is closed.");
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+// You can show one banner by its ID and listen when it is closed (we recommend app banner events for production usage)
+CleverPush.getInstance(this).showAppBanner("BANNER_ID", AppBannerClosedListener {
+    println("App banner is closed.")
+})
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 Get banners by group ID
 

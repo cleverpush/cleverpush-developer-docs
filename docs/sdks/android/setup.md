@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.34.31'
+      implementation 'com.cleverpush:cleverpush:1.34.38'
   }
   ```
 
@@ -213,6 +213,38 @@ fun notificationOpenedCallback(result: NotificationOpenedResult, notificationOpe
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Notification appearance customization
+
+You can add the following meta-data options to your AndroidManifest.xml file to customize the default appearance of notifications sent through the CleverPush SDK.
+
+These meta-data options allow you to set a default notification icon and a custom notification color.
+
+If you want to customize how your notifications look, you can use the following meta-data entries:
+
+### Set Default Notification Icon
+
+This meta-data option allows you to set a default icon for all notifications.
+
+Add the following inside the <application> tag in your AndroidManifest.xml file:
+
+```
+<meta-data
+  android:name="com.cleverpush.default_notification_icon"
+  android:resource="@drawable/push_icon" />
+```
+
+### Set Custom Notification Color
+
+This meta-data option allows you to set a custom color for your notifications.
+
+Add the following inside the <application> tag in your AndroidManifest.xml file:
+
+```
+<meta-data
+  android:name="com.cleverpush.default_notification_color"
+  android:resource="@color/notification_color" />
+```
+
 ## Badges
 
 Unlike iOS, Android does not provide a native API to manually set or update the badge count on the app icon.
@@ -257,13 +289,13 @@ Enable automatic incrementation of badge count. Disabled by default.
 <!--Java-->
 
 ```java
-CleverPush.getInstance(this).setIncrementBadge(false);
+CleverPush.getInstance(this).setIncrementBadge(true);
 ```
 
 <!--Kotlin-->
 
 ```kotlin
-CleverPush.getInstance(this).setIncrementBadge(false)
+CleverPush.getInstance(this).setIncrementBadge(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
