@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.34.39'
+      implementation 'com.cleverpush:cleverpush:1.34.40'
   }
   ```
 
@@ -221,7 +221,33 @@ These meta-data options allow you to set a default notification icon and a custo
 
 If you want to customize how your notifications look, you can use the following meta-data entries:
 
-### Set Default Notification Icon
+### Set Custom Notification Icon
+
+You can define a custom notification icon that will be used by the CleverPush SDK for all push notifications.
+
+#### File-based
+
+The image must be named: ```cleverpush_notification_icon```
+
+The SDK will automatically use this icon if it's found with the correct name.
+
+Place your custom icon image in the appropriate drawable resource folders:
+
+ ```bash
+/res/drawable-[dpi]/cleverpush_notification_icon.png
+```
+
+Examples:
+
+```bash
+/res/drawable-mdpi/cleverpush_notification_icon.png
+/res/drawable-hdpi/cleverpush_notification_icon.png
+/res/drawable-xhdpi/cleverpush_notification_icon.png
+/res/drawable-xxhdpi/cleverpush_notification_icon.png
+/res/drawable-xxxhdpi/cleverpush_notification_icon.png
+``` 
+
+#### Meta-data Based
 
 This meta-data option allows you to set a default icon for all notifications.
 
@@ -232,6 +258,8 @@ Add the following inside the <application> tag in your AndroidManifest.xml file:
   android:name="com.cleverpush.default_notification_icon"
   android:resource="@drawable/push_icon" />
 ```
+
+Replace @drawable/push_icon with your custom icon.
 
 ### Set Custom Notification Color
 
@@ -244,6 +272,48 @@ Add the following inside the <application> tag in your AndroidManifest.xml file:
   android:name="com.cleverpush.default_notification_color"
   android:resource="@color/notification_color" />
 ```
+
+## Notification Icon
+
+Android provides several options for setting up icons which this guide details in full.
+
+Android provides two types of notification icons: Small and Large. The CleverPush SDK supports customization of both to match your app style.
+
+Android supports both Small and Large Notification Icons.
+
+ ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/android_push_icon.png)
+
+### Small notification icons
+
+The small icon is shown in the status bar and next to the notification content. By default, CleverPush uses a bell icon.
+
+You can customize the small icon using either of the following methods:
+
+**File-based**
+
+Place an icon file named ```cleverpush_notification_icon``` into the appropriate drawable folders:
+
+```bash
+/res/drawable-[dpi]/cleverpush_notification_icon.png
+```
+
+**Meta-data Based**
+
+Alternatively, you can specify a custom icon using a meta-data entry in your AndroidManifest.xml:
+
+```
+<meta-data
+  android:name="com.cleverpush.default_notification_icon"
+  android:resource="@drawable/push_icon" />
+```  
+
+### Large notification icons
+
+The large notification icon will show up to the left of the notification text on Android 4.0.3 - 6.0 devices and to the right for Android 7.0+ devices. 
+
+You can set large icon from Create new -> Icon.
+
+If you do not set a large icon, channel icon from dashborad will be used instead, if there is no channel icon set in CleverPush dashboard then it will not display large icon.
 
 ## Badges
 
