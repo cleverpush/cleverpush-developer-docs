@@ -301,3 +301,13 @@ To customize the notification behavior, you can create a category and set the Im
 `Low` – Displays the notification without sound.
 
 ![Category](https://static.cleverpush.com/notification/icon/Muzg6n6n7ZDWAbh3i.png)
+
+## Enable or Disable Notification Badges
+
+You can control whether a notification displays a badge by assigning a category when creating the push notification.
+
+When setting up a notification category, you can choose to Enable or Disable badge display. This determines whether the app icon badge count or dot will be shown for notifications in that category.
+
+By default, if you create a push notification without selecting a category, the badge will be displayed.
+
+![Badge](https://static-mobile.cleverpush.com/app-banner/icon/rF7qzLg4EAi9RQgCD.png)
