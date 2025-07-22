@@ -114,6 +114,19 @@ CleverPush.push(['untagSubscription', 'INSERT_TAG_ID']);
 ```
 
 
+#### <code>getTags</code>
+
+Get a user's subscribed tags.
+This method automatically waits for an active subscription to be available before being executed.
+
+```js
+CleverPush = window.CleverPush || [];
+CleverPush.push(['getTags', function (err, tags) {
+  console.log(tags);
+}]);
+```
+
+
 ## Topics
 
 
