@@ -4,33 +4,50 @@ title: Methods
 ---
 
 ## Basic Usage
+
+To initialize the CleverPush SDK, use the following method.
+
+CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
+
+setInitializedHandler: A listener that handles the event when the CleverPush SDK initialization is completed. Returns success (bool) and an optional failureMessage (String?) if initialization fails.
+
+setNotificationReceivedHandler: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a CPNotificationReceivedResult object containing the details of the received notification. It fires when notifications have been received.
+
+setNotificationOpenedHandler: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a CPNotificationReceivedResult object containing the details of the opened notification. It fires when notifications have been opened.
+
+setSubscribedHandler: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+
+
 ```dart
 import 'package:cleverpush_flutter/cleverpush_flutter.dart';
 
-// init with autoRegister:false to manually subscribe later
-await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", false);
+CleverPush.shared.setNotificationReceivedHandler((CPNotificationReceivedResult result) {
+      print("Notification received: \n${result.notification!.jsonRepresentation().replaceAll("\\n", "\n")}");
+});
 
-// init with autoRegister:true to automatic subscribe 
-await CleverPush.shared.init("INSERT_CLEVERPUSH_CHANNEL_ID_HERE", true);
-
-// subscribe 
-await CleverPush.shared.subscribe();
-
-// unsubscribe 
-await CleverPush.shared.unsubscribe();
+CleverPush.shared.setNotificationOpenedHandler((CPNotificationOpenedResult result) {
+      print("Notification opened: \n${result.notification!.jsonRepresentation().replaceAll("\\n", "\n")}");
+});
 
 // Get the subscription success callback with subscriptionId 
 CleverPush.shared.setSubscribedHandler((subscriptionId) {
       print("Subscribed: ${subscriptionId}");
 });
 
-// Get the subscription status by execute the following code
-CleverPush.shared.isSubscribed().then((status) {
-  console.log(status);
+CleverPush.shared.setInitializedHandler((bool success, String? failureMessage) {
+      if (success) {
+            print("Initialized successfully");
+            _debugLabelString = "Initialized successfully";
+      } else {
+            print("Initialization failed: " + (failureMessage ?? "Unknown error"));
+      }
 });
 
-// Get the subscription ID 
-var subscriptionId = await CleverPush.shared.getSubscriptionId();
+// init with autoRegister:false to manually subscribe later
+await CleverPush.shared.init("CLEVERPUSH_CHANNEL_ID", false);
+
+// init with autoRegister:true to automatic subscribe 
+await CleverPush.shared.init("CLEVERPUSH_CHANNEL_ID", true);
 ```
 
 ### Show/Hide Foreground Notifications
@@ -39,6 +56,35 @@ var subscriptionId = await CleverPush.shared.getSubscriptionId();
 CleverPush.shared.setShowNotificationsInForeground(false);
 ```
 
+## Subscribe / Unsubscribe
+
+Subscribe:
+
+```dart
+// subscribe 
+await CleverPush.shared.subscribe();
+```
+
+Get SubscriptionId:
+
+```dart
+var subscriptionId = await CleverPush.shared.getSubscriptionId();
+```
+
+Get Subscription status:
+
+```dart
+CleverPush.shared.isSubscribed().then((status) {
+  console.log(status);
+});
+```
+
+Unsubscribe:
+
+```dart
+// unsubscribe 
+await CleverPush.shared.unsubscribe();
+```
 
 ### Notification permission
 
@@ -50,8 +96,6 @@ The SDK then also automatically subscribes all users, no matter if they accepted
 ```dart
 CleverPush.shared.setIgnoreDisabledNotificationPermission(true);
 ```
-
-
 
 ## Topics
 ```dart
