@@ -9,31 +9,30 @@ To initialize the CleverPush SDK, use the following method.
 
 CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
 
-received: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
+**received**: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
 
-opened: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a NotificationOpenedResult object containing the details of the opened notification. It fires when notifications have been opened.
+**opened**: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a NotificationOpenedResult object containing the details of the opened notification. It fires when notifications have been opened.
 
-subscribed: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+**subscribed**: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+
+**appBannerOpened**: A listener that handles banner interactions. This event is triggered when a user clicks on an image or button within a CleverPush App Banner.
 
 Basic Example:
 
 ```jsx
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import CleverPush from 'cleverpush-react-native';
+import { View, Text, Button } from 'react-native';
 
-export default class App extends React.Component {
-  constructor() {
-    super();
+const App = () => {
+  const [pushId, setPushId] = useState<string | null>(null);
+  const [isSubscribedStatus, setIsSubscribedStatus] = useState<boolean | null>(null);
+  const [lastNotificationId, setLastNotificationId] = useState<string | null>(null);
 
-    this.onOpened = this.onOpened.bind(this);
-    this.onReceived = this.onReceived.bind(this);
-    this.onSubscribed = this.onSubscribed.bind(this);
-  }
-  
-  componentWillMount() {
+  useEffect(() => {
+
     CleverPush.init('CLEVERPUSH_CHANNEL_ID');
-    
+
     // optionally, you can disable the automatic push prompt with 'autoRegister: false':
     /*
     CleverPush.init('CLEVERPUSH_CHANNEL_ID', {
@@ -41,51 +40,54 @@ export default class App extends React.Component {
     });
     */
 
-    CleverPush.addEventListener('opened', this.onOpened);
-    CleverPush.addEventListener('received', this.onReceived);
-    CleverPush.addEventListener('subscribed', this.onSubscribed);
-  }
+    const onOpened = (openResult: any) => {
+      console.log('Notification opened:', openResult);
+    };
 
-  componentWillUnmount() {
-    CleverPush.removeEventListener('opened', this.onOpened);
-    CleverPush.removeEventListener('received', this.onReceived);
-    CleverPush.removeEventListener('subscribed', this.onSubscribed);
-  }
-
-  onReceived({ notification }) {
-    console.log('Notification received:', notification);
-  }
-
-  onOpened({ notification }) {
-    console.log('Notification opened:', notification);
-    /*
-    Example notification:
-
-    {
-      "_id": "Notification ID",
-      "url": "https://example.com",
-      "title": "Title…",
-      "text": "Text…",
-      "mediaUrl": "Image URL…",
-      "customData": {
-        "key": "value…"
+    const onReceived = (receivedResult: any) => {
+      console.log('Notification received:', receivedResult);
+      const notificationId = receivedResult?.notification?.id;
+      if (notificationId) {
+        setLastNotificationId(notificationId);
+        console.log('notification received ID:', notificationId);
       }
-    }
-    */
-  }
+    };
 
-  onSubscribed({ id }) {
-    console.log('Subscribed with ID:', id);
-  }
+    const onSubscribed = (res: { id: string }) => {
+      setPushId(res ? res.id : null);
+      console.log('Subscription Id:', res.id);
+    };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+    const onAppBannerOpened = (bannerResult: any) => {
+      console.log('App Banner Clicked (Perform Action)');
+      console.log('AppBannerAction type:', bannerResult.type);
+      console.log('AppBannerAction name:', bannerResult.name);
+      console.log('AppBannerAction URL:', bannerResult.url);
+      console.log('AppBannerAction type:', bannerResult.urlType);
+    };
+
+    CleverPush.addEventListener('opened', onOpened);
+    CleverPush.addEventListener('received', onReceived);
+    CleverPush.addEventListener('subscribed', onSubscribed);
+    CleverPush.addEventListener('appBannerOpened', onAppBannerOpened);
+
+    return () => {
+         CleverPush.removeEventListener('opened', onOpened);
+         CleverPush.removeEventListener('received', onReceived);
+         CleverPush.removeEventListener('subscribed', onSubscribed);
+         CleverPush.removeEventListener('appBannerOpened', onAppBannerOpened);
+    };
+  }, []);
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', paddingTop: 100 }}>
+      <Text style={{ fontSize: 18, marginBottom: 20 }}>CleverPush Example App</Text>
+      <Text style={{ fontSize: 16 }}>CleverPush ID: {pushId ?? 'Not available'}</Text>
+    </View>
+  );
+};
+
+export default App;
 ```
 
 
@@ -291,11 +293,34 @@ For using Geo Fencing you need to request the location permission from the user.
 CleverPush.requestLocationPermission();
 ```
 
-## Notification Center
+## Remove Notification from Notification Center
 
-Clear all delivered notifications from the Notification Center (iOS only):
+Clear all delivered notifications from the Notification Center
 
 ```javascript
 CleverPush.clearNotificationsFromNotificationCenter();
 ```
 
+## Remove Notification
+
+You can remove notification stored locally using Notification ID
+
+```javascript
+CleverPush.removeNotification("Notification_ID");
+```
+
+You can remove a notification both stored locally and from the Notification Center 
+
+```javascript
+CleverPush.removeNotification("Notification_ID", true);
+```
+
+## Disabling App Banners
+
+You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.
+If a banner would show during this time, it is added to an internal queue and shown when calling `enableAppBanners`.
+
+```javascript
+CleverPush.disableAppBanners();
+CleverPush.enableAppBanners();
+```
