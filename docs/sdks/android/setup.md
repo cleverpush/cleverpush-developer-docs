@@ -21,7 +21,7 @@ You can find the newest sdk version number here [Android SDK](https://github.com
   ```groovy
   dependencies {
       // ...
-      implementation 'com.cleverpush:cleverpush:1.35.3'
+      implementation 'com.cleverpush:cleverpush:1.35.4'
   }
   ```
 
@@ -314,6 +314,62 @@ The large notification icon will show up to the left of the notification text on
 You can set large icon from Create new -> Icon.
 
 If you do not set a large icon, channel icon from dashborad will be used instead, if there is no channel icon set in CleverPush dashboard then it will not display large icon.
+
+## Notification Category (Channel)
+
+By default, if you send a push notification without selecting a category, it will be delivered via the SDK's default channel, using IMPORTANCE_DEFAULT and the device's default notification sound.
+
+Using notification categories, you can create custom notification channels with personalized settings—such as importance level, sound, and vibration behavior, etc.
+
+### Send Notifications with Pop-up, Sound & Vibration, or Silent Mode
+
+If you want to send notifications as a pop-up, with sound and vibration, or silently with vibration only, you can set a category when creating a push notification.
+
+By default, if you create a push notification without selecting a category, it will be displayed in the status bar with sound.
+
+You can also set a default category in the `General Settings` to avoid selecting a category manually every time you create a push notification.
+
+![Default_Category](https://static.cleverpush.com/notification/icon/WiiWotRb7NgB9S4tK.png)
+
+To customize the notification behavior, you can create a category and set the Importance level as follows:
+
+`Urgent/High` – Displays a high-priority pop-up notification with sound and vibration.
+
+`Medium` – Displays the notification with sound and vibration, but without a pop-up.
+
+`Low` – Displays the notification without sound.
+
+![Category](https://static.cleverpush.com/notification/icon/Muzg6n6n7ZDWAbh3i.png)
+
+### Enable or Disable Notification Badges
+
+You can control whether a notification displays a badge by assigning a category when creating the push notification.
+
+When setting up a notification category, you can choose to Enable or Disable badge display. This determines whether the app icon badge count or dot will be shown for notifications in that category.
+
+By default, if you create a push notification without selecting a category, the badge will be displayed.
+
+![Badge](https://static-mobile.cleverpush.com/app-banner/icon/rF7qzLg4EAi9RQgCD.png)
+
+### Set Custom Sound for Notification
+
+To send a notification with a **custom sound**, you need to configure it through a **notification category**.
+
+1. **Select** a category when creating your push notification.
+2. In notification category, in the **Sound** dropdown, choose **Custom**.
+3. In the **Sound Name** field, enter the name of your custom sound file (without the file extension).
+
+> **Example**: If your file is named `custom_notification.mp3`, enter `custom_notification` in the Sound Name field.
+
+4. Place the sound file in your app’s `res/raw` directory.
+
+> 📁 `app/src/main/res/raw/custom_notification.mp3`
+
+Once configured, any push notification sent using this category will play the custom sound.
+
+![Res_Raw](https://static-mobile.cleverpush.com/app-banner/icon/fBHPJdZohDXJ54Gt3.png)
+
+![Push_Category_Sound](https://static-mobile.cleverpush.com/app-banner/icon/P5FG6nQcAPGGFRsc2.png)
 
 ## Badges
 
