@@ -7,15 +7,15 @@ title: Methods
 
 To initialize the CleverPush SDK, use the following method.
 
-CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
+**CLEVERPUSH_CHANNEL_ID (String)**: Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
 
-setInitializedHandler: A listener that handles the event when the CleverPush SDK initialization is completed. Returns success (bool) and an optional failureMessage (String?) if initialization fails.
+**setInitializedHandler**: A listener that handles the event when the CleverPush SDK initialization is completed. Returns success (bool) and an optional failureMessage (String?) if initialization fails.
 
-setNotificationReceivedHandler: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a CPNotificationReceivedResult object containing the details of the received notification. It fires when notifications have been received.
+**setNotificationReceivedHandler**: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a CPNotificationReceivedResult object containing the details of the received notification. It fires when notifications have been received.
 
-setNotificationOpenedHandler: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a CPNotificationReceivedResult object containing the details of the opened notification. It fires when notifications have been opened.
+**setNotificationOpenedHandler**: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a CPNotificationReceivedResult object containing the details of the opened notification. It fires when notifications have been opened.
 
-setSubscribedHandler: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+**setSubscribedHandler**: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
 
 
 ```dart

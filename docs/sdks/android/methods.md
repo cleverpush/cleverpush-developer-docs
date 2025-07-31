@@ -666,15 +666,15 @@ Here is how the topics dialog looks like:
 <!--Java-->
 
 ```java
-// get the locally stored notification.
-Set<Notification> = CleverPush.getInstance(this).getNotifications();
+// Get the locally stored notification.
+Set<Notification> notificationList = CleverPush.getInstance(this).getNotifications();
 ```
 
 <!--Kotlin-->
 
 ```kotlin
-// get the locally stored notification.
-CleverPush.getInstance(this).getNotifications()
+// Get the locally stored notifications
+val notificationList = CleverPush.getInstance(this).notifications
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -684,12 +684,13 @@ CleverPush.getInstance(this).getNotifications()
 <!--Java-->
 
 ```java
-// get remote notification and local notification based on the boolean argument.
-// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
+// Get remote notifications or local notifications based on the boolean argument.
+// - Pass `true` to get the list of remote notifications.
+// - Pass `false` to get the locally stored notifications.
 CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackListener() {
     @Override
     public void ready(Set<Notification> notifications) {
-
+      // handle notifications
     }
 });
 ```
@@ -697,9 +698,57 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 <!--Kotlin-->
 
 ```kotlin
-// get remote notification and local notification based on the boolean argument.
-// - if you pass boolean argument YES you will get the list of remote notification else you will get the locally stored notification.
-CleverPush.getInstance(this).getNotifications(true) { }
+// Get remote notifications or local notifications based on the boolean argument.
+// - Pass `true` to get the list of remote notifications.
+// - Pass `false` to get the locally stored notifications.
+CleverPush.getInstance(this).getNotifications(true) { notifications ->
+    // handle notifications
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Tracking Notification Clicks
+
+To track when a user clicks on a notification from your custom notification inbox or list, use the `trackInboxClicked()` method available in the Notification class.
+
+<!--DOCUSAURUS_CODE_TABS--> 
+
+<!--Java-->
+
+```java
+Set<Notification> notificationList = CleverPush.getInstance(this).getNotifications();
+
+for (Notification notification : notificationList) {
+    // Track an notification click
+    notification.trackInboxClicked(notification.getId());
+}
+
+CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackListener() {
+    @Override
+    public void ready(Set<Notification> notifications) {
+        for (Notification notification : notifications) {
+            // Track an notification click
+            notification.trackInboxClicked(notification.getId());
+        }
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+val notificationList = CleverPush.getInstance(this).notifications
+
+notificationList.forEach { notification ->
+    notification.trackInboxClicked(notification.id)
+}
+
+CleverPush.getInstance(this).getNotifications(true) { notifications ->
+    notifications.forEach { notification ->
+        notification.trackInboxClicked(notification.id)
+    }
+}
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

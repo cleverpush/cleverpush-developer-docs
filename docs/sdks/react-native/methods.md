@@ -7,7 +7,7 @@ title: Methods
 
 To initialize the CleverPush SDK, use the following method.
 
-CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
+**CLEVERPUSH_CHANNEL_ID (String)**: Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
 
 **received**: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
 
