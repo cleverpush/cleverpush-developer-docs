@@ -710,7 +710,9 @@ CleverPush.getInstance(this).getNotifications(true) { notifications ->
 
 ## Tracking Notification Clicks
 
-To track when a user clicks on a notification from your custom notification inbox or list, use the `trackInboxClicked()` method available in the Notification class.
+You can use the `trackInboxClicked()` method from the Notification class to manually track clicks on notifications retrieved either from local storage or remotely. 
+
+This is especially useful if you're displaying a custom inbox UI.
 
 <!--DOCUSAURUS_CODE_TABS--> 
 
@@ -721,7 +723,7 @@ Set<Notification> notificationList = CleverPush.getInstance(this).getNotificatio
 
 for (Notification notification : notificationList) {
     // Track an notification click
-    notification.trackInboxClicked(notification.getId());
+    notification.trackInboxClicked();
 }
 
 CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackListener() {
@@ -729,7 +731,7 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
     public void ready(Set<Notification> notifications) {
         for (Notification notification : notifications) {
             // Track an notification click
-            notification.trackInboxClicked(notification.getId());
+            notification.trackInboxClicked();
         }
     }
 });
@@ -741,12 +743,12 @@ CleverPush.getInstance(this).getNotifications(true, new NotificationsCallbackLis
 val notificationList = CleverPush.getInstance(this).notifications
 
 notificationList.forEach { notification ->
-    notification.trackInboxClicked(notification.id)
+    notification.trackInboxClicked()
 }
 
 CleverPush.getInstance(this).getNotifications(true) { notifications ->
     notifications.forEach { notification ->
-        notification.trackInboxClicked(notification.id)
+        notification.trackInboxClicked()
     }
 }
 ```
