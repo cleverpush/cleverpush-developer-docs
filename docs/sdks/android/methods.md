@@ -710,11 +710,14 @@ CleverPush.getInstance(this).getNotifications(true) { notifications ->
 
 ## Tracking Notification Clicks
 
+(Available from version 1.35.5)
+
 You can use the `trackInboxClicked()` method from the Notification class to manually track clicks on notifications retrieved either from local storage or remotely. 
 
 This is especially useful if you're displaying a custom inbox UI.
 
-<!--DOCUSAURUS_CODE_TABS--> 
+
+<!--DOCUSAURUS_CODE_TABS-->
 
 <!--Java-->
 
