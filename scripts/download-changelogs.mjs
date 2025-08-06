@@ -10,6 +10,7 @@ const changelogs = {
   capacitor: 'https://raw.githubusercontent.com/cleverpush/cleverpush-capacitor-sdk/master/CHANGELOG.md',
   'react-native': 'https://raw.githubusercontent.com/cleverpush/cleverpush-react-native-sdk/master/CHANGELOG.md',
   flutter: 'https://raw.githubusercontent.com/cleverpush/cleverpush-flutter-sdk/master/CHANGELOG.md',
+  expo: 'https://raw.githubusercontent.com/cleverpush/cleverpush-expo-sdk/master/CHANGELOG.md',
 };
 
 const UTF_8 = 'utf-8';
@@ -32,6 +33,7 @@ const EMAIL_OPT_IN_FORM_IDS = {
   ios: 'ouncguiZqpPnsXtDn',
   flutter: 'tW6ggrDJC5DitianT',
   'react-native': 'KZyuNK2r9u4fqDPon',
+  expo: 'KZyuNK2r9u4fqDPon',
 };
 
 console.log('Downloading Changelogs …');

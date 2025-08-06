@@ -54,6 +54,11 @@
       "sdks/flutter/chat",
       "sdks/flutter/troubleshooting",
       "sdks/flutter/changelog"
+    ],
+    "Expo SDK": [
+      "sdks/expo/setup",
+      "sdks/expo/methods",
+      "sdks/expo/changelog"
     ]
   },
   "api": {

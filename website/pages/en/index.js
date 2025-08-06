@@ -87,6 +87,7 @@ class HomeSplash extends React.Component {
             <SdkBox title="Capacitor" href="/docs/sdks/capacitor/setup" icon={<img src="/img/capacitor.svg" />} />
             <SdkBox title="React Native" href="/docs/sdks/react-native/setup" icon={<i className="fab fa-react fa-4x"></i>} />
             <SdkBox title="Xamarin" href="/docs/sdks/xamarin/setup" icon={<img src="/img/xamarin.png" />} />
+            <SdkBox title="Expo" href="/docs/sdks/expo/setup" icon={<img src="/img/expo.png" />} />
             <SdkBox title="Flutter" href="/docs/sdks/flutter/setup"icon={<img src="/img/flutter.png" />} />
           </div>
         </div>

@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Live Activities · CleverPush Developer Docs</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="![Live Activities](https://static.cleverpush.com/docs/live_activity_demo.gif)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Live Activities · CleverPush Developer Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://cleverpush.github.io/"/><meta property="og:description" content="![Live Activities](https://static.cleverpush.com/docs/live_activity_demo.gif)"/><meta property="og:image" content="https://cleverpush.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://cleverpush.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-light.svg" alt="CleverPush Developer Docs"/><h2 class="headerTitleWithLogo">CleverPush Developer Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/" target="_self">SDK Docs</a></li><li class=""><a href="/docs/api/overview" target="_self">API Overview</a></li><li class=""><a href="https://api.cleverpush.com/" target="_self">API Reference</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>API Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">API Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/api/overview">API Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/api/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/api/notifications">Notifications</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/api/ios/live-activities">Live Activities</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Live Activities</h1></header><article><div><span><p><img src="https://static.cleverpush.com/docs/live_activity_demo.gif" alt="Live Activities"></p>
+<p>Available in iOS SDK version 1.24.0+</p>
+<h2><a class="anchor" aria-hidden="true" id="register-live-activity-with-cleverpush-api"></a><a href="#register-live-activity-with-cleverpush-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Register live activity with CleverPush API</h2>
+<p>API Endpoint: <a href="https://api.cleverpush.com/#api-Subscriptions-SyncSubscription">https://api.cleverpush.com/#api-Subscriptions-SyncSubscription</a></p>
+<p>In Your IOS App code when we register new live activity there you will receive activity id and token <br />
+Call following sync subscription api with activity id and token to register the activity</p>
+<p>Note: Sync Live activity id and token with subscription endpoint whenever new live activity registered.</p>
+<h2><a class="anchor" aria-hidden="true" id="add-custom-attribute-to-your-subscription-to-target-live-activities"></a><a href="#add-custom-attribute-to-your-subscription-to-target-live-activities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add custom attribute to your subscription to target live activities</h2>
+<pre><code class="hljs">// You can <span class="hljs-keyword">set</span> <span class="hljs-keyword">string</span> <span class="hljs-keyword">values</span> <span class="hljs-keyword">like</span> this
+[CleverPush setSubscriptionAttribute:@<span class="hljs-string">"ATTRIBUTE_ID"</span> <span class="hljs-keyword">value</span>:@<span class="hljs-string">"ATTRIBUTE_VALUE"</span>];
+</code></pre>
+<p>Learn more <a href="https://developers.cleverpush.com/docs/sdks/ios/methods#attributes">Attributes</a></p>
+<h2><a class="anchor" aria-hidden="true" id="sync-subscription-with-live-activity-id-and-token"></a><a href="#sync-subscription-with-live-activity-id-and-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sync Subscription with Live activity id and token</h2>
+<pre><code class="hljs css language-json">{
+  "subscriptionId": "XXXXXXXXXXXXX",
+  "iosLiveActivityId": "7EEA1D62-XXXX-XXXX-XXXX-EFEEE7D44125",
+  "iosLiveActivityToken": "805787b***************************************46f06",
+  ...
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="now-send-updates-to-your-live-activity-with-notificationsend-api-endpoint-with-following-payload"></a><a href="#now-send-updates-to-your-live-activity-with-notificationsend-api-endpoint-with-following-payload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Now send updates to your live activity with notification/send api endpoint with following payload</h2>
+<p>Your live activity contains data with content-state variables (title, message, driverName, estimatedDeliveryTime, can be whatever you want) <br />
+We expecting here following payload to update an activity<br /></p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/activitykit/activity/contentstate-swift.typealias">iosLiveActivityContentState</a>
+<ul>
+<li>The type alias for the structure that describes the dynamic content of a Live Activity.</li>
+<li>Basically variables used in your live activity can be used here to update activity afterwards.</li>
+</ul></li>
+<li><a href="https://developer.apple.com/documentation/activitykit/updating-and-ending-your-live-activity-with-activitykit-push-notifications">iosLiveActivityEvent</a>
+<ul>
+<li>To update a Live Activity, set the value for the payload’s event key to update. To end a Live Activity, set it to end. If you end a Live Activity, include the final content state to make sure the Live Activity displays the latest data after it ends.</li>
+<li>Available events <strong>(update, end)</strong></li>
+</ul></li>
+<li><a href="https://api.cleverpush.com/#api-Notifications-SendNotification">type</a>
+<ul>
+<li>CleverPush notification type (<strong>&quot;iosLiveActivity&quot;</strong>)</li>
+</ul></li>
+<li><a href="https://developer.apple.com/documentation/activitykit/activityuidismissalpolicy">iosLiveActivityDismissalDate</a> (Optional)
+<ul>
+<li>Here we can pass <a href="https://www.epochconverter.com/">Epoch timestamp</a> (Unix Timestamp) when to end the activity</li>
+<li>It's optional - If you want to end activity immediately then don't pass dismissal date and use event: end to end the activity</li>
+</ul></li>
+<li><a href="https://api.cleverpush.com/#api-Notifications-SendNotification">customAttributes</a>
+<ul>
+<li>Object of custom attributes (Object Key = Attribute ID, Object value = Attribute value)</li>
+<li>This object will be used to target all your subscriber's live activity</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="update-activity"></a><a href="#update-activity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Update Activity</h2>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"channel"</span> : <span class="hljs-string">"XXXXXXXXXXXXX"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Delivery Update"</span>,
+  <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Your pizza order will arrive soon."</span>,
+  <span class="hljs-attr">"iosLiveActivityContentState"</span>: {
+      <span class="hljs-attr">"driverName"</span>: <span class="hljs-string">"Anne Johnson"</span>,
+      <span class="hljs-attr">"estimatedDeliveryTime"</span>: <span class="hljs-number">1659416365</span>
+  },
+  <span class="hljs-attr">"iosLiveActivityEvent"</span>: <span class="hljs-string">"update"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"iosLiveActivity"</span>,
+  <span class="hljs-attr">"customAttributes"</span>: {
+      <span class="hljs-attr">"member_id"</span>: <span class="hljs-string">"102"</span>
+  }
+  ...
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="end-activity"></a><a href="#end-activity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>End Activity</h2>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"channel"</span> : <span class="hljs-string">"XXXXXXXXXXXXX"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Delivery Update"</span>,
+  <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Your pizza order will arrive soon."</span>,
+  <span class="hljs-attr">"iosLiveActivityContentState"</span>: {
+      <span class="hljs-attr">"driverName"</span>: <span class="hljs-string">"Anne Johnson"</span>,
+      <span class="hljs-attr">"estimatedDeliveryTime"</span>: <span class="hljs-number">1659416400</span>
+  },
+  <span class="hljs-attr">"iosLiveActivityEvent"</span>: <span class="hljs-string">"end"</span>,
+  <span class="hljs-attr">"iosLiveActivityDismissalDate"</span>: <span class="hljs-string">"1659416450"</span>, <span class="hljs-comment">// On this timestamp activity will be ended</span>
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"iosLiveActivity"</span>,
+  <span class="hljs-attr">"customAttributes"</span>: {
+      <span class="hljs-attr">"member_id"</span>: <span class="hljs-string">"102"</span>
+  }
+  ...
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://developer.apple.com/documentation/activitykit/updating-and-ending-your-live-activity-with-activitykit-push-notifications">Apple documentation</a></li>
+<li><a href="https://api.cleverpush.com/">CleverPush API</a></li>
+<li><a href="https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities">Displaying Live Activity</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/api/notifications"><span class="arrow-prev">← </span><span>Notifications</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#register-live-activity-with-cleverpush-api">Register live activity with CleverPush API</a></li><li><a href="#add-custom-attribute-to-your-subscription-to-target-live-activities">Add custom attribute to your subscription to target live activities</a></li><li><a href="#sync-subscription-with-live-activity-id-and-token">Sync Subscription with Live activity id and token</a></li><li><a href="#now-send-updates-to-your-live-activity-with-notificationsend-api-endpoint-with-following-payload">Now send updates to your live activity with notification/send api endpoint with following payload</a></li><li><a href="#update-activity">Update Activity</a></li><li><a href="#end-activity">End Activity</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>SDKs</h5><a href="/docs/sdks/javascript/setup">JavaScript</a><a href="/docs/sdks/ios/setup">iOS</a><a href="/docs/sdks/android/setup">Android</a><a href="/docs/sdks/cordova/setup">Cordova</a><a href="/docs/sdks/capacitor/setup">Capacitor</a><a href="/docs/sdks/react-native/setup">React Native</a><a href="/docs/sdks/xamarin/setup">Xamarin</a><a href="/docs/sdks/expo/setup">Expo</a><a href="/docs/sdks/flutter/setup">Flutter</a></div><div><h5>Community</h5><a href="https://twitter.com/cleverpush_com" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://facebook.com/cleverpush" target="_blank" rel="noreferrer noopener">Facebook</a><a href="https://github.com/cleverpush" target="_blank">GitHub</a></div><div><h5>More</h5><a href="https://api.cleverpush.com/" target="_blank">API Reference</a><a href="/docs/api/overview" target="_blank">API Overview</a><a href="https://cleverpush.com/blog" target="_blank">Blog</a><a href="https://cleverpush.com/imprint" target="_blank">Imprint</a><a href="https://cleverpush.com/privacy" target="_blank">Privacy Policy</a><a href="https://cleverpush.com/terms" target="_blank">Terms of service</a><a href="https://cleverpush.com/gdpr" target="_blank">GDPR</a></div></section><section class="copyright">Copyright © 2025 CleverPush</section></footer></div></body></html>

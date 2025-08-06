@@ -6,7 +6,7 @@
     "tagline": "CleverPush is a feature-rich Push Notification Service for Websites and Apps",
     "docs": {
       "api/ios/live-activities": {
-        "title": "Live Activities (iOS 16)"
+        "title": "Live Activities"
       },
       "api/notifications": {
         "title": "Notifications"
@@ -26,6 +26,9 @@
       "sdks/android/extension": {
         "title": "Notification Service Extension"
       },
+      "sdks/android/geofencelocation": {
+        "title": "Geo Fence Location Permission"
+      },
       "sdks/android/inbox": {
         "title": "Inbox View"
       },
@@ -44,14 +47,23 @@
       "sdks/android/upgrading": {
         "title": "Upgrading"
       },
-      "sdks/cordova/capacitor_setup": {
-        "title": "Capacitor Setup"
+      "sdks/capacitor/methods": {
+        "title": "Methods"
       },
-      "sdks/cordova/cordova_setup": {
-        "title": "Cordova Setup"
+      "sdks/capacitor/setup": {
+        "title": "Setup"
       },
       "sdks/cordova/methods": {
         "title": "Methods"
+      },
+      "sdks/cordova/setup": {
+        "title": "Setup"
+      },
+      "sdks/expo/methods": {
+        "title": "Methods"
+      },
+      "sdks/expo/setup": {
+        "title": "Setup"
       },
       "sdks/flutter/chat": {
         "title": "Chat"
@@ -117,10 +129,12 @@
       "JavaScript SDK": "JavaScript SDK",
       "iOS SDK": "iOS SDK",
       "Android SDK": "Android SDK",
+      "Capacitor SDK": "Capacitor SDK",
       "Cordova SDK": "Cordova SDK",
       "React Native SDK": "React Native SDK",
       "Xamarin SDK": "Xamarin SDK",
       "Flutter SDK": "Flutter SDK",
+      "Expo SDK": "Expo SDK",
       "API Overview": "API Overview"
     }
   },
