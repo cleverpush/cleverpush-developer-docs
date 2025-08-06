@@ -49,6 +49,9 @@ class Footer extends React.Component {
             <a href="/docs/sdks/xamarin/setup">
               Xamarin
             </a>
+            <a href="/docs/sdks/expo/setup">
+              Expo
+            </a>
             <a href="/docs/sdks/flutter/setup">
               Flutter
             </a>
