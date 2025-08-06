@@ -59,9 +59,6 @@
       "sdks/cordova/setup": {
         "title": "Setup"
       },
-      "sdks/expo/changelog": {
-        "title": "Changelog"
-      },
       "sdks/expo/methods": {
         "title": "Methods"
       },
