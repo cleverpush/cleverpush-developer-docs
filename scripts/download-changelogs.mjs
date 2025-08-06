@@ -10,7 +10,7 @@ const changelogs = {
   capacitor: 'https://raw.githubusercontent.com/cleverpush/cleverpush-capacitor-sdk/master/CHANGELOG.md',
   'react-native': 'https://raw.githubusercontent.com/cleverpush/cleverpush-react-native-sdk/master/CHANGELOG.md',
   flutter: 'https://raw.githubusercontent.com/cleverpush/cleverpush-flutter-sdk/master/CHANGELOG.md',
-  expo: 'https://raw.githubusercontent.com/cleverpush/cleverpush-expo-sdk/master/CHANGELOG.md',
+  expo: 'https://raw.githubusercontent.com/cleverpush/cleverpush-expo-plugin/master/CHANGELOG.md',
 };
 
 const UTF_8 = 'utf-8';
@@ -62,21 +62,32 @@ function httpsRequest(requestOptions) {
 }
 
 for (const [sdk, url] of Object.entries(changelogs)) {
-  const parsedUrl = nodeUrl.parse(url);
+  try {
+    const parsedUrl = nodeUrl.parse(url);
 
-  const requestOptions = {
-    hostname: parsedUrl.hostname,
-    path: parsedUrl.path,
-    method: 'GET',
-  };
+    const requestOptions = {
+      hostname: parsedUrl.hostname,
+      path: parsedUrl.path,
+      method: 'GET',
+    };
 
-  let emailOptInForm = '';
-  if (EMAIL_OPT_IN_FORM_IDS[sdk]) {
-    emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]) + '\n\n';
+    let emailOptInForm = '';
+    if (EMAIL_OPT_IN_FORM_IDS[sdk]) {
+      emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]) + '\n\n';
+    }
+
+    const response = await httpsRequest(requestOptions);
+    fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + emailOptInForm + response.replace('# Changelog', ''));
+    console.log(`✓ Downloaded changelog for ${sdk}`);
+  } catch (error) {
+    console.error(`✗ Failed to download changelog for ${sdk}: ${error.message}`);
+    // Create an empty changelog file with just the header
+    let emailOptInForm = '';
+    if (EMAIL_OPT_IN_FORM_IDS[sdk]) {
+      emailOptInForm = EMAIL_OPT_IN_FORM_HTML(EMAIL_OPT_IN_FORM_IDS[sdk]) + '\n\n';
+    }
+    fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + emailOptInForm + 'Changelog not available.\n');
   }
-
-  const response = await httpsRequest(requestOptions);
-  fs.writeFileSync(`./docs/sdks/${sdk}/changelog.md`, CHANGELOG_HEADER + emailOptInForm + response.replace('# Changelog', ''));
 }
 
 console.log('Changelogs downloaded successfully');
