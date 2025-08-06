@@ -74,17 +74,12 @@ npx expo run:ios
 npx expo run:android
 ```
 
-
-
-
 ## Setup iOS
 
 1. Enable the required capabilities
 
    1. Go to your root project and switch to the tab "Capabilities"
-   
    2. Enable "Push Notifications"
-   
    3. Enable "Background Modes" and check "Remote notifications"
 
 2. Notification Service Extension files should be automatically created via above commands 
@@ -94,23 +89,23 @@ npx expo run:android
         - Check that the `CleverPushNotificationServiceExtension` target exists in the project navigator
         - If missing, the NSE files should have been automatically created via the setup commands above
 
-    2. Check CleverPush Framework is Linked to NSE
+   2. Check CleverPush Framework is Linked to NSE
         - Select the `CleverPushNotificationServiceExtension` target in Xcode
         - Go to `Build Phases` > `Link Binary With Libraries`
         - Ensure `CleverPush.framework` is listed
         - If missing, add it manually
         
-     3. Ensure App Groups are Configured
+   3. Ensure App Groups are Configured
         - Verify App Groups are enabled for both main app and NSE targets
         - Check that the same App Group is selected for both targets
         - App Group should follow the pattern: `group.YOUR.BUNDLE.ID.cleverpush`
         
-     4. Verify Developer Team and Capabilities
+   4. Verify Developer Team and Capabilities
         - Ensure development team is selected for both main project and notification service extension
         - Check that capabilities are properly configured:
-        - Push Notifications (enabled)
-        - Background Modes > Remote notifications (enabled)
-        - App Groups (enabled for both targets)
+          - Push Notifications (enabled)
+          - Background Modes > Remote notifications (enabled)
+          - App Groups (enabled for both targets)
 
 3. Manual NSE Setup (Alternative Method)
 If the automatic NSE creation didn't work, you can manually create the Notification Service Extension:
@@ -123,9 +118,7 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
 
         ```bash
         target 'CleverPushNotificationServiceExtension' do
-
-            pod 'CleverPush'
-
+          pod 'CleverPush'
         end
         ```
 
@@ -135,8 +128,7 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
         Objective-C:
 
         ```objective-c
-    #import <CleverPush/CleverPush.h>
-
+        #import <CleverPush/CleverPush.h>
         #import "NotificationService.h"
 
         @interface NotificationService ()
@@ -154,13 +146,13 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
             self.contentHandler = contentHandler;
             self.bestAttemptContent = [request.content mutableCopy];
 
-        [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+            [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
 
         - (void)serviceExtensionTimeWillExpire {
-        [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+            [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
@@ -172,8 +164,7 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
 
         ```swift
         import UserNotifications
-
-    import CleverPush
+        import CleverPush
 
         class NotificationService: UNNotificationServiceExtension {
 
@@ -242,11 +233,32 @@ Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
 If rich notifications are not working properly in iOS, follow these troubleshooting steps:
 
-- Verify NSE target exists in Xcode
-- Check CleverPush framework is linked to NSE
-- Ensure app groups are configured
-- Test with actual device (not simulator)
-- Make sure that developement team had beeb selected with capabilites in main project and notification service extension.
+1. **Verify NSE Target Exists in Xcode**
+   - Open your project in Xcode
+   - Check that the `CleverPushNotificationServiceExtension` target exists in the project navigator
+   - If missing, the NSE files should have been automatically created via the setup commands above
+
+2. **Check CleverPush Framework is Linked to NSE**
+   - Select the `CleverPushNotificationServiceExtension` target in Xcode
+   - Go to `Build Phases` > `Link Binary With Libraries`
+   - Ensure `CleverPush.framework` is listed
+   - If missing, add it manually
+
+3. **Ensure App Groups are Configured**
+   - Verify App Groups are enabled for both main app and NSE targets
+   - Check that the same App Group is selected for both targets
+   - App Group should follow the pattern: `group.YOUR.BUNDLE.ID.cleverpush`
+
+4. **Test with Actual Device**
+   - Rich notifications may not work properly in iOS Simulator
+   - Always test rich notifications on a physical iOS device
+
+5. **Verify Developer Team and Capabilities**
+   - Ensure development team is selected for both main project and notification service extension
+   - Check that capabilities are properly configured:
+     - Push Notifications (enabled)
+     - Background Modes > Remote notifications (enabled)
+     - App Groups (enabled for both targets)
 
 ## Setup Android
 
@@ -263,7 +275,7 @@ If rich notifications are not working properly in iOS, follow these troubleshoot
     </service>
     ```
 
-###  Set Custom Notification Icon
+### Set Custom Notification Icon
 
 You can define a custom notification icon that will be used by the CleverPush SDK for all push notifications.
 
@@ -299,8 +311,6 @@ CleverPush.setAutoClearBadge(false);
 ```
 
 Enable automatic incrementation of badge count. Disabled by default.
-
-
 
 ```javascript
 CleverPush.setIncrementBadge(true);
