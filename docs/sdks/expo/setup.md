@@ -87,9 +87,33 @@ npx expo run:android
    
    3. Enable "Background Modes" and check "Remote notifications"
 
-2. Add Notification Service Extension (Optional)
+2. Notification Service Extension files should be automatically created via above commands 
 
-    This is required for correctly tracking notification deliveries and for displaying big images or videos in notifications.
+   1. Verify NSE Target Exists in Xcode
+        - Open your project in Xcode
+        - Check that the `CleverPushNotificationServiceExtension` target exists in the project navigator
+        - If missing, the NSE files should have been automatically created via the setup commands above
+
+    2. Check CleverPush Framework is Linked to NSE
+        - Select the `CleverPushNotificationServiceExtension` target in Xcode
+        - Go to `Build Phases` > `Link Binary With Libraries`
+        - Ensure `CleverPush.framework` is listed
+        - If missing, add it manually
+        
+     3. Ensure App Groups are Configured
+        - Verify App Groups are enabled for both main app and NSE targets
+        - Check that the same App Group is selected for both targets
+        - App Group should follow the pattern: `group.YOUR.BUNDLE.ID.cleverpush`
+        
+     4. Verify Developer Team and Capabilities
+        - Ensure development team is selected for both main project and notification service extension
+        - Check that capabilities are properly configured:
+        - Push Notifications (enabled)
+        - Background Modes > Remote notifications (enabled)
+        - App Groups (enabled for both targets)
+
+3. Manual NSE Setup (Alternative Method)
+If the automatic NSE creation didn't work, you can manually create the Notification Service Extension:
 
     1. Select `File` > `New` > `Target` in Xcode
     2. Choose `Notification Service Extension` and press `Next`
@@ -100,7 +124,7 @@ npx expo run:android
         ```bash
         target 'CleverPushNotificationServiceExtension' do
 
-          pod 'CleverPush/CleverPushExtension'
+            pod 'CleverPush'
 
         end
         ```
@@ -111,7 +135,7 @@ npx expo run:android
         Objective-C:
 
         ```objective-c
-        #import <CleverPushExtension/CleverPushExtension.h>
+    #import <CleverPush/CleverPush.h>
 
         #import "NotificationService.h"
 
@@ -130,13 +154,13 @@ npx expo run:android
             self.contentHandler = contentHandler;
             self.bestAttemptContent = [request.content mutableCopy];
 
-            [CleverPushExtension didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+        [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
 
         - (void)serviceExtensionTimeWillExpire {
-            [CleverPushExtension serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
+        [CleverPush serviceExtensionTimeWillExpireRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
 
             self.contentHandler(self.bestAttemptContent);
         }
@@ -149,7 +173,7 @@ npx expo run:android
         ```swift
         import UserNotifications
 
-        import CleverPushExtension
+    import CleverPush
 
         class NotificationService: UNNotificationServiceExtension {
 
@@ -163,14 +187,14 @@ npx expo run:android
                 bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
                 if let bestAttemptContent = bestAttemptContent {
-                    CleverPushExtension.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    CleverPush.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
                     contentHandler(bestAttemptContent)
                 }
             }
 
             override func serviceExtensionTimeWillExpire() {
                 if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-                    CleverPushExtension.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+                    CleverPush.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
                     contentHandler(bestAttemptContent)
                 }
             }
@@ -214,6 +238,15 @@ ld: library not found for -lcleverpush-react-native
 Go in *Xcode* > *Targets* > Your App > *Build Phases* > *Link Binary With Library*.
 Click the + and select *libcleverpush-react-native.a*, then rebuild.
 
+## Troubleshooting Rich Notifications (iOS)
+
+If rich notifications are not working properly in iOS, follow these troubleshooting steps:
+
+- Verify NSE target exists in Xcode
+- Check CleverPush framework is linked to NSE
+- Ensure app groups are configured
+- Test with actual device (not simulator)
+- Make sure that developement team had beeb selected with capabilites in main project and notification service extension.
 
 ## Setup Android
 
