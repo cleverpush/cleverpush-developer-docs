@@ -353,6 +353,8 @@ class MainActivity:Activity() {
 
 ## Tags
 
+**Note:** If the `Sync tags to client on subscription sync (App)` option is enabled under `General Settings → Advanced Settings` in the dashboard, you can add or remove tags directly using the Subscription ID in the dashboard. These changes will automatically sync with the SDK when syncSubscription occurs. To update the tags immediately in the SDK, you can manually (force) call the subscribe() method.
+
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Java-->
