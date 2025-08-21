@@ -350,6 +350,35 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Get Device Token
+
+You can retrieve the current device token (used for push notifications) with the following method:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).getDeviceToken(new DeviceTokenListener() {
+    @Override
+    public void complete(String deviceToken) {
+        System.out.println("Device Token: " + deviceToken);
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).getDeviceToken(object : DeviceTokenListener {
+    override fun complete(deviceToken: String) {
+        println("Device Token: $deviceToken")
+    }
+})
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## Tags
 
