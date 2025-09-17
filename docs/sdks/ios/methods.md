@@ -557,6 +557,7 @@ CleverPush.setSubscriptionTopics(topicIds);
 CleverPush.addSubscriptionTopic(topicId);
 CleverPush.removeSubscriptionTopic(topicId);
 CleverPush.showTopicsDialog();
+CleverPush.handleLinkBySystem('mailto:example@email.com'); // support multiple link types, including `mailto:`, `tel:`, `market/Play Store`, and standard `http/https` links.
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

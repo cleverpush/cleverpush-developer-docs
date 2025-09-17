@@ -324,3 +324,13 @@ If a banner would show during this time, it is added to an internal queue and sh
 CleverPush.disableAppBanners();
 CleverPush.enableAppBanners();
 ```
+
+## Get Device Token
+
+You can retrieve the current device token (used for push notifications) with the following method:
+
+```javascript
+CleverPush.getDeviceToken((err, deviceToken) => {
+    console.log('Device Token:', deviceToken);
+});
+```

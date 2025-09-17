@@ -382,7 +382,11 @@ CleverPush.getInstance(this).getDeviceToken(object : DeviceTokenListener {
 
 ## Tags
 
-**Note:** If the `Sync tags to client on subscription sync (App)` option is enabled under `General Settings → Advanced Settings` in the dashboard, you can add or remove tags directly using the Subscription ID in the dashboard. These changes will automatically sync with the SDK when syncSubscription occurs. To update the tags immediately in the SDK, you can manually (force) call the subscribe() method.
+If you want to update tags from **Dashboard to SDK**:
+
+If the `Sync tags to client on subscription sync (App)` option is enabled under `General Settings → Advanced Settings` in the dashboard, you can add or remove tags directly using the Subscription ID in the dashboard. 
+
+These changes will automatically sync with the SDK when `syncSubscription` occurs. By default, auto-sync happens every **3 days**. To update the tags immediately in the SDK, you can manually (force) call the `subscribe()` method.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -1024,6 +1028,7 @@ CleverPush.goToScreen('screenId');
 CleverPush.nextScreen();
 CleverPush.previousScreen();
 CleverPush.copyToClipboard('text');
+CleverPush.handleLinkBySystem('mailto:example@email.com'); // support multiple link types, including `mailto:`, `tel:`, `market/Play Store`, and standard `http/https` links.
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
