@@ -52,6 +52,7 @@
       "sdks/flutter/setup",
       "sdks/flutter/methods",
       "sdks/flutter/chat",
+      "sdks/flutter/stories",
       "sdks/flutter/troubleshooting",
       "sdks/flutter/changelog"
     ],

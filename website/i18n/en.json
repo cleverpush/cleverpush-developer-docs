@@ -74,6 +74,9 @@
       "sdks/flutter/setup": {
         "title": "Setup"
       },
+      "sdks/flutter/stories": {
+        "title": "Stories"
+      },
       "sdks/flutter/troubleshooting": {
         "title": "Troubleshooting"
       },
