@@ -1350,7 +1350,7 @@ CleverPush.getInstance(this).setLocalTrackEventRetentionDays(20)
 
 ## Set Custom Notification Activity Enabled
 
-(Available from version 1.34.31)
+(Available from version 1.34.18)
 
 The `setCustomNotificationActivityEnabled` method allows to enable launching a custom activity when a notification is opened. 
 
