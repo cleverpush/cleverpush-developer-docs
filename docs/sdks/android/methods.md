@@ -9,7 +9,7 @@ title: Methods
 
 To initialize the CleverPush SDK, use the following method.
 
-CLEVERPUSH_CHANNEL_ID (String): Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
+**CLEVERPUSH_CHANNEL_ID (String):** Your unique CleverPush channel ID. This ID is required to link the app with your CleverPush account.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -38,11 +38,11 @@ class MainActivity:Activity() {
 
 You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` and a `SubscribedListener`
 
-NotificationReceivedListener: A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
+**NotificationReceivedListener:** A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
 
-NotificationOpenedListener: A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a NotificationOpenedResult object containing the details of the opened notification. It fires when notifications have been opened.
+**NotificationOpenedListener:** A listener that handles the event when a notification is opened. The notificationOpened method is triggered with a NotificationOpenedResult object containing the details of the opened notification. It fires when notifications have been opened.
 
-SubscribedListener: A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
+**SubscribedListener:** A listener that handles the event when a user subscribes. The subscribed method is triggered with the subscriptionId. it fires when the user has successfully been subscribed.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -92,9 +92,9 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-You can set autoRegister.
+You can set **`autoRegister`**.
 
-autoRegister: The autoRegister parameter controls whether the CleverPush SDK will automatically attempt to subscribe the user upon the first launch of the app. In the below example, autoRegister is set to true. This means that the CleverPush SDK will automatically try to subscribe the user when they first launch the app. If you later call unsubscribe(), the SDK will not automatically try to subscribe the user again. You would need to call subscribe() manually to resubscribe the user.
+**autoRegister:** The autoRegister parameter controls whether the CleverPush SDK will automatically attempt to subscribe the user upon the first launch of the app. In the below example, autoRegister is set to true. This means that the CleverPush SDK will automatically try to subscribe the user when they first launch the app. If you later call unsubscribe(), the SDK will not automatically try to subscribe the user again. You would need to call subscribe() manually to resubscribe the user.
 
 By default, the autoRegister parameter in the SDK is set to true. This ensures that new users are automatically subscribed unless explicitly specified otherwise.
 
@@ -151,15 +151,15 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-You can add a `InitializeListener`
+You can add a **`InitializeListener`**
 
 The `InitializeListener` handles the initialization status of the CleverPush SDK. It provides methods that are called at different stages of the initialization process, allowing developers to respond accordingly. Can get notified if the initialization was successful or if it failed,
 
-onInitialized(): This method is called when the initialization process starts. Logs that the initialization process has started.
+**onInitialized():** This method is called when the initialization process starts. Logs that the initialization process has started.
 
-onInitializationSuccess(): This optional method is called when the initialization is successful. You can override this method to handle the initialization success. Logs that the initialization was successful.
+**onInitializationSuccess():** This optional method is called when the initialization is successful. You can override this method to handle the initialization success. Logs that the initialization was successful.
 
-onInitializationFailure(Throwable throwable): This optional method is called when the initialization fails. You can override this method to handle the initialization failure. Logs the error message and details if the initialization fails.
+**onInitializationFailure(Throwable throwable):** This optional method is called when the initialization fails. You can override this method to handle the initialization failure. Logs the error message and details if the initialization fails.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
