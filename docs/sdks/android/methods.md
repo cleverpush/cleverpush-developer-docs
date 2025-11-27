@@ -36,7 +36,7 @@ class MainActivity:Activity() {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-You can add a `NotificationReceivedListener` and a `NotificationOpenedListener` and a `SubscribedListener`
+You can add a **`NotificationReceivedListener`** and a **`NotificationOpenedListener`** and a **`SubscribedListener`**
 
 **NotificationReceivedListener:** A listener that handles the event when a notification is received. The notificationReceived method is triggered with a NotificationOpenedResult object containing the details of the received notification. It fires when notifications have been received.
 
@@ -246,7 +246,7 @@ class MainActivity:Activity() {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-Instead of a `NotificationReceivedListener` you could also use a `NotificationReceivedCallbackListener`. This way you can dynamically control if you want to show a notification when the app is running in foreground:
+Instead of a **`NotificationReceivedListener`** you could also use a **`NotificationReceivedCallbackListener`**. This way you can dynamically control if you want to show a notification when the app is running in foreground:
 
 <!--DOCUSAURUS_CODE_TABS-->
 
