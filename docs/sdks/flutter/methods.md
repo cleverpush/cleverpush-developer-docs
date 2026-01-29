@@ -281,3 +281,35 @@ You can set an authorization token that will be used in an API call.
 ```dart
 CleverPush.shared.setAuthorizerToken('YOUR_AUTH_TOKEN_HERE');
 ```
+
+## Remove Notification
+
+(Available from version 1.23.30)
+
+**Remove a notification stored locally**
+
+You can remove a notification from local storage using its notification ID:
+
+
+```dart
+CleverPush.shared.removeNotification('notificationId');
+```
+
+**Remove a notification from local storage and the notification center**
+
+You can remove a notification from both local storage and the notification center by setting removeFromNotificationCenter to true:
+
+```dart
+CleverPush.shared.removeNotification(
+  notificationId,
+  removeFromNotificationCenter: true,
+);
+```
+
+**Clear all notifications from the notification center**
+
+You can remove all notifications from the notification center only (this does not clear locally stored notifications):
+
+```dart
+CleverPush.shared.clearNotificationsFromNotificationCenter();
+```
