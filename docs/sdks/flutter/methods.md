@@ -313,3 +313,29 @@ You can remove all notifications from the notification center only (this does no
 ```dart
 CleverPush.shared.clearNotificationsFromNotificationCenter();
 ```
+
+## Handle Universal Links In App (iOS)
+
+(Available from version 1.23.30)
+
+### Set domains for handling universal links in app
+
+You can specify which domains should be handled as universal links inside the app instead of passing them to the system. Pass an array of domain strings. When a URL’s domain matches one of these domains, it will be delivered to your app as an in-app universal link.
+
+```dart
+CleverPush.shared.setHandleUniversalLinksInAppForDomains([
+  'domain1.com',
+  'domain2.com',
+  'cleverpush.com',
+]);
+```
+
+### Get domains for handling universal links in app
+
+You can retrieve the list of domains that are currently configured to handle universal links inside the app. Returns `null` if no domains have been set.
+
+```dart
+final List<String>? domains = await CleverPush.shared.getHandleUniversalLinksInAppForDomains();
+```
+
+**Note:** These methods are iOS-only. On Android they have no effect; `getHandleUniversalLinksInAppForDomains` returns `null`.
