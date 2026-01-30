@@ -18,12 +18,12 @@ You can find the newest sdk version number here [Android SDK](https://github.com
 
 1. Add the dependency to your app-level `app/build.gradle` file
 
-  ```groovy
-  dependencies {
-      // ...
-      implementation 'com.cleverpush:cleverpush:1.35.22'
-  }
-  ```
+```groovy
+dependencies {
+    // ...
+    implementation 'com.cleverpush:cleverpush:1.35.22'
+}
+```
 
 2. In the `onCreate` method of your Main activity or Application, call `CleverPush.getInstance(this).init(...)` with your CleverPush Channel ID.
 

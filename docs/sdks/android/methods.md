@@ -275,6 +275,54 @@ fun notificationReceivedCallback(notificationOpenedResult:NotificationOpenedResu
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+### Notification permission
+
+Checks whether notifications are currently enabled for the user.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// Returns true if notifications are enabled for the app
+boolean isNotificationsEnabled = CleverPush.getInstance(this).areNotificationsEnabled();
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Returns true if notifications are enabled for the app
+val isNotificationsEnabled = CleverPush.getInstance(this).areNotificationsEnabled()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+By default, the SDK automatically unsubscribes users who have revoked their notification permission in the system settings. The default value of `ignoreDisabledNotificationPermission` is `false`.
+
+Set it to `true` to keep users subscribed even if notifications are disabled. In some cases (for example, silent notifications), it may still make sense to keep these users subscribed.
+
+You can disable this behavior using the following method.
+
+This must be called before initializing the SDK.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// Ignore disabled notification permission and keep users subscribed
+CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Ignore disabled notification permission and keep users subscribed
+CleverPush.getInstance(this).setIgnoreDisabledNotificationPermission(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## Subscribe / Unsubscribe
 
@@ -291,7 +339,8 @@ public class MainActivity extends Activity {
     // subscribe
     CleverPush.getInstance(this).subscribe();
 
-    CleverPush.getInstance(MainActivity.this).subscribe(new SubscribedCallbackListener() {
+    // subscribe with success / failure callback
+    CleverPush.getInstance(this).subscribe(new SubscribedCallbackListener() {
       @Override
       public void onSuccess(String subscriptionId) {
         System.out.println("CleverPush Subscription ID: " + subscriptionId);
@@ -310,7 +359,7 @@ public class MainActivity extends Activity {
     CleverPush.getInstance(this).isSubscribed();
 
     // get subscription id
-    String subscriptionId = CleverPush.getInstance(this).getSubscriptionId(MainActivity.this);
+    String subscriptionId = CleverPush.getInstance(this).getSubscriptionId(this);
   }
 }
 ```
@@ -326,7 +375,8 @@ class MainActivity:Activity() {
     // subscribe
     CleverPush.getInstance(this).subscribe()
 
-    CleverPush.getInstance(this@MainActivity).subscribe(object : SubscribedCallbackListener {
+    // subscribe with success / failure callback
+    CleverPush.getInstance(this).subscribe(object : SubscribedCallbackListener {
       override fun onSuccess(subscriptionId: String) {
         println("CleverPush Subscription ID: $subscriptionId")
       }
@@ -343,7 +393,7 @@ class MainActivity:Activity() {
     CleverPush.getInstance(this).isSubscribed()
 
      // get subscription id
-     val subscriptionId: String? = CleverPush.getInstance(this).getSubscriptionId(this@MainActivity)
+     val subscriptionId: String? = CleverPush.getInstance(this).getSubscriptionId(this)
   }
 }
 ```
@@ -402,6 +452,19 @@ Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags(
 // add single tag
 CleverPush.getInstance(this).addSubscriptionTag("TAG_ID")
 
+// add single tag with success or failure callback
+CleverPush.getInstance(this).addSubscriptionTag("", new CompletionFailureListener() {
+    @Override
+    public void onComplete() {
+        System.out.println("Subscription tag added successfully");
+    }
+
+    @Override
+    public void onFailure(Exception exception) {
+        System.out.println("Error while adding subscription tag: " + exception.getLocalizedMessage());
+    }
+});
+
 // add multiple tags
 CleverPush.getInstance(this).addSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
 
@@ -423,30 +486,59 @@ CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID", new CompletionFailu
 // remove multiple tags
 CleverPush.getInstance(this).removeSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
 
-boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId());
+boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag("TAG_ID");
 ```
 
 <!--Kotlin-->
 
 ```kotlin
-CleverPush.getInstance(this).getAvailableTags({ tags->
-                                             // returns Set<ChannelTag>
-                                             })
+CleverPush.getInstance(this).getAvailableTags { tags ->
+    // returns Set<ChannelTag>
+}
+
 val subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags()
 
 // add single tag
 CleverPush.getInstance(this).addSubscriptionTag("TAG_ID")
 
+// add single tag with success or failure callback
+CleverPush.getInstance(this).addSubscriptionTag(
+    "TAG_ID",
+    object : CompletionFailureListener {
+        override fun onComplete() {
+            println("Subscription tag added successfully")
+        }
+
+        override fun onFailure(exception: Exception) {
+            println("Error while adding subscription tag: ${exception.localizedMessage}")
+        }
+    }
+)
+
 // add multiple tags
-CleverPush.getInstance(this).addSubscriptionTags(arrayOf<String>("TAG_ID_1", "TAG_ID_2"))
+CleverPush.getInstance(this).addSubscriptionTags(arrayOf("TAG_ID_1", "TAG_ID_2"))
 
 // remove single tag
 CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID")
 
-// remove multiple tags
-CleverPush.getInstance(this).removeSubscriptionTags(arrayOf<String>("TAG_ID_1", "TAG_ID_2"))
+// remove single tag with success or failure callback
+CleverPush.getInstance(this).removeSubscriptionTag(
+    "TAG_ID",
+    object : CompletionFailureListener {
+        override fun onComplete() {
+            println("Subscription tag removed successfully")
+        }
 
-val hasTag = CleverPush.getInstance(this).hasSubscriptionTag(channelTags.get(0).getId())
+        override fun onFailure(exception: Exception) {
+            println("Error while removing subscription tag: ${exception.localizedMessage}")
+        }
+    }
+)
+
+// remove multiple tags
+CleverPush.getInstance(this).removeSubscriptionTags(arrayOf("TAG_ID_1", "TAG_ID_2"))
+
+val hasTag = CleverPush.getInstance(this).hasSubscriptionTag("TAG_ID")
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -567,12 +659,15 @@ CleverPush.getInstance(this).setWebViewClientListener(webView, object : WebViewC
 <!--Java-->
 
 ```java
+// Retrieve all available attributes
 CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
    // returns Set<CustomAttribute>
 });
 
+// Get all subscription attributes
 Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
 
+// Get a single subscription attribute value
 Object attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
 
 // You can set string values like this
@@ -583,7 +678,7 @@ CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
 
 // You can set array of string values like this
 String[] array = {"1", "2", "3"}; 
-CleverPush.getInstance(MainActivity.this).setSubscriptionAttribute("user_id", array);
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", array);
 
 // You can set multiple key-value pairs like this
 Map<String, String> attributes = new HashMap<>();
@@ -599,11 +694,15 @@ CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "categ
 <!--Kotlin-->
 
 ```kotlin
-CleverPush.getInstance(this).getAvailableAttributes({ attributes->
-                                                   // returns Set<CustomAttribute>
-                                                   })
+// Retrieve all available attributes
+CleverPush.getInstance(this).getAvailableAttributes { attributes ->
+    // returns Set<CustomAttribute>
+}
+
+// Get all subscription attributes
 val subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes()
 
+// Get a single subscription attribute value
 val attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id")
 
 // You can set string values like this
@@ -611,6 +710,16 @@ CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
+
+// You can set an array of string values like this
+val array = arrayOf("1", "2", "3")
+CleverPush.getInstance(this).setSubscriptionAttribute("user_id", array)
+
+// You can set multiple key-value pairs like this
+val attributes = HashMap<String, String>()
+attributes["user_id"] = "1"
+attributes["zip"] = "20097"
+CleverPush.getInstance(this).setSubscriptionAttributes(attributes)
 
 // You can also push/pull values to special array attributes (e.g. "categories")
 CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1")
@@ -649,19 +758,47 @@ CleverPush.getInstance(this).setSubscriptionCountry("US")
 <!--Java-->
 
 ```java
+// Add a single topic
+CleverPush.getInstance(this).addSubscriptionTopic("TOPIC_ID");
+
+// Add a single topic with completion callback
+CleverPush.getInstance(MainActivity.this).addSubscriptionTopic("TOPIC_ID", new CompletionListener() {
+    @Override
+    public void onComplete() {
+        // Topic subscribed successfully
+    }
+});
+
+// Add a single topic with success or failure callback
+CleverPush.getInstance(MainActivity.this).addSubscriptionTopic("TOPIC_ID", new CompletionFailureListener() {
+    @Override
+    public void onComplete() {
+        // Topic subscribed successfully
+    }
+
+    @Override
+    public void onFailure(Exception exception) {
+        // Error while subscribing to topic
+    }
+});
+
+// Retrieve all available topics
 CleverPush.getInstance(this).getAvailableTopics(topics -> {
    // returns Set<ChannelTopic>
 });
 
+// Get subscribed topics
 Set<String> subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics();
 
 CleverPush.getInstance(this).setSubscriptionTopics(new String[]{"ID_1", "ID_2"});
 
+// Check if a topic is subscribed
 boolean hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID");
 
-// let the user choose his topics
+// Let the user choose topics via dialog
 CleverPush.getInstance(this).showTopicsDialog();
 
+// Listen for topic changes
 CleverPush.getInstance(this).setTopicsChangedListener(new TopicsChangedListener() {
     @Override
     public void topicsChanged(Set<String> topicIds) {
@@ -673,17 +810,55 @@ CleverPush.getInstance(this).setTopicsChangedListener(new TopicsChangedListener(
 <!--Kotlin-->
 
 ```kotlin
-CleverPush.getInstance(this).getAvailableTopics({ topics->
-                                             // returns Set<ChannelTopic>
-                                             })
+// Add a single topic
+CleverPush.getInstance(this).addSubscriptionTopic("TOPIC_ID")
 
+// Add a single topic with completion callback
+CleverPush.getInstance(this).addSubscriptionTopic(
+    "TOPIC_ID",
+    object : CompletionListener {
+        override fun onComplete() {
+            // Topic subscribed successfully
+        }
+    }
+)
+
+// Add a single topic with success or failure callback
+CleverPush.getInstance(this).addSubscriptionTopic(
+    "TOPIC_ID",
+    object : CompletionFailureListener {
+        override fun onComplete() {
+            // Topic subscribed successfully
+        }
+
+        override fun onFailure(exception: Exception) {
+            // Error while subscribing to topic
+        }
+    }
+)
+
+// Retrieve all available topics
+CleverPush.getInstance(this).getAvailableTopics { topics ->
+    // returns Set<ChannelTopic>
+}
+
+// Get subscribed topic IDs
 val subscribedTopicIds = CleverPush.getInstance(this).getSubscriptionTopics()
-CleverPush.getInstance(this).setSubscriptionTopics(arrayOf<String>("ID_1", "ID_2"))
 
-val hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID");
+CleverPush.getInstance(this).setSubscriptionTopics(arrayOf("TOPIC_ID_1", "TOPIC_ID_2"))
 
-// let the user choose his topics
+// Check if a topic is subscribed
+val hasTopic = CleverPush.getInstance(this).hasSubscriptionTopic("TOPIC_ID")
+
+// Let the user choose topics via dialog
 CleverPush.getInstance(this).showTopicsDialog()
+
+// Listen for topic changes
+CleverPush.getInstance(this).setTopicsChangedListener(object : TopicsChangedListener {
+    override fun topicsChanged(topicIds: Set<String>) {
+        // Called when subscribed topics change
+    }
+})
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -710,6 +885,34 @@ Set<Notification> notificationList = CleverPush.getInstance(this).getNotificatio
 ```kotlin
 // Get the locally stored notifications
 val notificationList = CleverPush.getInstance(this).notifications
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// Get locally stored notifications via callback
+CleverPush.getInstance(this).getNotifications(new NotificationsCallbackListener() {
+    @Override
+    public void ready(Set<Notification> notifications) {
+        // handle notifications here
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Get locally stored notifications via callback
+CleverPush.getInstance(this)
+    .getNotifications(object : NotificationsCallbackListener {
+        override fun ready(notifications: Set<Notification>) {
+            // handle notifications here
+        }
+    })
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -795,7 +998,10 @@ CleverPush.getInstance(this).getNotifications(true) { notifications ->
 
 ## Remove Notification
 
-You can remove notification stored locally using Notification ID
+**Remove a notification stored locally**
+
+You can remove a notification from local storage using its notification ID:
+
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -809,6 +1015,26 @@ CleverPush.getInstance(this).removeNotification("Notification ID");
 
 ```kotlin
 CleverPush.getInstance(this).removeNotification("Notification ID")
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+**Remove a notification from local storage and the notification center**
+
+You can remove a notification from both local storage and the notification center by setting removeFromNotificationCenter to true:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).removeNotification("Notification ID", true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).removeNotification("Notification ID", true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -1377,7 +1603,7 @@ CleverPush.getInstance(context).init(
                 String url = result.getNotification().getUrl();
                 deepLinkUri = Uri.parse(url);
                 try {
-                    CleverPush.getInstance(MainActivity.this).setCustomNotificationActivityEnabled(true);
+                    CleverPush.getInstance(this).setCustomNotificationActivityEnabled(true);
 
                     Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
