@@ -425,6 +425,26 @@ CleverPush.removeNotification("notification_Id")
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+**Remove all notifications from local storage**
+
+You can remove all notifications stored locally using the following method:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.removeAllNotifications()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush removeAllNotifications];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## App Banners
 
 (Available from version 1.3.0)

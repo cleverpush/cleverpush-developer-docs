@@ -315,6 +315,14 @@ You can remove a notification both stored locally and from the Notification Cent
 CleverPush.removeNotification("Notification_ID", true);
 ```
 
+**Remove all notifications from local storage**
+
+You can remove all notifications stored locally using the following method:
+
+```javascript
+CleverPush.removeAllNotifications();
+```
+
 ## Disabling App Banners
 
 You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.

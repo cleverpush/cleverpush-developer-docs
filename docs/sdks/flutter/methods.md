@@ -306,6 +306,14 @@ CleverPush.shared.removeNotification(
 );
 ```
 
+**Remove all notifications from local storage**
+
+You can remove all notifications stored locally using the following method:
+
+```dart
+CleverPush.shared.removeAllNotifications();
+```
+
 **Clear all notifications from the notification center**
 
 You can remove all notifications from the notification center only (this does not clear locally stored notifications):
