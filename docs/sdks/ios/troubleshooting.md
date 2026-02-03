@@ -56,6 +56,42 @@ Avoid setting a custom delegate for UNUserNotificationCenter in your project. Th
 
 To ensure seamless integration with CleverPush, remove any custom UNUserNotificationCenter delegate code from your app.
 
+## Do Not Initialize the SDK Twice
+
+Initializing the CleverPush SDK multiple times in your application can break the SDK's functionality and cause unexpected behavior.
+
+We **do not recommend** initializing the SDK more than once, as it may lead to:
+
+### Core Functionality Issues:
+- **Duplicate notification handling** - Notifications may be processed multiple times
+- **Incorrect subscription states** - Subscription ID and status may become inconsistent
+- **Memory leaks and performance issues** - Multiple SDK instances consuming unnecessary resources
+- **Conflicts in internal SDK state management** - SDK's internal state will be overwritten
+
+### Callback Issues:
+- **Notification callbacks may not work properly** - `handleNotificationReceived`, `handleNotificationOpened`, and `handleSubscribed` callbacks may be called multiple times or not at all
+- **Initialization callback failures** - `handleInitialized` callback may return incorrect results
+- **App Banner callbacks disrupted** - `setAppBannerOpenedCallback` and banner display callbacks may not trigger as expected
+- **Topics change listener issues** - `setTopicsChangedListener` may not function correctly
+
+### Feature-Specific Problems:
+- **App Banners** - May fail to display or display multiple times, banner targeting and event tracking may break
+- **Chat View** - URL opened callbacks and subscribe callbacks may not work properly
+- **Inbox View** - Notification click callbacks may fail or trigger multiple times
+- **Stories Widget** - Story opened callbacks and navigation may malfunction
+- **Live Activities** - Activity registration and token management may fail
+- **Event Tracking** - Events may be tracked multiple times or not tracked at all
+- **Deep Links** - Universal links and custom URL scheme handling may break
+
+### Data Synchronization Issues:
+- **Tags and Attributes** - Tag and attribute management may become inconsistent
+- **Topics** - Topic subscriptions may not sync properly
+- **Badge Count** - Badge counting logic may fail, leading to incorrect badge numbers
+- **Notification Storage** - Local notification storage via App Groups may become corrupted
+
+### Best Practice:
+Make sure to initialize the SDK **only once** in your app's lifecycle, typically in your AppDelegate's `application(_:didFinishLaunchingWithOptions:)` method. Avoid calling the initialization method in multiple places, view controllers, or lifecycle methods.
+
 # Silent Notification Limitations and Restrictions for iOS
 
 1. Silent notifications do not work on the iOS Simulator.You must test silent notifications on a **physical device** to ensure that background tasks and data processing are triggered properly.
