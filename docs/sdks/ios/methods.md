@@ -427,7 +427,9 @@ CleverPush.removeNotification("notification_Id")
 
 **Remove all notifications from local storage**
 
-You can remove all notifications stored locally using the following method:
+(Available from version 1.34.37)
+
+You can remove all notifications stored locally using the following method (this does not clear any notifications from notification center):
 
 <!--DOCUSAURUS_CODE_TABS-->
 

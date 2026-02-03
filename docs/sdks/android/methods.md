@@ -1041,7 +1041,9 @@ CleverPush.getInstance(this).removeNotification("Notification ID", true)
 
 **Remove all notifications from local storage**
 
-You can remove all notifications stored locally using the following method:
+(Available from version 1.35.23)
+
+You can remove all notifications stored locally using the following method (this does not clear any notifications from notification center):
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -1201,10 +1203,13 @@ CleverPush.getInstance(this).setCustomActivity(activity)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### Disabling banners
+### Disabling/Enabling App Banners
 
-You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.
-If a banner would show during this time, it is added to an internal queue and shown when calling `enableAppBanners`.
+App banners are enabled by default.
+
+You can temporarily disable app banners, for example during a splash screen or while navigating between screens.
+
+If a banner is triggered while banners are disabled, it will be added to an internal queue and automatically displayed once `enableAppBanners()` is called.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -1227,7 +1232,9 @@ CleverPush.getInstance(this).enableAppBanners()
 
 ### Development mode
 
-You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
+You can enable Development Mode to temporarily disable app banner caching.
+
+This ensures that you always see the most up-to-date version of app banners during development and testing.
 
 <!--DOCUSAURUS_CODE_TABS-->
 

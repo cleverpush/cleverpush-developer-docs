@@ -258,6 +258,29 @@ CleverPush.shared.showAppBanner("APP_BANNER_ID", () {
 });
 ```
 
+### Disabling/Enabling App Banners
+
+App banners are enabled by default.
+
+You can temporarily disable app banners, for example during a splash screen or while navigating between screens.
+
+If a banner is triggered while banners are disabled, it will be added to an internal queue and automatically displayed once `enableAppBanners()` is called.
+
+```dart
+CleverPush.shared.disableAppBanners();
+CleverPush.shared.enableAppBanners();
+```
+
+### Development mode
+
+You can enable Development Mode to temporarily disable app banner caching.
+
+This ensures that you always see the most up-to-date version of app banners during development and testing.
+
+```dart
+CleverPush.shared.enableDevelopmentMode();
+```
+
 ## Tracking Consent
 
 You can optionally require a tracking consent from the user (e.g. you get this consent from a CMP). If you tell our SDK to wait for the tracking consent, it will not call any tracking-related features until the consent is available. Calls will be queued and automatically executed until the consent is available.
@@ -306,20 +329,22 @@ CleverPush.shared.removeNotification(
 );
 ```
 
-**Remove all notifications from local storage**
-
-You can remove all notifications stored locally using the following method:
-
-```dart
-CleverPush.shared.removeAllNotifications();
-```
-
 **Clear all notifications from the notification center**
 
 You can remove all notifications from the notification center only (this does not clear locally stored notifications):
 
 ```dart
 CleverPush.shared.clearNotificationsFromNotificationCenter();
+```
+
+**Remove all notifications from local storage**
+
+(Available from version 1.23.31)
+
+You can remove all notifications stored locally using the following method (this does not clear any notifications from notification center):
+
+```dart
+CleverPush.shared.removeAllNotifications();
 ```
 
 ## Handle Universal Links In App (iOS)
