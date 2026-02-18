@@ -512,6 +512,100 @@ CleverPush.getAppBanners(byGroup: groupId) { banners in
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+### Custom Fonts for App Banners
+
+You can apply custom fonts to app banner text and buttons to match your app branding.
+
+**Supported Font Formats**
+
+The following font formats are supported:
+
+* `.ttf` - TrueType
+* `.otf` - OpenType
+
+**Step 1: Add the font files to your iOS app**
+
+1. Drag your font files (for example `OpenSans-Regular.ttf`) into your Xcode project.
+2. Make sure the files are added to your app target.
+3. Verify they appear in **Build Phases** -> **Copy Bundle Resources**.
+
+Example (font files in project):
+
+![iOS Fonts Folder Example](/img/sdks/ios/custom-fonts/fonts-folder-example.png)
+
+Example (**Copy Bundle Resources**):
+
+![iOS Copy Bundle Resources Example](/img/sdks/ios/custom-fonts/copy-bundle-resources.png)
+
+**Step 2: Register fonts in `Info.plist`**
+
+Add the `Fonts provided by application` (`UIAppFonts`) key and list all font files (with extension):
+
+```xml
+<key>UIAppFonts</key>
+<array>
+  <string>OpenSans-Regular.ttf</string>
+  <string>OpenSans-Bold.ttf</string>
+  <string>OpenSans-Italic.ttf</string>
+  <string>OpenSans-Light.ttf</string>
+  <string>OpenSans-LightItalic.ttf</string>
+  <string>OpenSans-Semibold.ttf</string>
+  <string>OpenSans-ExtraBold.ttf</string>
+</array>
+```
+
+Example (`UIAppFonts` in `Info.plist`):
+
+![iOS UIAppFonts Info.plist Example](/img/sdks/ios/custom-fonts/uiappfonts-info-plist.png)
+
+**Step 3: Use the iOS font name in your App Banner**
+
+When configuring the banner font in the CleverPush dashboard:
+
+* Use the iOS internal font name (PostScript name), not necessarily the file name.
+* Example: file `OpenSans-Regular.ttf` can expose a font name like `OpenSans-Regular`.
+* Set the **Font Family** field to `OpenSans-Regular`.
+
+Example (CleverPush dashboard font field):
+
+![iOS Dashboard Font Family Example](/img/sdks/ios/custom-fonts/dashboard-font-family-example.png)
+
+You can verify a font name in code:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+if let font = UIFont(name: "OpenSans-Regular", size: 16) {
+  print("Loaded font: \(font.fontName)")
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+UIFont *font = [UIFont fontWithName:@"OpenSans-Regular" size:16];
+if (font) {
+  NSLog(@"Loaded font: %@", font.fontName);
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Use this resolved font name in the App Banner font fields.
+
+**Step 4: Build and test**
+
+1. Rebuild and run your iOS app.
+2. Trigger the app banner.
+3. Confirm custom fonts are applied to the banner text and buttons.
+
+**Fallback Behavior**
+
+If the custom font is missing, named incorrectly, or cannot be loaded, the SDK falls back to the system font so the banner remains readable.
+
+
 ### Disabling banners
 
 You can also disable app banners temporarily, e.g. during a splash screen. Banners are enabled by default.
