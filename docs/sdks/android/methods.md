@@ -1181,6 +1181,77 @@ CleverPush.getInstance(this).getAppBannersByGroup { banners ->
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+### Custom Fonts for App Banners
+
+You can also set a custom fonts to banner's text and button
+
+You can apply custom fonts to the banner text and buttons to match your app’s branding.
+
+**Supported Font Formats**
+
+The following font formats are supported:
+
+* .ttf — TrueType
+* .otf — OpenType
+
+**Uploading / Adding Font Files**
+
+You can place the font files in any one of the following locations:
+
+Option A: Resource fonts (recommended)
+
+```
+app/src/main/res/font/
+```
+
+or
+
+```
+app/src/main/res/fonts/
+```
+
+Option B: Assets
+
+```
+app/src/main/assets/
+app/src/main/assets/font/
+app/src/main/assets/fonts/
+```
+
+> 📄 Note: Only `.ttf` and `.otf` files are supported.
+
+![Res_Font](https://static-mobile.cleverpush.com/app-banner/icon/ZnbkGo98ggDmaBeax.png)
+
+**Referencing the Font in Configuration**
+
+When configuring the banner:
+
+* Use the font file name without the extension
+* Do not include .ttf or .otf
+
+Example
+If your font file is:
+```
+playwrite_norge.ttf
+```
+
+Use this value in the configuration:
+```
+playwrite_norge
+```
+
+![Banner_font](https://static-mobile.cleverpush.com/app-banner/icon/3XyD8KjcJ3FDrrtGL.png)
+
+**Fallback Behavior**
+
+If the custom font:
+
+* Is missing,
+* Has an incorrect name, or
+* Fails to load for any reason,
+
+the SDK will automatically fall back to the default system font, ensuring the banner remains readable and functional.
+
 
 ### Custom activity
 

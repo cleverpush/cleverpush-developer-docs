@@ -317,6 +317,8 @@ CleverPush.removeNotification("Notification_ID", true);
 
 **Remove all notifications from local storage**
 
+(Available from version 1.7.23)
+
 You can remove all notifications stored locally using the following method:
 
 ```javascript
