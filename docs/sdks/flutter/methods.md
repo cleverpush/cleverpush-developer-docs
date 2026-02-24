@@ -52,6 +52,8 @@ await CleverPush.shared.init("CLEVERPUSH_CHANNEL_ID", true);
 
 ### Show/Hide Foreground Notifications
 
+This must be called before initializing the SDK.
+
 ```dart
 CleverPush.shared.setShowNotificationsInForeground(false);
 ```
@@ -89,9 +91,12 @@ await CleverPush.shared.unsubscribe();
 ### Notification permission
 
 By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
+
 Sometimes it still makes sense to subscribe those users (e.g. for silent notifications). You can disable this behaviour with this method call (before init).
+
 The SDK then also automatically subscribes all users, no matter if they accepted or denied the permission prompt.
 
+This must be called before initializing the SDK.
 
 ```dart
 CleverPush.shared.setIgnoreDisabledNotificationPermission(true);

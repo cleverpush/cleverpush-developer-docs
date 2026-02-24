@@ -95,6 +95,8 @@ export default App;
 
 (Available from version 1.7.5)
 
+This must be called before initializing the SDK.
+
 ```javascript
 CleverPush.setShowNotificationsInForeground(true);
 ```
@@ -278,7 +280,11 @@ CleverPush.getNotifications((err, notifications) => {
 
 ## Development mode
 
-You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
+You can enable Development Mode to temporarily disable app banner caching.
+
+This ensures that you always see the most up-to-date version of app banners during development and testing.
+
+This must be called before initializing the SDK.
 
 ```javascript
 CleverPush.enableDevelopmentMode();
