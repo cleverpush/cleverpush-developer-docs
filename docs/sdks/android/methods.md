@@ -432,76 +432,94 @@ CleverPush.getInstance(this).getDeviceToken(object : DeviceTokenListener {
 
 ## Tags
 
-If you want to update tags from **Dashboard to SDK**:
+**Update tags from Dashboard → SDK**:
 
-If the `Sync tags to client on subscription sync (App)` option is enabled under `General Settings → Advanced Settings` in the dashboard, you can add or remove tags directly using the Subscription ID in the dashboard. 
+If the `Sync tags to client on subscription sync (App)` option is enabled under `Dashboard → General Settings → Advanced Settings`, you can add or remove tags directly from the dashboard using the Subscription ID.
 
-These changes will automatically sync with the SDK when `syncSubscription` occurs. By default, auto-sync happens every **3 days**. To update the tags immediately in the SDK, you can manually (force) call the `subscribe()` method.
+Any changes made in the dashboard will automatically sync with the SDK during the next subscription sync (`syncSubscription`).
+
+By default, the SDK performs an automatic sync every **3 days**. If you want the updated tags to be reflected in the SDK immediately, you can manually trigger a sync by calling the `subscribe()` method.
+
+**Update tags from SDK → Dashboard**:
+
+You can also manage subscription tags directly from the SDK. Changes made in the SDK will be synced to the dashboard automatically.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Java-->
 
 ```java
+// Retrieve all available tags
 CleverPush.getInstance(this).getAvailableTags(tags -> {
    // returns Set<ChannelTag>
 });
 
+// Get all subscribed tagIds
 Set<String> subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags();
 
-// add single tag
-CleverPush.getInstance(this).addSubscriptionTag("TAG_ID")
+// Add a single tag
+CleverPush.getInstance(this).addSubscriptionTag("TAG_ID");
 
-// add single tag with success or failure callback
-CleverPush.getInstance(this).addSubscriptionTag("", new CompletionFailureListener() {
-    @Override
-    public void onComplete() {
-        System.out.println("Subscription tag added successfully");
+// Add a single tag with success/failure callback
+CleverPush.getInstance(this).addSubscriptionTag(
+    "TAG_ID", 
+    new CompletionFailureListener() {
+        @Override
+        public void onComplete() {
+            System.out.println("Subscription tag added successfully");
+        }
+
+        @Override
+        public void onFailure(Exception exception) {
+            System.out.println("Error while adding subscription tag: " + exception.getLocalizedMessage());
+        }
     }
+);
 
-    @Override
-    public void onFailure(Exception exception) {
-        System.out.println("Error while adding subscription tag: " + exception.getLocalizedMessage());
-    }
-});
-
-// add multiple tags
+// Add multiple tags
 CleverPush.getInstance(this).addSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
 
-// remove single tag
+// Remove a single tag
 CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID");
 
-CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID", new CompletionFailureListener() {
-  @Override
-  public void onComplete() {
-    System.out.println("Subscription tag removed successfully");
-  }
+// Remove a single tag with success/failure callback
+CleverPush.getInstance(this).removeSubscriptionTag(
+    "TAG_ID", 
+    new CompletionFailureListener() {
+        @Override
+        public void onComplete() {
+            System.out.println("Subscription tag removed successfully");
+        }
 
-  @Override
-  public void onFailure(Exception exception) {
-    System.out.println("Error while removing subscription tag: " + exception.getLocalizedMessage());
-  }
-});
+        @Override
+        public void onFailure(Exception exception) {
+            System.out.println("Error while removing subscription tag: " + exception.getLocalizedMessage());
+        }
+    }
+);
 
-// remove multiple tags
+// Remove multiple tags
 CleverPush.getInstance(this).removeSubscriptionTags(new String[] {"TAG_ID_1", "TAG_ID_2"});
 
+// Check if subscription has a specific tag
 boolean hasTag = CleverPush.getInstance(this).hasSubscriptionTag("TAG_ID");
 ```
 
 <!--Kotlin-->
 
 ```kotlin
+// Retrieve all available tags
 CleverPush.getInstance(this).getAvailableTags { tags ->
     // returns Set<ChannelTag>
 }
 
+// Get all subscribed tagIds
 val subscribedTagIds = CleverPush.getInstance(this).getSubscriptionTags()
 
-// add single tag
+// Add a single tag
 CleverPush.getInstance(this).addSubscriptionTag("TAG_ID")
 
-// add single tag with success or failure callback
+// Add a single tag with success/failure callback
 CleverPush.getInstance(this).addSubscriptionTag(
     "TAG_ID",
     object : CompletionFailureListener {
@@ -515,13 +533,13 @@ CleverPush.getInstance(this).addSubscriptionTag(
     }
 )
 
-// add multiple tags
+// Add multiple tags
 CleverPush.getInstance(this).addSubscriptionTags(arrayOf("TAG_ID_1", "TAG_ID_2"))
 
-// remove single tag
+// Remove a single tag
 CleverPush.getInstance(this).removeSubscriptionTag("TAG_ID")
 
-// remove single tag with success or failure callback
+// Remove a single tag with success/failure callback
 CleverPush.getInstance(this).removeSubscriptionTag(
     "TAG_ID",
     object : CompletionFailureListener {
@@ -535,9 +553,10 @@ CleverPush.getInstance(this).removeSubscriptionTag(
     }
 )
 
-// remove multiple tags
+// Remove multiple tags
 CleverPush.getInstance(this).removeSubscriptionTags(arrayOf("TAG_ID_1", "TAG_ID_2"))
 
+// Check if subscription has a specific tag
 val hasTag = CleverPush.getInstance(this).hasSubscriptionTag("TAG_ID")
 ```
 
@@ -670,25 +689,46 @@ Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSub
 // Get a single subscription attribute value
 Object attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
 
-// You can set string values like this
+// Set a string value
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1");
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD");
 
-// You can set array of string values like this
+// Set an array of strings
 String[] array = {"1", "2", "3"}; 
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", array);
 
-// You can set multiple key-value pairs like this
+// Set multiple key-value pairs
 Map<String, String> attributes = new HashMap<>();
 attributes.put("user_id", "1");
 attributes.put("zip", "20097");
 CleverPush.getInstance(this).setSubscriptionAttributes(attributes);
 
-// You can also push/pull values to special array attributes (e.g. "categories")
-CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1");
-CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1");
+// Remove a single attribute
+CleverPush.getInstance(this).removeSubscriptionAttribute("user_id");
+
+// Remove multiple attributes
+CleverPush.getInstance(this).removeSubscriptionAttributes(new String[] {"user_id", "zip"});
+
+// Remove a single attribute with success/failure callback
+CleverPush.getInstance(this).removeSubscriptionAttribute(
+    "user_id",
+    new CompletionFailureListener() {
+        @Override
+        public void onComplete() {
+            System.out.println("Attribute removed successfully");
+        }
+
+        @Override
+        public void onFailure(Exception exception) {
+            System.out.println(
+                "Error while removing subscription attribute: "
+                + exception.getLocalizedMessage()
+            );
+        }
+    }
+);
 ```
 
 <!--Kotlin-->
@@ -705,24 +745,65 @@ val subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttribu
 // Get a single subscription attribute value
 val attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id")
 
-// You can set string values like this
+// Set a string value
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", "1")
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.getInstance(this).setSubscriptionAttribute("birthdate", "YYYY-MM-DD")
 
-// You can set an array of string values like this
+// Set an array of strings
 val array = arrayOf("1", "2", "3")
 CleverPush.getInstance(this).setSubscriptionAttribute("user_id", array)
 
-// You can set multiple key-value pairs like this
+// Set multiple key-value pairs
 val attributes = HashMap<String, String>()
 attributes["user_id"] = "1"
 attributes["zip"] = "20097"
 CleverPush.getInstance(this).setSubscriptionAttributes(attributes)
 
-// You can also push/pull values to special array attributes (e.g. "categories")
+// Remove a single attribute
+CleverPush.getInstance(this).removeSubscriptionAttribute("user_id")
+
+// Remove multiple attributes
+CleverPush.getInstance(this).removeSubscriptionAttributes(arrayOf("user_id", "zip"))
+
+// Remove a single attribute with success/failure callback
+CleverPush.getInstance(this).removeSubscriptionAttribute(
+    "user_id",
+    object : CompletionFailureListener {
+        override fun onComplete() {
+            println("Attribute removed successfully")
+        }
+
+        override fun onFailure(exception: Exception) {
+            println(
+                "Error while removing subscription attribute: ${exception.localizedMessage}"
+            )
+        }
+    }
+)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+You can also push/pull values to special array attributes (e.g. "categories").
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1");
+
+CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1");
+```
+
+
+<!--Kotlin-->
+
+```kotlin
 CleverPush.getInstance(this).pushSubscriptionAttributeValue("categories", "category_1")
+
 CleverPush.getInstance(this).pullSubscriptionAttributeValue("categories", "category_1")
 ```
 
@@ -1172,7 +1253,7 @@ groupId);
 <!--Kotlin-->
 
 ```kotlin
-CleverPush.getInstance(this).getAppBannersByGroup { banners ->
+CleverPush.getInstance(this).getAppBannersByGroup({ banners: Collection<Banner> ->
     for (banner in banners) {
         println(banner.id)
     }
