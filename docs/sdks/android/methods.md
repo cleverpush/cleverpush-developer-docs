@@ -400,6 +400,40 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Keep Trageting Data On Unsubscribe
+
+(Available from version 1.23.5)
+
+By default, the SDK automatically removes the following data from local storage when a user unsubscribes: Subscription ID, Topics, Tags, Attributes
+
+The default value of `keepTargetingDataOnUnsubscribe` is false.
+
+Set `keepTargetingDataOnUnsubscribe` to `true` to retain user targeting data locally even after the user unsubscribes.
+
+This ensures that Topics, Tags, and Attributes are preserved locally, even when the user is no longer subscribed.
+
+The subscriptionId is always removed and is not controlled by this flag. 
+
+On every `Unsubscribe()` call, the SDK removes: Subscription ID, Related sync/created fields
+
+When `keepTargetingDataOnUnsubscribe` is enabled (true), the SDK keeps only: Topics, Topic version, Tags, Attributes
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).setKeepTargetingDataOnUnsubscribe(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setKeepTargetingDataOnUnsubscribe(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Get Device Token
 
 You can retrieve the current device token (used for push notifications) with the following method:
@@ -684,7 +718,7 @@ CleverPush.getInstance(this).getAvailableAttributes(attributes -> {
 });
 
 // Get all subscription attributes
-Map<String, String> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
+Map<String, Object> subscriptionAttributes = CleverPush.getInstance(this).getSubscriptionAttributes();
 
 // Get a single subscription attribute value
 Object attributeValue = CleverPush.getInstance(this).getSubscriptionAttribute("user_id");
