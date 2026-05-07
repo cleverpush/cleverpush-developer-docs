@@ -88,20 +88,6 @@ Unsubscribe:
 await CleverPush.shared.unsubscribe();
 ```
 
-## Mark Subscription As Test
-
-(Available from version 1.24.34)
-
-To mark a subscription as test.
-
-Call this after CleverPush is initialized and a subscription ID exists.
-
-```dart
-// Mark subscription as test
-CleverPush.shared.markSubscriptionAsTest();
-```
-
-
 ### Notification permission
 
 By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
@@ -114,6 +100,19 @@ This must be called before initializing the SDK.
 
 ```dart
 CleverPush.shared.setIgnoreDisabledNotificationPermission(true);
+```
+
+## Mark Subscription As Test
+
+(Available from version 1.24.34)
+
+To mark a subscription as test.
+
+Call this after CleverPush is initialized and a subscription ID exists.
+
+```dart
+// Mark subscription as test
+CleverPush.shared.markSubscriptionAsTest();
 ```
 
 ## Topics
