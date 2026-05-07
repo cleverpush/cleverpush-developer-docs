@@ -86,6 +86,46 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+## Mark Subscription As Test
+
+(Available from version 1.34.43)
+
+To mark a subscription as test.
+
+Call this after CleverPush is initialized and a subscription ID exists.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+// Mark subscription as test
+CleverPush.markSubscriptionAsTest()
+
+// Mark subscription as test with success/failure callbacks
+CleverPush.markSubscriptionAsTest(onSuccess: { results in
+    // success
+}, onFailure: { error in
+    // handle error
+})
+```
+
+<!--Objective-C-->
+
+```objective-c
+// Mark subscription as test
+[CleverPush markSubscriptionAsTest];
+
+// Mark subscription as test with success/failure callbacks
+[CleverPush markSubscriptionAsTestOnSuccess:^(NSDictionary *results) {
+    // success
+} onFailure:^(NSError *error) {
+    // handle error
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Tags
 
 <!--DOCUSAURUS_CODE_TABS-->
@@ -309,25 +349,89 @@ Here is how the topics dialog looks like:
 <!--Swift-->
 
 ```swift
+
+// Retrieve all available attributes 
 CleverPush.getAvailableAttributes { availableAttributes in
     print(availableAttributes as Any)
 }
 
+// Get all subscription attributes
 let subscriptionAttributes = CleverPush.getSubscriptionAttributes()
 
+// Get a single subscription attribute value
 let attributeValue = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 
-// You can set string values like this
+// Set a string value
 CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
 
-// You can also set array of string values like this
+// Set an array of strings
 let valArray = ["ATTRIBUTE_VALUE_ONE", "ATTRIBUTE_VALUE_TWO", "ATTRIBUTE_VALUE_THREE", "ATTRIBUTE_VALUE_FOUR"]
 CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", arrayValue: valArray)
 
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.setSubscriptionAttribute("birthdate", value: "2020-06-21")
 
+// Remove a single attribute
+CleverPush.removeSubscriptionAttribute("ATTRIBUTE_ID")
+
+// Remove a single attribute with success/failure callback
+CleverPush.removeSubscriptionAttribute("ATTRIBUTE_ID", callback: { attributeId in
+    // success, attributeId is the removed attribute key
+}, onFailure: { error in
+    // handle error
+})
+
+//// Remove multiple attributes 
+CleverPush.removeSubscriptionAttributes(["ATTRIBUTE_ID1", "ATTRIBUTE_ID2", "ATTRIBUTE_ID3"])
+```
+
+<!--Objective-C-->
+
+```objective-c
+// Retrieve all available attributes
+[CleverPush getAvailableAttributes^(NSDictionary* availableAttributes) {
+    NSLog(@"CleverPush: Available attributes %@", availableAttributes);
+}];
+
+// Get all subscription attributes
+NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
+
+// Get a single subscription attribute value
+NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
+
+// Set a string value
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
+
+// Set an array of strings
+NSArray *valArray = @[@"ATTRIBUTE_VALUE_ONE", @"ATTRIBUTE_VALUE_TWO", @"ATTRIBUTE_VALUE_THREE", @"ATTRIBUTE_VALUE_FOUR"];
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" arrayValue:valArray];
+
+// Please provide dates in the following format: YYYY-MM-DD
+[CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
+
+// Remove a single attribute
+[CleverPush removeSubscriptionAttribute:@"ATTRIBUTE_ID"];
+
+// Remove a single attribute with success/failure callback
+[CleverPush removeSubscriptionAttribute:@"ATTRIBUTE_ID" callback:^(NSString *attributeId) {
+    // success
+} onFailure:^(NSError *error) {
+    // handle error
+}];
+
+// Remove multiple attributes
+[CleverPush removeSubscriptionAttributes:@[@"ATTRIBUTE_ID1", @"ATTRIBUTE_ID2", @"ATTRIBUTE_ID3"]];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 // You can also push/pull values to special array attributes (e.g. "categories")
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
 CleverPush.pushSubscriptionAttributeValue("categories", value: "category_1");
 CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 ```
@@ -335,28 +439,9 @@ CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 <!--Objective-C-->
 
 ```objective-c
-[CleverPush getAvailableAttributes^(NSDictionary* availableAttributes) {
-    NSLog(@"CleverPush: Available attributes %@", availableAttributes);
-}];
-
-NSDictionary* subscriptionAttributes = [CleverPush getSubscriptionAttributes];
-
-NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"];
-
-// You can set string values like this
-[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
-
-// You can also set array of string values like this
-NSArray *valArray = @[@"ATTRIBUTE_VALUE_ONE", @"ATTRIBUTE_VALUE_TWO", @"ATTRIBUTE_VALUE_THREE", @"ATTRIBUTE_VALUE_FOUR"];
-[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" arrayValue:valArray];
-
-// Please provide dates in the following format: YYYY-MM-DD
-[CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
-
-// You can also push/pull values to special array attributes (e.g. "categories")
 [CleverPush pushSubscriptionAttributeValue:@"categories" value:@"category_1"];
-[CleverPush pullSubscriptionAttributeValue:@"categories" value:@"category_1"];
 
+[CleverPush pullSubscriptionAttributeValue:@"categories" value:@"category_1"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

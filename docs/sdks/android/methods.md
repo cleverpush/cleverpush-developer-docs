@@ -400,6 +400,58 @@ class MainActivity:Activity() {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+
+## Mark Subscription As Test
+
+(Available from version 1.35.26)
+
+To mark a subscription as test.
+
+Call this after CleverPush is initialized and a subscription ID exists.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// Mark subscription as test
+CleverPush.getInstance(this).markSubscriptionAsTest();
+
+// Mark subscription as test with success/failure callback
+CleverPush.getInstance(this).markSubscriptionAsTest(new CompletionFailureListener() {
+    @Override
+    public void onComplete() {
+                
+    }
+
+    @Override
+    public void onFailure(Exception exception) {
+
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Mark subscription as test
+CleverPush.getInstance(this).markSubscriptionAsTest()
+
+// Mark subscription as test with success/failure callback
+CleverPush.getInstance(this).markSubscriptionAsTest(object : CompletionFailureListener {
+    override fun onComplete() {
+
+    }
+
+    override fun onFailure(exception: Exception) {
+
+    }
+})
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ## Keep Trageting Data On Unsubscribe
 
 (Available from version 1.23.5)

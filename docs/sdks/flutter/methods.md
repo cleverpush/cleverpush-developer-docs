@@ -88,6 +88,20 @@ Unsubscribe:
 await CleverPush.shared.unsubscribe();
 ```
 
+## Mark Subscription As Test
+
+(Available from version 1.24.34)
+
+To mark a subscription as test.
+
+Call this after CleverPush is initialized and a subscription ID exists.
+
+```dart
+// Mark subscription as test
+CleverPush.shared.markSubscriptionAsTest();
+```
+
+
 ### Notification permission
 
 By default, the SDK automatically unsubscribes users who have revoked their notification permission in the iOS settings.
@@ -156,18 +170,32 @@ Once the `trackPageView` method has been implemented you can set up all the tags
 
 ## Attributes
 ```dart
-// get all the subscription attributes
+// Get all subscription attributes
 var subscriptionAttributes = await CleverPush.shared.getSubscriptionAttributes();
 
-// set attribute values by their ID
+// Set attribute values by their ID 
 CleverPush.shared.setSubscriptionAttribute('ATTRIBUTE_ID', 'ATTRIBUTE_VALUE');
+
+// Get a single subscription attribute value
 var attributeValue = await CleverPush.shared.getSubscriptionAttribute('ATTRIBUTE_ID');
 
-// get all the available attributes
+// Retrieve all available attributes
 var availableAttributes = await CleverPush.shared.getAvailableAttributes();
 
-// You can also push/pull values to special array attributes (e.g. "categories")
+// Remove a single attribute
+CleverPush.shared.removeSubscriptionAttribute("ATTRIBUTE_KEY");
+
+// Remove multiple attributes
+List<String> attributeIds = ['ATTRIBUTE_KEY1', 'ATTRIBUTE_KEY2'];
+CleverPush.shared.removeSubscriptionAttributes(attributeIds);
+```
+
+You can also push/pull values to special array attributes (e.g. "categories").
+
+
+```dart
 CleverPush.shared.pushSubscriptionAttributeValue("categories","categories_1");
+
 CleverPush.shared.pullSubscriptionAttributeValue("categories","categories_1");
 ```
 
