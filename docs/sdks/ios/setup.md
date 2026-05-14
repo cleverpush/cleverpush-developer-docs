@@ -48,6 +48,34 @@ pod 'CleverPush', '~> 1.34.43'
 
     ![](https://raw.githubusercontent.com/cleverpush/cleverpush-developer-docs/refs/heads/master/static/img/sdks/iOS_Swift_Package_Manager_Step5.png)
 
+#### Swift Package Manager Setup (Lightweight / Pre-built Binary)
+(not needed if you use CocoaPods)
+
+> **When to use this option:** This mirror repository distributes the SDK as **pre-built XCFramework binary targets**. SPM resolves the package almost instantly — no full source history is cloned. This is ideal for teams who want faster CI build times or smaller package checkouts.
+
+1. **Select your Project** > **Package Dependencies** > **+ button**.
+
+2. **Enter Package URL & Click Add Package**:  
+   `https://github.com/cleverpush/cleverpush-ios-sdk-spm`  
+   Make sure **Dependency Rule** is set to **Up to Next Major Version** from `1.34.43`.
+
+3. **Click Add Package**.
+
+4. **Select the library** you need from the list of available products:
+
+   | Library | Use case |
+   |---|---|
+   | `CleverPush` | Core SDK — push notifications, in-app messages |
+   | `CleverPushExtension` | Notification Service Extension support |
+   | `CleverPushLocation` | Location-based features |
+
+   Most apps only need `CleverPush`.
+
+5. **Select your Application Target** > **General** > **Frameworks, Libraries, and Embedded Content**.  
+   Check to ensure **CleverPush** (and any additionally selected libraries) have been added.
+
+6. If you have a **Notification Service Extension** or **Content Extension**, repeat the above steps for those targets and select **CleverPushExtension**.
+
 #### Carthage Setup
 (not needed if you use CocoaPods):
 
