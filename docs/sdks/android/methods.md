@@ -1470,7 +1470,11 @@ CleverPush.getInstance(this).enableAppBanners()
 
 ### Non-blocking banners
 
+(Available from version 1.35.28)
+
 By default, app banners block user interaction with the app while they are visible. You can allow users to interact with the app while an in-app banner is displayed by enabling the non-blocking mode.
+
+Call this before initializing the SDK
 
 <!--DOCUSAURUS_CODE_TABS-->
 
