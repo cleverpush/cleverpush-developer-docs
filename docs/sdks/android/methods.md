@@ -1468,6 +1468,45 @@ CleverPush.getInstance(this).enableAppBanners()
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+### Non-blocking banners
+
+By default, app banners block user interaction with the app while they are visible. You can allow users to interact with the app while an in-app banner is displayed by enabling the non-blocking mode.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).setAppBannersNonBlocking(true);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setAppBannersNonBlocking(true)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+To restore the default blocking behaviour:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+CleverPush.getInstance(this).setAppBannersNonBlocking(false);
+```
+
+<!--Kotlin-->
+
+```kotlin
+CleverPush.getInstance(this).setAppBannersNonBlocking(false)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### Development mode
 
 You can enable Development Mode to temporarily disable app banner caching.

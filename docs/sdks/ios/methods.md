@@ -715,6 +715,45 @@ CleverPush.enableAppBanners();
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
+### Non-blocking banners
+
+By default, app banners block user interaction with the app while they are visible. You can allow users to interact with the app while an in-app banner is displayed by enabling the non-blocking mode.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setAppBannersNonBlocking(true);
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setAppBannersNonBlocking:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+To restore the default blocking behaviour:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setAppBannersNonBlocking(false);
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setAppBannersNonBlocking:NO];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
 ### Development mode
 
 You can enable the development mode to disable caches for app banners, so you always see the most up to date version.
