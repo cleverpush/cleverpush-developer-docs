@@ -1944,3 +1944,46 @@ CleverPush.getInstance(this).setCustomNotificationActivityEnabled(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Piano Segments
+
+(Available from version 1.35.29)
+
+You can set and retrieve Piano segments for a subscription.
+
+### Set Piano Segments
+
+The `setPianoSegments` method allows you to sync Piano segments to a subscription.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).setPianoSegments(new String[] {"PIANO_SEGMENT_ID_1", "PIANO_SEGMENT_ID_2"});
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).setPianoSegments(arrayOf("PIANO_SEGMENT_ID_1", "TAGPIANO_SEGMENT_ID_2_ID_2"))
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+
+### Get Piano Segments
+
+The `getSubscriptionPianoSegments` method returns the Piano segments associated with the current subscription.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+Set<String> pianoSements = CleverPush.getInstance(this).getSubscriptionPianoSegments();
+```
+
+<!--Kotlin-->
+```kotlin
+val pianoSements = CleverPush.getInstance(this).getSubscriptionPianoSegments()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
