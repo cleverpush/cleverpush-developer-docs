@@ -102,6 +102,82 @@ public class FirebaseMessagingServiceProxy extends FirebaseMessagingService {
 }
 ```
 
+## iOS: `Module 'cleverpush_flutter' not found` (in GeneratedPluginRegistrant)
+
+This happens when **Swift Package Manager (SPM) and CocoaPods get mixed up**. The CleverPush Flutter SDK supports both, but a single build must use only one of them.
+
+The most common cause: SPM is enabled in your Flutter installation, so `flutter pub get` routes the plugin through SPM and **excludes it from your Podfile**. If you then only run `pod install` (or build the `Runner` target directly in Xcode) without building through Flutter, the plugin's module is never compiled — neither by CocoaPods nor by SPM — and Xcode fails with `Module 'cleverpush_flutter' not found`.
+
+You can confirm which manager is active:
+
+```bash
+flutter config
+```
+
+Look for `enable-swift-package-manager`. You can also open `ios/.flutter-plugins-dependencies` and check `swift_package_manager_enabled`. A telltale sign is `pod install` reporting fewer pods than expected (the `cleverpush_flutter` plugin is missing from the list).
+
+**Fix — pick one approach:**
+
+- **Use CocoaPods only** (simplest):
+
+    ```bash
+    flutter config --no-enable-swift-package-manager
+    flutter clean
+    flutter pub get
+    cd ios && pod install
+    ```
+
+    `pod install` should now list `cleverpush_flutter`. Open the `.xcworkspace` in Xcode and build.
+
+- **Use Swift Package Manager** — build through the Flutter tooling so SPM resolves the package (do **not** just build the Runner target in Xcode after a manual `pod install`):
+
+    ```bash
+    flutter clean
+    flutter pub get
+    flutter run        # or: flutter build ios
+    ```
+
+After switching, do a clean build in Xcode (`Product` → `Clean Build Folder`) so the stale error clears. See the [Setup page](./setup.md#ios-dependency-manager-cocoapods-swift-package-manager-or-both) for the full dependency-manager guide.
+
+
+## iOS: `pod install` installs two different CleverPush versions
+
+If `pod install` shows something like:
+
+```
+Installing CleverPush (1.34.45)
+Installing CleverPush (1.34.43)
+```
+
+your main app and your Notification Service Extension are pulling **different** CleverPush versions. This usually means the extension dependency in your Podfile is **unpinned**:
+
+```ruby
+target 'CleverPushNotificationServiceExtension' do
+  use_frameworks!
+
+  pod 'CleverPush/CleverPushExtension'   # ← no version, may resolve to an older one
+end
+```
+
+The app target gets the version required by the plugin (from `cleverpush_flutter.podspec`), while the extension keeps whatever was in `Podfile.lock`.
+
+**Fix:** pin the extension to the **same** version the SDK depends on, then reinstall:
+
+```ruby
+target 'CleverPushNotificationServiceExtension' do
+  use_frameworks!
+
+  pod 'CleverPush/CleverPushExtension', '1.34.45'
+end
+```
+
+```bash
+cd ios && pod install
+```
+
+`pod install` should now install a single CleverPush version for both targets.
+
+
 ## iOS: [...] does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. [...]
 
 As we are using the newest iOS SDK with XCFramework support in the latest 1.17.5 version, our SDK does not come with bitcode support anymore, unfortunately. Also [Xcode 14 has deprecated bitcode submissions](https://developer.apple.com/documentation/xcode-release-notes/xcode-14-release-notes).

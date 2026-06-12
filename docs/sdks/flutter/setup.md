@@ -14,6 +14,63 @@ title: Setup
 2. Run `flutter packages get`
 
 
+### iOS Dependency Manager (CocoaPods, Swift Package Manager, or both)
+
+The CleverPush Flutter SDK ships with **both** integration methods, so you can use whichever your project relies on:
+
+- a CocoaPods spec (`cleverpush_flutter.podspec`)
+- a Swift Package Manager (SPM) manifest (`Package.swift`)
+
+You only need **one** of them at build time. Picking a method up front avoids the most common iOS build errors (see [Troubleshooting](./troubleshooting.md)).
+
+> **How Flutter decides:** If Swift Package Manager is enabled in your Flutter installation (`flutter config --enable-swift-package-manager`) **and** every iOS plugin supports SPM, `flutter run` / `flutter build` will automatically route plugins through SPM and add SPM integration to your Xcode project. If SPM is disabled, plugins are provided via CocoaPods. You can check your current setting with `flutter config`.
+
+#### Option A — CocoaPods only (recommended if you are unsure)
+
+1. Disable Swift Package Manager so plugins are always provided via CocoaPods:
+
+    ```bash
+    flutter config --no-enable-swift-package-manager
+    ```
+
+2. From your app directory, install everything cleanly:
+
+    ```bash
+    flutter clean
+    flutter pub get
+    cd ios
+    pod install
+    ```
+
+3. `pod install` should report `cleverpush_flutter` among the installed pods. Always open the **`.xcworkspace`** (not the `.xcodeproj`) in Xcode.
+
+#### Option B — Swift Package Manager only
+
+1. Enable Swift Package Manager:
+
+    ```bash
+    flutter config --enable-swift-package-manager
+    ```
+
+2. Build through the Flutter tooling so the Swift packages are resolved and wired into Xcode:
+
+    ```bash
+    flutter clean
+    flutter pub get
+    flutter run        # or: flutter build ios
+    ```
+
+    > **Important:** With SPM enabled, the plugin is **not** added to your Podfile. A plain `pod install` will *not* compile the plugin. You must build at least once with `flutter run` / `flutter build ios` so SPM resolves the package — otherwise Xcode reports `Module 'cleverpush_flutter' not found`.
+
+#### Option C — Using both (CocoaPods for an extension + SPM for plugins)
+
+A common real-world case: your app uses SPM for plugins, but the Notification Service Extension still needs the `CleverPush/CleverPushExtension` CocoaPod. This works, but keep these rules in mind:
+
+- Build the app with `flutter run` / `flutter build ios` (so SPM resolves the plugin), **not** by building the Runner target directly in Xcode right after a manual `pod install`.
+- Keep the CleverPush version used by the extension **identical** to the version the plugin depends on (see step 2 below), otherwise CocoaPods will install two different CleverPush versions.
+
+---
+
 ### Setup iOS
 
 1. Enable the required capabilities
@@ -38,9 +95,11 @@ title: Setup
         target 'CleverPushNotificationServiceExtension' do
           use_frameworks!
 
-          pod 'CleverPush/CleverPushExtension'
+          pod 'CleverPush/CleverPushExtension', '1.34.45'
         end
         ```
+
+        > **Pin the version.** Set the `CleverPush/CleverPushExtension` version to the **same** CleverPush version the SDK depends on (you can see it in `cleverpush_flutter.podspec` → `s.dependency 'CleverPush', '...'`). If you leave it unpinned, CocoaPods may install a different (older) version for the extension than for the main app, so `pod install` ends up installing **two CleverPush versions**. The app and the extension must use the same version.
     6. Run `pod install`
     7. Open `NotificationService.m` and replace the whole content with the following:
 
