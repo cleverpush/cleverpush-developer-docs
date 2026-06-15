@@ -102,17 +102,34 @@ This must be called before initializing the SDK.
 CleverPush.shared.setIgnoreDisabledNotificationPermission(true);
 ```
 
-## Mark Subscription As Test
+## Mark/Unmark Subscription As Test
+
+You can mark or unmark a subscription as a test subscription.
+
+### Mark Subscription As Test
 
 (Available from version 1.24.34)
 
-To mark a subscription as test.
+Marks the current subscription as a test subscription.
 
-Call this after CleverPush is initialized and a subscription ID exists.
+Call this method after CleverPush has been initialized and a subscription ID is available.
 
 ```dart
 // Mark subscription as test
 CleverPush.shared.markSubscriptionAsTest();
+```
+
+### Unmark Subscription As Test
+
+(Available from version 1.24.36)
+
+To unmark a subscription as test. Removes the test status from the current subscription.
+
+Call this method after CleverPush has been initialized and a subscription ID is available.
+
+```dart
+// Unmark subscription as test
+CleverPush.shared.unmarkSubscriptionAsTest();
 ```
 
 ## Topics

@@ -401,13 +401,17 @@ class MainActivity:Activity() {
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-## Mark Subscription As Test
+## Mark/Unmark Subscription As Test
+
+You can mark or unmark a subscription as a test subscription.
+
+### Mark Subscription As Test
 
 (Available from version 1.35.26)
 
-To mark a subscription as test.
+Marks the current subscription as a test subscription.
 
-Call this after CleverPush is initialized and a subscription ID exists.
+Call this method after CleverPush has been initialized and a subscription ID is available.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -421,12 +425,12 @@ CleverPush.getInstance(this).markSubscriptionAsTest();
 CleverPush.getInstance(this).markSubscriptionAsTest(new CompletionFailureListener() {
     @Override
     public void onComplete() {
-                
+        System.out.println("Marked subscription as test successfully");
     }
 
     @Override
     public void onFailure(Exception exception) {
-
+        System.out.println("Error while marking subscription as test: " + exception.getLocalizedMessage());
     }
 });
 ```
@@ -440,11 +444,61 @@ CleverPush.getInstance(this).markSubscriptionAsTest()
 // Mark subscription as test with success/failure callback
 CleverPush.getInstance(this).markSubscriptionAsTest(object : CompletionFailureListener {
     override fun onComplete() {
-
+        println("Marked subscription as test successfully")
     }
 
     override fun onFailure(exception: Exception) {
+        println("Error while marking subscription as test: ${exception.localizedMessage}")
+    }
+})
+```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Unmark Subscription As Test
+
+(Available from version 1.35.30)
+
+To unmark a subscription as test. Removes the test status from the current subscription.
+
+Call this method after CleverPush has been initialized and a subscription ID is available.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+
+```java
+// Unmark subscription as test
+CleverPush.getInstance(this).unmarkSubscriptionAsTest();
+
+// Unmark subscription as test with success/failure callback
+CleverPush.getInstance(this).unmarkSubscriptionAsTest(new CompletionFailureListener() {
+    @Override
+    public void onComplete() {
+        System.out.println("Unmarked subscription as test successfully");
+    }
+
+    @Override
+    public void onFailure(Exception exception) {
+        System.out.println("Error while unmarking subscription as test: " + exception.getLocalizedMessage());
+    }
+});
+```
+
+<!--Kotlin-->
+
+```kotlin
+// Unmark subscription as test
+CleverPush.getInstance(this).unmarkSubscriptionAsTest()
+
+// Unmark subscription as test with success/failure callback
+CleverPush.getInstance(this).unmarkSubscriptionAsTest(object : CompletionFailureListener {
+    override fun onComplete() {
+        println("Unmarked subscription as test successfully")
+    }
+
+    override fun onFailure(exception: Exception) {
+        println("Error while unmarking subscription as test: ${exception.localizedMessage}")
     }
 })
 ```

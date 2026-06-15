@@ -86,13 +86,17 @@ BOOL isSubscribed = [CleverPush isSubscribed]
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-## Mark Subscription As Test
+## Mark/Unmark Subscription As Test
+
+You can mark or unmark a subscription as a test subscription.
+
+### Mark Subscription As Test
 
 (Available from version 1.34.43)
 
-To mark a subscription as test.
+Marks the current subscription as a test subscription.
 
-Call this after CleverPush is initialized and a subscription ID exists.
+Call this method after CleverPush has been initialized and a subscription ID is available.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -118,6 +122,46 @@ CleverPush.markSubscriptionAsTest(onSuccess: { results in
 
 // Mark subscription as test with success/failure callbacks
 [CleverPush markSubscriptionAsTestOnSuccess:^(NSDictionary *results) {
+    // success
+} onFailure:^(NSError *error) {
+    // handle error
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Unmark Subscription As Test
+
+(Available from version 1.34.47)
+
+To unmark a subscription as test. Removes the test status from the current subscription.
+
+Call this method after CleverPush has been initialized and a subscription ID is available.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+// Unmark subscription as test
+CleverPush.unmarkSubscriptionAsTest()
+
+// Unmark subscription as test with success/failure callbacks
+CleverPush.unmarkSubscriptionAsTest(onSuccess: { results in
+    // success
+}, onFailure: { error in
+    // handle error
+})
+```
+
+<!--Objective-C-->
+
+```objective-c
+// Unmark subscription as test
+[CleverPush unmarkSubscriptionAsTest];
+
+// Unmark subscription as test with success/failure callbacks
+[CleverPush unmarkSubscriptionAsTest:^(NSDictionary *results) {
     // success
 } onFailure:^(NSError *error) {
     // handle error
