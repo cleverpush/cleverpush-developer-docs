@@ -1255,7 +1255,6 @@ CleverPush.setPianoSegments(["PIANO_SEGMENT_ID_1", "PIANO_SEGMENT_ID_2"])
 
 The `getSubscriptionPianoSegments` method returns the Piano segments associated with the current subscription.
 
-
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Swift-->
@@ -1266,6 +1265,108 @@ let segments = CleverPush.getSubscriptionPianoSegments()
 <!--Objective-C-->
 ```objective-c
 NSArray<NSString *> *segments = [CleverPush getSubscriptionPianoSegments];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Beacon Monitoring
+
+(Available from version 1.34.50)
+
+Beacon monitoring allows your app to detect nearby configured BLE beacons and automatically trigger events when a matching beacon is found.
+
+After SDK initialization is complete, call `initBeacons` to enable beacon monitoring.
+
+Configure beacons in the CleverPush dashboard under Channel → Beacons.
+
+To detect nearby beacons, users must grant the required Bluetooth and precise location permissions depending on the Android version.
+
+### beacon integration
+
+Initialize beacon monitoring using initBeacons().
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPushLocation.initBeacons()
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPushLocation initBeacons];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### On Beacon Detection
+
+Receive a callback whenever a configured beacon UUID is detected and matched.
+
+The corresponding event is already tracked automatically by the SDK.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPushLocation.onBeaconDetected { beacon in
+    print("Beacon detected: \(beacon)")
+}
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPushLocation onBeaconDetected:^(NSDictionary *beacon) {
+    NSLog(@"Beacon detected: %@", beacon);
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Set Beacon Event Interval
+
+Controls how frequently the same beacon event can be triggered during a single app session.
+
+By default, a beacon event is triggered only once per app session. If the user remains within beacon range, the event will not trigger again.
+
+You can configure an interval (in minutes) to allow the same beacon event to be triggered again after the specified time in same session.
+
+Passing 0 disables throttling and triggers the event on every detection.
+
+If not set then it will trigger only once per app session
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPushLocation.setBeaconEventInterval(5)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPushLocation setBeaconEventInterval:5];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Set Beacon Debug Scan All
+
+Enables debug mode to log all detected BLE advertisements.
+
+Default value is false, This option is intended only for debugging and diagnostics and should be disabled in production environments.
+
+Call this before initBeacons().
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPushLocation.setBeaconDebugScanAll(true)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPushLocation setBeaconDebugScanAll:YES];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
