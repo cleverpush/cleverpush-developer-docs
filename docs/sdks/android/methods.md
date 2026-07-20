@@ -2156,3 +2156,36 @@ CleverPush.getInstance(this).setBeaconDebugScanAll(true)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+## Set Group Notification Sound Mode
+
+(Available from version 1.35.33)
+
+By default, every incoming push notification plays a sound. When multiple notifications are grouped, this may result in repeated notification sounds for the same group.
+
+Available modes:
+
+- `ALL_NOTIFICATIONS` *(default)* – Every notification plays a sound.
+- `FIRST_IN_GROUP_ONLY` – Only the first notification in a group plays a sound. Notifications added to the same group while it remains visible in the notification drawer are delivered silently. Once the group has been cleared (dismissed or opened), the next notification in that group will play a sound again.
+
+> **Note:** `FIRST_IN_GROUP_ONLY` requires Android 6.0 (API 23) or higher because it relies on querying active notifications. On older Android versions, this mode is ignored and `ALL_NOTIFICATIONS` is used instead, preserving the default behavior.
+
+You can configure this behavior using `setGroupNotificationSoundMode`:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+// Only the first notification in a group plays a sound.
+// Subsequent notifications added to the same group are delivered silently.
+CleverPush.getInstance(this).setGroupNotificationSoundMode(GroupNotificationSoundMode.FIRST_IN_GROUP_ONLY);
+```
+
+<!--Kotlin-->
+```kotlin
+// Only the first notification in a group plays a sound.
+// Subsequent notifications added to the same group are delivered silently.
+CleverPush.getInstance(this).setGroupNotificationSoundMode(GroupNotificationSoundMode.FIRST_IN_GROUP_ONLY)
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
