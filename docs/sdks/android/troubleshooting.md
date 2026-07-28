@@ -240,3 +240,42 @@ Add the attribute `tools:node="remove"` to the <service> tag. This tells the bui
     </service>
 </application>
 ```
+
+## Remove Bluetooth and location permissions from the SDK
+
+From SDK version **1.35.32**, the CleverPush Android SDK declares Bluetooth and location permissions for optional BLE/iBeacon monitoring. These permissions are merged into every app that includes the SDK—even if you never call `initBeacons()`.
+
+If you do **not** use beacon monitoring or CleverPush geofencing/location features and do not want these permissions in your app, remove them from your **app** `AndroidManifest.xml`.
+
+Do **not** call `initBeacons()`. Also remove any location permissions you added yourself (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`) if your app must not use location.
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Remove Bluetooth / BLE permissions merged from CleverPush -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_CONNECT"
+        tools:node="remove" />
+
+    <!-- Remove location permission merged from CleverPush -->
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:node="remove" />
+
+</manifest>
+```
+
+After building, open your app manifest in Android Studio and check the **Merged Manifest** tab to confirm that Bluetooth and location permissions are no longer present.
+
+> **Important:** Do not use `tools:node="remove"` for these permissions if you use beacon monitoring or CleverPush geofencing/location features. Those features require the permissions to remain in the merged manifest.
+
