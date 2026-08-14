@@ -421,3 +421,129 @@ final List<String>? domains = await CleverPush.shared.getHandleUniversalLinksInA
 ```
 
 **Note:** These methods are iOS-only. On Android they have no effect; `getHandleUniversalLinksInAppForDomains` returns `null`.
+
+## Get Device Token
+
+You can retrieve the current device token (used for push notifications) with the following method:
+
+```dart
+var deviceToken = await CleverPush.shared.getDeviceToken();
+print("Device Token: $deviceToken");
+```
+
+## Notification Permission
+
+### Check if notifications are enabled
+
+Returns `true` if notifications are currently enabled for the app:
+
+```dart
+bool? enabled = await CleverPush.shared.areNotificationsEnabled();
+```
+
+### Auto Request Notification Permission
+
+You can disable the notification permission dialog during subscribe.
+
+Default `autoRequestNotificationPermission` value is `true`, so while subscribing it checks that if notification permission is not given then it will display the dialog. By setting `autoRequestNotificationPermission` value to `false` the notification permission dialog will not display if permission is not given while subscribing.
+
+This must be called before initializing the SDK.
+
+```dart
+CleverPush.shared.setAutoRequestNotificationPermission(false);
+```
+
+### Maximum Notification Count
+
+You can limit the maximum number of notifications stored locally:
+
+```dart
+CleverPush.shared.setMaximumNotificationCount(25);
+```
+
+## Provisional Notification Authorization (iOS)
+
+(iOS only)
+
+Enables provisional (non-interrupting) notification authorization on iOS 12+. Provisional notifications are delivered silently to the notification center without prompting the user for permission.
+
+This must be called before initializing the SDK.
+
+```dart
+CleverPush.shared.setProvisionalNotificationAuthorizationEnabled(true);
+```
+
+## Handle URL from Scene Delegate (iOS)
+
+(iOS only)
+
+Controls whether URL handling is done from the SceneDelegate instead of AppDelegate.
+
+```dart
+CleverPush.shared.setHandleUrlFromSceneDelegate(true);
+```
+
+## Additional Handlers
+
+### Subscription Handler
+
+Receive a combined callback with subscription success/failure and the subscription ID:
+
+```dart
+CleverPush.shared.setSubscriptionHandler((bool success, String? subscriptionId, String? failureMessage) {
+  if (success) {
+    print("Subscribed with ID: $subscriptionId");
+  } else {
+    print("Subscription failed: $failureMessage");
+  }
+});
+```
+
+### Subscription Topics Handler
+
+Receive a callback when topic subscription changes succeed or fail:
+
+```dart
+CleverPush.shared.setSubscriptionTopicsHandler((bool success, String? failureMessage) {
+  if (success) {
+    print("Topics updated successfully");
+  } else {
+    print("Topics update failed: $failureMessage");
+  }
+});
+```
+
+### App Banner Shown Handler
+
+Receive a callback whenever an app banner is shown:
+
+```dart
+CleverPush.shared.setAppBannerShownHandler((CPAppBanner appBanner) {
+  print("App Banner shown: ${appBanner.jsonRepresentation()}");
+});
+```
+
+### Log Handler
+
+You can listen to SDK log messages:
+
+```dart
+CleverPush.shared.setLogHandler((String message) {
+  print("CleverPush Log: $message");
+});
+```
+
+## Notification Read Status
+
+You can mark a notification as read or unread using the `setRead` method on a `CPNotification` object:
+
+```dart
+var notifications = await CleverPush.shared.getNotifications();
+for (var notification in notifications) {
+  // Mark notification as read
+  await notification.setRead(true);
+
+  // Mark notification as unread
+  await notification.setRead(false);
+}
+```
