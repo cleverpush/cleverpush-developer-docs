@@ -415,6 +415,10 @@ CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", arrayValue: valArray)
 // Please provide dates in the following format: YYYY-MM-DD
 CleverPush.setSubscriptionAttribute("birthdate", value: "2020-06-21")
 
+// Set multiple key-value pairs at once
+let attributes: [String: String] = ["user_id": "1", "zip": "20097"]
+CleverPush.setSubscriptionAttributes(attributes)
+
 // Remove a single attribute
 CleverPush.removeSubscriptionAttribute("ATTRIBUTE_ID")
 
@@ -453,6 +457,10 @@ NSArray *valArray = @[@"ATTRIBUTE_VALUE_ONE", @"ATTRIBUTE_VALUE_TWO", @"ATTRIBUT
 // Please provide dates in the following format: YYYY-MM-DD
 [CleverPush setSubscriptionAttribute:@"birthdate" value:@"2020-06-21"];
 
+// Set multiple key-value pairs at once
+NSDictionary<NSString *, NSString *> *attributes = @{@"user_id": @"1", @"zip": @"20097"};
+[CleverPush setSubscriptionAttributes:attributes];
+
 // Remove a single attribute
 [CleverPush removeSubscriptionAttribute:@"ATTRIBUTE_ID"];
 
@@ -486,6 +494,62 @@ CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 [CleverPush pushSubscriptionAttributeValue:@"categories" value:@"category_1"];
 
 [CleverPush pullSubscriptionAttributeValue:@"categories" value:@"category_1"];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Keep Targeting Data On Unsubscribe
+
+By default, the SDK automatically removes the following data from local storage when a user unsubscribes: Subscription ID, Topics, Tags, Attributes
+
+The default value of `keepTargetingDataOnUnsubscribe` is false.
+
+Set `keepTargetingDataOnUnsubscribe` to `true` to retain user targeting data locally even after the user unsubscribes.
+
+This ensures that Topics, Tags, and Attributes are preserved locally, even when the user is no longer subscribed.
+
+The subscriptionId is always removed and is not controlled by this flag.
+
+On every `unsubscribe()` call, the SDK removes: Subscription ID, Related sync/created fields
+
+When `keepTargetingDataOnUnsubscribe` is enabled (true), the SDK keeps only: Topics, Topic version, Tags, Attributes
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setKeepTargetingDataOnUnsubscribe(true)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setKeepTargetingDataOnUnsubscribe:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Get Device Token
+
+You can retrieve the current device token (used for push notifications) with the following method:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.getDeviceToken { deviceToken in
+    print("Device Token: \(deviceToken ?? "")")
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush getDeviceToken:^(NSString *deviceToken) {
+    NSLog(@"Device Token: %@", deviceToken);
+}];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -532,6 +596,89 @@ print(notifications?[0].id as String)
 ```objective-c
 NSArray* notifications = [CleverPush getNotifications];
 
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Tracking Notification Clicks
+
+You can use the `trackInboxClicked()` method from the `CPNotification` object to manually track clicks on notifications retrieved either from local storage or remotely.
+
+This is especially useful if you're displaying a custom inbox UI.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+if let notifications = CleverPush.getNotifications() as? [CPNotification] {
+    for notification in notifications {
+        // Track a notification click
+        notification.trackInboxClicked()
+    }
+}
+
+CleverPush.getNotifications(true) { remoteNotifications in
+    if let notifications = remoteNotifications as? [CPNotification] {
+        for notification in notifications {
+            // Track a notification click
+            notification.trackInboxClicked()
+        }
+    }
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+NSArray *notifications = [CleverPush getNotifications];
+for (CPNotification *notification in notifications) {
+    // Track a notification click
+    [notification trackInboxClicked];
+}
+
+[CleverPush getNotifications:YES callback:^(NSArray *remoteNotifications) {
+    for (CPNotification *notification in remoteNotifications) {
+        // Track a notification click
+        [notification trackInboxClicked];
+    }
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Notification Read Status
+
+(Available from version 1.34.24)
+
+You can mark a notification as read or unread, and check whether a notification has been read.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+// Mark notification as read
+CleverPush.setNotificationRead("NOTIFICATION_ID", read: true)
+
+// Mark notification as unread
+CleverPush.setNotificationRead("NOTIFICATION_ID", read: false)
+
+// Check if a notification has been read
+let isRead = CleverPush.getNotificationRead("NOTIFICATION_ID")
+```
+
+<!--Objective-C-->
+
+```objective-c
+// Mark notification as read
+[CleverPush setNotificationRead:@"NOTIFICATION_ID" read:YES];
+
+// Mark notification as unread
+[CleverPush setNotificationRead:@"NOTIFICATION_ID" read:NO];
+
+// Check if a notification has been read
+BOOL isRead = [CleverPush getNotificationRead:@"NOTIFICATION_ID"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -959,6 +1106,46 @@ CleverPush.setTrackingConsent(true)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Subscribe Consent
+
+You can optionally require user consent for subscription (e.g., obtained through a CMP). If you tell our SDK to wait for the subscribe consent, it will not call subscribe features until the consent is available. Calls will be queued and automatically executed once consent is granted.
+
+Step 1: Call this before initializing the SDK:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setSubscribeConsentRequired(true)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setSubscribeConsentRequired:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Step 2: Call this when the user gave his consent (needs to be called on every launch):
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setSubscribeConsent(true)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setSubscribeConsent:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Authorization Token
 
 You can set an authorization token that will be used in an API call.
@@ -1367,6 +1554,75 @@ CleverPushLocation.setBeaconDebugScanAll(true)
 <!--Objective-C-->
 ```objective-c
 [CleverPushLocation setBeaconDebugScanAll:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Clear Banner Delivery Dates
+
+(Available from version 1.34.49)
+
+You can reset the delivery date tracking for app banners. This is useful when you want to allow a banner to be displayed again before its scheduled next delivery time.
+
+### Clear a specific banner's delivery date
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.clearBannerDeliveryDate("BANNER_ID")
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush clearBannerDeliveryDate:@"BANNER_ID"];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Clear all banners' delivery dates
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.clearAllBannerDeliveryDates()
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush clearAllBannerDeliveryDates];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Set Group Notification Sound Mode
+
+(Available from version 1.34.52)
+
+By default, every incoming push notification plays a sound. When multiple notifications are grouped, this may result in repeated notification sounds for the same group.
+
+Available modes:
+
+- `AllNotifications` *(default)* – Every notification plays a sound.
+- `FirstInGroupOnly` – Only the first notification in a group plays a sound. Notifications added to the same group while it remains visible in the notification center are delivered silently. Once the group has been cleared (dismissed or opened), the next notification in that group will play a sound again.
+
+You can configure this behavior using `setGroupNotificationSoundMode`:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+// Only the first notification in a group plays a sound.
+// Subsequent notifications added to the same group are delivered silently.
+CleverPush.setGroupNotificationSoundMode(.firstInGroupOnly)
+```
+
+<!--Objective-C-->
+```objective-c
+// Only the first notification in a group plays a sound.
+// Subsequent notifications added to the same group are delivered silently.
+[CleverPush setGroupNotificationSoundMode:CPGroupNotificationSoundModeFirstInGroupOnly];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
