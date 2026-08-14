@@ -1414,6 +1414,28 @@ CleverPush.setBadgeCountEnabledForNotifications(true)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Provisional Notification Authorization
+
+(Available from version 1.34.52)
+
+Enables provisional (non-interrupting) notification authorization on iOS 12+. Provisional notifications are delivered silently to the Notification Center without prompting the user for permission upfront. The user can then choose to keep or turn off notifications from the Notification Center itself.
+
+This must be called before initializing the SDK.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.setProvisionalNotificationAuthorizationEnabled(true)
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush setProvisionalNotificationAuthorizationEnabled:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Piano Segments
 
 (Available from version 1.34.46)
