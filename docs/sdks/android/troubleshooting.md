@@ -51,11 +51,11 @@ Please upgrade atleast to CleverPush SDK version 1.17.0 when targeting Android A
 
 ### Pre-Report Checklist
 
-Before contacting support, please work through this checklist. Most App Banner issues can be resolved by verifying these points:
+To help with faster troubleshooting, please review the checklist below first, as many App Banner issues can be resolved by verifying these points:
 
 **Dashboard & Banner Configuration**
 
-- The banner status is set to **Active** in the CleverPush dashboard (Channels → App Banners).
+- The banner status is set to **Published** in the CleverPush dashboard (Channels → App Banners).
 - The banner's **start date / end date** and time zone are configured correctly and the current time falls within the scheduled window.
 - The banner **frequency** setting is not limiting display (e.g. "Show only once" means the banner will not appear again once a user has seen it).
 - The banner is assigned to the correct **Channel** that matches the Channel ID used in your app.
