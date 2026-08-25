@@ -245,7 +245,11 @@ Add the attribute `tools:node="remove"` to the <service> tag. This tells the bui
 
 From SDK version **1.35.32**, the CleverPush Android SDK declares Bluetooth and location permissions for optional BLE/iBeacon monitoring. These permissions are merged into every app that includes the SDK—even if you never call `initBeacons()`.
 
-If you do **not** use beacon monitoring or CleverPush geofencing/location features and do not want these permissions in your app, remove them from your **app** `AndroidManifest.xml`.
+The SDK also declares `android.hardware.bluetooth_le` as an optional hardware feature (`android:required="false"`). That does not exclude devices from Google Play, but the feature still appears in the merged manifest. Apps that must not declare Bluetooth or location (for example children's apps) should remove it as well.
+
+These entries are **not mandatory** for push notifications, App Banners, or other SDK features. They are only required if you use beacon monitoring (`initBeacons()`) or CleverPush geofencing/location.
+
+If you do **not** use those features and do not want these permissions or features in your app, remove them from your **app** `AndroidManifest.xml` using `tools:node="remove"`. This is the supported approach.
 
 Do **not** call `initBeacons()`. Also remove any location permissions you added yourself (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`) if your app must not use location.
 
@@ -267,6 +271,11 @@ Do **not** call `initBeacons()`. Also remove any location permissions you added 
         android:name="android.permission.BLUETOOTH_CONNECT"
         tools:node="remove" />
 
+    <!-- Remove optional BLE hardware feature merged from CleverPush -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        tools:node="remove" />
+
     <!-- Remove location permission merged from CleverPush -->
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
@@ -275,7 +284,20 @@ Do **not** call `initBeacons()`. Also remove any location permissions you added 
 </manifest>
 ```
 
-After building, open your app manifest in Android Studio and check the **Merged Manifest** tab to confirm that Bluetooth and location permissions are no longer present.
+If you also do **not** use CleverPush geofencing, you can remove the unused geofencing components. This is optional: these components do not add permissions by themselves, but they are only needed for geofencing.
 
-> **Important:** Do not use `tools:node="remove"` for these permissions if you use beacon monitoring or CleverPush geofencing/location features. Those features require the permissions to remain in the merged manifest.
+```xml
+<application ...>
+    <receiver
+        android:name="com.cleverpush.GeofenceBroadcastReceiver"
+        tools:node="remove" />
+    <service
+        android:name="com.cleverpush.service.CleverPushGeofenceTransitionsIntentService"
+        tools:node="remove" />
+</application>
+```
+
+After building, open your app manifest in Android Studio and check the **Merged Manifest** tab to confirm that Bluetooth and location permissions, the `bluetooth_le` feature, and (if removed) the geofencing components are no longer present.
+
+> **Important:** Do not use `tools:node="remove"` for these entries if you use beacon monitoring or CleverPush geofencing/location features. Those features require the permissions, the BLE feature, and the geofencing components to remain in the merged manifest.
 
