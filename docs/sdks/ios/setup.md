@@ -19,7 +19,7 @@ title: Setup
 Add CleverPush to your Podfile:
 
 ```bash
-pod 'CleverPush', '~> 1.34.52'
+pod 'CleverPush', '~> 1.34.53'
 ```
 
 #### Swift Package Manager Setup
@@ -57,7 +57,7 @@ pod 'CleverPush', '~> 1.34.52'
 
 2. **Enter Package URL & Click Add Package**:  
    `https://github.com/cleverpush/cleverpush-ios-sdk-spm`  
-   Make sure **Dependency Rule** is set to **Up to Next Major Version** from `1.34.43`.
+   Make sure **Dependency Rule** is set to **Up to Next Major Version** from `1.34.53`.
 
 3. **Click Add Package**.
 

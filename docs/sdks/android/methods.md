@@ -2042,6 +2042,44 @@ val pianoSements = CleverPush.getInstance(this).getSubscriptionPianoSegments()
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Clear Banner Delivery Dates
+
+(Available from version 1.35.31)
+
+You can reset the delivery date tracking for app banners. This is useful when you want to allow a banner to be displayed again before its scheduled next delivery time.
+
+### Clear a specific banner's delivery date
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).clearBannerDeliveryDate("BANNER_ID");
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).clearBannerDeliveryDate("BANNER_ID")
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Clear all banners' delivery dates
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Java-->
+```java
+CleverPush.getInstance(this).clearAllBannerDeliveryDates();
+```
+
+<!--Kotlin-->
+```kotlin
+CleverPush.getInstance(this).clearAllBannerDeliveryDates()
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ## Beacon Monitoring
 
 (Available from version 1.35.32)

@@ -1649,3 +1649,41 @@ CleverPush.setGroupNotificationSoundMode(.firstInGroupOnly)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+## Track Notification Delivered / Clicked
+
+(Available from version 1.34.53)
+
+These methods allow you to manually report that a notification was delivered or clicked. This is useful when you handle notifications yourself (e.g. via a custom Notification Service Extension) and need to ensure delivery and click events are tracked correctly.
+
+### Track Notification Delivered
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.trackNotificationDelivered("NOTIFICATION_ID")
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush trackNotificationDelivered:@"NOTIFICATION_ID"];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### Track Notification Clicked
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+```swift
+CleverPush.trackNotificationClicked("NOTIFICATION_ID")
+```
+
+<!--Objective-C-->
+```objective-c
+[CleverPush trackNotificationClicked:@"NOTIFICATION_ID"];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+

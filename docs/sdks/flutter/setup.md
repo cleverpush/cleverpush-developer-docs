@@ -95,7 +95,7 @@ A common real-world case: your app uses SPM for plugins, but the Notification Se
         target 'CleverPushNotificationServiceExtension' do
           use_frameworks!
 
-          pod 'CleverPush/CleverPushExtension', '1.34.45'
+          pod 'CleverPush/CleverPushExtension', '1.34.52'
         end
         ```
 
