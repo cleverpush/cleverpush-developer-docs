@@ -876,6 +876,28 @@ Handle opened URLs in stories:
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+Register the story view with the SDK, track that it was shown, and read which stories the user has already seen:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.addStoryView(storyView)
+storyView?.trackShown()
+let seenStories = CleverPush.getSeenStories()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush addStoryView:storyView];
+[storyView trackShown];
+NSArray<NSString *> *seenStories = [CleverPush getSeenStories];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ### Customizing StoryView
 

@@ -186,6 +186,34 @@ NSArray<NSString *> *domains = @[@"myapp.clpsh.com", @"go.myapp.clpsh.com"];
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+If your app uses SceneDelegate, you can tell the SDK to handle URLs from the scene connection and also pass captured URLs manually:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setHandleUrlFromSceneDelegate(true)
+
+func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+    if let url = userActivity.webpageURL {
+        CleverPush.captureDeepLinkURL(url)
+    }
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setHandleUrlFromSceneDelegate:YES];
+
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
+    [CleverPush captureDeepLinkURL:userActivity.webpageURL];
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ### Automatic Deep Link Handling
 
 When `autoHandleDeepLink` is enabled in your CleverPush channel settings, the SDK automatically handles deep links from push notifications. This setting applies to both Universal Links and custom URL schemes.

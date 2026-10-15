@@ -41,11 +41,34 @@ CleverPush.getNotifications(true, callback: { remoteNotification in
 // subscribe
 CleverPush.subscribe()
 
+// subscribe with success / failure callbacks
+CleverPush.subscribe({ subscriptionId in
+    print("Subscribed with ID: \(subscriptionId ?? "")")
+}, failure: { error in
+    print("Subscribe failed: \(error?.localizedDescription ?? "")")
+})
+
 // unsubscribe later
 CleverPush.unsubscribe()
 
+// unsubscribe with result callback
+CleverPush.unsubscribe { success in
+    print("Unsubscribe success: \(success)")
+}
+
 // get subscription status
 let isSubscribed = CleverPush.isSubscribed()
+
+// get subscription ID (sync)
+let subscriptionId = CleverPush.getSubscriptionId()
+
+// get subscription ID (async)
+CleverPush.getSubscriptionId { subscriptionId in
+    print("Subscription ID: \(subscriptionId ?? "")")
+}
+
+// current channel ID
+let channelId = CleverPush.channelId()
 ```
 
 <!--Objective-C-->
@@ -74,13 +97,174 @@ NSArray *localNotifications = [CleverPush getNotifications];
  }];
 
 // subscribe
-[CleverPush subscribe]
+[CleverPush subscribe];
+
+// subscribe with success / failure callbacks
+[CleverPush subscribe:^(NSString *subscriptionId) {
+    NSLog(@"Subscribed with ID: %@", subscriptionId);
+} failure:^(NSError *error) {
+    NSLog(@"Subscribe failed: %@", error.localizedDescription);
+}];
 
 // unsubscribe later
-[CleverPush unsubscribe]
+[CleverPush unsubscribe];
+
+// unsubscribe with result callback
+[CleverPush unsubscribe:^(BOOL success) {
+    NSLog(@"Unsubscribe success: %d", success);
+}];
 
 // get subscription status
-BOOL isSubscribed = [CleverPush isSubscribed]
+BOOL isSubscribed = [CleverPush isSubscribed];
+
+// get subscription ID (sync)
+NSString *subscriptionId = [CleverPush getSubscriptionId];
+
+// get subscription ID (async)
+[CleverPush getSubscriptionId:^(NSString *subscriptionId) {
+    NSLog(@"Subscription ID: %@", subscriptionId);
+}];
+
+// current channel ID
+NSString *channelId = [CleverPush channelId];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Initialize with Scene Connection Options
+
+(Available from iOS 13. Use this when your app uses `UIScene` / SceneDelegate instead of `AppDelegate` launch options.)
+
+Call this from `scene:willConnectToSession:options:`.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+if #available(iOS 13.0, *) {
+    CleverPush.initWithConnectionOptions(connectionOptions, channelId: "YOUR_CHANNEL_ID_HERE", handleNotificationReceived: { result in
+        print("Received Notification with URL: \(result?.notification?.url ?? "")")
+    }, handleNotificationOpened: { result in
+        print("Opened Notification with URL: \(result?.notification?.url ?? "")")
+    }, handleSubscribed: { subscriptionId in
+        print("Subscribed to CleverPush with ID: \(subscriptionId ?? "")")
+    }, autoRegister: true) { success, failureMessage in
+        print("init success = \(success)")
+        print("init failure = \(failureMessage ?? "")")
+    }
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+if (@available(iOS 13.0, *)) {
+    [CleverPush initWithConnectionOptions:connectionOptions
+                                channelId:@"YOUR_CHANNEL_ID_HERE"
+               handleNotificationReceived:^(CPNotificationReceivedResult *result) {
+        NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+    } handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+        NSLog(@"Opened Notification with URL: %@", [result.notification valueForKey:@"url"]);
+    } handleSubscribed:^(NSString *subscriptionId) {
+        NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+    } autoRegister:YES handleInitialized:^(BOOL success, NSString *failureMessage) {
+        NSLog(@"init success = %d", success);
+        NSLog(@"init failure = %@", failureMessage);
+    }];
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Sync Subscription
+
+Forces the SDK to sync the current device subscription with the CleverPush backend.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.syncSubscription()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush syncSubscription];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Are Notifications Enabled
+
+Checks whether the user has granted notification permission.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.areNotificationsEnabled { enabled in
+    print("Notifications enabled: \(enabled)")
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush areNotificationsEnabled:^(BOOL enabled) {
+    NSLog(@"Notifications enabled: %d", enabled);
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Get Channel Config
+
+Retrieves the current channel configuration.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.getChannelConfig { config in
+    print(config as Any)
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush getChannelConfig:^(NSDictionary *config) {
+    NSLog(@"%@", config);
+}];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Logging
+
+Set a listener to receive SDK log messages.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setLogListener { message in
+    print("CleverPush: \(message ?? "")")
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setLogListener:^(NSString *message) {
+    NSLog(@"CleverPush: %@", message);
+}];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -325,6 +509,13 @@ let subscriptionTopics = CleverPush.getSubscriptionTopics()
 // set multiple subscription topics
 CleverPush.setSubscriptionTopics(["ID_1", "ID_2"])
 
+// set multiple subscription topics with success / failure callbacks
+CleverPush.setSubscriptionTopics(["ID_1", "ID_2"], onSuccess: {
+    print("Topics updated")
+}, onFailure: { error in
+    print(error?.localizedDescription ?? "")
+})
+
 // get all the available topics
 CleverPush.getAvailableTopics { channelTopics_ in
     print(channelTopics_ as Any)
@@ -340,6 +531,15 @@ let hasTopic = CleverPush.hasSubscriptionTopic("TOPIC_ID");
 
 // let the user choose his topics
 CleverPush.showTopicsDialog()
+
+// present the topics dialog on a specific window
+CleverPush.setTopicsDialogWindow(self.view.window)
+CleverPush.showTopicsDialog(self.view.window) {
+    print("Topics dialog dismissed")
+}
+
+// show the topics dialog when new topics have been added
+CleverPush.showTopicDialogOnNewAdded()
 ```
 
 <!--Objective-C-->
@@ -355,7 +555,14 @@ CleverPush.showTopicsDialog()
 NSArray* subscriptionTopics = [CleverPush getSubscriptionTopics];
 
 // set multiple subscription topics
-[CleverPush setSubscriptionTopics:@{@"ID_1", @"ID_2"}];
+[CleverPush setSubscriptionTopics:@[@"ID_1", @"ID_2"]];
+
+// set multiple subscription topics with success / failure callbacks
+[CleverPush setSubscriptionTopics:[@[@"ID_1", @"ID_2"] mutableCopy] onSuccess:^{
+    NSLog(@"Topics updated");
+} onFailure:^(NSError *error) {
+    NSLog(@"%@", error.localizedDescription);
+}];
 
 // get all the available topics
 [CleverPush getAvailableTopics:^(NSArray* channelTopics_) {
@@ -372,6 +579,15 @@ BOOL hasTopic = [CleverPush hasSubscriptionTopic:@"TOPIC_ID"];
 
 // let the user choose his topics
 [CleverPush showTopicsDialog];
+
+// present the topics dialog on a specific window
+[CleverPush setTopicsDialogWindow:self.view.window];
+[CleverPush showTopicsDialog:self.view.window callback:^{
+    NSLog(@"Topics dialog dismissed");
+}];
+
+// show the topics dialog when new topics have been added
+[CleverPush showTopicDialogOnNewAdded];
 
 [CleverPush setTopicsChangedListener:^(NSArray* topicsIds) {
     NSLog(@"CleverPush: Changed topicsIds %@", topicsIds);
@@ -407,6 +623,13 @@ let attributeValue = CleverPush.getSubscriptionAttribute("ATTRIBUTE_ID")
 
 // Set a string value
 CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE")
+
+// Set a string value with success / failure callbacks
+CleverPush.setSubscriptionAttribute("ATTRIBUTE_ID", value: "ATTRIBUTE_VALUE", onSuccess: { _ in
+    print("Attribute set")
+}, onFailure: { error in
+    print(error?.localizedDescription ?? "")
+})
 
 // Set an array of strings
 let valArray = ["ATTRIBUTE_VALUE_ONE", "ATTRIBUTE_VALUE_TWO", "ATTRIBUTE_VALUE_THREE", "ATTRIBUTE_VALUE_FOUR"]
@@ -450,6 +673,13 @@ NSString* attributeValue = [CleverPush getSubscriptionAttribute:@"ATTRIBUTE_ID"]
 // Set a string value
 [CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE"];
 
+// Set a string value with success / failure callbacks
+[CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" value:@"ATTRIBUTE_VALUE" onSuccess:^(NSDictionary *result) {
+    NSLog(@"Attribute set");
+} onFailure:^(NSError *error) {
+    NSLog(@"%@", error.localizedDescription);
+}];
+
 // Set an array of strings
 NSArray *valArray = @[@"ATTRIBUTE_VALUE_ONE", @"ATTRIBUTE_VALUE_TWO", @"ATTRIBUTE_VALUE_THREE", @"ATTRIBUTE_VALUE_FOUR"];
 [CleverPush setSubscriptionAttribute:@"ATTRIBUTE_ID" arrayValue:valArray];
@@ -486,6 +716,8 @@ NSDictionary<NSString *, NSString *> *attributes = @{@"user_id": @"1", @"zip": @
 ```swift
 CleverPush.pushSubscriptionAttributeValue("categories", value: "category_1");
 CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
+
+let hasValue = CleverPush.hasSubscriptionAttributeValue("categories", value: "category_1")
 ```
 
 <!--Objective-C-->
@@ -494,6 +726,8 @@ CleverPush.pullSubscriptionAttributeValue("categories", value: "category_1");
 [CleverPush pushSubscriptionAttributeValue:@"categories" value:@"category_1"];
 
 [CleverPush pullSubscriptionAttributeValue:@"categories" value:@"category_1"];
+
+BOOL hasValue = [CleverPush hasSubscriptionAttributeValue:@"categories" value:@"category_1"];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -589,6 +823,18 @@ let notifications = CleverPush.getNotifications() as? [CPNotification]
 print(notifications as Any)
 print(notifications?[0].id as String)
 
+// Combine local notifications with remote API results
+CleverPush.getNotifications(true) { remoteNotifications in
+    print(remoteNotifications as Any)
+}
+
+// Paginate remote notifications 
+CleverPush.getNotifications(true, limit: 20, skip: 0) { remoteNotifications in
+    print(remoteNotifications as Any)
+}
+
+// Limit how many notifications are stored locally
+CleverPush.setMaximumNotificationCount(50)
 ```
 
 <!--Objective-C-->
@@ -596,13 +842,26 @@ print(notifications?[0].id as String)
 ```objective-c
 NSArray* notifications = [CleverPush getNotifications];
 
+// Combine local notifications with remote API results
+[CleverPush getNotifications:YES callback:^(NSArray *remoteNotifications) {
+    NSLog(@"%@", remoteNotifications);
+}];
+
+// Paginate remote notifications
+[CleverPush getNotifications:YES limit:20 skip:0 callback:^(NSArray *remoteNotifications) {
+    NSLog(@"%@", remoteNotifications);
+}];
+
+// Limit how many notifications are stored locally
+[CleverPush setMaximumNotificationCount:50];
+
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Tracking Notification Clicks
 
-You can use the `trackInboxClicked()` method from the `CPNotification` object to manually track clicks on notifications retrieved either from local storage or remotely.
+You can use the `trackInboxClicked()` method from the `CPNotification` object, or `CleverPush.trackInboxClicked()`, to manually track clicks on notifications retrieved either from local storage or remotely.
 
 This is especially useful if you're displaying a custom inbox UI.
 
@@ -615,6 +874,7 @@ if let notifications = CleverPush.getNotifications() as? [CPNotification] {
     for notification in notifications {
         // Track a notification click
         notification.trackInboxClicked()
+        // or: CleverPush.trackInboxClicked(notification.id)
     }
 }
 
@@ -635,6 +895,7 @@ NSArray *notifications = [CleverPush getNotifications];
 for (CPNotification *notification in notifications) {
     // Track a notification click
     [notification trackInboxClicked];
+    // or: [CleverPush trackInboxClicked:notification.id];
 }
 
 [CleverPush getNotifications:YES callback:^(NSArray *remoteNotifications) {
@@ -772,17 +1033,41 @@ Get banners by group ID
 <!--Swift-->
 
 ```swift
+CleverPush.getAppBanners("CHANNEL_ID") { banners in
+  // do something with the banners
+}
+
 CleverPush.getAppBanners(byGroup: groupId) { banners in
   // do something with the banners
 }
+
+CleverPush.setAppBannerShownCallback { banner in
+  print("App Banner shown: \(banner?.id ?? "")")
+}
+
+CleverPush.setAppBannerTrackingEnabled(true)
+
+let isBannerVisible = CleverPush.popupVisible()
 ```
 
 <!--Objective-C-->
 
 ```objective-c
+[CleverPush getAppBanners:@"CHANNEL_ID" callback:^(NSMutableArray<CPAppBanner *> *banners) {
+  // do something with the banners
+}];
+
 [CleverPush getAppBannersByGroup:groupId callback:^(NSArray<CPAppBanner *> *banners) {
   // do something with the banners
 }];
+
+[CleverPush setAppBannerShownCallback:^(CPAppBanner *banner) {
+  NSLog(@"App Banner shown: %@", banner.id);
+}];
+
+[CleverPush setAppBannerTrackingEnabled:YES];
+
+BOOL isBannerVisible = [CleverPush popupVisible];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -1209,6 +1494,30 @@ CleverPush.setShowAppBannerCallback { viewController in
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+You can also set a custom top view controller and the modal presentation style used for app banners.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setCustomTopViewController(self)
+CleverPush.setAppBannerModalPresentationStyle(.overFullScreen)
+
+CleverPush.setAppBannerDraftsEnabled(true)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setCustomTopViewController:self];
+[CleverPush setAppBannerModalPresentationStyle:UIModalPresentationOverFullScreen];
+
+[CleverPush setAppBannerDraftsEnabled:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
     
 ## Auto Request Notification Permission
 
@@ -1488,7 +1797,7 @@ After SDK initialization is complete, call `initBeacons` to enable beacon monito
 
 Configure beacons in the CleverPush dashboard under Channel → Beacons.
 
-To detect nearby beacons, users must grant the required Bluetooth and precise location permissions depending on the Android version.
+To detect nearby beacons, users must grant the required Bluetooth and precise location permissions.
 
 ### beacon integration
 
@@ -1498,12 +1807,20 @@ Initialize beacon monitoring using initBeacons().
 
 <!--Swift-->
 ```swift
-CleverPushLocation.initBeacons()
+CleverPushLocation.requestLocationPermission()
+
+if CleverPushLocation.hasLocationPermission() {
+    CleverPushLocation.initBeacons()
+}
 ```
 
 <!--Objective-C-->
 ```objective-c
-[CleverPushLocation initBeacons];
+[CleverPushLocation requestLocationPermission];
+
+if ([CleverPushLocation hasLocationPermission]) {
+    [CleverPushLocation initBeacons];
+}
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -1528,6 +1845,24 @@ CleverPushLocation.onBeaconDetected { beacon in
 [CleverPushLocation onBeaconDetected:^(NSDictionary *beacon) {
     NSLog(@"Beacon detected: %@", beacon);
 }];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+You can also track a beacon event manually:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPushLocation.trackBeaconEvent(beacon)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPushLocation trackBeaconEvent:beacon];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -1683,6 +2018,88 @@ CleverPush.trackNotificationClicked("NOTIFICATION_ID")
 <!--Objective-C-->
 ```objective-c
 [CleverPush trackNotificationClicked:@"NOTIFICATION_ID"];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Increase Session Visits
+
+Increments the current session visit count used for targeting and app banners.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.increaseSessionVisits()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush increaseSessionVisits];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Open Notification URLs in WebView
+
+When enabled, notification URLs can be opened in an in-app web view instead of leaving the app.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setOpenWebViewEnabled(true)
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setOpenWebViewEnabled:YES];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Confirm Alert Shown
+
+Call this if you show your own notification permission prompt, so the SDK can record that a confirm alert was already shown.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setConfirmAlertShown()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setConfirmAlertShown];
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+## Unsubscribe Status
+
+Sets or reads the local unsubscribe status flag.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+CleverPush.setUnsubscribeStatus(true)
+let unsubscribed = CleverPush.getUnsubscribeStatus()
+```
+
+<!--Objective-C-->
+
+```objective-c
+[CleverPush setUnsubscribeStatus:YES];
+BOOL unsubscribed = [CleverPush getUnsubscribeStatus];
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

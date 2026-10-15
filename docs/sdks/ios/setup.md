@@ -465,6 +465,28 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Please note that `autoRegister` is turned to `true` in the above example. It means that the CleverPush SDK will automatically try to subscribe the user on the first launch of the app. If you call `unsubscribe()` the SDK will not automatically try to subscribe again.
 
+If your app uses SceneDelegate (`UIScene`, iOS 13+), initialize with connection options instead of launch options:
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Swift-->
+
+```swift
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    CleverPush.initWithConnectionOptions(connectionOptions, channelId: "YOUR_CHANNEL_ID_HERE")
+}
+```
+
+<!--Objective-C-->
+
+```objective-c
+- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+    [CleverPush initWithConnectionOptions:connectionOptions channelId:@"YOUR_CHANNEL_ID_HERE"];
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 You can add a `handleInitialized` callback
 
 The `handleInitialized` callback is invoked when the CleverPush SDK initialization process completes. It provides information about whether the initialization was successful or if it failed, allowing developers to respond accordingly.

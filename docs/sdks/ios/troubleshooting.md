@@ -19,16 +19,119 @@ In the project navigator, select the top-level project directory and select the 
 
 6. An iOS device (iPhone, iPad, iPod Touch) to test on. The Xcode simulator doesn't support push notifications so you must test on a real device.
 
+Also complete the [Notification Service Extension checklist](#notification-service-extension-delivered-count-incorrect-or-delivery-api-not-called) below. Rich media and delivery tracking both depend on the extension actually running.
+
+
+## Notification Service Extension: delivered count incorrect or delivery API not called
+
+CleverPush records **iOS notification delivered** events from the **Notification Service Extension (NSE)**, not from the main app. If the dashboard Delivered count is too low, stuck, or the delivery API is never called, the NSE is usually missing, not running, or not calling `CleverPushExtension`.
+
+Full setup: [Setup → Add Notification Service Extension](./setup#4-add-notification-service-extension) and [replace the extension source](./setup#6-replace-notification-service-extension-source-code).
+
+### What the extension must do
+
+iOS only launches a Notification Service Extension when the push payload includes **`mutable-content: 1`**. CleverPush sets this for notifications that need media or delivery tracking. If that flag is missing, the extension never starts and no delivery request is sent.
+
+Inside `NotificationService`, you must:
+
+1. Copy the request content to `UNMutableNotificationContent`.
+2. Call `CleverPushExtension.didReceiveNotificationExtensionRequest(_:with:)` (Swift) / `didReceiveNotificationExtensionRequest:withMutableNotificationContent:` (Objective-C).
+3. Call the same `CleverPushExtension` expire method in `serviceExtensionTimeWillExpire`.
+4. Then call Apple’s `contentHandler` with the (possibly updated) content.
+
+Do not return from `didReceive` without calling the CleverPush method. Do not use a custom NSE implementation that never forwards the request to `CleverPushExtension`.
+
+If you handle notifications entirely yourself, you can also report delivery with `CleverPush.trackNotificationDelivered("NOTIFICATION_ID")` from the main app (see [Methods](./methods#track-notification-delivered--clicked)). That is a fallback, not a replacement for a correctly integrated NSE.
+
+### Checklist
+
+**Target & embedding**
+
+- The app has a Notification Service Extension target (recommended name: `CleverPushNotificationServiceExtension`).
+- In the main app target → **Build Phases → Embed App Extensions**, the extension is listed and **“Copy only when installing” is unchecked**. If that checkbox is on, the NSE is not installed with debug/run builds and will never run.
+- **Version** and **Build** of the extension match the main app.
+- **Skip Install** is `NO` on the extension when you test from Xcode.
+- Deployment target of the extension is iOS 10+ and aligned with the main app (see [Rich Medias](#notification-with-images-rich-medias-are-not-working)).
+
+**Signing & capabilities**
+
+- The extension is signed with the **same team** as the main app.
+- **App Groups** is enabled on **both** the main app and the NSE, using `group.YOUR.BUNDLE.ID.cleverpush` (or `setAppGroupIdentifierSuffix` if you use a custom suffix). Delivery tracking and `getNotifications` share data through this group.
+- Push Notifications capability stays on the **main app**. The NSE does not replace that capability.
+
+**SDK in the extension (not the core SDK on the wrong target)**
+
+- **CocoaPods:** the extension target uses `pod 'CleverPush/CleverPushExtension'` (same version as the app). After changing the Podfile, run `pod install`.
+- **SPM:** add the **CleverPushExtension** product to the extension target. Do not add the core **CleverPush** product there.
+- Do not mix two different CleverPush versions between the app and the extension.
+
+**Source & Info.plist**
+
+- `NotificationService` source matches the [Setup replacement](./setup#6-replace-notification-service-extension-source-code) (`import CleverPushExtension` / `#import "CleverPushExtension/CleverPushExtension.h"`).
+- The extension `Info.plist` uses `UNNotificationServiceExtension` as `NSExtensionPointIdentifier` (Xcode sets this when you add the NSE template). Do not change it to a Content Extension identifier.
+
+**Runtime**
+
+- Test on a **physical device**. Remote pushes (and therefore the NSE) do not run on the Simulator.
+- Reinstall the app after adding or changing the extension. iOS registers the NSE at install time.
+- Another notification extension or a second NSE on the same app can prevent CleverPush’s extension from running. Keep a single NSE and forward to `CleverPushExtension`.
+- Apps with **Stage / Live / Master** targets need a **separate NSE per target**, with matching App Groups. See [Managing Multiple Targets](./setup#managing-multiple-targets-in-your-app).
+
+### How to confirm the extension is running
+
+1. On a device, run the **extension scheme** (or the app with the NSE attached) from Xcode and set a breakpoint in `didReceive`.
+2. Send a push that includes media or `mutable-content`. If the breakpoint never hits, iOS is not launching the NSE (embedding, signing, `mutable-content`, or “Copy only when installing”).
+3. If the breakpoint hits but Delivered still does not increase, confirm the CleverPush call is present and that the App Group is shared so the SDK can read channel / subscription data.
+
+### Notification Content Extension (optional)
+
+The **Content Extension** is only for custom UI (for example carousels). It does **not** report Delivered. Missing or broken Content Extension will not explain a wrong delivered count; a missing or broken **Service** Extension will.
+
 
 ## When opening a Notification, all other Notifications get cleared
 
 This is due to iOS automatically clearing all notifications when our SDK reset the badge count to zero. This behaviour can be changed.
-Please refer to the **Badge Counts** section on the **Methods** page for further instructions.
+Please refer to the **Badge Counts** section on the **[Setup](./setup#badge-counts)** page (`setAutoClearBadge` / `setIncrementBadge`) for further instructions.
 
 
 ## Notifications not received while developing
 
 In some cases it is needed to mark your subscriptions as "Sandbox mode" subscriptions in the CleverPush dashboard (Channels -> App Push -> Subscriptions -> Click on your subscription -> Mark as APNS Sandbox mode).
+
+Also confirm:
+
+1. You are testing on a **physical device**. The iOS Simulator does not receive remote push notifications.
+2. The main app target has the **Push Notifications** capability and **Background Modes → Remote notifications**.
+3. An APNs Auth Key (or certificate) is uploaded in the CleverPush channel settings and matches this app’s Bundle ID.
+4. Debug builds use the APNs **sandbox** environment. A production token will not receive sandbox pushes (and the other way around).
+5. The SDK is initialized **once**, from `AppDelegate` (`initWithLaunchOptions`) or, for Scene-based apps, from SceneDelegate (`initWithConnectionOptions`). See [Do Not Initialize the SDK Twice](#do-not-initialize-the-sdk-twice).
+6. No other push SDK (or a custom `UNUserNotificationCenter` delegate) is replacing CleverPush’s notification handling. See [Custom Delegate in UNUserNotificationCenter Breaking SDK](#custom-delegate-in-unusernotificationcenter-breaking-sdk).
+
+
+## `getNotifications` is empty / badge count is not updated
+
+`getNotifications`, inbox, and automatic badge updates require a shared **App Group** between the main app and the Notification Service Extension.
+
+1. Create `group.YOUR.BUNDLE.ID.cleverpush` and enable it on **both** the app target and `CleverPushNotificationServiceExtension`. See [Setup → Add AppGroup](./setup#10-add-appgroup-optional-but-recommended).
+2. If your App Group does not follow that default scheme, call `setAppGroupIdentifierSuffix` **before** initializing the SDK.
+3. Extension **Version** and **Build** must match the main app.
+4. Rebuild and reinstall after changing App Groups; entitlements are applied at install time.
+
+
+## SceneDelegate apps: SDK not initialized / deep links not handled
+
+If the app uses `UIScene` / SceneDelegate, `didFinishLaunchingWithOptions` may not contain the notification or Universal Link that opened the app.
+
+- Initialize with `CleverPush.initWithConnectionOptions` in `scene:willConnectToSession:options:`.
+- For Universal Links, implement SceneDelegate continue-user-activity handling, or call `setHandleUrlFromSceneDelegate(true)` / `captureDeepLinkURL` as described on the [Deep Links](./deeplinks) page.
+
+
+## Swift Package Manager: framework or extension not found
+
+- Add the **CleverPush** product to the main app target. Add **CleverPushExtension** to the Notification Service Extension (and Content Extension) target — not the core `CleverPush` product.
+- After changing packages, run **File → Packages → Reset Package Caches**, then **Product → Clean Build Folder**.
+- If you use CocoaPods, do not also add the same SDK via SPM (or the other way around) on the same target.
+- The CocoaPods `CleverPush-CleverPushResources` signing issue below does **not** apply to SPM installs.
 
 
 ## `CleverPush-CleverPushResources` needs to have a Provisioning Profile selected.
@@ -92,7 +195,7 @@ Before contacting support, please work through this checklist. Most App Banner i
 
 - The CleverPush SDK is initialized **only once** in your application (e.g. in `AppDelegate`). Initializing it multiple times will break App Banners. See the [Do Not Initialize the SDK Twice](#do-not-initialize-the-sdk-twice) section above.
 - You are using the latest stable version of the CleverPush iOS SDK. Check the [Changelog](./changelog) for recent fixes.
-- The correct **Channel ID** is passed to `CleverPush.initWithLaunchOptions`.
+- The correct **Channel ID** is passed to `CleverPush.initWithLaunchOptions` (or `initWithConnectionOptions` on Scene-based apps).
 - You are testing on a **physical iOS device**. Some SDK features behave differently on the simulator.
 - The app is in the **foreground** when the banner should appear (unless you have specifically configured background display).
 - If you are triggering a banner by **event**, the event name in the code matches exactly what is configured in the dashboard (case-sensitive).
@@ -113,23 +216,23 @@ Before contacting support, please work through this checklist. Most App Banner i
 1. Confirm Dev Mode is enabled for testing (see above).
 2. Check that the banner frequency allows it to show again — if "Show only once" is set, delete and re-add the app or reset the subscription.
 3. Verify targeting rules: open the banner in the dashboard and check if any segment, tag, attribute, or geofence filter is applied. The test device's subscription must match.
-4. Add a callback to confirm the SDK is triggering banners:
+4. Add a **shown** callback to confirm the SDK is displaying banners. `setAppBannerOpenedCallback` only fires when the user taps a banner action, not when the banner appears:
 
 **Swift**
 ```swift
-CleverPush.setAppBannerOpenedCallback { (_: CPAppBannerAction?) in
-    print("App Banner Opened")
+CleverPush.setAppBannerShownCallback { banner in
+    print("App Banner shown: \(banner?.id ?? "")")
 }
 ```
 
 **Objective-C**
 ```objective-c
-[CleverPush setAppBannerOpenedCallback:^(CPAppBannerAction *action) {
-    NSLog(@"App Banner Opened");
+[CleverPush setAppBannerShownCallback:^(CPAppBanner *banner) {
+    NSLog(@"App Banner shown: %@", banner.id);
 }];
 ```
 
-If this callback never fires, the banner is not being triggered — the issue is in the targeting or scheduling configuration.
+If this callback never fires, the banner is not being triggered — the issue is in the targeting, scheduling, or SDK initialization.
 
 #### Banner Appeared Once but Will Not Appear Again
 
@@ -167,6 +270,7 @@ The banner's **frequency** setting controls repeat display. If it is set to "Sho
 - Verify the Banner ID is copied correctly from the CleverPush dashboard (it is case-sensitive).
 - Confirm the banner status is **Active**.
 - Call `showAppBanner` only after the SDK initialization callback has fired to ensure the SDK is fully ready.
+- If banners should appear on a specific screen, set `setCustomTopViewController` or `setShowAppBannerCallback` before init.
 
 ---
 
@@ -230,16 +334,12 @@ If you have gone through the checklist and the common issues above and App Banne
 18. Any additional context or screenshots that might help:
 ```
 
-# Silent Notification Limitations and Restrictions for iOS
+## Silent Notification Limitations and Restrictions for iOS
 
-1. Silent notifications do not work on the iOS Simulator.You must test silent notifications on a **physical device** to ensure that background tasks and data processing are triggered properly.
+Silent (background) pushes use APNs `content-available: 1` and typically have no alert, sound, or badge. iOS — not the SDK — decides if and when they run.
 
-2. Silent notifications may not be delivered immediately, as the system prioritizes resources to optimize battery life and prevent unnecessary background activity.If your app uses background fetch, silent notifications can trigger it, but you must ensure that **background fetch is enabled** in your app settings.
-
-3. If your app performs too many background tasks or notifications within a short period, the system may throttle or defer the delivery of notifications.
-
-4. Silent notifications may also be deferred when the device is in **Low Power Mode** to preserve battery life.
-
-5. Sending too many silent notifications in a short time could lead to delivery issues or **throttling** by the system.
-
-6. If your app sends too many silent notifications within a short time, iOS may throttle or delay their delivery to optimize battery life and device performance.
+1. Silent notifications do not work on the iOS Simulator. You must test on a **physical device**.
+2. Enable **Background Modes → Remote notifications** on the main app target (see [Setup](./setup#3-enable-the-required-capabilities)).
+3. Delivery is not guaranteed to be immediate. iOS may delay or drop silent pushes to save battery, especially in **Low Power Mode**, when the app is force-quit, or when too many silent pushes are sent in a short time.
+4. If the payload also contains an alert, iOS treats it as a visible notification, not a silent one.
+5. Do not send a high volume of silent notifications. Repeated sends in a short window are throttled by the system.
