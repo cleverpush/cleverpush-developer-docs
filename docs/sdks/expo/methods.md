@@ -342,3 +342,19 @@ CleverPush.getDeviceToken((err, deviceToken) => {
     console.log('Device Token:', deviceToken);
 });
 ```
+
+## Track Notification Delivered / Clicked
+
+These methods allow you to manually report that a notification was delivered or clicked. This is useful when you handle notifications yourself and need to ensure delivery and click events are tracked correctly.
+
+### Track Notification Delivered
+
+```javascript
+CleverPush.trackNotificationDelivered("NOTIFICATION_ID");
+```
+
+### Track Notification Clicked
+
+```javascript
+CleverPush.trackNotificationClicked("NOTIFICATION_ID");
+```

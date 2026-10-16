@@ -58,6 +58,14 @@ This must be called before initializing the SDK.
 CleverPush.shared.setShowNotificationsInForeground(false);
 ```
 
+### Branding color
+
+Sets the SDK branding color (for example the topics dialog highlight). Use a hex color string.
+
+```dart
+CleverPush.shared.setBrandingColor("#ff0000");
+```
+
 ## Subscribe / Unsubscribe
 
 Subscribe:
@@ -535,11 +543,13 @@ CleverPush.shared.setLogHandler((String message) {
 
 ## Notification Read Status
 
-You can mark a notification as read or unread using the `setRead` method on a `CPNotification` object:
+You can mark a notification as read or unread using the `setRead` method on a `CPNotification` object. The current read state is available on `notification.read` (the iOS plugin also loads it via `getNotificationRead`).
 
 ```dart
 var notifications = await CleverPush.shared.getNotifications();
 for (var notification in notifications) {
+  print("Is read: ${notification.read}");
+
   // Mark notification as read
   await notification.setRead(true);
 

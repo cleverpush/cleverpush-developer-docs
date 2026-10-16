@@ -84,7 +84,25 @@ title: Setup
       @end
       ```
 
-3. Create your iOS push certificate
+    8. In the main app target → **Build Phases → Embed App Extensions**, keep **“Copy only when installing” unchecked**. Match the extension **Version** and **Build** with the main app.
+
+3. Add App Group (required for delivered count, `getNotifications`, and badge updates)
+
+   Use the **main app** bundle ID, not the extension’s:
+
+   `group.YOUR.BUNDLE.ID.cleverpush`
+
+   Enable the same App Group on **both** the app target and `CleverPushNotificationServiceExtension`.
+
+   If the dashboard **Delivered** count is wrong or the delivery API is never called, the Notification Service Extension is not running. Confirm:
+   - `NotificationService` calls `CleverPushExtension didReceiveNotificationExtensionRequest`
+   - The push payload includes `mutable-content`
+   - Embed App Extensions does **not** have “Copy only when installing” checked
+   - You are testing on a physical device
+
+   You can also upload an **APNs Auth Key** in the CleverPush channel settings instead of a `.p12` certificate (see the [iOS Setup](../ios/setup#9-create-your-ios-auth-key) page).
+
+4. Create your iOS push certificate
 
    1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
    2. Select Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority...

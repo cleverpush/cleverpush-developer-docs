@@ -89,11 +89,12 @@ npx expo run:android
         - Check that the `CleverPushNotificationServiceExtension` target exists in the project navigator
         - If missing, the NSE files should have been automatically created via the setup commands above
 
-   2. Check CleverPush Framework is Linked to NSE
+   2. Check CleverPush is Linked to NSE
         - Select the `CleverPushNotificationServiceExtension` target in Xcode
         - Go to `Build Phases` > `Link Binary With Libraries`
-        - Ensure `CleverPush.framework` is listed
-        - If missing, add it manually
+        - Ensure **CleverPush** is listed (the Expo plugin adds `pod 'CleverPush'` to the NSE target)
+        - `NotificationService` must call `[CleverPush didReceiveNotificationExtensionRequest:...]`
+        - If missing, add it manually or re-run `npx expo prebuild --clean`
         
    3. Ensure App Groups are Configured
         - Verify App Groups are enabled for both main app and NSE targets
@@ -119,6 +120,7 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
         ```bash
         target 'CleverPushNotificationServiceExtension' do
           pod 'CleverPush'
+          use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
         end
         ```
 
@@ -215,7 +217,7 @@ If the automatic NSE creation didn't work, you can manually create the Notificat
 
   1. Select your main application Target in Xcode
   2. Go to `Capabilities` and activate `App Groups`
-  3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
+  3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your **main app** bundle identifier — not the extension’s).
   4. Enable the created App Group by checking the checkbox next to it
   5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
 
@@ -238,11 +240,19 @@ If rich notifications are not working properly in iOS, follow these troubleshoot
    - Check that the `CleverPushNotificationServiceExtension` target exists in the project navigator
    - If missing, the NSE files should have been automatically created via the setup commands above
 
-2. **Check CleverPush Framework is Linked to NSE**
+2. **Check CleverPush is Linked to NSE**
    - Select the `CleverPushNotificationServiceExtension` target in Xcode
    - Go to `Build Phases` > `Link Binary With Libraries`
-   - Ensure `CleverPush.framework` is listed
-   - If missing, add it manually
+   - Ensure **CleverPush** is listed (Expo plugin uses `pod 'CleverPush'` on the NSE, not `CleverPushExtension`)
+   - Confirm `NotificationService.m` calls `[CleverPush didReceiveNotificationExtensionRequest:...]`
+   - If missing, add it manually or re-run `npx expo prebuild --clean`
+
+2a. **Delivered count is wrong / delivery API is not called**
+   - iOS delivery tracking runs in the NSE, not in the JS app
+   - The push payload must include `mutable-content`
+   - Main app **Embed App Extensions** must not have “Copy only when installing” checked
+   - App Group must be `group.YOUR.BUNDLE.ID.cleverpush` on **both** targets (main app bundle ID)
+   - Test on a **physical device**
 
 3. **Ensure App Groups are Configured**
    - Verify App Groups are enabled for both main app and NSE targets

@@ -118,6 +118,8 @@ title: Setup
         }
         ```
 
+    8. In the main app target → **Build Phases → Embed App Extensions**, keep **“Copy only when installing” unchecked**. Match the extension **Version** and **Build** with the main app. Test on a **physical device**.
+
 3. Create your iOS push certificate
 
   1. Open Keychain Access on your Mac. (Application > Utilities > Keychain Access).
@@ -140,9 +142,11 @@ title: Setup
 
   1. Select your main application Target in Xcode
   2. Go to `Capabilities` and activate `App Groups`
-  3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your application's bundle identifier).
+  3. Create a new App Group with the following Scheme: `group.YOUR.BUNDLE.ID.cleverpush` (replace `YOUR.BUNDLE.ID` with your **main app** bundle identifier — not the extension’s).
   4. Enable the created App Group by checking the checkbox next to it
   5. Select the `CleverPushNotificationServiceExtension` target and also enable the created App Group under `Capabilities`
+
+If the dashboard **Delivered** count is wrong or the delivery API is never called, the Notification Service Extension is not running. Confirm `NotificationService` calls `CleverPushExtension`, the payload includes `mutable-content`, App Groups match on both targets, and you are testing on a physical device.
 
 
 **Common iOS errors:**

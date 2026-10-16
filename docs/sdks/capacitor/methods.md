@@ -73,6 +73,13 @@ CleverPush.getSubscriptionId().then(({ subscriptionId }) => {
 });
 ```
 
+## Show/Hide Foreground Notifications
+
+This must be called before initializing the SDK.
+
+```javascript
+CleverPush.setShowNotificationsInForeground({ showNotifications: true })
+```
 
 ## App Banners
 

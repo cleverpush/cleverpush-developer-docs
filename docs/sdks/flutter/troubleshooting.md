@@ -192,6 +192,18 @@ You should already be able to disable bitcode manually in the Xcode build settin
 Please make sure that the Deployment Target (iOS Version) for `Runner` and for the `CleverPushNotificationServiceExtension` target is the same.
 
 
+## iOS: Delivered count is wrong or the delivery API is not called
+
+iOS notification **delivered** events are recorded from the **Notification Service Extension**, not from Dart.
+- `NotificationService` must call `CleverPushExtension didReceiveNotificationExtensionRequest`
+- Use `pod 'CleverPush/CleverPushExtension'` on the extension, pinned to the **same** CleverPush version as the plugin
+- The push payload must include `mutable-content`
+- Main app **Embed App Extensions** must not have “Copy only when installing” checked
+- App Group `group.YOUR.BUNDLE.ID.cleverpush` must be enabled on **both** Runner and the extension (main app bundle ID)
+- Test on a **physical device**
+
+See [Setup iOS](./setup.md#setup-ios).
+
 ## iOS: Issues with flutter_local_notifications plugin
 
 If you encounter issues with `flutter_local_notifications` callbacks not being called, please make sure to add the following to your `ios/Runner/AppDelegate.swift` file:
