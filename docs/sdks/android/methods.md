@@ -510,19 +510,17 @@ CleverPush.getInstance(this).unmarkSubscriptionAsTest(object : CompletionFailure
 
 (Available from version 1.23.5)
 
-By default, the SDK automatically removes the following data from local storage when a user unsubscribes: Subscription ID, Topics, Tags, Attributes
+By default, the SDK removes the following data from local storage when a user unsubscribes: Subscription ID, Topics, Topic version, Tags, Attributes, and Piano segments.
 
-The default value of `keepTargetingDataOnUnsubscribe` is false.
+To keep targeting data locally after a user unsubscribes, call `setKeepTargetingDataOnUnsubscribe(true)`. The default value is `false`.
 
-Set `keepTargetingDataOnUnsubscribe` to `true` to retain user targeting data locally even after the user unsubscribes.
+When this is enabled, the SDK keeps: Topics, Topic version, Tags, Attributes, and Piano segments.
 
-This ensures that Topics, Tags, and Attributes are preserved locally, even when the user is no longer subscribed.
+- **When `setKeepTargetingDataOnUnsubscribe(true)` is set:** Targeting data, including topics, tags, attributes, and Piano segments, is preserved locally and attached to the new subscription after resubscribing.
 
-The subscriptionId is always removed and is not controlled by this flag. 
+- **When `setKeepTargetingDataOnUnsubscribe(false)` is set or the method is not called:** Targeting data is removed on unsubscribe and is not restored when the user subscribes again.
 
-On every `Unsubscribe()` call, the SDK removes: Subscription ID, Related sync/created fields
-
-When `keepTargetingDataOnUnsubscribe` is enabled (true), the SDK keeps only: Topics, Topic version, Tags, Attributes
+The Subscription ID is always removed and is not affected by this setting. The subscription sync and creation metadata is also always removed on unsubscribe.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
